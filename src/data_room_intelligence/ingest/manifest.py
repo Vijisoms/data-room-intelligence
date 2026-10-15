@@ -9,8 +9,8 @@ from pathlib import Path
 
 from ..config import slug
 from ..contracts import Manifest, ManifestEntry
-from ..discovery import infer_as_of
 
+DATE_PATTERN = re.compile(r"(?<!\d)(20\d{2})[._-]?(\d{2})[._-]?(\d{2})(?!\d)")
 GIS_SIDECARS = {".shx", ".dbf", ".prj", ".cpg", ".sbn", ".sbx", ".qix"}
 ROLES = [
     (r"unit details", "unit_details", "unit-details"),
@@ -24,6 +24,18 @@ ROLES = [
     (r"pf units", "gis_units", "gis-units-pf"),
     (r"units", "gis_units_ownership", "gis-units"),
 ]
+
+
+def infer_as_of(path: Path) -> str | None:
+    """As-of date from a file name such as LSB_PDP_20260904.shp or Basis Report_2026.09.15.xlsx."""
+    match = DATE_PATTERN.search(path.name)
+    if not match:
+        return None
+    year, month, day = match.groups()
+    try:
+        return datetime(int(year), int(month), int(day)).date().isoformat()
+    except ValueError:
+        return None
 
 
 def file_kind(path: Path) -> str:

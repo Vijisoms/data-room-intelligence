@@ -5,14 +5,13 @@ build-backend = "hatchling.build"
 [project]
 name = "data-room-intelligence"
 version = "0.1.0"
-description = "Agent-driven normalization and analysis for upstream M&A data rooms"
-readme = {text = "Agent-driven normalization and analysis for upstream M&A data rooms.", content-type = "text/plain"}
+description = "Ontology platform for upstream M&A data rooms: ingestion, reconciliation, review, API, chat and web UI"
+readme = {text = "Ontology platform for upstream M&A data rooms.", content-type = "text/plain"}
 requires-python = ">=3.11"
 dependencies = [
   "agent-framework-core==1.20.0",
   "agent-framework-foundry==1.14.0",
   "azure-identity>=1.25.0",
-  "azure-storage-blob>=12.27.0",
   "duckdb>=1.4.0",
   "fastapi>=0.120.0",
   "networkx>=3.4",

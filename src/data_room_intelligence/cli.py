@@ -9,37 +9,17 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from .agent import create_qa_agent
-from .artifacts import BlobArtifactPublisher
-from .credentials import azure_credential
 from .doctor import format_checks, run_doctor
-from .models import PipelineRequest
-from .workflow import run_workflow
-
-
-def _add_publish_arguments(command: argparse.ArgumentParser) -> None:
-    command.add_argument("--account-url")
-    command.add_argument("--container")
-    command.add_argument("--asset-id", default="lone-star-basin")
 
 
 def parser() -> argparse.ArgumentParser:
     data_room = Path(os.environ.get("DATA_ROOM_PATH", "data/sample-room"))
-    output = Path(os.environ.get("DATA_ROOM_OUTPUT", "output"))
+    room_id = os.environ.get("DATA_ROOM_ASSET_ID", "lone-star-basin")
     root = argparse.ArgumentParser(prog="data-room-intel")
     commands = root.add_subparsers(dest="command", required=True)
-    build = commands.add_parser("build", help="Build the canonical model and report")
-    build.add_argument("data_room", type=Path, nargs="?", default=data_room)
-    build.add_argument("--output", type=Path, default=output)
-    build.add_argument("--asset-name", default="Lone Star Basin")
-    build.add_argument("--publish", action="store_true")
-    _add_publish_arguments(build)
-    publish = commands.add_parser("publish", help="Publish generated outputs to Blob Storage")
-    publish.add_argument("output", type=Path, nargs="?", default=output)
-    _add_publish_arguments(publish)
-    ask = commands.add_parser("ask", help="Ask the cited Q&A agent")
+    ask = commands.add_parser("ask", help="Ask a question; answered by named operations over the latest snapshot")
     ask.add_argument("question")
-    ask.add_argument("--output", type=Path, default=output)
+    ask.add_argument("--room-id", default=room_id)
     doctor = commands.add_parser(
         "doctor", help="Check the data room, Azure identity, Foundry models and Document Intelligence"
     )
@@ -49,12 +29,12 @@ def parser() -> argparse.ArgumentParser:
     catalog.add_argument("--out", type=Path, default=Path("docs/catalog"))
     ingest = commands.add_parser("ingest", help="Discover the room and extract GIS, tables and PDFs into Silver")
     ingest.add_argument("data_room", type=Path, nargs="?", default=data_room)
-    ingest.add_argument("--room-id", default=os.environ.get("DATA_ROOM_ASSET_ID", "lone-star-basin"))
+    ingest.add_argument("--room-id", default=room_id)
     snapshot = commands.add_parser("snapshot", help="Run the ontology workflow: discover, extract in parallel, build, reconcile, review gate")
     snapshot.add_argument("data_room", type=Path, nargs="?", default=data_room)
-    snapshot.add_argument("--room-id", default=os.environ.get("DATA_ROOM_ASSET_ID", "lone-star-basin"))
+    snapshot.add_argument("--room-id", default=room_id)
     publish = commands.add_parser("publish-snapshot", help="Publish the latest snapshot if no blocking issue is open")
-    publish.add_argument("--room-id", default=os.environ.get("DATA_ROOM_ASSET_ID", "lone-star-basin"))
+    publish.add_argument("--room-id", default=room_id)
     publish.add_argument("--reviewer")
     publish.add_argument("--reason")
     publish.add_argument("--force", action="store_true", help="Publish with open blocking issues (needs --reviewer and --reason)")
@@ -105,25 +85,14 @@ async def _run(args: argparse.Namespace) -> None:
         if any(check.status == "FAIL" for check in checks):
             sys.exit(1)
         return
-    if args.command == "build":
-        result = await run_workflow(
-            PipelineRequest(
-                data_room=str(args.data_room),
-                output_dir=str(args.output),
-                asset_name=args.asset_name,
-            )
-        )
-        response: dict[str, object] = {"pipeline": result.model_dump(mode="json")}
-        if args.publish:
-            response["publish"] = _publish(args.output, args)
-        print(json.dumps(response, indent=2))
-        return
-    if args.command == "publish":
-        print(json.dumps(_publish(args.output, args), indent=2))
-        return
-    agent = create_qa_agent(args.output.resolve())
-    response = await agent.run(args.question)
-    print(response)
+    from .ontology.store import Snapshot
+    from .service.chat import ask
+
+    answer = await ask(Snapshot(args.room_id), args.question)
+    print(answer["answer"])
+    for citation in answer["citations"]:
+        print(f"  - {citation['label']}")
+    print(f"[{answer['mode']}; {', '.join(o['operation'] for o in answer['operations'])}; {answer['seconds']}s]", file=sys.stderr)
 
 
 def _catalog(args: argparse.Namespace) -> None:
@@ -140,22 +109,6 @@ def _catalog(args: argparse.Namespace) -> None:
     if args.action == "export":
         for path in export_catalog(args.out):
             print(path)
-
-
-def _publish(output_dir: Path, args: argparse.Namespace) -> dict[str, object]:
-    account_url = args.account_url or os.environ.get("DATA_ROOM_STORAGE_ACCOUNT_URL")
-    container = args.container or os.environ.get("DATA_ROOM_STORAGE_CONTAINER")
-    if not account_url or not container:
-        raise RuntimeError(
-            "Set DATA_ROOM_STORAGE_ACCOUNT_URL and DATA_ROOM_STORAGE_CONTAINER, "
-            "or pass --account-url and --container."
-        )
-    publisher = BlobArtifactPublisher(
-        account_url=account_url,
-        container=container,
-        credential=azure_credential(),
-    )
-    return publisher.publish(output_dir, asset_id=args.asset_id)
 
 
 def main() -> None:
