@@ -17,6 +17,18 @@ def test_credential_defaults_for_hosted_runs(monkeypatch) -> None:
     assert isinstance(azure_credential(), DefaultAzureCredential)
 
 
+def test_doctor_checks_the_room_roles(tmp_path) -> None:
+    from pathlib import Path
+
+    from data_room_intelligence.doctor import _check_data_room
+
+    room = Path(__file__).parents[1] / "data" / "sample-room"
+    assert _check_data_room(room).status == "PASS"
+    (tmp_path / "Lone Star Basin Unit Details_vF.xlsx").write_bytes(b"")
+    result = _check_data_room(tmp_path)
+    assert result.status == "FAIL" and "economics_oneline" in result.detail and "unit_details" not in result.detail
+
+
 def test_vision_probe_image_is_half_blue_half_yellow() -> None:
     png = _two_color_png()
     assert png.startswith(b"\x89PNG\r\n\x1a\n")

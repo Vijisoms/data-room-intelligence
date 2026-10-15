@@ -8,7 +8,6 @@ import time
 import urllib.error
 import urllib.request
 import zlib
-from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -17,19 +16,19 @@ from agent_framework.foundry import FoundryChatClient
 from azure.core.credentials import TokenCredential
 
 from .credentials import azure_credential
-from .discovery import discover
+from .ingest.manifest import file_kind, guess_role
 
 FOUNDRY_SCOPE = "https://ai.azure.com/.default"
 COGNITIVE_SERVICES_SCOPE = "https://cognitiveservices.azure.com/.default"
 DOC_INTELLIGENCE_API_VERSION = "2024-11-30"
-REQUIRED_KINDS = {
-    "excel_units",
-    "excel_combocurve",
-    "excel_basis",
-    "excel_los",
+REQUIRED_ROLES = {
+    "unit_details",
+    "economics_oneline",
+    "basis_report",
+    "lease_operating_statement",
     "gis_units",
     "gis_leasehold",
-    "gis_pdp",
+    "gis_pdp_laterals",
     "pdf",
 }
 
@@ -71,9 +70,13 @@ def format_checks(checks: list[Check]) -> str:
 def _check_data_room(data_room: Path) -> Check:
     if not data_room.is_dir():
         return Check("data room", "FAIL", f"{data_room} is not a directory")
-    kinds = Counter(record.kind for record in discover(data_room))
-    missing = sorted(REQUIRED_KINDS - set(kinds))
-    detail = f"{sum(kinds.values())} files in {data_room}"
+    files = [p for p in data_room.rglob("*") if p.is_file() and not any(part.startswith((".", "~$")) for part in p.relative_to(data_room).parts)]
+    found = set()
+    for path in files:
+        kind = file_kind(path)
+        found.add("pdf" if kind == "pdf" else guess_role(path, kind)[0])
+    missing = sorted(REQUIRED_ROLES - found)
+    detail = f"{len(files)} files in {data_room}"
     if missing:
         return Check("data room", "FAIL", f"{detail}; missing {', '.join(missing)}")
     return Check("data room", "PASS", detail)

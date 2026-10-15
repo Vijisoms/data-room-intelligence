@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -13,7 +14,6 @@ import duckdb
 
 from ..config import slug
 from ..contracts import AliasTable, Catalog
-from ..parsers import _api_number
 
 ZONES = ["USS", "MSS", "JM", "LSS", "DEAN", "WCA", "WCB I", "WCB II", "WCC", "WCD", "STR / BND", "UP BRNT", "LR BRNT", "MSSP", "WDFD"]
 UNIT_BLOCKS = {"K": "net_acres", "AA": "total_nri", "AQ": "base_nri", "BG": "orri", "BW": "nri_8_8ths", "CM": "operational_wi", "DC": "net_acres_with_carry", "DS": "gross_locations_10k"}
@@ -46,6 +46,19 @@ def col_letter(index: int) -> str:
 
 def norm_name(value: Any) -> str:
     return " ".join(str(value).upper().replace("_", " ").split())
+
+
+def _api_number(value: Any, digits: int) -> str | None:
+    """API well number as zero-padded digit text (Excel stores it as a number)."""
+    if isinstance(value, float):
+        if math.isnan(value):
+            return None
+        if value.is_integer():
+            value = int(value)
+    text = "" if value is None else str(value).strip()
+    if not text:
+        return None
+    return text.zfill(digits) if text.isdigit() else text
 
 
 @dataclass

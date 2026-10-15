@@ -1,6 +1,14 @@
-# Synthetic Data Room — "Lone Star Basin" (Illustrative)
+# Data Room Intelligence
 
-**This folder contains 100% SYNTHETIC, fictional data.** It mirrors the structure,
+Data Room Intelligence turns an upstream oil and gas M&A data room (workbooks, PDF
+decks and map layers) into a reviewed, cited knowledge graph: an ontology of units,
+wells, economic locations and their facts, with conflicts between sources flagged
+for review, a chat that answers with citations, and a web UI to explore it all.
+[docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md) explains the design in detail.
+
+## Sample data room (synthetic)
+
+**The sample room contains 100% SYNTHETIC, fictional data.** It mirrors the structure,
 file formats, and schema of a real upstream oil & gas M&A data room so collaborators
 (e.g., the Microsoft team) can see *what kind of data to expect* — **without exposing
 any real, sensitive deal information.**
@@ -14,7 +22,7 @@ any real, sensitive deal information.**
   randomly generated from plausible industry ranges and is internally consistent but
   **not derived from any real figures.**
 
-## Contents (mirrors the original data room layout)
+### Contents (mirrors the original data room layout)
 
 The synthetic room is in `data/sample-room/`; paths below are relative to it.
 The Microsoft briefing deck is in `docs/reference/`.
@@ -32,38 +40,12 @@ The Microsoft briefing deck is in `docs/reference/`.
 | `Lone Star Basin Asset Overview ...pdf` | Rough asset-overview slide deck |
 | `Lone Star Basin Development Model Output ...pdf` | Rough development-model slide deck |
 
-## How it was generated
+Row counts are representative samples (about 90 units, 640 economic locations and
+320 producing wells) rather than the full asset, which is enough to convey the schema.
 
-See `../tools/` for the reproducible generator:
+## Setup
 
-```powershell
-# from the repo root
-.\.venv\Scripts\python.exe tools\build_all.py        # regenerate everything
-.\.venv\Scripts\python.exe tools\verify_synthetic.py # scan for any residual real identifiers
-```
-
-Row counts are representative samples (e.g., ~90 units, ~640 economic locations,
-~320 producing wells) rather than the full asset, which is sufficient to convey the
-schema. Adjust counts in `tools/synth/config.py`.
-
-## Data Room Intelligence workflow
-
-This repository also contains a Python implementation of the ingestion-to-insight
-workflow.
-
-### What it builds
-
-- A provenance-aware canonical model for assets, units, wells, ownership,
-  economics, production, pricing and source documents
-- Geodesic GIS measurements and a PDP-well-to-unit spatial crosswalk
-- Cross-source reconciliation and explicit QA findings
-- Standard acquisition answers, including the Wolfcamp A worked example
-- A cited Markdown insight report
-- A validated draft FIMU case adapter
-- Optional Microsoft Foundry-backed Q&A through Microsoft Agent Framework
-
-### Setup
-
+### Install
 macOS or Linux:
 
 ```bash
@@ -93,62 +75,8 @@ data-room-intel doctor
 vision call and Document Intelligence, and exits non-zero if any check fails.
 Authentication uses Microsoft Entra ID only. Set `AZURE_CLI_SUBSCRIPTION` when
 your Azure CLI default tenant differs from the resources' tenant; leave it empty
-in Azure so managed identity is used.
-
-### Build the model and report
-
-```bash
-data-room-intel build                     # defaults: data/sample-room -> output/
-data-room-intel build path/to/room --output out
-```
-
-Outputs:
-
-| Output | Purpose |
-|---|---|
-| `output/canonical-model.json` | Shared, well-keyed canonical model with provenance |
-| `output/parsed_json/units.json` | Unit-only canonical records and provenance, without aggregate metrics |
-| `output/parsed_json/wells.json` | Well/location-only canonical records and provenance, without aggregate metrics |
-| `output/parsed_json/cash_flow.json` | Raw normalized ComboCurve CASHFLOW rows |
-| `output/parsed_json/combo_metrics.json` | Metrics derived specifically from ComboCurve |
-| `output/parsed_json/spatial_links.json` | JSON form of the GIS well-to-unit crosswalk |
-| `output/parsed_json/gis_metrics.json` | Metrics derived specifically from GIS layers |
-| `output/parsed_json/production.json` | Monthly LOS production, revenue, LOE, and operating income |
-| `output/parsed_json/pdf_facts.json` | Extracted PDF text, facts, and source references |
-| `output/parsed_json/pricing.json` | Period-level Basis Report pricing averages |
-| `output/well-unit-links.csv` | GIS spatial crosswalk |
-| `output/standard-answers.json` | Deterministic answers to recurring deal questions |
-| `output/qa-findings.json` | Conflicts, gaps and definition differences |
-| `output/insight-report.md` | Consolidated cited deal memo |
-| `output/fimu-case.json` | Draft FIMU input contract pending the authoritative schema |
-
-Parsing guides are generated in `output/parsed_json` alongside the data as
-`unit-details-parsing.md`, `well-parsing.md`, `cash-flow-parsing.md`,
-`combo-metrics-parsing.md`, `spatial-links-parsing.md`, and
-`gis-metrics-parsing.md`. The folder also contains `production-parsing.md`,
-`pdf-facts-parsing.md`, `pricing-parsing.md`, and `metrics-parsing.md`.
-`pipeline-finalization.md` documents reconciliation, analytical metric
-calculation, and final output serialization.
-
-### Ask the agent
-
-After configuring `.env` and building:
-
-```bash
-data-room-intel ask "What are the Wolfcamp A net acres, net locations and PV-10?"
-```
-
-The agent can only query normalized metrics and QA findings. Calculations remain
-deterministic and do not depend on the language model.
-
-The checked-in `.env.example` documents every variable and contains no
-credentials or environment-specific endpoints.
-
-### Debug with Agent Inspector
-
-After setup and a successful build, press `F5` and select
-`Debug Local Agent/Workflow HTTP Server`. The VS Code tasks start the Agent
-Framework DevUI endpoint on port 8088 and open Foundry Toolkit Agent Inspector.
+in Azure so managed identity is used. The checked-in `.env.example` documents every
+variable and contains no credentials or environment-specific endpoints.
 
 ## Ontology platform: snapshots, review, chat and UI
 
@@ -159,9 +87,11 @@ claims, review and chat in detail, with examples from the sample room.
 
 | Step | Command | Result |
 |---|---|---|
+| Check | `data-room-intel doctor` | Checks the data room, Azure identity, chat and vision models and Document Intelligence |
 | Catalog | `data-room-intel catalog validate` / `catalog export --out docs/catalog` | Validates `ontology/catalog.yaml` (14 entity types, 15 relationship types, 27 measures) and renders the dictionary, Mermaid, JSON Schema and Turtle |
 | Ingest | `data-room-intel ingest` | Bronze copy and manifest, then silver: GIS features and spatial candidates, staged workbook values, PDF layout, figures and claims |
 | Snapshot | `data-room-intel snapshot` | Agent Framework workflow: discover, then GIS, tabular and PDF tracks in parallel, ontology build, reconciliation rules and a review gate. Writes gold tables, `ontology.duckdb` and `snapshot.json` |
+| Ask | `data-room-intel ask "question"` | Answers from named operations over the latest snapshot, with citations |
 | Publish | `data-room-intel publish-snapshot` | Refuses while blocking issues are open; `--force --reviewer --reason` records an override |
 | Serve | `data-room-intel serve [--port 8000]` | FastAPI and the web UI on 127.0.0.1 |
 
@@ -292,3 +222,25 @@ Mapping decisions are remembered by header, so the next export with the same
 headers maps without another review. To reset the demo, delete
 `.dri-data/rooms/lone-star-basin/incoming` and `.../reviews`, then run
 `data-room-intel snapshot`.
+
+### Ask from the command line
+
+```bash
+data-room-intel ask "What are the Wolfcamp A net acres, net locations and PV-10?"
+```
+
+The answer comes from the same named operations as the web chat and lists its
+citations. With `DRI_OFFLINE=1` it uses the keyword router instead of the model.
+
+### Debug the workflow with Agent Inspector
+
+Press `F5` and select `Debug Local Agent/Workflow HTTP Server`. The VS Code tasks
+start the Agent Framework DevUI on port 8088 with the ontology workflow and open
+Foundry Toolkit Agent Inspector, where you can run a snapshot and watch each step.
+
+### Earlier pipeline
+
+The first version of this repository built a canonical model, standard answers, an
+insight report and a draft FIMU case file (`build`, `publish` and the hosted agent).
+The ontology platform replaces it. That code is kept at the `legacy-pipeline` tag:
+`git checkout legacy-pipeline`.

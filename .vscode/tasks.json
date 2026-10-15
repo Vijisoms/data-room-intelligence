@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build Data Room Intelligence Outputs",
+      "label": "Build Ontology Snapshot",
       "type": "shell",
       "command": "${workspaceFolder}/.venv/bin/python",
       "windows": {
@@ -11,10 +11,8 @@
       "args": [
         "-m",
         "data_room_intelligence.cli",
-        "build",
-        "data/sample-room",
-        "--output",
-        "output"
+        "snapshot",
+        "data/sample-room"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
