@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "data-room-intelligence"
+version = "0.1.0"
+description = "Agent-driven normalization and analysis for upstream M&A data rooms"
+readme = {text = "Agent-driven normalization and analysis for upstream M&A data rooms.", content-type = "text/plain"}
+requires-python = ">=3.11"
+dependencies = [
+  "agent-framework-core==1.20.0",
+  "agent-framework-foundry==1.14.0",
+  "azure-identity>=1.25.0",
+  "openpyxl>=3.1.5",
+  "pandas>=2.3.0",
+  "pydantic>=2.12.0",
+  "pypdf>=6.0.0",
+  "pyproj>=3.7.0",
+  "pyshp>=3.0.0",
+  "python-dotenv>=1.1.0",
+  "pywin32>=311; sys_platform == 'win32'",
+  "shapely>=2.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "agent-framework-devui==1.0.0b261002",
+  "debugpy>=1.8.0",
+  "pytest>=8.4.0",
+  "pytest-asyncio>=1.2.0",
+]
+
+[project.scripts]
+data-room-intel = "data_room_intelligence.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/data_room_intelligence"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

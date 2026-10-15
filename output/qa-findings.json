@@ -1,0 +1,61 @@
+[
+  {
+    "severity": "info",
+    "code": "PDP_COUNT_RECONCILED",
+    "message": "Producing well count reconciles at 320 across ComboCurve and GIS.",
+    "sources": []
+  },
+  {
+    "severity": "warning",
+    "code": "PRICE_SENSITIVITY_UNAVAILABLE",
+    "message": "The room contains one economic price case but no location-level oil/gas sensitivity grid; scenario sensitivity requires rerunning the economics engine.",
+    "sources": []
+  },
+  {
+    "severity": "warning",
+    "code": "AREA_DEFINITION_DIFFERENCE",
+    "message": "Mapped unit footprint exceeds contractual gross acres by 33,721 acres; do not substitute geometry area for ownership acreage.",
+    "sources": [
+      {
+        "path": "C:\\Git\\fabdata-cleandataroom\\Maps_2026.09.09\\LSB - Units_2026.09.09\\LSB_PF_UNITS_20260904.shp",
+        "locator": "dissolved polygon geodesic area",
+        "as_of": null
+      },
+      {
+        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "locator": "Unit Details!H8:H97",
+        "as_of": "2026-10-01"
+      }
+    ]
+  },
+  {
+    "severity": "info",
+    "code": "PDF_GROSS_ACRES_CHECK",
+    "message": "PDF gross acres differ from the canonical workbook value by 0.39 acres.",
+    "sources": [
+      {
+        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "locator": "Unit Details!H8:H97",
+        "as_of": "2026-10-01"
+      }
+    ]
+  },
+  {
+    "severity": "warning",
+    "code": "UNITS_WITHOUT_WELLS",
+    "message": "1 of 90 units have no matched economic well/location record.",
+    "sources": []
+  },
+  {
+    "severity": "warning",
+    "code": "FIMU_CONTRACT_PENDING",
+    "message": "The generated FIMU case uses the draft canonical adapter contract because an authoritative FIMU input schema was not supplied.",
+    "sources": [
+      {
+        "path": "C:\\Git\\fabdata-cleandataroom",
+        "locator": "briefing slide 11",
+        "as_of": null
+      }
+    ]
+  }
+]
