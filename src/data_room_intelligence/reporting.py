@@ -6,15 +6,27 @@ from pathlib import Path
 
 from .analytics import standard_answers
 from .fimu import build_fimu_case
-from .models import CanonicalModel, PipelineResult
+from .models import CanonicalModel, Metric, PipelineResult
+from .parsing_docs import render_parsing_guides
 
 
 def write_outputs(
-    model: CanonicalModel, output_dir: Path, spatial_links: list[dict[str, object]]
+    model: CanonicalModel,
+    output_dir: Path,
+    spatial_links: list[dict[str, object]],
+    unit_metrics: list[Metric] | None = None,
+    combo_metrics: list[Metric] | None = None,
+    gis_metrics: list[Metric] | None = None,
 ) -> PipelineResult:
+    unit_metrics = unit_metrics or []
+    combo_metrics = combo_metrics or []
+    gis_metrics = gis_metrics or []
     output_dir.mkdir(parents=True, exist_ok=True)
+    parsed_dir = output_dir / "parsed_json"
+    parsed_dir.mkdir(parents=True, exist_ok=True)
     model_path = output_dir / "canonical-model.json"
-    units_path = output_dir / "units.json"
+    units_path = parsed_dir / "units.json"
+    wells_path = parsed_dir / "wells.json"
     report_path = output_dir / "insight-report.md"
     qa_path = output_dir / "qa-findings.json"
     fimu_path = output_dir / "fimu-case.json"
@@ -34,6 +46,55 @@ def write_outputs(
         ),
         encoding="utf-8",
     )
+    wells_path.write_text(
+        json.dumps(
+            {
+                "schema_version": model.schema_version,
+                "asset_name": model.asset_name,
+                "generated_at": model.generated_at.isoformat(),
+                "wells": [well.model_dump(mode="json") for well in model.wells],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    for filename, collection, records in (
+        ("cash_flow.json", "cash_flow", model.cash_flow),
+        (
+            "combo_metrics.json",
+            "metrics",
+            [metric.model_dump(mode="json") for metric in combo_metrics],
+        ),
+        ("spatial_links.json", "spatial_links", spatial_links),
+        (
+            "gis_metrics.json",
+            "metrics",
+            [metric.model_dump(mode="json") for metric in gis_metrics],
+        ),
+        (
+            "production.json",
+            "production",
+            [item.model_dump(mode="json") for item in model.production],
+        ),
+        ("pdf_facts.json", "pdf_facts", model.pdf_facts),
+        ("pricing.json", "pricing", model.pricing),
+    ):
+        (parsed_dir / filename).write_text(
+            json.dumps(
+                {
+                    "schema_version": model.schema_version,
+                    "asset_name": model.asset_name,
+                    "generated_at": model.generated_at.isoformat(),
+                    collection: records,
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+    for filename, content in render_parsing_guides(
+        model, spatial_links, unit_metrics, combo_metrics, gis_metrics
+    ).items():
+        (parsed_dir / filename).write_text(content, encoding="utf-8")
     answers = standard_answers(model)
     answers_path.write_text(json.dumps(answers, indent=2), encoding="utf-8")
     qa_path.write_text(

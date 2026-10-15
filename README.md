@@ -81,12 +81,28 @@ Outputs:
 | Output | Purpose |
 |---|---|
 | `output/canonical-model.json` | Shared, well-keyed canonical model with provenance |
-| `output/units.json` | Unit-only canonical records and provenance, without aggregate metrics |
+| `output/parsed_json/units.json` | Unit-only canonical records and provenance, without aggregate metrics |
+| `output/parsed_json/wells.json` | Well/location-only canonical records and provenance, without aggregate metrics |
+| `output/parsed_json/cash_flow.json` | Raw normalized ComboCurve CASHFLOW rows |
+| `output/parsed_json/combo_metrics.json` | Metrics derived specifically from ComboCurve |
+| `output/parsed_json/spatial_links.json` | JSON form of the GIS well-to-unit crosswalk |
+| `output/parsed_json/gis_metrics.json` | Metrics derived specifically from GIS layers |
+| `output/parsed_json/production.json` | Monthly LOS production, revenue, LOE, and operating income |
+| `output/parsed_json/pdf_facts.json` | Extracted PDF text, facts, and source references |
+| `output/parsed_json/pricing.json` | Period-level Basis Report pricing averages |
 | `output/well-unit-links.csv` | GIS spatial crosswalk |
 | `output/standard-answers.json` | Deterministic answers to recurring deal questions |
 | `output/qa-findings.json` | Conflicts, gaps and definition differences |
 | `output/insight-report.md` | Consolidated cited deal memo |
 | `output/fimu-case.json` | Draft FIMU input contract pending the authoritative schema |
+
+Parsing guides are generated in `output/parsed_json` alongside the data as
+`unit-details-parsing.md`, `well-parsing.md`, `cash-flow-parsing.md`,
+`combo-metrics-parsing.md`, `spatial-links-parsing.md`, and
+`gis-metrics-parsing.md`. The folder also contains `production-parsing.md`,
+`pdf-facts-parsing.md`, `pricing-parsing.md`, and `metrics-parsing.md`.
+`pipeline-finalization.md` documents reconciliation, analytical metric
+calculation, and final output serialization.
 
 ### Ask the agent
 

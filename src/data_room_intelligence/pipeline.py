@@ -64,5 +64,11 @@ def run_pipeline(request: PipelineRequest) -> PipelineResult:
     )
     reconcile(model, spatial_links)
     calculate_metrics(model)
-    return write_outputs(model, output_dir, spatial_links)
-
+    return write_outputs(
+        model,
+        output_dir,
+        spatial_links,
+        unit_metrics=unit_metrics,
+        combo_metrics=combo_metrics,
+        gis_metrics=gis_metrics,
+    )

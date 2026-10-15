@@ -1,0 +1,2567 @@
+{
+  "schema_version": "1.0",
+  "asset_name": "Lone Star Basin",
+  "generated_at": "2026-10-15T17:02:10.231405+00:00",
+  "spatial_links": [
+    {
+      "api_10": "4290114411",
+      "api_14": "42901144110000",
+      "well_name": "JARDINE 4-27 A 4LS",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "GOLDEN CROSSING WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290176401",
+      "api_14": "42901764010000",
+      "well_name": "WETHERBY 1-24 A 3JM",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "COPPER PLATEAU EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290144726",
+      "api_14": "42901447260000",
+      "well_name": "STOCKTON 30-16 F 2JM",
+      "landing_zone": "DEAN",
+      "unit_name": "CRIMSON ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290195479",
+      "api_14": "42901954790000",
+      "well_name": "JARDINE 26-8 F 13SB",
+      "landing_zone": "JO MILL",
+      "unit_name": "PIONEER ROAN WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290118117",
+      "api_14": "42901181170000",
+      "well_name": "OAKLEY 32-13 B 18US",
+      "landing_zone": "DEAN",
+      "unit_name": "IVORY HORIZON EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290130580",
+      "api_14": "42901305800000",
+      "well_name": "FAIRBANKS 22-2 A 7WA",
+      "landing_zone": "JO MILL",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290113439",
+      "api_14": "42901134390000",
+      "well_name": "RADCLIFFE 22-7 A 4LS",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "CRIMSON ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290162938",
+      "api_14": "42901629380000",
+      "well_name": "ABERNATHY 26-32 C 8WB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "MESA ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290118679",
+      "api_14": "42901186790000",
+      "well_name": "WETHERBY 3-31 F 2JM",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "SUMMIT STATION",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290191223",
+      "api_14": "42901912230000",
+      "well_name": "RADCLIFFE 22-3 F 16MP",
+      "landing_zone": "JO MILL",
+      "unit_name": "TITAN ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290195411",
+      "api_14": "42901954110000",
+      "well_name": "CALLOWAY 4-39 C 4LS",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "THUNDER BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290146413",
+      "api_14": "42901464130000",
+      "well_name": "QUINLAN 13-34 C 14UB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "DESERT HOLLOW WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290180050",
+      "api_14": "42901800500000",
+      "well_name": "HOLLISTER 28-4 F 9WB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "JADE RIDGE NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290123488",
+      "api_14": "42901234880000",
+      "well_name": "DRISKELL 31-19 A 14UB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "TITAN WELLS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290128211",
+      "api_14": "42901282110000",
+      "well_name": "EASTWOOD 45-5 F 12SB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "FROST RIDGE WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290144138",
+      "api_14": "42901441380000",
+      "well_name": "WETHERBY 30-36 B 16MP",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "SENTINEL RIDGE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290184135",
+      "api_14": "42901841350000",
+      "well_name": "OAKLEY 25-1 B 13SB",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "SUMMIT DRAW EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290146295",
+      "api_14": "42901462950000",
+      "well_name": "KENDRICK 39-12 C 7WA",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "LONESTAR MESA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290154195",
+      "api_14": "42901541950000",
+      "well_name": "JARDINE 7-11 D 18US",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "LONESTAR JUNIPER",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290180013",
+      "api_14": "42901800130000",
+      "well_name": "LANGFORD 8-21 B 14UB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "VANGUARD WELLS EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290169787",
+      "api_14": "42901697870000",
+      "well_name": "HOLLISTER 19-37 B 6WA",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "IRON YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290171684",
+      "api_14": "42901716840000",
+      "well_name": "CALLOWAY 11-38 E 12SB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "EMERALD SPRING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290137677",
+      "api_14": "42901376770000",
+      "well_name": "NORWOOD 25-36 C 17WF",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "FALCON ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290180066",
+      "api_14": "42901800660000",
+      "well_name": "CALLOWAY 26-30 F 18US",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "SUMMIT ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290122871",
+      "api_14": "42901228710000",
+      "well_name": "LANGFORD 25-34 E 5LS",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "CRIMSON ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290187103",
+      "api_14": "42901871030000",
+      "well_name": "DRISKELL 27-16 A 2JM",
+      "landing_zone": "DEAN",
+      "unit_name": "EMERALD YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290192342",
+      "api_14": "42901923420000",
+      "well_name": "STOCKTON 15-22 F 4LS",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "MAVERICK HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290157207",
+      "api_14": "42901572070000",
+      "well_name": "EASTWOOD 27-30 B 2JM",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "CANYON CROSSING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290191337",
+      "api_14": "42901913370000",
+      "well_name": "YARBROUGH 19-29 B 14UB",
+      "landing_zone": "JO MILL",
+      "unit_name": "JADE DRAW",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290142663",
+      "api_14": "42901426630000",
+      "well_name": "WETHERBY 2-24 F 11WD",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "FALCON ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290160303",
+      "api_14": "42901603030000",
+      "well_name": "GENTRY 13-3 B 19SS",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "SUMMIT DRAW EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290166063",
+      "api_14": "42901660630000",
+      "well_name": "JARDINE 5-17 E 17WF",
+      "landing_zone": "JO MILL",
+      "unit_name": "TITAN WELLS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290127060",
+      "api_14": "42901270600000",
+      "well_name": "NORWOOD 7-12 C 8WB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "FRONTIER PLAINS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290146808",
+      "api_14": "42901468080000",
+      "well_name": "DRISKELL 14-15 F 10WC",
+      "landing_zone": "JO MILL",
+      "unit_name": "STORM ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290129883",
+      "api_14": "42901298830000",
+      "well_name": "THORNBURY 38-32 C 8WB",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "BISON BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290134086",
+      "api_14": "42901340860000",
+      "well_name": "NORWOOD 21-33 B 16MP",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "MESA ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290117338",
+      "api_14": "42901173380000",
+      "well_name": "LANGFORD 28-2 C 14UB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "RANGER CREEK",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290153798",
+      "api_14": "42901537980000",
+      "well_name": "NORWOOD 35-7 A 12SB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "LONESTAR STATION",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290123700",
+      "api_14": "42901237000000",
+      "well_name": "JARDINE 16-18 B 1MS",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290120598",
+      "api_14": "42901205980000",
+      "well_name": "LANGFORD 32-31 B 9WB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "RANGER CREEK",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290178314",
+      "api_14": "42901783140000",
+      "well_name": "UPSHAW 42-37 C 5LS",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "VANGUARD WELLS EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290167990",
+      "api_14": "42901679900000",
+      "well_name": "UPSHAW 7-18 F 9WB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290188545",
+      "api_14": "42901885450000",
+      "well_name": "NORWOOD 9-22 D 6WA",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "BADGER DRAW",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290132913",
+      "api_14": "42901329130000",
+      "well_name": "OAKLEY 23-18 C 2JM",
+      "landing_zone": "DEAN",
+      "unit_name": "JADE HOLLOW EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290133620",
+      "api_14": "42901336200000",
+      "well_name": "PRESTON 21-26 F 6WA",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290158304",
+      "api_14": "42901583040000",
+      "well_name": "HOLLISTER 6-37 E 16MP",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "PIONEER SAGE SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290186403",
+      "api_14": "42901864030000",
+      "well_name": "ABERNATHY 3-21 E 2JM",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "JADE HOLLOW EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290114778",
+      "api_14": "42901147780000",
+      "well_name": "IRELAND 47-7 A 2JM",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "FRONTIER YUCCA WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290165898",
+      "api_14": "42901658980000",
+      "well_name": "IRELAND 27-27 B 9WB",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "SLATE HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290138293",
+      "api_14": "42901382930000",
+      "well_name": "NORWOOD 36-31 E 8WB",
+      "landing_zone": "JO MILL",
+      "unit_name": "EMERALD YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290159908",
+      "api_14": "42901599080000",
+      "well_name": "UPSHAW 21-38 F 15LB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "RANGER CREEK",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290195315",
+      "api_14": "42901953150000",
+      "well_name": "WETHERBY 25-10 A 9WB",
+      "landing_zone": "JO MILL",
+      "unit_name": "BISON BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290135700",
+      "api_14": "42901357000000",
+      "well_name": "WETHERBY 14-9 B 7WA",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "PIONEER JUNIPER SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290142556",
+      "api_14": "42901425560000",
+      "well_name": "ABERNATHY 40-12 E 5LS",
+      "landing_zone": "DEAN",
+      "unit_name": "SCARLET TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290119970",
+      "api_14": "42901199700000",
+      "well_name": "WETHERBY 26-18 C 8WB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "RUBY STATION NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290172340",
+      "api_14": "42901723400000",
+      "well_name": "EASTWOOD 43-25 C 9WB",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "CANYON ROAN",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290165654",
+      "api_14": "42901656540000",
+      "well_name": "STOCKTON 10-14 C 2JM",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "SCARLET WELLS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290177520",
+      "api_14": "42901775200000",
+      "well_name": "OAKLEY 10-15 E 8WB",
+      "landing_zone": "DEAN",
+      "unit_name": "RIDGE HOLLOW EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290116143",
+      "api_14": "42901161430000",
+      "well_name": "UPSHAW 6-29 F 10WC",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "THUNDER LANDING",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290157337",
+      "api_14": "42901573370000",
+      "well_name": "UPSHAW 35-37 B 8WB",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "MAVERICK HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290160201",
+      "api_14": "42901602010000",
+      "well_name": "OAKLEY 29-22 E 6WA",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "VANGUARD WELLS EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290115741",
+      "api_14": "42901157410000",
+      "well_name": "LANGFORD 16-26 D 1MS",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "LIBERTY TRAIL",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290196155",
+      "api_14": "42901961550000",
+      "well_name": "KENDRICK 29-31 C 11WD",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "GOLDEN CROSSING WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290198317",
+      "api_14": "42901983170000",
+      "well_name": "QUINLAN 3-24 B 5LS",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "CANYON YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290188698",
+      "api_14": "42901886980000",
+      "well_name": "WETHERBY 26-32 C 18US",
+      "landing_zone": "DEAN",
+      "unit_name": "TITAN ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290184826",
+      "api_14": "42901848260000",
+      "well_name": "IRELAND 43-28 F 15LB",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "SUMMIT STATION",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290145404",
+      "api_14": "42901454040000",
+      "well_name": "ABERNATHY 15-24 A 7WA",
+      "landing_zone": "JO MILL",
+      "unit_name": "CANYON HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290136428",
+      "api_14": "42901364280000",
+      "well_name": "IRELAND 9-38 C 16MP",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "MAVERICK JUNIPER WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290165550",
+      "api_14": "42901655500000",
+      "well_name": "DRISKELL 35-35 D 5LS",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "LONESTAR PASS WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290194613",
+      "api_14": "42901946130000",
+      "well_name": "RADCLIFFE 21-23 E 13SB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "RIDGE HOLLOW EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290119909",
+      "api_14": "42901199090000",
+      "well_name": "FAIRBANKS 41-24 E 16MP",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "THUNDER LANDING",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290112413",
+      "api_14": "42901124130000",
+      "well_name": "ABERNATHY 6-5 A 6WA",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "LONESTAR MESA EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290145954",
+      "api_14": "42901459540000",
+      "well_name": "BRANNON 45-39 D 12SB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SLATE BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290181554",
+      "api_14": "42901815540000",
+      "well_name": "LANGFORD 38-17 F 8WB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "JADE DRAW",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290174217",
+      "api_14": "42901742170000",
+      "well_name": "MONTAGUE 43-27 D 12SB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "LIBERTY TRAIL",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290143905",
+      "api_14": "42901439050000",
+      "well_name": "QUINLAN 31-33 C 1MS",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "DESERT BASIN EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290172764",
+      "api_14": "42901727640000",
+      "well_name": "STOCKTON 18-39 F 14UB",
+      "landing_zone": "DEAN",
+      "unit_name": "FROST RIDGE WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290131040",
+      "api_14": "42901310400000",
+      "well_name": "DRISKELL 47-23 B 9WB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "FRONTIER PLAINS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290153720",
+      "api_14": "42901537200000",
+      "well_name": "RADCLIFFE 33-30 F 19SS",
+      "landing_zone": "JO MILL",
+      "unit_name": "LONESTAR STATION",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290158647",
+      "api_14": "42901586470000",
+      "well_name": "THORNBURY 43-11 D 9WB",
+      "landing_zone": "JO MILL",
+      "unit_name": "FROST RIDGE WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290171102",
+      "api_14": "42901711020000",
+      "well_name": "STOCKTON 11-35 E 19SS",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "FRONTIER YUCCA WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290188858",
+      "api_14": "42901888580000",
+      "well_name": "RADCLIFFE 8-35 D 3JM",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "JADE DRAW",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290190750",
+      "api_14": "42901907500000",
+      "well_name": "NORWOOD 35-4 B 13SB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "CANYON PLAINS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290176050",
+      "api_14": "42901760500000",
+      "well_name": "OAKLEY 28-4 D 8WB",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "SCARLET WELLS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290165845",
+      "api_14": "42901658450000",
+      "well_name": "STOCKTON 10-27 B 12SB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "CANYON CROSSING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290148352",
+      "api_14": "42901483520000",
+      "well_name": "THORNBURY 31-26 A 15LB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "SABLE COMPASS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290124113",
+      "api_14": "42901241130000",
+      "well_name": "OAKLEY 9-38 C 13SB",
+      "landing_zone": "JO MILL",
+      "unit_name": "SCARLET TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290119702",
+      "api_14": "42901197020000",
+      "well_name": "WETHERBY 15-27 E 19SS",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "JADE RIDGE NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290144381",
+      "api_14": "42901443810000",
+      "well_name": "OAKLEY 20-3 F 16MP",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "SABLE COMPASS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290192085",
+      "api_14": "42901920850000",
+      "well_name": "WETHERBY 12-21 C 18US",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SLATE HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290110289",
+      "api_14": "42901102890000",
+      "well_name": "MONTAGUE 21-2 F 19SS",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "EMERALD SPRING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290162375",
+      "api_14": "42901623750000",
+      "well_name": "EASTWOOD 34-34 A 14UB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "LONESTAR JUNIPER",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290180277",
+      "api_14": "42901802770000",
+      "well_name": "YARBROUGH 40-19 C 15LB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "MESA ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290192406",
+      "api_14": "42901924060000",
+      "well_name": "KENDRICK 6-25 D 5LS",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "TITAN ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290147386",
+      "api_14": "42901473860000",
+      "well_name": "GENTRY 28-22 B 7WA",
+      "landing_zone": "JO MILL",
+      "unit_name": "SUMMIT STATION",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290116571",
+      "api_14": "42901165710000",
+      "well_name": "PRESTON 23-33 C 1MS",
+      "landing_zone": "JO MILL",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290191346",
+      "api_14": "42901913460000",
+      "well_name": "PRESTON 36-13 F 12SB",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "EMERALD YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290127307",
+      "api_14": "42901273070000",
+      "well_name": "NORWOOD 23-39 F 7WA",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "CANYON HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290186442",
+      "api_14": "42901864420000",
+      "well_name": "BRANNON 15-35 E 6WA",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "VANGUARD WELLS EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290163587",
+      "api_14": "42901635870000",
+      "well_name": "BRANNON 17-34 B 9WB",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "PIONEER BLUFF",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290161956",
+      "api_14": "42901619560000",
+      "well_name": "KENDRICK 17-37 F 18US",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "LONESTAR MESA EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290176043",
+      "api_14": "42901760430000",
+      "well_name": "ABERNATHY 43-12 A 13SB",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "CANYON YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290194862",
+      "api_14": "42901948620000",
+      "well_name": "LANGFORD 34-23 F 12SB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290163159",
+      "api_14": "42901631590000",
+      "well_name": "QUINLAN 24-11 F 16MP",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "THUNDER SAGE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290187203",
+      "api_14": "42901872030000",
+      "well_name": "GENTRY 38-34 A 2JM",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "DESERT HOLLOW WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290134199",
+      "api_14": "42901341990000",
+      "well_name": "JARDINE 21-15 F 12SB",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "COYOTE RANCH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290161231",
+      "api_14": "42901612310000",
+      "well_name": "THORNBURY 11-19 D 5LS",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "AZURE PLAINS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290112313",
+      "api_14": "42901123130000",
+      "well_name": "VANDERPOOL 16-34 A 17WF",
+      "landing_zone": "JO MILL",
+      "unit_name": "MESA TRAIL NORTH 2",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290146228",
+      "api_14": "42901462280000",
+      "well_name": "QUINLAN 12-21 D 13SB",
+      "landing_zone": "JO MILL",
+      "unit_name": "MESA TRAIL NORTH 2",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290119874",
+      "api_14": "42901198740000",
+      "well_name": "MONTAGUE 40-37 D 3JM",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "MAVERICK JUNIPER WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290119641",
+      "api_14": "42901196410000",
+      "well_name": "JARDINE 24-34 C 16MP",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "TITAN RIDGE EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290117300",
+      "api_14": "42901173000000",
+      "well_name": "MONTAGUE 33-24 B 11WD",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "SUMMIT ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290185032",
+      "api_14": "42901850320000",
+      "well_name": "CALLOWAY 24-35 F 6WA",
+      "landing_zone": "JO MILL",
+      "unit_name": "LONESTAR PASS WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290186146",
+      "api_14": "42901861460000",
+      "well_name": "HOLLISTER 9-22 D 4LS",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SUMMIT ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290149750",
+      "api_14": "42901497500000",
+      "well_name": "YARBROUGH 5-7 C 3JM",
+      "landing_zone": "JO MILL",
+      "unit_name": "MESA ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290144185",
+      "api_14": "42901441850000",
+      "well_name": "DRISKELL 20-17 D 19SS",
+      "landing_zone": "DEAN",
+      "unit_name": "MAVERICK HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290173883",
+      "api_14": "42901738830000",
+      "well_name": "QUINLAN 31-15 F 4LS",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "CANYON CROSSING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290169235",
+      "api_14": "42901692350000",
+      "well_name": "EASTWOOD 20-23 D 4LS",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "CANYON CROSSING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290187850",
+      "api_14": "42901878500000",
+      "well_name": "CALLOWAY 4-4 F 13SB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "CRIMSON BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290114200",
+      "api_14": "42901142000000",
+      "well_name": "FAIRBANKS 8-9 A 10WC",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "BADGER DRAW",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290117567",
+      "api_14": "42901175670000",
+      "well_name": "QUINLAN 6-16 D 13SB",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "CANYON HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290118733",
+      "api_14": "42901187330000",
+      "well_name": "EASTWOOD 6-29 E 9WB",
+      "landing_zone": "JO MILL",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290126083",
+      "api_14": "42901260830000",
+      "well_name": "EASTWOOD 43-10 B 17WF",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "LONESTAR MESA EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290113620",
+      "api_14": "42901136200000",
+      "well_name": "STOCKTON 42-27 B 17WF",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "FRONTIER BLUFF NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290127040",
+      "api_14": "42901270400000",
+      "well_name": "ABERNATHY 23-10 E 13SB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "LIBERTY TRAIL",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290111966",
+      "api_14": "42901119660000",
+      "well_name": "DRISKELL 19-34 E 18US",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "BADGER RANCH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290144097",
+      "api_14": "42901440970000",
+      "well_name": "RADCLIFFE 38-18 F 13SB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "RANGER CREEK",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290127606",
+      "api_14": "42901276060000",
+      "well_name": "IRELAND 37-10 F 9WB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "CRIMSON ROAN",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290179190",
+      "api_14": "42901791900000",
+      "well_name": "YARBROUGH 26-28 E 3JM",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "LONESTAR MESA EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290194086",
+      "api_14": "42901940860000",
+      "well_name": "RADCLIFFE 10-34 B 5LS",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "EMERALD SPRING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290124495",
+      "api_14": "42901244950000",
+      "well_name": "DRISKELL 47-9 A 15LB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "BADGER RANCH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290164831",
+      "api_14": "42901648310000",
+      "well_name": "PRESTON 33-38 D 7WA",
+      "landing_zone": "DEAN",
+      "unit_name": "STORM ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290115042",
+      "api_14": "42901150420000",
+      "well_name": "JARDINE 6-20 D 8WB",
+      "landing_zone": "DEAN",
+      "unit_name": "CRIMSON ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290141126",
+      "api_14": "42901411260000",
+      "well_name": "LANGFORD 25-10 B 15LB",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "BADGER DRAW",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290181543",
+      "api_14": "42901815430000",
+      "well_name": "BRANNON 3-31 E 3JM",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "PIONEER BLUFF",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290170400",
+      "api_14": "42901704000000",
+      "well_name": "THORNBURY 11-10 C 4LS",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SUMMIT ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290126368",
+      "api_14": "42901263680000",
+      "well_name": "WETHERBY 3-18 B 7WA",
+      "landing_zone": "JO MILL",
+      "unit_name": "PRAIRIE PASS WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290110131",
+      "api_14": "42901101310000",
+      "well_name": "MONTAGUE 47-35 B 16MP",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "JADE HOLLOW EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290115496",
+      "api_14": "42901154960000",
+      "well_name": "FAIRBANKS 7-20 A 18US",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "RUBY STATION NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290188919",
+      "api_14": "42901889190000",
+      "well_name": "RADCLIFFE 12-15 D 11WD",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "PIONEER SAGE SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290182277",
+      "api_14": "42901822770000",
+      "well_name": "CALLOWAY 45-39 B 2JM",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "FROST HORIZON WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290138866",
+      "api_14": "42901388660000",
+      "well_name": "ABERNATHY 16-20 A 10WC",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "JADE RIDGE NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290112665",
+      "api_14": "42901126650000",
+      "well_name": "THORNBURY 28-21 D 18US",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SUMMIT STATION",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290193274",
+      "api_14": "42901932740000",
+      "well_name": "YARBROUGH 2-7 E 15LB",
+      "landing_zone": "DEAN",
+      "unit_name": "FALCON ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290125991",
+      "api_14": "42901259910000",
+      "well_name": "CALLOWAY 21-11 D 6WA",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "FROST RIDGE WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290158659",
+      "api_14": "42901586590000",
+      "well_name": "THORNBURY 6-21 A 5LS",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "DESERT HOLLOW WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290153187",
+      "api_14": "42901531870000",
+      "well_name": "DRISKELL 4-5 E 10WC",
+      "landing_zone": "JO MILL",
+      "unit_name": "BISON MESQUITE SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290111225",
+      "api_14": "42901112250000",
+      "well_name": "UPSHAW 10-24 D 12SB",
+      "landing_zone": "DEAN",
+      "unit_name": "CRIMSON ROAN",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290144507",
+      "api_14": "42901445070000",
+      "well_name": "PRESTON 28-21 C 19SS",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290181945",
+      "api_14": "42901819450000",
+      "well_name": "THORNBURY 30-21 B 1MS",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "VANGUARD MESQUITE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290120535",
+      "api_14": "42901205350000",
+      "well_name": "MONTAGUE 47-21 B 3JM",
+      "landing_zone": "DEAN",
+      "unit_name": "COYOTE YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290139397",
+      "api_14": "42901393970000",
+      "well_name": "WETHERBY 44-13 B 10WC",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "COYOTE YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290170655",
+      "api_14": "42901706550000",
+      "well_name": "MONTAGUE 6-16 A 18US",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "COYOTE BASIN",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290135336",
+      "api_14": "42901353360000",
+      "well_name": "EASTWOOD 43-19 C 8WB",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "PIONEER JUNIPER SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290179895",
+      "api_14": "42901798950000",
+      "well_name": "QUINLAN 11-8 B 15LB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "MAVERICK HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290143237",
+      "api_14": "42901432370000",
+      "well_name": "ABERNATHY 43-18 A 7WA",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "CANYON HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290121882",
+      "api_14": "42901218820000",
+      "well_name": "ABERNATHY 32-23 F 11WD",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "LONESTAR PLAINS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290122525",
+      "api_14": "42901225250000",
+      "well_name": "VANDERPOOL 10-4 D 12SB",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "RIDGE PLATEAU SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290190744",
+      "api_14": "42901907440000",
+      "well_name": "STOCKTON 44-38 B 1MS",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "EMERALD YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290172355",
+      "api_14": "42901723550000",
+      "well_name": "GENTRY 7-36 F 8WB",
+      "landing_zone": "DEAN",
+      "unit_name": "SCARLET BUTTE WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290161309",
+      "api_14": "42901613090000",
+      "well_name": "CALLOWAY 24-24 B 9WB",
+      "landing_zone": "JO MILL",
+      "unit_name": "SUMMIT JUNIPER NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290131420",
+      "api_14": "42901314200000",
+      "well_name": "THORNBURY 5-35 B 13SB",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "COBALT ARROYO WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290182834",
+      "api_14": "42901828340000",
+      "well_name": "RADCLIFFE 10-30 C 2JM",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "FRONTIER BLUFF NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290148710",
+      "api_14": "42901487100000",
+      "well_name": "QUINLAN 31-11 D 8WB",
+      "landing_zone": "JO MILL",
+      "unit_name": "SCARLET BUTTE WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290122286",
+      "api_14": "42901222860000",
+      "well_name": "IRELAND 38-23 A 12SB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "CANYON ROAN",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290190576",
+      "api_14": "42901905760000",
+      "well_name": "WETHERBY 7-26 C 13SB",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "LONESTAR PLAINS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290188530",
+      "api_14": "42901885300000",
+      "well_name": "STOCKTON 32-34 D 4LS",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "BISON MESQUITE SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290199932",
+      "api_14": "42901999320000",
+      "well_name": "OAKLEY 28-34 D 8WB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "RUBY STATION NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290122519",
+      "api_14": "42901225190000",
+      "well_name": "VANDERPOOL 16-39 A 7WA",
+      "landing_zone": "DEAN",
+      "unit_name": "RANGER CREEK",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290137356",
+      "api_14": "42901373560000",
+      "well_name": "IRELAND 43-16 E 14UB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "SLATE BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290168053",
+      "api_14": "42901680530000",
+      "well_name": "VANDERPOOL 47-32 C 17WF",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "LONESTAR PLAINS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290170412",
+      "api_14": "42901704120000",
+      "well_name": "NORWOOD 17-34 D 16MP",
+      "landing_zone": "JO MILL",
+      "unit_name": "LIBERTY ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290147875",
+      "api_14": "42901478750000",
+      "well_name": "GENTRY 38-23 C 15LB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SUMMIT BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290147950",
+      "api_14": "42901479500000",
+      "well_name": "VANDERPOOL 17-9 D 14UB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "BADGER RANCH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290171983",
+      "api_14": "42901719830000",
+      "well_name": "QUINLAN 32-2 A 15LB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "GOLDEN CROSSING WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290182081",
+      "api_14": "42901820810000",
+      "well_name": "CALLOWAY 12-18 A 1MS",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "VANGUARD PLATEAU NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290117383",
+      "api_14": "42901173830000",
+      "well_name": "QUINLAN 8-26 D 10WC",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "VANGUARD WELLS EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290151008",
+      "api_14": "42901510080000",
+      "well_name": "QUINLAN 24-2 E 9WB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "SUMMIT JUNIPER NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290141749",
+      "api_14": "42901417490000",
+      "well_name": "JARDINE 26-24 D 18US",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "EMERALD YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290155466",
+      "api_14": "42901554660000",
+      "well_name": "CALLOWAY 12-9 D 6WA",
+      "landing_zone": "DEAN",
+      "unit_name": "SCARLET JUNIPER WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290185347",
+      "api_14": "42901853470000",
+      "well_name": "NORWOOD 38-35 D 17WF",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "LONESTAR PLAINS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290175126",
+      "api_14": "42901751260000",
+      "well_name": "OAKLEY 23-34 A 11WD",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "LIBERTY ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290143132",
+      "api_14": "42901431320000",
+      "well_name": "THORNBURY 1-36 C 14UB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "FROST JUNIPER",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290132300",
+      "api_14": "42901323000000",
+      "well_name": "UPSHAW 20-2 D 19SS",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "IRON YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290149845",
+      "api_14": "42901498450000",
+      "well_name": "UPSHAW 38-9 A 7WA",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "VANGUARD PLATEAU NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290159871",
+      "api_14": "42901598710000",
+      "well_name": "THORNBURY 47-37 E 11WD",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "VANGUARD WELLS EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290196814",
+      "api_14": "42901968140000",
+      "well_name": "YARBROUGH 32-2 B 1MS",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "SUMMIT STATION",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290174105",
+      "api_14": "42901741050000",
+      "well_name": "GENTRY 14-34 E 7WA",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "FRONTIER PLAINS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290128914",
+      "api_14": "42901289140000",
+      "well_name": "BRANNON 3-28 A 1MS",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "CANYON CROSSING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290166102",
+      "api_14": "42901661020000",
+      "well_name": "PRESTON 44-16 D 10WC",
+      "landing_zone": "JO MILL",
+      "unit_name": "FALCON ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290160574",
+      "api_14": "42901605740000",
+      "well_name": "IRELAND 6-39 B 14UB",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "RUBY STATION NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290124140",
+      "api_14": "42901241400000",
+      "well_name": "NORWOOD 34-8 C 13SB",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "CRIMSON RANCH EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290135208",
+      "api_14": "42901352080000",
+      "well_name": "EASTWOOD 46-27 A 9WB",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "FROST HORIZON WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290113023",
+      "api_14": "42901130230000",
+      "well_name": "JARDINE 29-16 D 13SB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SENTINEL RIDGE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290174004",
+      "api_14": "42901740040000",
+      "well_name": "STOCKTON 32-31 F 11WD",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "THUNDER LANDING",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290160316",
+      "api_14": "42901603160000",
+      "well_name": "IRELAND 33-11 A 18US",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "PIONEER JUNIPER SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290136079",
+      "api_14": "42901360790000",
+      "well_name": "NORWOOD 6-23 A 7WA",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "LONESTAR MESA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290144182",
+      "api_14": "42901441820000",
+      "well_name": "EASTWOOD 31-39 C 13SB",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "SCARLET TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290160177",
+      "api_14": "42901601770000",
+      "well_name": "IRELAND 40-9 E 18US",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "EMERALD SPRING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290144785",
+      "api_14": "42901447850000",
+      "well_name": "CALLOWAY 32-7 C 18US",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "SUMMIT ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290120456",
+      "api_14": "42901204560000",
+      "well_name": "FAIRBANKS 33-16 B 12SB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "SENTINEL RIDGE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290191240",
+      "api_14": "42901912400000",
+      "well_name": "MONTAGUE 15-4 F 12SB",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "SCARLET WELLS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290117172",
+      "api_14": "42901171720000",
+      "well_name": "EASTWOOD 42-20 C 14UB",
+      "landing_zone": "JO MILL",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290117118",
+      "api_14": "42901171180000",
+      "well_name": "EASTWOOD 33-14 A 2JM",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "LIBERTY ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290177156",
+      "api_14": "42901771560000",
+      "well_name": "EASTWOOD 7-26 B 10WC",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "SLATE BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290134180",
+      "api_14": "42901341800000",
+      "well_name": "RADCLIFFE 13-21 C 18US",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "PIONEER JUNIPER SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290179156",
+      "api_14": "42901791560000",
+      "well_name": "RADCLIFFE 12-5 A 17WF",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "MAVERICK JUNIPER WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290135334",
+      "api_14": "42901353340000",
+      "well_name": "GENTRY 26-26 D 11WD",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "LIBERTY ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290180087",
+      "api_14": "42901800870000",
+      "well_name": "BRANNON 10-37 B 17WF",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "THUNDER SAGE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290153677",
+      "api_14": "42901536770000",
+      "well_name": "DRISKELL 45-6 D 6WA",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "JADE ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290135259",
+      "api_14": "42901352590000",
+      "well_name": "BRANNON 12-5 A 11WD",
+      "landing_zone": "JO MILL",
+      "unit_name": "CRIMSON BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290161528",
+      "api_14": "42901615280000",
+      "well_name": "GENTRY 4-19 B 11WD",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "EMERALD SPRING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290172653",
+      "api_14": "42901726530000",
+      "well_name": "NORWOOD 38-35 C 11WD",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "JADE RIDGE NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290139258",
+      "api_14": "42901392580000",
+      "well_name": "BRANNON 41-11 A 5LS",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "PIONEER BLUFF",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290134593",
+      "api_14": "42901345930000",
+      "well_name": "JARDINE 15-26 D 10WC",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "SABLE CACTUS EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290162451",
+      "api_14": "42901624510000",
+      "well_name": "JARDINE 6-8 D 6WA",
+      "landing_zone": "JO MILL",
+      "unit_name": "LONESTAR PASS WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290191684",
+      "api_14": "42901916840000",
+      "well_name": "GENTRY 8-29 B 10WC",
+      "landing_zone": "DEAN",
+      "unit_name": "SABLE COMPASS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290134300",
+      "api_14": "42901343000000",
+      "well_name": "HOLLISTER 4-11 C 2JM",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "LONESTAR MESA EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290121455",
+      "api_14": "42901214550000",
+      "well_name": "YARBROUGH 5-8 D 19SS",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "LONESTAR MESA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290132016",
+      "api_14": "42901320160000",
+      "well_name": "VANDERPOOL 11-28 C 2JM",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "BISON MESQUITE SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290110734",
+      "api_14": "42901107340000",
+      "well_name": "HOLLISTER 20-28 B 17WF",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "TITAN ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290178908",
+      "api_14": "42901789080000",
+      "well_name": "ABERNATHY 47-13 A 9WB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "FRONTIER BASIN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290139644",
+      "api_14": "42901396440000",
+      "well_name": "MONTAGUE 39-27 E 10WC",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "VANGUARD WELLS EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290117003",
+      "api_14": "42901170030000",
+      "well_name": "RADCLIFFE 7-9 D 3JM",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "MESA TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290160289",
+      "api_14": "42901602890000",
+      "well_name": "OAKLEY 24-11 D 6WA",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "GOLDEN CROSSING WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290143146",
+      "api_14": "42901431460000",
+      "well_name": "QUINLAN 38-36 C 19SS",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "MESA TRAIL NORTH 2",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290125463",
+      "api_14": "42901254630000",
+      "well_name": "EASTWOOD 41-31 D 14UB",
+      "landing_zone": "DEAN",
+      "unit_name": "FROST RIDGE WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290189145",
+      "api_14": "42901891450000",
+      "well_name": "WETHERBY 13-33 E 10WC",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "CRIMSON ROAN",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290161741",
+      "api_14": "42901617410000",
+      "well_name": "FAIRBANKS 31-29 D 12SB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "CANYON CROSSING EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290177734",
+      "api_14": "42901777340000",
+      "well_name": "ABERNATHY 46-6 B 6WA",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "LONESTAR JUNIPER",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290159130",
+      "api_14": "42901591300000",
+      "well_name": "ABERNATHY 21-34 D 12SB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "DESERT HOLLOW WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290160640",
+      "api_14": "42901606400000",
+      "well_name": "UPSHAW 7-18 A 15LB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "AZURE PLAINS NORTH",
+      "intersects_leasehold": false
+    },
+    {
+      "api_10": "4290185247",
+      "api_14": "42901852470000",
+      "well_name": "VANDERPOOL 13-10 B 19SS",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "DESERT BASIN EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290129003",
+      "api_14": "42901290030000",
+      "well_name": "MONTAGUE 28-14 F 9WB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "CRIMSON ARROYO",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290166946",
+      "api_14": "42901669460000",
+      "well_name": "RADCLIFFE 44-32 A 11WD",
+      "landing_zone": "JO MILL",
+      "unit_name": "COYOTE RANCH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290185185",
+      "api_14": "42901851850000",
+      "well_name": "JARDINE 3-29 B 1MS",
+      "landing_zone": "JO MILL",
+      "unit_name": "AZURE PLAINS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290117694",
+      "api_14": "42901176940000",
+      "well_name": "DRISKELL 47-21 D 16MP",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "RUBY STATION NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290113721",
+      "api_14": "42901137210000",
+      "well_name": "HOLLISTER 23-13 A 4LS",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "FALCON ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290190137",
+      "api_14": "42901901370000",
+      "well_name": "VANDERPOOL 15-8 E 7WA",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "VANGUARD MESQUITE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290155413",
+      "api_14": "42901554130000",
+      "well_name": "HOLLISTER 6-34 D 19SS",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "COBALT ARROYO WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290138159",
+      "api_14": "42901381590000",
+      "well_name": "YARBROUGH 11-7 A 12SB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "MESA ROAN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290115956",
+      "api_14": "42901159560000",
+      "well_name": "NORWOOD 4-35 B 6WA",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "FROST RIDGE WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290162466",
+      "api_14": "42901624660000",
+      "well_name": "PRESTON 33-36 F 3JM",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "SLATE BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290152114",
+      "api_14": "42901521140000",
+      "well_name": "IRELAND 12-10 F 13SB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SENTINEL RIDGE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290183135",
+      "api_14": "42901831350000",
+      "well_name": "PRESTON 16-11 C 10WC",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "FRONTIER YUCCA WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290143974",
+      "api_14": "42901439740000",
+      "well_name": "RADCLIFFE 42-6 F 17WF",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "PRAIRIE PASS WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290144239",
+      "api_14": "42901442390000",
+      "well_name": "RADCLIFFE 32-8 E 14UB",
+      "landing_zone": "JO MILL",
+      "unit_name": "SCARLET BUTTE WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290154621",
+      "api_14": "42901546210000",
+      "well_name": "IRELAND 11-1 E 2JM",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "MAVERICK HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290151777",
+      "api_14": "42901517770000",
+      "well_name": "YARBROUGH 18-17 C 13SB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "LONESTAR MESA EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290194057",
+      "api_14": "42901940570000",
+      "well_name": "QUINLAN 30-31 A 15LB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "LONESTAR JUNIPER",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290176013",
+      "api_14": "42901760130000",
+      "well_name": "WETHERBY 9-12 E 16MP",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "DESERT HOLLOW WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290124170",
+      "api_14": "42901241700000",
+      "well_name": "UPSHAW 5-30 E 14UB",
+      "landing_zone": "JO MILL",
+      "unit_name": "TITAN WELLS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290184203",
+      "api_14": "42901842030000",
+      "well_name": "FAIRBANKS 28-18 D 8WB",
+      "landing_zone": "DEAN",
+      "unit_name": "COYOTE YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290168355",
+      "api_14": "42901683550000",
+      "well_name": "EASTWOOD 36-14 B 11WD",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "MAVERICK HOLLOW NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290130082",
+      "api_14": "42901300820000",
+      "well_name": "THORNBURY 3-35 B 7WA",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "SUMMIT ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290166929",
+      "api_14": "42901669290000",
+      "well_name": "JARDINE 23-33 B 14UB",
+      "landing_zone": "JO MILL",
+      "unit_name": "FROST HORIZON WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290162924",
+      "api_14": "42901629240000",
+      "well_name": "WETHERBY 42-33 B 1MS",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "TITAN RIDGE EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290150546",
+      "api_14": "42901505460000",
+      "well_name": "RADCLIFFE 6-3 B 19SS",
+      "landing_zone": "DEAN",
+      "unit_name": "JADE DRAW",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290150478",
+      "api_14": "42901504780000",
+      "well_name": "NORWOOD 7-20 D 12SB",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "CRIMSON BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290111929",
+      "api_14": "42901119290000",
+      "well_name": "LANGFORD 15-10 F 6WA",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "VANGUARD MESQUITE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290161918",
+      "api_14": "42901619180000",
+      "well_name": "WETHERBY 12-12 D 18US",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "COPPER PLATEAU EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290121247",
+      "api_14": "42901212470000",
+      "well_name": "IRELAND 12-27 B 4LS",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SUMMIT JUNIPER NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290175626",
+      "api_14": "42901756260000",
+      "well_name": "FAIRBANKS 33-38 C 12SB",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "FROST HORIZON WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290112165",
+      "api_14": "42901121650000",
+      "well_name": "HOLLISTER 3-1 E 3JM",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "FRONTIER BASIN NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290197163",
+      "api_14": "42901971630000",
+      "well_name": "ABERNATHY 11-13 C 16MP",
+      "landing_zone": "DEAN",
+      "unit_name": "PIONEER JUNIPER SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290160582",
+      "api_14": "42901605820000",
+      "well_name": "STOCKTON 17-1 D 4LS",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "PIONEER BLUFF",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290148547",
+      "api_14": "42901485470000",
+      "well_name": "LANGFORD 3-19 D 18US",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "SUMMIT BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290133344",
+      "api_14": "42901333440000",
+      "well_name": "VANDERPOOL 5-14 F 5LS",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "DESERT HOLLOW WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290124503",
+      "api_14": "42901245030000",
+      "well_name": "EASTWOOD 30-35 A 11WD",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "MESA TRAIL NORTH 2",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290167026",
+      "api_14": "42901670260000",
+      "well_name": "FAIRBANKS 30-23 A 3JM",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "SCARLET WELLS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290185201",
+      "api_14": "42901852010000",
+      "well_name": "STOCKTON 30-22 A 13SB",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "CANYON PLAINS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290117644",
+      "api_14": "42901176440000",
+      "well_name": "KENDRICK 36-2 E 18US",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "TITAN RIDGE EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290127923",
+      "api_14": "42901279230000",
+      "well_name": "MONTAGUE 20-27 F 16MP",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "RIDGE PASS SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290143409",
+      "api_14": "42901434090000",
+      "well_name": "WETHERBY 16-10 A 13SB",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "COBALT LANDING WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290112292",
+      "api_14": "42901122920000",
+      "well_name": "WETHERBY 41-19 B 16MP",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "LONESTAR JUNIPER",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290138432",
+      "api_14": "42901384320000",
+      "well_name": "VANDERPOOL 19-10 A 19SS",
+      "landing_zone": "JO MILL",
+      "unit_name": "AZURE PLAINS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290178714",
+      "api_14": "42901787140000",
+      "well_name": "KENDRICK 5-4 D 17WF",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "LONESTAR MESA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290187875",
+      "api_14": "42901878750000",
+      "well_name": "BRANNON 9-11 C 16MP",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "STORM ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290192050",
+      "api_14": "42901920500000",
+      "well_name": "THORNBURY 36-29 E 19SS",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "COBALT LANDING WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290198205",
+      "api_14": "42901982050000",
+      "well_name": "FAIRBANKS 20-1 E 7WA",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "LIBERTY TRAIL",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290136871",
+      "api_14": "42901368710000",
+      "well_name": "STOCKTON 26-12 E 16MP",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "COBALT ARROYO WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290131301",
+      "api_14": "42901313010000",
+      "well_name": "PRESTON 18-11 C 16MP",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "IVORY HORIZON EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290184885",
+      "api_14": "42901848850000",
+      "well_name": "FAIRBANKS 46-16 A 12SB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "CANYON PLAINS",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290129480",
+      "api_14": "42901294800000",
+      "well_name": "JARDINE 3-2 E 5LS",
+      "landing_zone": "DEAN",
+      "unit_name": "COBALT ARROYO WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290163058",
+      "api_14": "42901630580000",
+      "well_name": "FAIRBANKS 28-25 A 12SB",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "SENTINEL RIDGE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290189277",
+      "api_14": "42901892770000",
+      "well_name": "HOLLISTER 5-28 B 2JM",
+      "landing_zone": "DEAN",
+      "unit_name": "CRIMSON BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290198720",
+      "api_14": "42901987200000",
+      "well_name": "CALLOWAY 7-6 C 17WF",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "THUNDER BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290153702",
+      "api_14": "42901537020000",
+      "well_name": "YARBROUGH 16-35 E 7WA",
+      "landing_zone": "DEAN",
+      "unit_name": "AZURE PLAINS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290135553",
+      "api_14": "42901355530000",
+      "well_name": "MONTAGUE 4-25 E 5LS",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "SUMMIT DRAW EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290154202",
+      "api_14": "42901542020000",
+      "well_name": "HOLLISTER 8-5 C 18US",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "PIONEER BLUFF",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290128154",
+      "api_14": "42901281540000",
+      "well_name": "RADCLIFFE 32-38 E 13SB",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "CRIMSON RANCH EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290119280",
+      "api_14": "42901192800000",
+      "well_name": "UPSHAW 22-15 B 3JM",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "CRIMSON RANCH EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290149942",
+      "api_14": "42901499420000",
+      "well_name": "RADCLIFFE 12-1 C 3JM",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "RANGER CREEK",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290157708",
+      "api_14": "42901577080000",
+      "well_name": "CALLOWAY 4-19 E 16MP",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "PIONEER BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290127345",
+      "api_14": "42901273450000",
+      "well_name": "STOCKTON 40-8 E 1MS",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "PIONEER BLUFF",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290196432",
+      "api_14": "42901964320000",
+      "well_name": "THORNBURY 16-12 D 13SB",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "AZURE PLAINS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290180227",
+      "api_14": "42901802270000",
+      "well_name": "VANDERPOOL 25-10 C 18US",
+      "landing_zone": "WOLFCAMP D",
+      "unit_name": "COYOTE BASIN",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290157181",
+      "api_14": "42901571810000",
+      "well_name": "OAKLEY 34-17 B 18US",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "RIDGE PASS SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290140299",
+      "api_14": "42901402990000",
+      "well_name": "OAKLEY 22-16 F 7WA",
+      "landing_zone": "WOLFCAMP B1",
+      "unit_name": "PIONEER ROAN WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290112837",
+      "api_14": "42901128370000",
+      "well_name": "EASTWOOD 44-4 B 6WA",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "THUNDER LANDING",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290166592",
+      "api_14": "42901665920000",
+      "well_name": "NORWOOD 33-35 C 4LS",
+      "landing_zone": "UPR SPRB SHALE",
+      "unit_name": "FALCON BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290178289",
+      "api_14": "42901782890000",
+      "well_name": "JARDINE 34-6 D 13SB",
+      "landing_zone": "JO MILL",
+      "unit_name": "SCARLET TRAIL NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290180344",
+      "api_14": "42901803440000",
+      "well_name": "IRELAND 14-21 C 8WB",
+      "landing_zone": "DEAN",
+      "unit_name": "SENTINEL RIDGE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290188794",
+      "api_14": "42901887940000",
+      "well_name": "CALLOWAY 11-3 D 7WA",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "SABLE COMPASS NORTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290114301",
+      "api_14": "42901143010000",
+      "well_name": "LANGFORD 26-32 A 14UB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "MAVERICK JUNIPER WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290150051",
+      "api_14": "42901500510000",
+      "well_name": "OAKLEY 7-11 A 16MP",
+      "landing_zone": "WOLFCAMP A",
+      "unit_name": "CRIMSON RANCH EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290165173",
+      "api_14": "42901651730000",
+      "well_name": "LANGFORD 25-38 F 16MP",
+      "landing_zone": "JO MILL",
+      "unit_name": "EMERALD YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290116325",
+      "api_14": "42901163250000",
+      "well_name": "STOCKTON 43-3 F 9WB",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "SUMMIT ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290170634",
+      "api_14": "42901706340000",
+      "well_name": "IRELAND 32-26 C 7WA",
+      "landing_zone": "JO MILL",
+      "unit_name": "COYOTE YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290184823",
+      "api_14": "42901848230000",
+      "well_name": "NORWOOD 8-32 E 12SB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "SCARLET JUNIPER WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290197403",
+      "api_14": "42901974030000",
+      "well_name": "BRANNON 31-21 D 3JM",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "COYOTE BASIN",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290136637",
+      "api_14": "42901366370000",
+      "well_name": "HOLLISTER 39-3 F 12SB",
+      "landing_zone": "DEAN",
+      "unit_name": "FALCON BUTTE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290127153",
+      "api_14": "42901271530000",
+      "well_name": "JARDINE 41-20 F 10WC",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "RIDGE PASS SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290128088",
+      "api_14": "42901280880000",
+      "well_name": "VANDERPOOL 35-28 B 9WB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "DESERT HOLLOW WEST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290194313",
+      "api_14": "42901943130000",
+      "well_name": "JARDINE 30-13 B 15LB",
+      "landing_zone": "WOLFCAMP B2",
+      "unit_name": "TITAN ARROYO EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290118885",
+      "api_14": "42901188850000",
+      "well_name": "STOCKTON 7-24 B 15LB",
+      "landing_zone": "MID SPRB SHALE",
+      "unit_name": "PIONEER JUNIPER SOUTH",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290189147",
+      "api_14": "42901891470000",
+      "well_name": "ABERNATHY 41-28 D 4LS",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "CANYON YUCCA",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290135668",
+      "api_14": "42901356680000",
+      "well_name": "HOLLISTER 1-20 F 2JM",
+      "landing_zone": "LWR SPRB SAND",
+      "unit_name": "SENTINEL RIDGE",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290164953",
+      "api_14": "42901649530000",
+      "well_name": "DRISKELL 29-4 F 16MP",
+      "landing_zone": "LWR SPRB SHALE",
+      "unit_name": "DESERT BASIN EAST",
+      "intersects_leasehold": true
+    },
+    {
+      "api_10": "4290111504",
+      "api_14": "42901115040000",
+      "well_name": "BRANNON 44-8 C 19SS",
+      "landing_zone": "WOLFCAMP C",
+      "unit_name": "JADE DRAW",
+      "intersects_leasehold": true
+    }
+  ]
+}

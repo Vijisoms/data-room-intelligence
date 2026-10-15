@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-10-15T17:15:00.000Z" agent="Copilot SDK" version="24.7.17" type="device">
+  <diagram id="end-to-end" name="End-to-End Workflow">
+    <mxGraphModel dx="2200" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1350" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title1" value="Data Room Intelligence - End-to-End Architecture" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="20" width="1100" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="sourceGroup" value="Seller Data Room" style="swimlane;html=1;rounded=1;startSize=36;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="100" width="220" height="650" as="geometry"/>
+        </mxCell>
+        <mxCell id="srcUnits" value="Unit Details Excel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="sourceGroup">
+          <mxGeometry x="20" y="60" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="srcCombo" value="ComboCurve Excel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="sourceGroup">
+          <mxGeometry x="20" y="135" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="srcLos" value="Lease Operating Statements" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="sourceGroup">
+          <mxGeometry x="20" y="210" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="srcBasis" value="Basis and Pricing Excel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="sourceGroup">
+          <mxGeometry x="20" y="285" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="srcGis" value="GIS Shapefiles" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="sourceGroup">
+          <mxGeometry x="20" y="360" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="srcPdf" value="PDF Decks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="sourceGroup">
+          <mxGeometry x="20" y="435" width="180" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="srcBrief" value="Briefing and FIMU Requirements" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="sourceGroup">
+          <mxGeometry x="20" y="510" width="180" height="65" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="localGroup" value="Local Deterministic Processing - Implemented" style="swimlane;html=1;rounded=1;startSize=36;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="100" width="1300" height="650" as="geometry"/>
+        </mxCell>
+        <mxCell id="ingest" value="1. Ingestion&lt;br&gt;Discover and classify files&lt;br&gt;Capture versions and dates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="localGroup">
+          <mxGeometry x="30" y="80" width="200" height="115" as="geometry"/>
+        </mxCell>
+        <mxCell id="parseGroup" value="2. Format-Specific Parsing" style="swimlane;html=1;rounded=1;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="localGroup">
+          <mxGeometry x="270" y="50" width="280" height="535" as="geometry"/>
+        </mxCell>
+        <mxCell id="parseUnits" value="Unit Details&lt;br&gt;openpyxl" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="parseGroup">
+          <mxGeometry x="30" y="55" width="220" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="parseCombo" value="ComboCurve&lt;br&gt;Excel COM and pandas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="parseGroup">
+          <mxGeometry x="30" y="125" width="220" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="parseLos" value="LOS Production&lt;br&gt;openpyxl" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="parseGroup">
+          <mxGeometry x="30" y="205" width="220" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="parseBasis" value="Basis Pricing&lt;br&gt;openpyxl" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="parseGroup">
+          <mxGeometry x="30" y="275" width="220" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="parseGis" value="GIS&lt;br&gt;pyshp, Shapely, pyproj" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="parseGroup">
+          <mxGeometry x="30" y="345" width="220" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="parsePdf" value="PDF Facts&lt;br&gt;pypdf and regex" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="parseGroup">
+          <mxGeometry x="30" y="425" width="220" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="canonical" value="3. Canonical Model&lt;br&gt;Pydantic schema and provenance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;" vertex="1" parent="localGroup">
+          <mxGeometry x="600" y="80" width="200" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="entities" value="Units | Wells | Production&lt;br&gt;Pricing | Cash Flow | PDF Facts&lt;br&gt;Metrics | Sources | Findings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="localGroup">
+          <mxGeometry x="600" y="215" width="200" height="115" as="geometry"/>
+        </mxCell>
+        <mxCell id="reconcile" value="4. Reconciliation and QA&lt;br&gt;GIS well-unit links&lt;br&gt;Cross-source checks&lt;br&gt;Provenance and warnings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="localGroup">
+          <mxGeometry x="850" y="80" width="200" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="analytics" value="5. Analytics&lt;br&gt;WCA locations and PV-10&lt;br&gt;Latest net production&lt;br&gt;Standard answers and FIMU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="localGroup">
+          <mxGeometry x="1100" y="80" width="170" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="outputs" value="6. Report Generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="localGroup">
+          <mxGeometry x="850" y="290" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="rootOutputs" value="Root outputs&lt;br&gt;Canonical model&lt;br&gt;Insight report&lt;br&gt;QA and FIMU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="localGroup">
+          <mxGeometry x="850" y="390" width="200" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="parsedOutputs" value="parsed_json&lt;br&gt;Source-family JSON&lt;br&gt;Parsing guides" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="localGroup">
+          <mxGeometry x="1100" y="290" width="170" height="105" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cloudGroup" value="Secure Azure Delivery - Planned" style="swimlane;html=1;rounded=1;startSize=36;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1650" y="100" width="700" height="650" as="geometry"/>
+        </mxCell>
+        <mxCell id="relay" value="Entra-Protected Storage Relay&lt;br&gt;Azure Functions Flex&lt;br&gt;VNet integrated" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;dashed=1;" vertex="1" parent="cloudGroup">
+          <mxGeometry x="40" y="85" width="210" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="blob" value="Private Azure Blob Storage&lt;br&gt;Versioned runs and latest manifest&lt;br&gt;Managed identity and RBAC" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="cloudGroup">
+          <mxGeometry x="310" y="70" width="230" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="hostedAgent" value="Foundry Hosted Agent&lt;br&gt;Responses protocol&lt;br&gt;Cited Q and A tools" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="cloudGroup">
+          <mxGeometry x="310" y="270" width="230" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="consumers" value="BD Analysts and FIMU Users&lt;br&gt;Cited answers, report, and case" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="cloudGroup">
+          <mxGeometry x="310" y="460" width="230" height="95" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="sourceGroup" target="ingest"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" value="classified files" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="ingest" target="parseGroup"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" value="normalized records" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="parseGroup" target="canonical"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="canonical" target="entities"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" value="model plus spatial links" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="canonical" target="reconcile"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" value="reconciled model" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="reconcile" target="analytics"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" value="finalized model" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="analytics" target="outputs"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="outputs" target="rootOutputs"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="outputs" target="parsedOutputs"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" value="publish artifacts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;" edge="1" parent="1" source="rootOutputs" target="relay"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" value="private endpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;" edge="1" parent="1" source="relay" target="blob"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e12" value="bounded artifact reads" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;" edge="1" parent="1" source="hostedAgent" target="relay"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e13" value="cited answers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="hostedAgent" target="consumers"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e14" value="questions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="consumers" target="hostedAgent"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="component-flow" name="Source Code Flow">
+    <mxGraphModel dx="2200" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1350" math="0" shadow="0">
+      <root>
+        <mxCell id="c0"/>
+        <mxCell id="c1" parent="c0"/>
+        <mxCell id="ctitle" value="Data Room Intelligence - Source Code Execution Flow" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;" vertex="1" parent="c1">
+          <mxGeometry x="650" y="20" width="1100" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="entryGroup" value="Entry and Orchestration" style="swimlane;html=1;rounded=1;startSize=36;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="c1">
+          <mxGeometry x="40" y="100" width="320" height="500" as="geometry"/>
+        </mxCell>
+        <mxCell id="cli" value="cli.py&lt;br&gt;build command" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="entryGroup">
+          <mxGeometry x="55" y="70" width="210" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="workflow" value="workflow.py&lt;br&gt;Agent Framework orchestration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="entryGroup">
+          <mxGeometry x="55" y="180" width="210" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="pipeline" value="pipeline.py&lt;br&gt;run_pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="entryGroup">
+          <mxGeometry x="55" y="305" width="210" height="75" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="parserGroup2" value="Discovery and Parsers" style="swimlane;html=1;rounded=1;startSize=36;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="c1">
+          <mxGeometry x="410" y="100" width="420" height="850" as="geometry"/>
+        </mxCell>
+        <mxCell id="discover" value="discovery.py&lt;br&gt;discover files and as-of dates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="parserGroup2">
+          <mxGeometry x="80" y="55" width="260" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="pUnits2" value="parse_unit_details&lt;br&gt;units and unit metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="parserGroup2">
+          <mxGeometry x="80" y="155" width="260" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="pCombo2" value="parse_combocurve&lt;br&gt;wells, cash flow, metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="parserGroup2">
+          <mxGeometry x="80" y="245" width="260" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="pGis2" value="parse_gis&lt;br&gt;spatial links and GIS metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="parserGroup2">
+          <mxGeometry x="80" y="335" width="260" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="pLos2" value="parse_los&lt;br&gt;monthly production" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="parserGroup2">
+          <mxGeometry x="80" y="425" width="260" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="pBasis2" value="parse_basis&lt;br&gt;period pricing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="parserGroup2">
+          <mxGeometry x="80" y="515" width="260" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="pPdf2" value="parse_pdfs&lt;br&gt;text and regex facts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="parserGroup2">
+          <mxGeometry x="80" y="605" width="260" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="excelIo" value="excel_io.py&lt;br&gt;Excel COM CSV export" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="parserGroup2">
+          <mxGeometry x="80" y="695" width="260" height="65" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="modelGroup2" value="Canonical State" style="swimlane;html=1;rounded=1;startSize=36;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="c1">
+          <mxGeometry x="880" y="100" width="350" height="500" as="geometry"/>
+        </mxCell>
+        <mxCell id="pydantic" value="models.py&lt;br&gt;CanonicalModel and typed records" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;" vertex="1" parent="modelGroup2">
+          <mxGeometry x="55" y="70" width="240" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="metricJoin" value="Initial metrics&lt;br&gt;unit + ComboCurve + GIS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="modelGroup2">
+          <mxGeometry x="55" y="190" width="240" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="provenance" value="SourceRef&lt;br&gt;path, locator, as-of" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="modelGroup2">
+          <mxGeometry x="55" y="305" width="240" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="finalGroup2" value="Finalize Model" style="swimlane;html=1;rounded=1;startSize=36;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="c1">
+          <mxGeometry x="1280" y="100" width="350" height="500" as="geometry"/>
+        </mxCell>
+        <mxCell id="reconcile2" value="reconcile.py&lt;br&gt;link wells and append findings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="finalGroup2">
+          <mxGeometry x="55" y="70" width="240" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="analytics2" value="analytics.py&lt;br&gt;append analytical metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="finalGroup2">
+          <mxGeometry x="55" y="190" width="240" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="answers2" value="standard_answers&lt;br&gt;deterministic business responses" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="finalGroup2">
+          <mxGeometry x="55" y="310" width="240" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="outputGroup2" value="Output Adapters" style="swimlane;html=1;rounded=1;startSize=36;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="c1">
+          <mxGeometry x="1680" y="100" width="660" height="850" as="geometry"/>
+        </mxCell>
+        <mxCell id="reporting2" value="reporting.py&lt;br&gt;write_outputs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="outputGroup2">
+          <mxGeometry x="40" y="70" width="230" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="docs2" value="parsing_docs.py&lt;br&gt;generated Markdown guides" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="outputGroup2">
+          <mxGeometry x="340" y="70" width="250" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="fimu2" value="fimu.py&lt;br&gt;draft FIMU adapter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="outputGroup2">
+          <mxGeometry x="40" y="190" width="230" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="artifact2" value="artifacts.py&lt;br&gt;versioned Blob publisher" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="outputGroup2">
+          <mxGeometry x="340" y="190" width="250" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="rootFiles2" value="Root outputs&lt;br&gt;model, report, answers, QA, FIMU" style="shape=folder;tabWidth=60;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="outputGroup2">
+          <mxGeometry x="40" y="320" width="230" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="parsedFiles2" value="parsed_json&lt;br&gt;JSON datasets and MD guides" style="shape=folder;tabWidth=60;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="outputGroup2">
+          <mxGeometry x="340" y="320" width="250" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="qa2" value="PipelineResult&lt;br&gt;absolute output paths" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="outputGroup2">
+          <mxGeometry x="190" y="500" width="250" height="75" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="ce1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="cli" target="workflow"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="workflow" target="pipeline"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce3" value="discover" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="pipeline" target="discover"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce4" value="parse inputs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="discover" target="pUnits2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="discover" target="pCombo2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="discover" target="pGis2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="discover" target="pLos2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="discover" target="pBasis2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="discover" target="pPdf2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce10" value="OLE export" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;" edge="1" parent="c1" source="excelIo" target="pCombo2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce11" value="typed records" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="parserGroup2" target="pydantic"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="pydantic" target="metricJoin"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce13" value="model and links" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="pydantic" target="reconcile2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce14" value="reconciled model" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="reconcile2" target="analytics2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce15" value="final metrics" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="analytics2" target="reporting2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce16" value="render guides" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="reporting2" target="docs2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce17" value="standard answers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="analytics2" target="answers2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="reporting2" target="rootFiles2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="docs2" target="parsedFiles2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce20" value="adapt model" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="reporting2" target="fimu2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce21" value="publish allowlist" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;endArrow=block;" edge="1" parent="c1" source="rootFiles2" target="artifact2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ce22" value="return paths" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="c1" source="reporting2" target="qa2"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -146,9 +146,20 @@ def parse_combocurve(path: Path) -> tuple[list[WellRecord], list[dict[str, Any]]
         api_14 = _optional_text(row.get("API 14"))
         chosen = _optional_text(row.get("Chosen ID"))
         name = _optional_text(row.get("Well Name")) or f"well-{index + 1}"
+        if api_14:
+            well_key = api_14
+            well_key_source = "api_14"
+        elif chosen:
+            well_key = chosen
+            well_key_source = "chosen_id"
+        else:
+            well_key = _key(name)
+            well_key_source = "well_name"
         wells.append(
             WellRecord(
-                well_key=api_14 or chosen or _key(name),
+                well_key=well_key,
+                chosen_id=chosen,
+                well_key_source=well_key_source,
                 api_10=_optional_text(row.get("API 10")),
                 api_14=api_14,
                 well_name=name,

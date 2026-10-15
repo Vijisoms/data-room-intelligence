@@ -1,0 +1,2183 @@
+{
+  "schema_version": "1.0",
+  "asset_name": "Lone Star Basin",
+  "generated_at": "2026-10-15T17:02:10.231405+00:00",
+  "production": [
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-01-01",
+      "oil_bbl": 155493.93,
+      "gas_mcf": 812666.23,
+      "ngl_bbl": 88895.28,
+      "boe": 379833.58,
+      "revenue_usd": 12193256.88,
+      "loe_usd": 1372732.78,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!C2:C12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-02-01",
+      "oil_bbl": 302707.34,
+      "gas_mcf": 1744174.27,
+      "ngl_bbl": 197754.25,
+      "boe": 791157.3,
+      "revenue_usd": 20978628.12,
+      "loe_usd": 2361801.35,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!D2:D12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-03-01",
+      "oil_bbl": 494744.61,
+      "gas_mcf": 2762116.15,
+      "ngl_bbl": 334656.55,
+      "boe": 1289753.85,
+      "revenue_usd": 42848936.08,
+      "loe_usd": 4823989.18,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!E2:E12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-04-01",
+      "oil_bbl": 515390.41,
+      "gas_mcf": 3079106.48,
+      "ngl_bbl": 340019.45,
+      "boe": 1368594.27,
+      "revenue_usd": 39071837.98,
+      "loe_usd": 4398758.55,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!F2:F12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-05-01",
+      "oil_bbl": 495438.77,
+      "gas_mcf": 2885771.51,
+      "ngl_bbl": 401810.1,
+      "boe": 1378210.79,
+      "revenue_usd": 40362718.86,
+      "loe_usd": 4544087.6,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!G2:G12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-06-01",
+      "oil_bbl": 831245.5,
+      "gas_mcf": 4480033.87,
+      "ngl_bbl": 533624.15,
+      "boe": 2111541.96,
+      "revenue_usd": 63967981.47,
+      "loe_usd": 7201598.89,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!H2:H12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-07-01",
+      "oil_bbl": 788948.93,
+      "gas_mcf": 4206172.13,
+      "ngl_bbl": 504235.3,
+      "boe": 1994212.92,
+      "revenue_usd": 65179782.51,
+      "loe_usd": 7338025.04,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!I2:I12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-08-01",
+      "oil_bbl": 996970.93,
+      "gas_mcf": 5406376.32,
+      "ngl_bbl": 735962.63,
+      "boe": 2633996.27,
+      "revenue_usd": 91006855.41,
+      "loe_usd": 10245670.63,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!J2:J12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-09-01",
+      "oil_bbl": 882456.78,
+      "gas_mcf": 4968826.8,
+      "ngl_bbl": 583447.67,
+      "boe": 2294042.26,
+      "revenue_usd": 69317386.87,
+      "loe_usd": 7803841.94,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!K2:K12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-10-01",
+      "oil_bbl": 1040639.98,
+      "gas_mcf": 5390917.36,
+      "ngl_bbl": 596422.43,
+      "boe": 2535548.64,
+      "revenue_usd": 91468488.24,
+      "loe_usd": 10297641.86,
+      "operating_income_usd": -775.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!L2:L12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-11-01",
+      "oil_bbl": 1010702.05,
+      "gas_mcf": 5671141.57,
+      "ngl_bbl": 789496.21,
+      "boe": 2745388.52,
+      "revenue_usd": 79619108.21,
+      "loe_usd": 8963623.18,
+      "operating_income_usd": -257.3,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!M2:M12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2022-12-01",
+      "oil_bbl": 753454.09,
+      "gas_mcf": 4324543.12,
+      "ngl_bbl": 535401.41,
+      "boe": 2009612.69,
+      "revenue_usd": 77297686.65,
+      "loe_usd": 8702274.51,
+      "operating_income_usd": 3451178.73,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!N2:N12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-01-01",
+      "oil_bbl": 837621.0,
+      "gas_mcf": 4291532.43,
+      "ngl_bbl": 513511.58,
+      "boe": 2066387.99,
+      "revenue_usd": 79448511.17,
+      "loe_usd": 8944417.14,
+      "operating_income_usd": 2736353.49,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!Q2:Q12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-02-01",
+      "oil_bbl": 823463.03,
+      "gas_mcf": 4063297.69,
+      "ngl_bbl": 489255.78,
+      "boe": 1989935.09,
+      "revenue_usd": 64543808.43,
+      "loe_usd": 7266426.24,
+      "operating_income_usd": 2530519.22,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!R2:R12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-03-01",
+      "oil_bbl": 803883.64,
+      "gas_mcf": 4247784.15,
+      "ngl_bbl": 557790.21,
+      "boe": 2069637.87,
+      "revenue_usd": 75889864.35,
+      "loe_usd": 8543780.04,
+      "operating_income_usd": 2728690.5,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!S2:S12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-04-01",
+      "oil_bbl": 878221.42,
+      "gas_mcf": 4147005.03,
+      "ngl_bbl": 505540.48,
+      "boe": 2074929.41,
+      "revenue_usd": 81536310.18,
+      "loe_usd": 9179464.28,
+      "operating_income_usd": 923440.7599999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!T2:T12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-05-01",
+      "oil_bbl": 843609.04,
+      "gas_mcf": 4071807.27,
+      "ngl_bbl": 526761.62,
+      "boe": 2049005.2,
+      "revenue_usd": 76823896.22,
+      "loe_usd": 8648934.57,
+      "operating_income_usd": -79352.87000000002,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!U2:U12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-06-01",
+      "oil_bbl": 730960.73,
+      "gas_mcf": 4282051.48,
+      "ngl_bbl": 490059.98,
+      "boe": 1934695.95,
+      "revenue_usd": 53453908.43,
+      "loe_usd": 6017910.82,
+      "operating_income_usd": 2851151.93,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!V2:V12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-07-01",
+      "oil_bbl": 719915.93,
+      "gas_mcf": 3849266.43,
+      "ngl_bbl": 429606.93,
+      "boe": 1791067.26,
+      "revenue_usd": 59213439.78,
+      "loe_usd": 6666326.38,
+      "operating_income_usd": 2693355.659999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!W2:W12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-08-01",
+      "oil_bbl": 695286.79,
+      "gas_mcf": 3625103.52,
+      "ngl_bbl": 383631.29,
+      "boe": 1683102.0,
+      "revenue_usd": 68467774.53,
+      "loe_usd": 7708191.47,
+      "operating_income_usd": 2062703.249999998,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!X2:X12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-09-01",
+      "oil_bbl": 689392.55,
+      "gas_mcf": 3310816.35,
+      "ngl_bbl": 342747.24,
+      "boe": 1583942.52,
+      "revenue_usd": 55065438.71,
+      "loe_usd": 6199339.0,
+      "operating_income_usd": 5105476.52,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!Y2:Y12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-10-01",
+      "oil_bbl": 631530.11,
+      "gas_mcf": 2922609.57,
+      "ngl_bbl": 352418.95,
+      "boe": 1471050.66,
+      "revenue_usd": 53610470.77,
+      "loe_usd": 6035536.81,
+      "operating_income_usd": 16353592.36,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!Z2:Z12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-11-01",
+      "oil_bbl": 662333.77,
+      "gas_mcf": 3666333.54,
+      "ngl_bbl": 475900.31,
+      "boe": 1749289.68,
+      "revenue_usd": 62990891.44,
+      "loe_usd": 7091596.82,
+      "operating_income_usd": 14536214.76,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AA2:AA12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2023-12-01",
+      "oil_bbl": 603925.07,
+      "gas_mcf": 2866071.4,
+      "ngl_bbl": 322334.98,
+      "boe": 1403938.61,
+      "revenue_usd": 45435924.0,
+      "loe_usd": 5115235.66,
+      "operating_income_usd": 17162308.97,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AB2:AB12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-01-01",
+      "oil_bbl": 669444.97,
+      "gas_mcf": 3331569.21,
+      "ngl_bbl": 418005.15,
+      "boe": 1642711.65,
+      "revenue_usd": 56635087.03,
+      "loe_usd": 6376052.06,
+      "operating_income_usd": 29352990.19,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AE2:AE12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-02-01",
+      "oil_bbl": 613568.28,
+      "gas_mcf": 2911827.68,
+      "ngl_bbl": 300960.22,
+      "boe": 1399833.11,
+      "revenue_usd": 47542403.55,
+      "loe_usd": 5352385.88,
+      "operating_income_usd": 30984089.49000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AF2:AF12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-03-01",
+      "oil_bbl": 528697.11,
+      "gas_mcf": 2394920.23,
+      "ngl_bbl": 323383.58,
+      "boe": 1251234.06,
+      "revenue_usd": 44243173.03,
+      "loe_usd": 4980954.2,
+      "operating_income_usd": 35751255.84999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AG2:AG12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-04-01",
+      "oil_bbl": 537674.33,
+      "gas_mcf": 3033255.61,
+      "ngl_bbl": 315095.55,
+      "boe": 1358312.48,
+      "revenue_usd": 34708749.0,
+      "loe_usd": 3907556.29,
+      "operating_income_usd": 51327100.06999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AH2:AH12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-05-01",
+      "oil_bbl": 532697.99,
+      "gas_mcf": 2628762.53,
+      "ngl_bbl": 366111.35,
+      "boe": 1336936.43,
+      "revenue_usd": 46101794.75,
+      "loe_usd": 5190200.26,
+      "operating_income_usd": 54076165.13999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AI2:AI12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-06-01",
+      "oil_bbl": 495343.94,
+      "gas_mcf": 2256343.26,
+      "ngl_bbl": 284402.72,
+      "boe": 1155803.87,
+      "revenue_usd": 43329934.73,
+      "loe_usd": 4878140.64,
+      "operating_income_usd": 61393726.05,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AJ2:AJ12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-07-01",
+      "oil_bbl": 532909.1,
+      "gas_mcf": 2542476.46,
+      "ngl_bbl": 313763.43,
+      "boe": 1270418.61,
+      "revenue_usd": 47019720.88,
+      "loe_usd": 5293541.58,
+      "operating_income_usd": 73913554.14999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AK2:AK12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-08-01",
+      "oil_bbl": 518843.15,
+      "gas_mcf": 2514500.58,
+      "ngl_bbl": 346924.63,
+      "boe": 1284851.21,
+      "revenue_usd": 44767082.97,
+      "loe_usd": 5039936.66,
+      "operating_income_usd": 82893060.27000004,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AL2:AL12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-09-01",
+      "oil_bbl": 495124.16,
+      "gas_mcf": 2824045.36,
+      "ngl_bbl": 295858.4,
+      "boe": 1261656.78,
+      "revenue_usd": 37670749.37,
+      "loe_usd": 4241022.16,
+      "operating_income_usd": 88768949.05000003,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AM2:AM12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-10-01",
+      "oil_bbl": 487210.7,
+      "gas_mcf": 2432812.42,
+      "ngl_bbl": 328909.96,
+      "boe": 1221589.4,
+      "revenue_usd": 35082996.04,
+      "loe_usd": 3949689.51,
+      "operating_income_usd": 92420968.23999998,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AN2:AN12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-11-01",
+      "oil_bbl": 494772.85,
+      "gas_mcf": 2341460.8,
+      "ngl_bbl": 235711.1,
+      "boe": 1120727.41,
+      "revenue_usd": 42428428.54,
+      "loe_usd": 4776647.89,
+      "operating_income_usd": 71551977.66000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AO2:AO12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2024-12-01",
+      "oil_bbl": 419033.57,
+      "gas_mcf": 2414899.32,
+      "ngl_bbl": 309555.23,
+      "boe": 1131072.03,
+      "revenue_usd": 30221128.67,
+      "loe_usd": 3402334.13,
+      "operating_income_usd": 67200282.44000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AP2:AP12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-01-01",
+      "oil_bbl": 403880.45,
+      "gas_mcf": 1859875.68,
+      "ngl_bbl": 211169.73,
+      "boe": 925029.46,
+      "revenue_usd": 31097360.67,
+      "loe_usd": 3500981.48,
+      "operating_income_usd": 69009083.99999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AS2:AS12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-02-01",
+      "oil_bbl": 458155.0,
+      "gas_mcf": 2508172.45,
+      "ngl_bbl": 348184.77,
+      "boe": 1224368.51,
+      "revenue_usd": 34463588.72,
+      "loe_usd": 3879955.83,
+      "operating_income_usd": 52530218.55,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AT2:AT12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-03-01",
+      "oil_bbl": 360193.97,
+      "gas_mcf": 2087131.09,
+      "ngl_bbl": 231255.74,
+      "boe": 939304.89,
+      "revenue_usd": 35436443.62,
+      "loe_usd": 3989481.1,
+      "operating_income_usd": 45184672.38000002,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AU2:AU12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-04-01",
+      "oil_bbl": 417083.19,
+      "gas_mcf": 2302864.22,
+      "ngl_bbl": 307856.15,
+      "boe": 1108750.05,
+      "revenue_usd": 44134269.83,
+      "loe_usd": 4968693.73,
+      "operating_income_usd": 35217300.34,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AV2:AV12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-05-01",
+      "oil_bbl": 343020.42,
+      "gas_mcf": 1863438.91,
+      "ngl_bbl": 192880.2,
+      "boe": 846473.77,
+      "revenue_usd": 26328773.27,
+      "loe_usd": 2964127.68,
+      "operating_income_usd": 41966768.83000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AW2:AW12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-06-01",
+      "oil_bbl": 352736.33,
+      "gas_mcf": 1880707.09,
+      "ngl_bbl": 224009.44,
+      "boe": 890196.95,
+      "revenue_usd": 24217506.72,
+      "loe_usd": 2726438.53,
+      "operating_income_usd": 44181003.68000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AX2:AX12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-07-01",
+      "oil_bbl": 342226.29,
+      "gas_mcf": 1636360.57,
+      "ngl_bbl": 209973.96,
+      "boe": 824927.02,
+      "revenue_usd": 24717751.91,
+      "loe_usd": 2782756.79,
+      "operating_income_usd": 42455997.92999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AY2:AY12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-08-01",
+      "oil_bbl": 266813.89,
+      "gas_mcf": 1312694.0,
+      "ngl_bbl": 165237.53,
+      "boe": 650833.76,
+      "revenue_usd": 23654671.21,
+      "loe_usd": 2663073.78,
+      "operating_income_usd": 33940041.33,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!AZ2:AZ12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-09-01",
+      "oil_bbl": 357422.74,
+      "gas_mcf": 1935786.07,
+      "ngl_bbl": 227820.1,
+      "boe": 907873.85,
+      "revenue_usd": 29961210.26,
+      "loe_usd": 3373072.18,
+      "operating_income_usd": 33958255.55000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BA2:BA12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-10-01",
+      "oil_bbl": 283946.41,
+      "gas_mcf": 1392799.65,
+      "ngl_bbl": 140157.3,
+      "boe": 656236.98,
+      "revenue_usd": 19657477.29,
+      "loe_usd": 2213064.47,
+      "operating_income_usd": 38132189.65,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BB2:BB12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-11-01",
+      "oil_bbl": 304670.77,
+      "gas_mcf": 1543712.47,
+      "ngl_bbl": 178047.45,
+      "boe": 740003.63,
+      "revenue_usd": 23216365.54,
+      "loe_usd": 2613728.75,
+      "operating_income_usd": 33959037.02999997,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BC2:BC12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2025-12-01",
+      "oil_bbl": 309490.0,
+      "gas_mcf": 1553409.57,
+      "ngl_bbl": 212268.38,
+      "boe": 780659.98,
+      "revenue_usd": 22564143.82,
+      "loe_usd": 2540300.78,
+      "operating_income_usd": 22351714.21,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BD2:BD12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2026-01-01",
+      "oil_bbl": 285806.54,
+      "gas_mcf": 1697776.44,
+      "ngl_bbl": 189727.32,
+      "boe": 758496.6,
+      "revenue_usd": 25297164.92,
+      "loe_usd": 2847987.86,
+      "operating_income_usd": 37608550.60999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BG2:BG12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2026-02-01",
+      "oil_bbl": 291571.11,
+      "gas_mcf": 1721283.43,
+      "ngl_bbl": 221883.14,
+      "boe": 800334.82,
+      "revenue_usd": 26304321.07,
+      "loe_usd": 2961374.82,
+      "operating_income_usd": 40926483.76000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BH2:BH12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2026-03-01",
+      "oil_bbl": 287425.31,
+      "gas_mcf": 1536817.42,
+      "ngl_bbl": 193167.65,
+      "boe": 736729.2,
+      "revenue_usd": 23608830.48,
+      "loe_usd": 2657912.97,
+      "operating_income_usd": 75485944.22000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BI2:BI12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2026-04-01",
+      "oil_bbl": 279283.2,
+      "gas_mcf": 1301434.22,
+      "ngl_bbl": 149915.81,
+      "boe": 646104.71,
+      "revenue_usd": 24602150.3,
+      "loe_usd": 2769742.21,
+      "operating_income_usd": 71213284.87,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BJ2:BJ12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2026-05-01",
+      "oil_bbl": 262217.26,
+      "gas_mcf": 1477538.48,
+      "ngl_bbl": 159461.41,
+      "boe": 667935.08,
+      "revenue_usd": 24325654.15,
+      "loe_usd": 2738613.91,
+      "operating_income_usd": 91716572.3,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BK2:BK12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2026-06-01",
+      "oil_bbl": 246159.62,
+      "gas_mcf": 1190368.66,
+      "ngl_bbl": 131748.77,
+      "boe": 576303.16,
+      "revenue_usd": 21941728.99,
+      "loe_usd": 2470228.5,
+      "operating_income_usd": 73303534.68999997,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BL2:BL12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBIV NET",
+      "month": "2026-07-01",
+      "oil_bbl": 249608.11,
+      "gas_mcf": 1232421.53,
+      "ngl_bbl": 147858.24,
+      "boe": 602869.94,
+      "revenue_usd": 20390984.6,
+      "loe_usd": 2295643.68,
+      "operating_income_usd": 64736185.30999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBIV NET!BM2:BM12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-01-01",
+      "oil_bbl": 46203.93,
+      "gas_mcf": 273456.06,
+      "ngl_bbl": 28452.63,
+      "boe": 120232.57,
+      "revenue_usd": 4212802.26,
+      "loe_usd": 490552.19,
+      "operating_income_usd": 2.03,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!C2:C12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-02-01",
+      "oil_bbl": 75417.61,
+      "gas_mcf": 421162.85,
+      "ngl_bbl": 54016.19,
+      "boe": 199627.61,
+      "revenue_usd": 5950803.53,
+      "loe_usd": 692930.63,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!D2:D12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-03-01",
+      "oil_bbl": 119943.91,
+      "gas_mcf": 584087.8,
+      "ngl_bbl": 71601.87,
+      "boe": 288893.75,
+      "revenue_usd": 10667751.04,
+      "loe_usd": 1242187.11,
+      "operating_income_usd": -0.06,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!E2:E12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-04-01",
+      "oil_bbl": 171699.88,
+      "gas_mcf": 793377.37,
+      "ngl_bbl": 97573.54,
+      "boe": 401502.98,
+      "revenue_usd": 14134348.64,
+      "loe_usd": 1645848.84,
+      "operating_income_usd": -28.89,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!F2:F12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-05-01",
+      "oil_bbl": 180627.39,
+      "gas_mcf": 814106.21,
+      "ngl_bbl": 90957.49,
+      "boe": 407269.25,
+      "revenue_usd": 13202157.63,
+      "loe_usd": 1537301.53,
+      "operating_income_usd": 2.16,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!G2:G12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-06-01",
+      "oil_bbl": 204421.11,
+      "gas_mcf": 1092105.49,
+      "ngl_bbl": 142007.47,
+      "boe": 528446.16,
+      "revenue_usd": 16058115.42,
+      "loe_usd": 1869858.41,
+      "operating_income_usd": -0.5100000000000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!H2:H12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-07-01",
+      "oil_bbl": 173892.32,
+      "gas_mcf": 972230.93,
+      "ngl_bbl": 126937.1,
+      "boe": 462867.91,
+      "revenue_usd": 13148722.69,
+      "loe_usd": 1531079.4,
+      "operating_income_usd": -20.59,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!I2:I12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-08-01",
+      "oil_bbl": 167932.43,
+      "gas_mcf": 799578.01,
+      "ngl_bbl": 109104.77,
+      "boe": 410300.2,
+      "revenue_usd": 13937090.52,
+      "loe_usd": 1622879.47,
+      "operating_income_usd": -20.96,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!J2:J12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-09-01",
+      "oil_bbl": 139591.99,
+      "gas_mcf": 643446.56,
+      "ngl_bbl": 76665.1,
+      "boe": 323498.18,
+      "revenue_usd": 9761228.67,
+      "loe_usd": 1136628.74,
+      "operating_income_usd": -4658.59,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!K2:K12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-10-01",
+      "oil_bbl": 161320.72,
+      "gas_mcf": 890059.38,
+      "ngl_bbl": 98848.19,
+      "boe": 408512.15,
+      "revenue_usd": 11048766.23,
+      "loe_usd": 1286553.74,
+      "operating_income_usd": -27404.30000000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!L2:L12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-11-01",
+      "oil_bbl": 154290.14,
+      "gas_mcf": 767131.63,
+      "ngl_bbl": 89262.2,
+      "boe": 371407.62,
+      "revenue_usd": 11000090.34,
+      "loe_usd": 1280885.76,
+      "operating_income_usd": -19280.45999999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!M2:M12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2024-12-01",
+      "oil_bbl": 118224.4,
+      "gas_mcf": 669275.23,
+      "ngl_bbl": 84274.79,
+      "boe": 314045.06,
+      "revenue_usd": 8271243.93,
+      "loe_usd": 963130.14,
+      "operating_income_usd": 347791.6200000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!N2:N12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-01-01",
+      "oil_bbl": 145526.69,
+      "gas_mcf": 753514.1,
+      "ngl_bbl": 90684.7,
+      "boe": 361797.08,
+      "revenue_usd": 11901561.5,
+      "loe_usd": 1385855.95,
+      "operating_income_usd": 655297.1599999998,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!Q2:Q12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-02-01",
+      "oil_bbl": 132900.82,
+      "gas_mcf": 758682.41,
+      "ngl_bbl": 102781.14,
+      "boe": 362129.03,
+      "revenue_usd": 12930708.22,
+      "loe_usd": 1505693.09,
+      "operating_income_usd": 417343.4899999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!R2:R12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-03-01",
+      "oil_bbl": 118683.35,
+      "gas_mcf": 656486.98,
+      "ngl_bbl": 80715.85,
+      "boe": 308813.69,
+      "revenue_usd": 10155648.02,
+      "loe_usd": 1182556.19,
+      "operating_income_usd": 309757.74,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!S2:S12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-04-01",
+      "oil_bbl": 104374.49,
+      "gas_mcf": 557564.86,
+      "ngl_bbl": 70116.66,
+      "boe": 267418.63,
+      "revenue_usd": 8790479.95,
+      "loe_usd": 1023591.65,
+      "operating_income_usd": 211341.6500000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!T2:T12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-05-01",
+      "oil_bbl": 106150.38,
+      "gas_mcf": 498624.24,
+      "ngl_bbl": 68037.86,
+      "boe": 257292.29,
+      "revenue_usd": 7379409.37,
+      "loe_usd": 859282.07,
+      "operating_income_usd": 214380.62,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!U2:U12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-06-01",
+      "oil_bbl": 107385.25,
+      "gas_mcf": 620381.43,
+      "ngl_bbl": 62448.29,
+      "boe": 273230.44,
+      "revenue_usd": 10091303.32,
+      "loe_usd": 1175063.69,
+      "operating_income_usd": 408364.8100000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!V2:V12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-07-01",
+      "oil_bbl": 94223.54,
+      "gas_mcf": 557759.27,
+      "ngl_bbl": 72854.43,
+      "boe": 260037.85,
+      "revenue_usd": 8077241.59,
+      "loe_usd": 940539.89,
+      "operating_income_usd": 6725004.369999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!W2:W12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-08-01",
+      "oil_bbl": 93319.55,
+      "gas_mcf": 477223.78,
+      "ngl_bbl": 50871.29,
+      "boe": 223728.13,
+      "revenue_usd": 7295348.04,
+      "loe_usd": 849493.7,
+      "operating_income_usd": 7293793.439999996,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!X2:X12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-09-01",
+      "oil_bbl": 88020.25,
+      "gas_mcf": 433183.35,
+      "ngl_bbl": 52028.22,
+      "boe": 212245.7,
+      "revenue_usd": 7371811.13,
+      "loe_usd": 858397.31,
+      "operating_income_usd": 9796969.21,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!Y2:Y12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-10-01",
+      "oil_bbl": 96141.12,
+      "gas_mcf": 435259.72,
+      "ngl_bbl": 54669.61,
+      "boe": 223354.02,
+      "revenue_usd": 8066155.29,
+      "loe_usd": 939248.96,
+      "operating_income_usd": 12952585.27,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!Z2:Z12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-11-01",
+      "oil_bbl": 83786.69,
+      "gas_mcf": 497778.74,
+      "ngl_bbl": 66879.58,
+      "boe": 233629.39,
+      "revenue_usd": 8547733.86,
+      "loe_usd": 995325.52,
+      "operating_income_usd": 8724422.689999998,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!AA2:AA12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2025-12-01",
+      "oil_bbl": 69557.37,
+      "gas_mcf": 314356.81,
+      "ngl_bbl": 40473.1,
+      "boe": 162423.27,
+      "revenue_usd": 5485208.62,
+      "loe_usd": 638715.27,
+      "operating_income_usd": 6980048.860000003,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!AB2:AB12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2026-01-01",
+      "oil_bbl": 73681.7,
+      "gas_mcf": 404509.01,
+      "ngl_bbl": 45064.13,
+      "boe": 186164.0,
+      "revenue_usd": 5586973.53,
+      "loe_usd": 650565.1,
+      "operating_income_usd": 9469926.290000003,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!AE2:AE12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2026-02-01",
+      "oil_bbl": 63867.57,
+      "gas_mcf": 347869.15,
+      "ngl_bbl": 35835.2,
+      "boe": 157680.96,
+      "revenue_usd": 5344584.55,
+      "loe_usd": 622340.55,
+      "operating_income_usd": 9232429.81,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!AF2:AF12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2026-03-01",
+      "oil_bbl": 68908.95,
+      "gas_mcf": 381068.88,
+      "ngl_bbl": 51728.53,
+      "boe": 184148.96,
+      "revenue_usd": 6277708.71,
+      "loe_usd": 730996.51,
+      "operating_income_usd": 15789940.45,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!AG2:AG12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2026-04-01",
+      "oil_bbl": 56308.83,
+      "gas_mcf": 329858.19,
+      "ngl_bbl": 39040.5,
+      "boe": 150325.69,
+      "revenue_usd": 5151611.05,
+      "loe_usd": 599870.1,
+      "operating_income_usd": 18644239.51,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!AH2:AH12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2026-05-01",
+      "oil_bbl": 62285.03,
+      "gas_mcf": 316677.36,
+      "ngl_bbl": 36149.88,
+      "boe": 151214.47,
+      "revenue_usd": 5252313.39,
+      "loe_usd": 611596.2,
+      "operating_income_usd": 17773801.52,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!AI2:AI12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2026-06-01",
+      "oil_bbl": 57745.97,
+      "gas_mcf": 290624.04,
+      "ngl_bbl": 31370.49,
+      "boe": 137553.8,
+      "revenue_usd": 4807295.01,
+      "loe_usd": 559776.83,
+      "operating_income_usd": 15910464.35,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!AJ2:AJ12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "LSBV NET",
+      "month": "2026-07-01",
+      "oil_bbl": 59325.85,
+      "gas_mcf": 285051.37,
+      "ngl_bbl": 30618.27,
+      "boe": 137452.68,
+      "revenue_usd": 3972073.31,
+      "loe_usd": 462520.94,
+      "operating_income_usd": 18448489.62999998,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "LSBV NET!AK2:AK12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-01-01",
+      "oil_bbl": 299299.5,
+      "gas_mcf": 1460477.92,
+      "ngl_bbl": 166190.85,
+      "boe": 708903.34,
+      "revenue_usd": 25885245.38,
+      "loe_usd": 2204077.25,
+      "operating_income_usd": 0.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!C2:C12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-02-01",
+      "oil_bbl": 558001.01,
+      "gas_mcf": 3097786.88,
+      "ngl_bbl": 333475.89,
+      "boe": 1407774.71,
+      "revenue_usd": 53034100.74,
+      "loe_usd": 4515748.38,
+      "operating_income_usd": -97475.0,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!D2:D12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-03-01",
+      "oil_bbl": 822328.2,
+      "gas_mcf": 4227537.21,
+      "ngl_bbl": 478988.21,
+      "boe": 2005905.95,
+      "revenue_usd": 60908761.99,
+      "loe_usd": 5186260.15,
+      "operating_income_usd": -21.19,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!E2:E12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-04-01",
+      "oil_bbl": 936071.32,
+      "gas_mcf": 5542715.83,
+      "ngl_bbl": 670035.36,
+      "boe": 2529892.65,
+      "revenue_usd": 78839165.53,
+      "loe_usd": 6712998.41,
+      "operating_income_usd": -28106.63,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!F2:F12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-05-01",
+      "oil_bbl": 1241995.39,
+      "gas_mcf": 7275680.96,
+      "ngl_bbl": 766311.51,
+      "boe": 3220920.39,
+      "revenue_usd": 114762510.79,
+      "loe_usd": 9771799.94,
+      "operating_income_usd": -72451.88,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!G2:G12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-06-01",
+      "oil_bbl": 1279109.3,
+      "gas_mcf": 6543423.23,
+      "ngl_bbl": 658632.38,
+      "boe": 3028312.22,
+      "revenue_usd": 107273765.83,
+      "loe_usd": 9134148.17,
+      "operating_income_usd": 6057421.930000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!H2:H12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-07-01",
+      "oil_bbl": 1277009.28,
+      "gas_mcf": 6594404.52,
+      "ngl_bbl": 911859.16,
+      "boe": 3287935.87,
+      "revenue_usd": 112272399.85,
+      "loe_usd": 9559771.93,
+      "operating_income_usd": 6794676.07,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!I2:I12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-08-01",
+      "oil_bbl": 1515775.09,
+      "gas_mcf": 7169789.83,
+      "ngl_bbl": 839460.04,
+      "boe": 3550200.1,
+      "revenue_usd": 142733451.37,
+      "loe_usd": 12153469.99,
+      "operating_income_usd": 5333418.379999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!J2:J12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-09-01",
+      "oil_bbl": 1513083.45,
+      "gas_mcf": 7795058.95,
+      "ngl_bbl": 1090539.03,
+      "boe": 3902798.97,
+      "revenue_usd": 153867535.29,
+      "loe_usd": 13101515.13,
+      "operating_income_usd": 10403667.11,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!K2:K12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-10-01",
+      "oil_bbl": 1456617.41,
+      "gas_mcf": 8422583.63,
+      "ngl_bbl": 896123.07,
+      "boe": 3756504.42,
+      "revenue_usd": 97910612.28,
+      "loe_usd": 8336894.24,
+      "operating_income_usd": 26682154.16,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!L2:L12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-11-01",
+      "oil_bbl": 1240141.78,
+      "gas_mcf": 6432926.58,
+      "ngl_bbl": 730592.82,
+      "boe": 3042889.03,
+      "revenue_usd": 115956206.71,
+      "loe_usd": 9873440.77,
+      "operating_income_usd": 22448450.43,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!M2:M12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2023-12-01",
+      "oil_bbl": 1227538.6,
+      "gas_mcf": 5779331.12,
+      "ngl_bbl": 701422.06,
+      "boe": 2892182.51,
+      "revenue_usd": 100753238.27,
+      "loe_usd": 8578938.2,
+      "operating_income_usd": 25042200.18,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!N2:N12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-01-01",
+      "oil_bbl": 1220905.54,
+      "gas_mcf": 6793897.76,
+      "ngl_bbl": 694788.61,
+      "boe": 3048010.44,
+      "revenue_usd": 97833779.36,
+      "loe_usd": 8330352.07,
+      "operating_income_usd": 42562038.07000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!Q2:Q12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-02-01",
+      "oil_bbl": 1105942.27,
+      "gas_mcf": 5498389.17,
+      "ngl_bbl": 638933.33,
+      "boe": 2661273.79,
+      "revenue_usd": 104908034.62,
+      "loe_usd": 8932710.86,
+      "operating_income_usd": 44670641.83,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!R2:R12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-03-01",
+      "oil_bbl": 1097897.72,
+      "gas_mcf": 6148477.89,
+      "ngl_bbl": 790214.08,
+      "boe": 2912858.12,
+      "revenue_usd": 108544972.58,
+      "loe_usd": 9242388.9,
+      "operating_income_usd": 50175128.08000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!S2:S12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-04-01",
+      "oil_bbl": 921396.37,
+      "gas_mcf": 4744892.77,
+      "ngl_bbl": 536933.28,
+      "boe": 2249145.11,
+      "revenue_usd": 74735583.35,
+      "loe_usd": 6363586.54,
+      "operating_income_usd": 70433508.28,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!T2:T12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-05-01",
+      "oil_bbl": 944690.36,
+      "gas_mcf": 4597024.52,
+      "ngl_bbl": 529309.62,
+      "boe": 2240170.73,
+      "revenue_usd": 79335672.76,
+      "loe_usd": 6755275.02,
+      "operating_income_usd": 74113346.05000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!U2:U12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-06-01",
+      "oil_bbl": 950448.64,
+      "gas_mcf": 5657216.03,
+      "ngl_bbl": 703450.85,
+      "boe": 2596768.83,
+      "revenue_usd": 64597816.33,
+      "loe_usd": 5500375.8,
+      "operating_income_usd": 87637807.58,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!V2:V12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-07-01",
+      "oil_bbl": 981663.55,
+      "gas_mcf": 4486255.18,
+      "ngl_bbl": 501310.79,
+      "boe": 2230683.54,
+      "revenue_usd": 65520169.86,
+      "loe_usd": 5578912.38,
+      "operating_income_usd": 103501263.92,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!W2:W12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-08-01",
+      "oil_bbl": 885374.46,
+      "gas_mcf": 4759895.56,
+      "ngl_bbl": 620202.83,
+      "boe": 2298893.21,
+      "revenue_usd": 68903469.57,
+      "loe_usd": 5866993.63,
+      "operating_income_usd": 113313490.8799999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!X2:X12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-09-01",
+      "oil_bbl": 800410.15,
+      "gas_mcf": 4076899.35,
+      "ngl_bbl": 483797.39,
+      "boe": 1963690.76,
+      "revenue_usd": 63746881.2,
+      "loe_usd": 5427920.37,
+      "operating_income_usd": 128655542.2,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!Y2:Y12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-10-01",
+      "oil_bbl": 903953.58,
+      "gas_mcf": 5186844.21,
+      "ngl_bbl": 544166.34,
+      "boe": 2312593.95,
+      "revenue_usd": 60614179.7,
+      "loe_usd": 5161177.05,
+      "operating_income_usd": 135434069.52,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!Z2:Z12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-11-01",
+      "oil_bbl": 837338.04,
+      "gas_mcf": 4120651.27,
+      "ngl_bbl": 456077.76,
+      "boe": 1980191.01,
+      "revenue_usd": 71395874.53,
+      "loe_usd": 6079216.96,
+      "operating_income_usd": 103888043.8899999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AA2:AA12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2024-12-01",
+      "oil_bbl": 730737.54,
+      "gas_mcf": 3627235.43,
+      "ngl_bbl": 462161.62,
+      "boe": 1797438.4,
+      "revenue_usd": 66936503.65,
+      "loe_usd": 5699510.38,
+      "operating_income_usd": 98292619.3,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AB2:AB12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-01-01",
+      "oil_bbl": 737057.59,
+      "gas_mcf": 4346185.08,
+      "ngl_bbl": 542063.05,
+      "boe": 2003484.82,
+      "revenue_usd": 71193888.55,
+      "loe_usd": 6062018.26,
+      "operating_income_usd": 100118798.55,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AE2:AE12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-02-01",
+      "oil_bbl": 825192.7,
+      "gas_mcf": 4916006.48,
+      "ngl_bbl": 530940.59,
+      "boe": 2175467.71,
+      "revenue_usd": 71695885.01,
+      "loe_usd": 6104762.26,
+      "operating_income_usd": 75215559.04999998,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AF2:AF12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-03-01",
+      "oil_bbl": 672481.9,
+      "gas_mcf": 3754236.35,
+      "ngl_bbl": 479892.02,
+      "boe": 1778079.98,
+      "revenue_usd": 53065443.18,
+      "loe_usd": 4518417.13,
+      "operating_income_usd": 64485292.20999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AG2:AG12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-04-01",
+      "oil_bbl": 724830.35,
+      "gas_mcf": 3953389.53,
+      "ngl_bbl": 544505.13,
+      "boe": 1928233.74,
+      "revenue_usd": 52204078.59,
+      "loe_usd": 4445073.64,
+      "operating_income_usd": 50243576.93000002,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AH2:AH12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-05-01",
+      "oil_bbl": 634218.2,
+      "gas_mcf": 3554226.75,
+      "ngl_bbl": 428065.15,
+      "boe": 1654654.48,
+      "revenue_usd": 58542964.35,
+      "loe_usd": 4984817.18,
+      "operating_income_usd": 62069755.36999998,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AI2:AI12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-06-01",
+      "oil_bbl": 637955.05,
+      "gas_mcf": 3620419.11,
+      "ngl_bbl": 396904.96,
+      "boe": 1638263.19,
+      "revenue_usd": 58261538.93,
+      "loe_usd": 4960854.36,
+      "operating_income_usd": 66203293.73000002,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AJ2:AJ12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-07-01",
+      "oil_bbl": 610427.51,
+      "gas_mcf": 2921291.09,
+      "ngl_bbl": 345505.84,
+      "boe": 1442815.2,
+      "revenue_usd": 51396535.69,
+      "loe_usd": 4376312.97,
+      "operating_income_usd": 71369756.56,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AK2:AK12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-08-01",
+      "oil_bbl": 572064.56,
+      "gas_mcf": 3087375.13,
+      "ngl_bbl": 406451.8,
+      "boe": 1493078.88,
+      "revenue_usd": 54546167.02,
+      "loe_usd": 4644497.82,
+      "operating_income_usd": 59177270.07,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AL2:AL12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-09-01",
+      "oil_bbl": 514326.08,
+      "gas_mcf": 2430226.27,
+      "ngl_bbl": 337467.35,
+      "boe": 1256831.14,
+      "revenue_usd": 44793507.77,
+      "loe_usd": 3814078.25,
+      "operating_income_usd": 66354441.66000003,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AM2:AM12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-10-01",
+      "oil_bbl": 569791.0,
+      "gas_mcf": 3306597.99,
+      "ngl_bbl": 436390.9,
+      "boe": 1557281.57,
+      "revenue_usd": 49289432.91,
+      "loe_usd": 4196897.35,
+      "operating_income_usd": 79566760.51000004,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AN2:AN12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-11-01",
+      "oil_bbl": 512897.61,
+      "gas_mcf": 2838088.92,
+      "ngl_bbl": 299977.97,
+      "boe": 1285890.4,
+      "revenue_usd": 42349584.62,
+      "loe_usd": 3605983.05,
+      "operating_income_usd": 65080837.95000001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AO2:AO12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2025-12-01",
+      "oil_bbl": 484939.64,
+      "gas_mcf": 2757337.86,
+      "ngl_bbl": 338025.56,
+      "boe": 1282521.51,
+      "revenue_usd": 40336750.86,
+      "loe_usd": 3434594.25,
+      "operating_income_usd": 45044671.52999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AP2:AP12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2026-01-01",
+      "oil_bbl": 388749.15,
+      "gas_mcf": 2117070.59,
+      "ngl_bbl": 211912.12,
+      "boe": 953506.36,
+      "revenue_usd": 31462618.79,
+      "loe_usd": 2678979.52,
+      "operating_income_usd": 69296727.09,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AS2:AS12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2026-02-01",
+      "oil_bbl": 424732.41,
+      "gas_mcf": 2522178.67,
+      "ngl_bbl": 276551.07,
+      "boe": 1121646.59,
+      "revenue_usd": 30371240.91,
+      "loe_usd": 2586050.86,
+      "operating_income_usd": 71720185.77,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AT2:AT12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2026-03-01",
+      "oil_bbl": 416092.85,
+      "gas_mcf": 2046333.08,
+      "ngl_bbl": 233531.33,
+      "boe": 990679.69,
+      "revenue_usd": 34132886.31,
+      "loe_usd": 2906347.5,
+      "operating_income_usd": 132997233.5400001,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AU2:AU12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2026-04-01",
+      "oil_bbl": 488160.12,
+      "gas_mcf": 2527168.35,
+      "ngl_bbl": 345709.61,
+      "boe": 1255064.45,
+      "revenue_usd": 41392966.77,
+      "loe_usd": 3524528.94,
+      "operating_income_usd": 130500290.2199999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AV2:AV12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2026-05-01",
+      "oil_bbl": 454665.15,
+      "gas_mcf": 2430324.23,
+      "ngl_bbl": 260724.4,
+      "boe": 1120443.59,
+      "revenue_usd": 40595583.69,
+      "loe_usd": 3456633.35,
+      "operating_income_usd": 162137668.92,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AW2:AW12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2026-06-01",
+      "oil_bbl": 362637.12,
+      "gas_mcf": 2141084.93,
+      "ngl_bbl": 284268.57,
+      "boe": 1003753.18,
+      "revenue_usd": 28543175.18,
+      "loe_usd": 2430394.69,
+      "operating_income_usd": 135962600.71,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AX2:AX12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB CENTRAL HZ",
+      "month": "2026-07-01",
+      "oil_bbl": 346704.28,
+      "gas_mcf": 1665870.24,
+      "ngl_bbl": 183837.02,
+      "boe": 808186.34,
+      "revenue_usd": 27602654.24,
+      "loe_usd": 2350311.2,
+      "operating_income_usd": 153392342.5,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB CENTRAL HZ!AY2:AY12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB V HZ",
+      "month": "2026-01-01",
+      "oil_bbl": 14816.43,
+      "gas_mcf": 68209.24,
+      "ngl_bbl": 8690.46,
+      "boe": 34875.1,
+      "revenue_usd": 1317770.37,
+      "loe_usd": 116672.18,
+      "operating_income_usd": -168.48,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB V HZ!C2:C12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB V HZ",
+      "month": "2026-02-01",
+      "oil_bbl": 28453.67,
+      "gas_mcf": 153589.66,
+      "ngl_bbl": 18909.9,
+      "boe": 72961.84,
+      "revenue_usd": 2447216.2,
+      "loe_usd": 216670.56,
+      "operating_income_usd": -74.22,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB V HZ!D2:D12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB V HZ",
+      "month": "2026-03-01",
+      "oil_bbl": 39556.21,
+      "gas_mcf": 227816.62,
+      "ngl_bbl": 23442.52,
+      "boe": 100968.16,
+      "revenue_usd": 3587453.02,
+      "loe_usd": 317624.35,
+      "operating_income_usd": -3270.6,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB V HZ!E2:E12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB V HZ",
+      "month": "2026-04-01",
+      "oil_bbl": 50341.03,
+      "gas_mcf": 247242.78,
+      "ngl_bbl": 29787.51,
+      "boe": 121335.67,
+      "revenue_usd": 4239587.02,
+      "loe_usd": 375362.7,
+      "operating_income_usd": -13461.91,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB V HZ!F2:F12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB V HZ",
+      "month": "2026-05-01",
+      "oil_bbl": 63994.01,
+      "gas_mcf": 376216.36,
+      "ngl_bbl": 39610.2,
+      "boe": 166306.94,
+      "revenue_usd": 5660621.74,
+      "loe_usd": 501177.65,
+      "operating_income_usd": 269458.5499999999,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB V HZ!G2:G12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB V HZ",
+      "month": "2026-06-01",
+      "oil_bbl": 74241.14,
+      "gas_mcf": 390705.86,
+      "ngl_bbl": 43256.53,
+      "boe": 182615.31,
+      "revenue_usd": 7388732.74,
+      "loe_usd": 654180.39,
+      "operating_income_usd": 1363035.3,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB V HZ!H2:H12",
+        "as_of": null
+      }
+    },
+    {
+      "asset_segment": "GROSS LSB V HZ",
+      "month": "2026-07-01",
+      "oil_bbl": 60612.31,
+      "gas_mcf": 298901.56,
+      "ngl_bbl": 39553.95,
+      "boe": 149983.18,
+      "revenue_usd": 4489636.02,
+      "loe_usd": 397501.43,
+      "operating_income_usd": 698215.95,
+      "source": {
+        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "locator": "GROSS LSB V HZ!I2:I12",
+        "as_of": null
+      }
+    }
+  ]
+}

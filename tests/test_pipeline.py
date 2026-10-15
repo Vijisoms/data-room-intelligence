@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from data_room_intelligence.analytics import standard_answers
-from data_room_intelligence.models import CanonicalModel
+from data_room_intelligence.models import CanonicalModel, WellRecord
 from data_room_intelligence.parsers import parse_unit_details
 from data_room_intelligence.reporting import write_outputs
 
@@ -43,7 +43,8 @@ def test_write_outputs_creates_units_without_metrics(tmp_path: Path) -> None:
 
     write_outputs(model, tmp_path, [])
 
-    units_output = json.loads((tmp_path / "units.json").read_text(encoding="utf-8"))
+    parsed_dir = tmp_path / "parsed_json"
+    units_output = json.loads((parsed_dir / "units.json").read_text(encoding="utf-8"))
     assert units_output["schema_version"] == model.schema_version
     assert units_output["asset_name"] == model.asset_name
     assert len(units_output["units"]) == 90
@@ -61,3 +62,58 @@ def test_write_outputs_creates_units_without_metrics(tmp_path: Path) -> None:
         "zone_gross_locations",
         "source",
     }
+    wells_output = json.loads((parsed_dir / "wells.json").read_text(encoding="utf-8"))
+    assert wells_output["schema_version"] == model.schema_version
+    assert wells_output["asset_name"] == model.asset_name
+    assert len(wells_output["wells"]) == 640
+    assert "metrics" not in wells_output
+    assert {"well_key", "chosen_id", "well_key_source"} <= set(
+        wells_output["wells"][0]
+    )
+    expected_collections = {
+        "cash_flow.json": "cash_flow",
+        "combo_metrics.json": "metrics",
+        "spatial_links.json": "spatial_links",
+        "gis_metrics.json": "metrics",
+        "production.json": "production",
+        "pdf_facts.json": "pdf_facts",
+        "pricing.json": "pricing",
+    }
+    for filename, collection in expected_collections.items():
+        payload = json.loads((parsed_dir / filename).read_text(encoding="utf-8"))
+        assert collection in payload
+        assert "metrics" not in payload or collection == "metrics"
+
+    for filename in {
+        "unit-details-parsing.md",
+        "well-parsing.md",
+        "cash-flow-parsing.md",
+        "combo-metrics-parsing.md",
+        "spatial-links-parsing.md",
+        "gis-metrics-parsing.md",
+        "production-parsing.md",
+        "pdf-facts-parsing.md",
+        "pricing-parsing.md",
+        "metrics-parsing.md",
+        "pipeline-finalization.md",
+    }:
+        assert (parsed_dir / filename).read_text(encoding="utf-8").startswith("# ")
+
+
+def test_well_record_preserves_identifier_provenance() -> None:
+    well = WellRecord(
+        well_key="LSB-WCA-001",
+        chosen_id="LSB-WCA-001",
+        well_key_source="chosen_id",
+        well_name="DESERT BASIN WCA 1H",
+        status="UNDEVELOPED",
+        source={
+            "path": "combocurve.xlsx",
+            "locator": "ONELINE!row 2",
+        },
+    )
+
+    payload = well.model_dump(mode="json")
+    assert payload["well_key"] == "LSB-WCA-001"
+    assert payload["chosen_id"] == "LSB-WCA-001"
+    assert payload["well_key_source"] == "chosen_id"

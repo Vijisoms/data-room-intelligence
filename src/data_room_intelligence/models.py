@@ -53,6 +53,8 @@ class UnitRecord(BaseModel):
 
 class WellRecord(BaseModel):
     well_key: str
+    chosen_id: str | None = None
+    well_key_source: Literal["api_14", "chosen_id", "well_name"] | None = None
     api_10: str | None = None
     api_14: str | None = None
     well_name: str

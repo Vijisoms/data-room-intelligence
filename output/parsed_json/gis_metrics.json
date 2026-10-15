@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "asset_name": "Lone Star Basin",
+  "generated_at": "2026-10-15T17:02:10.231405+00:00",
+  "metrics": [
+    {
+      "name": "mapped_unit_area",
+      "value": 104161.5383289836,
+      "unit": "acres",
+      "dimensions": {},
+      "sources": [
+        {
+          "path": "C:\\Git\\fabdata-cleandataroom\\Maps_2026.09.09\\LSB - Units_2026.09.09\\LSB_PF_UNITS_20260904.shp",
+          "locator": "dissolved polygon geodesic area",
+          "as_of": null
+        }
+      ],
+      "method": "WGS84 geodesic area of dissolved polygons"
+    },
+    {
+      "name": "active_leasehold_area",
+      "value": 79425.84739943403,
+      "unit": "acres",
+      "dimensions": {},
+      "sources": [
+        {
+          "path": "C:\\Git\\fabdata-cleandataroom\\Maps_2026.09.09\\LSB - Leasehold_2026.09.09\\LSB_PF_LEASEHOLD_20260904.shp",
+          "locator": "dissolved polygon geodesic area",
+          "as_of": null
+        }
+      ],
+      "method": "WGS84 geodesic area of dissolved polygons"
+    },
+    {
+      "name": "pdp_lateral_count",
+      "value": 320,
+      "unit": "count",
+      "dimensions": {},
+      "sources": [
+        {
+          "path": "C:\\Git\\fabdata-cleandataroom\\Maps_2026.09.09\\LSB - PDP Sticks_2026.09.09\\LSB_PDP_20260904.shp",
+          "locator": "all features",
+          "as_of": null
+        }
+      ],
+      "method": null
+    },
+    {
+      "name": "pdp_laterals_intersecting_leasehold",
+      "value": 319,
+      "unit": "count",
+      "dimensions": {},
+      "sources": [
+        {
+          "path": "C:\\Git\\fabdata-cleandataroom\\Maps_2026.09.09\\LSB - PDP Sticks_2026.09.09\\LSB_PDP_20260904.shp",
+          "locator": "all features",
+          "as_of": null
+        },
+        {
+          "path": "C:\\Git\\fabdata-cleandataroom\\Maps_2026.09.09\\LSB - Leasehold_2026.09.09\\LSB_PF_LEASEHOLD_20260904.shp",
+          "locator": "all features",
+          "as_of": null
+        }
+      ],
+      "method": "spatial intersection"
+    }
+  ]
+}
