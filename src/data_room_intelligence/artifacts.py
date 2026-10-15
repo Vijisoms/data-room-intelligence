@@ -13,6 +13,7 @@ from azure.storage.blob import BlobServiceClient, ContentSettings
 
 ARTIFACT_CONTENT_TYPES = {
     "canonical-model.json": "application/json",
+    "units.json": "application/json",
     "standard-answers.json": "application/json",
     "qa-findings.json": "application/json",
     "fimu-case.json": "application/json",

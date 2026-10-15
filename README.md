@@ -81,6 +81,7 @@ Outputs:
 | Output | Purpose |
 |---|---|
 | `output/canonical-model.json` | Shared, well-keyed canonical model with provenance |
+| `output/units.json` | Unit-only canonical records and provenance, without aggregate metrics |
 | `output/well-unit-links.csv` | GIS spatial crosswalk |
 | `output/standard-answers.json` | Deterministic answers to recurring deal questions |
 | `output/qa-findings.json` | Conflicts, gaps and definition differences |

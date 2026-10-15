@@ -1,8 +1,10 @@
+import json
 from pathlib import Path
 
 from data_room_intelligence.analytics import standard_answers
 from data_room_intelligence.models import CanonicalModel
 from data_room_intelligence.parsers import parse_unit_details
+from data_room_intelligence.reporting import write_outputs
 
 ROOT = Path(__file__).parents[1]
 
@@ -31,3 +33,31 @@ def test_generated_model_answers_worked_question() -> None:
     assert answers["worked_example_wca"]["citations"]["undeveloped_pv10_musd"]
     assert answers["value_and_economics"]["latest_net_loe_usd_boe"] > 0
     assert answers["production_and_reserves"]["historical_decline_2024_to_2025"] < 0
+
+
+def test_write_outputs_creates_units_without_metrics(tmp_path: Path) -> None:
+    path = ROOT / "output" / "canonical-model.json"
+    if not path.exists():
+        return
+    model = CanonicalModel.model_validate_json(path.read_text(encoding="utf-8"))
+
+    write_outputs(model, tmp_path, [])
+
+    units_output = json.loads((tmp_path / "units.json").read_text(encoding="utf-8"))
+    assert units_output["schema_version"] == model.schema_version
+    assert units_output["asset_name"] == model.asset_name
+    assert len(units_output["units"]) == 90
+    assert "metrics" not in units_output
+    assert set(units_output["units"][0]) == {
+        "unit_key",
+        "unit_name",
+        "county",
+        "development_area",
+        "gross_acres",
+        "lateral_length_ft",
+        "zone_net_acres",
+        "zone_wi",
+        "zone_nri",
+        "zone_gross_locations",
+        "source",
+    }

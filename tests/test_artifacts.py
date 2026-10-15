@@ -23,6 +23,7 @@ def test_blob_publisher_writes_versioned_artifacts_and_latest_manifest(
 ) -> None:
     canonical = {"asset_name": "Lone Star Basin", "metrics": []}
     (tmp_path / "canonical-model.json").write_text(json.dumps(canonical), encoding="utf-8")
+    (tmp_path / "units.json").write_text('{"units": []}', encoding="utf-8")
     (tmp_path / "standard-answers.json").write_text("{}", encoding="utf-8")
     (tmp_path / "qa-findings.json").write_text("[]", encoding="utf-8")
 
@@ -44,3 +45,7 @@ def test_blob_publisher_writes_versioned_artifacts_and_latest_manifest(
         == "assets/lone-star-basin/runs/20261015T080000Z/canonical-model.json"
     )
     assert len(latest["sha256"]["canonical-model.json"]) == 64
+    assert (
+        latest["artifacts"]["units.json"]
+        == "assets/lone-star-basin/runs/20261015T080000Z/units.json"
+    )

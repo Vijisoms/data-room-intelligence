@@ -14,6 +14,7 @@ def write_outputs(
 ) -> PipelineResult:
     output_dir.mkdir(parents=True, exist_ok=True)
     model_path = output_dir / "canonical-model.json"
+    units_path = output_dir / "units.json"
     report_path = output_dir / "insight-report.md"
     qa_path = output_dir / "qa-findings.json"
     fimu_path = output_dir / "fimu-case.json"
@@ -21,6 +22,18 @@ def write_outputs(
     links_path = output_dir / "well-unit-links.csv"
 
     model_path.write_text(model.model_dump_json(indent=2), encoding="utf-8")
+    units_path.write_text(
+        json.dumps(
+            {
+                "schema_version": model.schema_version,
+                "asset_name": model.asset_name,
+                "generated_at": model.generated_at.isoformat(),
+                "units": [unit.model_dump(mode="json") for unit in model.units],
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
     answers = standard_answers(model)
     answers_path.write_text(json.dumps(answers, indent=2), encoding="utf-8")
     qa_path.write_text(
