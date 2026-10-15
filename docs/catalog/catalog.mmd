@@ -1,0 +1,87 @@
+classDiagram
+  direction LR
+  class Asset {
+    +string name
+  }
+  class Unit {
+    +string name
+    +number gross_acres
+    +number lateral_length_ft
+    +number mapped_acres
+    +geometry polygon
+  }
+  class Zone {
+    +string code
+  }
+  class Well {
+    +string api_14
+    +string api_10
+    +string well_name
+    +string landing_zone
+    +number lateral_length_ft
+    +geometry lateral
+  }
+  class EconomicLocation {
+    +string inpt_id
+    +string well_name
+    +string status
+    +string landing_zone
+    +string county
+    +string reserves_category
+    +date first_prod_date
+    +date spud_date
+  }
+  class EconomicCase {
+    +string project
+    +string scenario
+    +string pricing
+    +date as_of
+  }
+  class LeaseholdTract {
+    +string geometry_hash
+    +string status
+    +number mapped_acres
+    +geometry polygon
+  }
+  class Operator {
+    +string name
+  }
+  class County {
+    +string name
+  }
+  class DevelopmentArea {
+    +string name
+  }
+  class BatteryCode {
+    +string code
+  }
+  class PricingFacility {
+    +string name
+    +string well_type
+  }
+  class ReportingScope {
+    +string name
+    +string basis
+  }
+  class DocumentClaim {
+    +string claim_id
+    +string label
+    +number value
+    +string unit
+    +integer page
+  }
+  EconomicLocation --> Well : IS_WELL
+  EconomicLocation --> Unit : ASSIGNED_TO_UNIT
+  Well --> Unit : LATERAL_IN_UNIT
+  Well --> LeaseholdTract : CROSSES_TRACT
+  LeaseholdTract --> Unit : WITHIN_UNIT
+  EconomicLocation --> Zone : TARGETS_ZONE
+  EconomicLocation --> EconomicCase : VALUED_IN
+  EconomicLocation --> Operator : OPERATED_BY
+  EconomicLocation --> BatteryCode : SOLD_THROUGH
+  BatteryCode --> PricingFacility : PRICED_AT
+  Unit --> County : IN_COUNTY
+  Unit --> DevelopmentArea : IN_DEV_AREA
+  Unit --> Asset : PART_OF
+  ReportingScope --> Asset : REPORTS_ON
+  DocumentClaim --> Asset : ABOUT

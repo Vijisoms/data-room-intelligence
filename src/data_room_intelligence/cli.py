@@ -44,10 +44,16 @@ def parser() -> argparse.ArgumentParser:
         "doctor", help="Check the data room, Azure identity, Foundry models and Document Intelligence"
     )
     doctor.add_argument("--data-room", type=Path, default=data_room)
+    catalog = commands.add_parser("catalog", help="Validate the ontology catalog or export review artifacts")
+    catalog.add_argument("action", choices=["validate", "export"])
+    catalog.add_argument("--out", type=Path, default=Path("docs/catalog"))
     return root
 
 
 async def _run(args: argparse.Namespace) -> None:
+    if args.command == "catalog":
+        _catalog(args)
+        return
     if args.command == "doctor":
         checks = await run_doctor(args.data_room)
         print(format_checks(checks))
@@ -73,6 +79,22 @@ async def _run(args: argparse.Namespace) -> None:
     agent = create_qa_agent(args.output.resolve())
     response = await agent.run(args.question)
     print(response)
+
+
+def _catalog(args: argparse.Namespace) -> None:
+    from .ontology.catalog import export_catalog, load_aliases, load_catalog, load_rules
+
+    catalog = load_catalog()
+    rules = load_rules()
+    aliases = load_aliases()
+    print(
+        f"catalog {catalog.catalog_version}: {len(catalog.entity_types)} entity types, "
+        f"{len(catalog.relationship_types)} relationship types, {len(catalog.measures)} measures, "
+        f"{len(rules.rules)} rules, {len(aliases)} alias tables"
+    )
+    if args.action == "export":
+        for path in export_catalog(args.out):
+            print(path)
 
 
 def _publish(output_dir: Path, args: argparse.Namespace) -> dict[str, object]:

@@ -20,6 +20,7 @@ DatasetKind = Literal["table", "feature_layer", "document_page", "document_figur
 ValueQuality = Literal["ok", "approximate", "uncached_formula", "suspect"]
 MappingMethod = Literal["rule", "alias", "model", "human"]
 MappingStatus = Literal["proposed", "approved", "rejected"]
+Severity = Literal["blocking", "warning", "info"]
 RelationshipMethod = Literal[
     "source", "key", "alias", "spatial", "crosswalk", "document", "rule", "human"
 ]
@@ -159,10 +160,25 @@ class RelationshipType(Contract):
     description: str | None = None
 
 
+class MeasureDef(Contract):
+    name: str = Field(pattern=r"^[a-z0-9_]+$")
+    subject: str
+    unit: str
+    dimensions: list[str] = Field(default_factory=list)
+    description: str
+    sources: list[str] = Field(default_factory=list, description="e.g. ONELINE!KY")
+
+
 class Catalog(Contract):
     catalog_version: str
+    status: str = "draft"
+    description: str | None = None
     entity_types: list[EntityType]
     relationship_types: list[RelationshipType]
+    measures: list[MeasureDef] = Field(default_factory=list)
+
+    def entity(self, name: str) -> EntityType:
+        return next(item for item in self.entity_types if item.name == name)
 
     @model_validator(mode="after")
     def _references_resolve(self) -> Catalog:
@@ -179,7 +195,36 @@ class Catalog(Contract):
                 for end in (relationship.source, relationship.target)
                 if end not in names
             }
+            | {measure.subject for measure in self.measures if measure.subject not in names}
         )
         if unknown:
             raise ValueError(f"relationships reference unknown entity types: {unknown}")
+        keys = [(measure.subject, measure.name) for measure in self.measures]
+        if len(keys) != len(set(keys)):
+            raise ValueError("duplicate measures")
         return self
+
+
+class RuleDef(Contract):
+    code: str = Field(pattern=r"^[A-Z][A-Z_]+$")
+    title: str
+    subject: str
+    check: str
+    severity: Severity
+    blocks: str
+
+
+class RuleSet(Contract):
+    rules_version: str
+    rules: list[RuleDef]
+
+    def get(self, code: str) -> RuleDef:
+        return next(rule for rule in self.rules if rule.code == code)
+
+
+class AliasTable(Contract):
+    name: str = Field(pattern=r"^[a-z0-9_]+$")
+    description: str
+    applies_to: str
+    status: MappingStatus
+    entries: dict[str, str | None]

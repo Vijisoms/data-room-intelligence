@@ -1,0 +1,16 @@
+name: landing_zones
+description: Maps economics and map landing-zone names to the Unit Details bench codes. Needs approval from the customer's subsurface expert.
+applies_to: EconomicLocation.landing_zone, Well.landing_zone -> Zone.code
+status: proposed
+entries:
+  UPR SPRB SHALE: USS
+  MID SPRB SHALE: MSS
+  JO MILL: JM
+  LWR SPRB SHALE: LSS
+  DEAN: DEAN
+  WOLFCAMP A: WCA
+  WOLFCAMP B1: WCB I
+  WOLFCAMP B2: WCB II
+  WOLFCAMP C: WCC
+  WOLFCAMP D: WCD
+  LWR SPRB SAND: null

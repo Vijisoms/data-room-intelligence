@@ -1,0 +1,21 @@
+name: gis_zone_fields
+description: Maps the zone suffix of unit shapefile ownership fields (WI_<suffix>, NRI_<suffix>) to bench codes. MISS is treated as a misspelling of MSS.
+applies_to: LSB_UNITS shapefile WI_*/NRI_* fields -> Zone.code
+status: proposed
+entries:
+  USS: USS
+  MSS: MSS
+  MISS: MSS
+  JM: JM
+  LSS: LSS
+  DEAN: DEAN
+  WCA: WCA
+  WCB1: WCB I
+  WCB2: WCB II
+  WCC: WCC
+  WCD: WCD
+  STBND: STR / BND
+  UPBRNT: UP BRNT
+  LRBRNT: LR BRNT
+  MSSP: MSSP
+  WDFD: WDFD

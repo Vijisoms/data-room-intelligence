@@ -13,22 +13,33 @@ dependencies = [
   "agent-framework-foundry==1.14.0",
   "azure-identity>=1.25.0",
   "azure-storage-blob>=12.27.0",
+  "duckdb>=1.4.0",
+  "fastapi>=0.120.0",
+  "networkx>=3.4",
   "openpyxl>=3.1.5",
   "pandas>=2.3.0",
+  "pillow>=11.0.0",
+  "pyarrow>=20.0.0",
   "pydantic>=2.12.0",
   "pypdf>=6.0.0",
+  "pypdfium2>=4.30.0",
   "pyproj>=3.7.0",
   "pyshp>=3.0.0",
   "python-dotenv>=1.1.0",
+  "python-multipart>=0.0.20",
+  "pyyaml>=6.0",
   "shapely>=2.1.0",
+  "uvicorn>=0.35.0",
 ]
 
 [project.optional-dependencies]
 dev = [
   "agent-framework-devui==1.0.0b261002",
   "debugpy>=1.8.0",
+  "httpx>=0.28.0",
   "pytest>=8.4.0",
   "pytest-asyncio>=1.2.0",
+  "rdflib>=7.1.0",
 ]
 
 [project.scripts]

@@ -1,0 +1,191 @@
+# Data Room Intelligence ontology catalog.
+# DRAFT for XOM review: entity and link types were designed from the customer briefing
+# (slides 8 and 10) and the identifiers present in the sample room. Instances are computed.
+# Every change after review becomes a new catalog_version; each snapshot records the version it used.
+catalog_version: 0.1.0
+status: draft - pending XOM review
+description: >-
+  Upstream M&A data-room ontology for acquisition screening. Entities carry deterministic
+  type:key IDs; every link has an inspectable build rule; measured values are facts with
+  dimensions and source locations. Competing source values are kept side by side and
+  reconciled through rules and review decisions.
+
+entity_types:
+  - name: Asset
+    id_prefix: asset
+    key: name
+    description: The asset (deal) described by the data room; parent of units and reporting scopes.
+    properties:
+      - {name: name, type: string, required: true, description: Asset name from the room inventory}
+
+  - name: Unit
+    id_prefix: unit
+    key: name
+    description: Drilling or spacing unit. Names are normalized for case and underscores; original spellings are kept as aliases.
+    properties:
+      - {name: name, type: string, required: true, description: "Unit Details C; ComboCurve UNIT; shapefile UNIT_NAME"}
+      - {name: gross_acres, type: number, unit: acres, description: Contractual gross acres (Unit Details H)}
+      - {name: lateral_length_ft, type: number, unit: ft, description: Planned lateral length (Unit Details I)}
+      - {name: mapped_acres, type: number, unit: acres, description: WGS84 geodesic area of the unit polygon}
+      - {name: polygon, type: geometry, description: "Unit polygon, EPSG:4326"}
+
+  - name: Zone
+    id_prefix: zone
+    key: code
+    description: Geologic bench used for ownership and location counts. Landing zones map to benches through an approved alias table.
+    properties:
+      - {name: code, type: string, required: true, description: Bench code from the Unit Details zone headers}
+
+  - name: Well
+    id_prefix: well
+    key: api_14
+    standard: OSDU master-data--Well
+    description: Drilled wellbore with a mapped lateral. API-14 is stored as text; API-10 is kept as an alias.
+    properties:
+      - {name: api_14, type: string, required: true, description: "PDP shapefile API_14; ComboCurve API 14"}
+      - {name: api_10, type: string, description: "PDP shapefile API_10; ComboCurve API 10"}
+      - {name: well_name, type: string, description: PDP shapefile Well_Name}
+      - {name: landing_zone, type: string, description: PDP shapefile Landing_Zo}
+      - {name: lateral_length_ft, type: number, unit: ft, description: Geodesic length of the lateral}
+      - {name: lateral, type: geometry, description: "PDP lateral line, EPSG:4326"}
+
+  - name: EconomicLocation
+    id_prefix: location
+    key: inpt_id
+    description: A row of the economics one-line. Separate from Well because 320 locations have no API (undeveloped, DUC, permit, drilling).
+    properties:
+      - {name: inpt_id, type: string, required: true, description: ComboCurve INPT ID}
+      - {name: well_name, type: string, description: ComboCurve Well Name}
+      - {name: status, type: string, description: ComboCurve WELL STATUS}
+      - {name: landing_zone, type: string, description: ComboCurve Landing Zone}
+      - {name: county, type: string, description: ComboCurve County/Parish}
+      - {name: reserves_category, type: string, description: ComboCurve Econ PRMS Reserves Category}
+      - {name: first_prod_date, type: date, description: ComboCurve First Prod Date}
+      - {name: spud_date, type: date, description: ComboCurve Spud Date}
+
+  - name: EconomicCase
+    id_prefix: case
+    key: project
+    description: Economic run (project and scenario) that valued the locations.
+    properties:
+      - {name: project, type: string, required: true, description: ComboCurve Project Name}
+      - {name: scenario, type: string, description: ComboCurve Scenario Name}
+      - {name: pricing, type: string, description: ComboCurve Pricing Qualifier}
+      - {name: as_of, type: date, description: ComboCurve As Of Date}
+
+  - name: LeaseholdTract
+    id_prefix: tract
+    key: geometry_hash
+    description: Leasehold polygon. The source has no tract ID, so the key is a hash of the geometry.
+    properties:
+      - {name: geometry_hash, type: string, required: true, description: First 12 hex digits of the SHA-256 of the WKB geometry}
+      - {name: status, type: string, description: Leasehold shapefile STATUS}
+      - {name: mapped_acres, type: number, unit: acres, description: WGS84 geodesic area}
+      - {name: polygon, type: geometry, description: "Tract polygon, EPSG:4326"}
+
+  - name: Operator
+    id_prefix: operator
+    key: name
+    description: Current operator. The source alias (NON-OP, LSB V) is kept on the OPERATED_BY link.
+    properties:
+      - {name: name, type: string, required: true, description: ComboCurve Current Operator}
+
+  - name: County
+    id_prefix: county
+    key: name
+    standard: OSDU master-data--GeoPoliticalEntity
+    description: County or parish.
+    properties:
+      - {name: name, type: string, required: true, description: Unit Details D}
+
+  - name: DevelopmentArea
+    id_prefix: devarea
+    key: name
+    description: Seller development area. The unit shapefile field ROAD_MAP_A carries the same values.
+    properties:
+      - {name: name, type: string, required: true, description: Unit Details F}
+
+  - name: BatteryCode
+    id_prefix: battery
+    key: code
+    description: Economics battery code used for sales routing.
+    properties:
+      - {name: code, type: string, required: true, description: ComboCurve BATTERY}
+
+  - name: PricingFacility
+    id_prefix: facility
+    key: name
+    description: Facility named in the monthly basis report (tank battery or central tank battery).
+    properties:
+      - {name: name, type: string, required: true, description: Basis report facility column}
+      - {name: well_type, type: string, description: Basis report Well Type}
+
+  - name: ReportingScope
+    id_prefix: scope
+    key: name
+    description: Aggregate reporting group (lease operating statement tab or the economics cash-flow group). Has no well membership.
+    properties:
+      - {name: name, type: string, required: true, description: LOS worksheet title or CASHFLOW group}
+      - {name: basis, type: string, description: net or gross}
+
+  - name: DocumentClaim
+    id_prefix: claim
+    key: claim_id
+    description: Headline number stated in a document (KPI card or chart), compared with the computed value.
+    properties:
+      - {name: claim_id, type: string, required: true, description: "document slug, page and label"}
+      - {name: label, type: string, description: Claim label as printed}
+      - {name: value, type: number, description: Claimed value}
+      - {name: unit, type: string, description: Claimed unit}
+      - {name: page, type: integer, description: Page number}
+
+relationship_types:
+  - {name: IS_WELL, source: EconomicLocation, target: Well, method: key, build_rule: "ComboCurve API 14 equals PDP API_14, both as 14-digit text"}
+  - {name: ASSIGNED_TO_UNIT, source: EconomicLocation, target: Unit, method: source, build_rule: "ComboCurve UNIT after name normalization"}
+  - {name: LATERAL_IN_UNIT, source: Well, target: Unit, method: spatial, build_rule: "PDP lateral covered by the unit polygon"}
+  - {name: CROSSES_TRACT, source: Well, target: LeaseholdTract, method: spatial, build_rule: "PDP lateral intersects the tract polygon"}
+  - {name: WITHIN_UNIT, source: LeaseholdTract, target: Unit, method: spatial, build_rule: "Tract polygon covered by the unit polygon"}
+  - {name: TARGETS_ZONE, source: EconomicLocation, target: Zone, method: alias, build_rule: "Landing Zone through the landing_zones alias table"}
+  - {name: VALUED_IN, source: EconomicLocation, target: EconomicCase, method: source, build_rule: "ComboCurve Project Name and qualifiers"}
+  - {name: OPERATED_BY, source: EconomicLocation, target: Operator, method: source, build_rule: "ComboCurve Current Operator; Current Operator Alias kept on the link"}
+  - {name: SOLD_THROUGH, source: EconomicLocation, target: BatteryCode, method: source, build_rule: "ComboCurve BATTERY"}
+  - {name: PRICED_AT, source: BatteryCode, target: PricingFacility, method: crosswalk, build_rule: "Customer-supplied battery-to-facility crosswalk (none supplied)"}
+  - {name: IN_COUNTY, source: Unit, target: County, method: source, build_rule: "Unit Details County"}
+  - {name: IN_DEV_AREA, source: Unit, target: DevelopmentArea, method: source, build_rule: "Unit Details Development Area"}
+  - {name: PART_OF, source: Unit, target: Asset, method: source, build_rule: "Room inventory"}
+  - {name: REPORTS_ON, source: ReportingScope, target: Asset, method: source, build_rule: "Room inventory"}
+  - {name: ABOUT, source: DocumentClaim, target: Asset, method: document, build_rule: "Claim extracted from a room document"}
+
+measures:
+  # Unit-by-zone ownership (Unit Details blocks; GIS ownership attributes)
+  - {name: net_acres, subject: Unit, unit: acres, dimensions: [zone], sources: ["Unit Details!K:Y"], description: Net acres by zone}
+  - {name: total_nri, subject: Unit, unit: fraction, dimensions: [zone], sources: ["Unit Details!AA:AO"], description: Total net revenue interest by zone}
+  - {name: base_nri, subject: Unit, unit: fraction, dimensions: [zone], sources: ["Unit Details!AQ:BE"], description: Base net revenue interest by zone}
+  - {name: orri, subject: Unit, unit: fraction, dimensions: [zone], sources: ["Unit Details!BG:BU"], description: Overriding royalty interest by zone}
+  - {name: nri_8_8ths, subject: Unit, unit: fraction, dimensions: [zone], sources: ["Unit Details!BW:CK"], description: 8/8ths net revenue interest by zone}
+  - {name: operational_wi, subject: Unit, unit: fraction, dimensions: [zone], sources: ["Unit Details!CM:DA"], description: Operational pro forma working interest by zone}
+  - {name: net_acres_with_carry, subject: Unit, unit: acres, dimensions: [zone], sources: ["Unit Details!DC:DQ"], description: Net acres including carried interest by zone}
+  - {name: gross_locations_10k, subject: Unit, unit: "10,000-ft equivalent wells", dimensions: [zone], sources: ["Unit Details!DS:EG"], description: "Gross locations in 10,000-foot lateral equivalents by zone"}
+  - {name: gis_wi, subject: Unit, unit: fraction, dimensions: [zone], sources: ["LSB_UNITS_20260806 WI_*"], description: Working interest by zone from the unit shapefile}
+  - {name: gis_nri, subject: Unit, unit: fraction, dimensions: [zone], sources: ["LSB_UNITS_20260806 NRI_*"], description: Net revenue interest by zone from the unit shapefile}
+  # Location economics (ComboCurve ONELINE)
+  - {name: wi, subject: EconomicLocation, unit: fraction, dimensions: [case], sources: ["ONELINE!JP"], description: "Working interest (header says %, values are fractions)"}
+  - {name: nri, subject: EconomicLocation, unit: fraction, dimensions: [case], sources: ["ONELINE!JQ"], description: Net revenue interest}
+  - {name: dcf10_ky, subject: EconomicLocation, unit: M$, dimensions: [case], sources: ["ONELINE!KY"], description: "10% discounted cash flow, first column with that header"}
+  - {name: dcf10_mf, subject: EconomicLocation, unit: M$, dimensions: [case], sources: ["ONELINE!MF"], description: "10% discounted cash flow, second column with the same header"}
+  - {name: irr, subject: EconomicLocation, unit: fraction, dimensions: [case], sources: ["ONELINE!LR"], description: IRR (source holds percentage points)}
+  - {name: net_oil_mbbl, subject: EconomicLocation, unit: MBBL, dimensions: [case], sources: ["ONELINE!JR"], description: Net oil sales volume}
+  - {name: net_gas_mmcf, subject: EconomicLocation, unit: MMCF, dimensions: [case], sources: ["ONELINE!JS"], description: Net gas sales volume}
+  - {name: net_boe_mbbl, subject: EconomicLocation, unit: MBOE, dimensions: [case], sources: ["ONELINE!JU"], description: Net BOE sales volume}
+  - {name: net_revenue, subject: EconomicLocation, unit: M$, dimensions: [case], sources: ["ONELINE!KD"], description: Total net revenue}
+  - {name: perf_lateral_ft, subject: EconomicLocation, unit: ft, dimensions: [case], sources: ["ONELINE!CT"], description: Perforated lateral length}
+  # Aggregate actuals and forecast
+  - {name: los_value, subject: ReportingScope, unit: source unit, dimensions: [month, line_item], sources: ["LOS monthly columns"], description: "Lease operating statement value (volumes, revenue, expense) by month and line item"}
+  - {name: cashflow_value, subject: ReportingScope, unit: source unit, dimensions: [month, measure], sources: ["CASHFLOW"], description: Economics cash-flow forecast for the all-wells group by month}
+  # Pricing
+  - {name: basis_value, subject: PricingFacility, unit: source unit, dimensions: [month, section, measure], sources: ["Basis report tabs"], description: "Price, differential or deduct by facility, month and report section"}
+  # Well production (no source in the sample room; filled by approved new datasets)
+  - {name: oil_bbl, subject: Well, unit: bbl, dimensions: [month], description: Monthly oil production}
+  - {name: gas_mcf, subject: Well, unit: mcf, dimensions: [month], description: Monthly gas production}
+  - {name: water_bbl, subject: Well, unit: bbl, dimensions: [month], description: Monthly water production}
+  - {name: days_on, subject: Well, unit: days, dimensions: [month], description: Producing days in the month}
