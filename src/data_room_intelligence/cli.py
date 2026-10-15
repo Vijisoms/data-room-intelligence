@@ -4,13 +4,15 @@ import argparse
 import asyncio
 import json
 import os
+import sys
 from pathlib import Path
 
-from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 
 from .agent import create_qa_agent
 from .artifacts import BlobArtifactPublisher
+from .credentials import azure_credential
+from .doctor import format_checks, run_doctor
 from .models import PipelineRequest
 from .workflow import run_workflow
 
@@ -22,25 +24,36 @@ def _add_publish_arguments(command: argparse.ArgumentParser) -> None:
 
 
 def parser() -> argparse.ArgumentParser:
+    data_room = Path(os.environ.get("DATA_ROOM_PATH", "data/sample-room"))
+    output = Path(os.environ.get("DATA_ROOM_OUTPUT", "output"))
     root = argparse.ArgumentParser(prog="data-room-intel")
     commands = root.add_subparsers(dest="command", required=True)
     build = commands.add_parser("build", help="Build the canonical model and report")
-    build.add_argument("data_room", type=Path)
-    build.add_argument("--output", type=Path, default=Path("output"))
+    build.add_argument("data_room", type=Path, nargs="?", default=data_room)
+    build.add_argument("--output", type=Path, default=output)
     build.add_argument("--asset-name", default="Lone Star Basin")
     build.add_argument("--publish", action="store_true")
     _add_publish_arguments(build)
     publish = commands.add_parser("publish", help="Publish generated outputs to Blob Storage")
-    publish.add_argument("output", type=Path, nargs="?", default=Path("output"))
+    publish.add_argument("output", type=Path, nargs="?", default=output)
     _add_publish_arguments(publish)
     ask = commands.add_parser("ask", help="Ask the cited Q&A agent")
     ask.add_argument("question")
-    ask.add_argument("--output", type=Path, default=Path("output"))
+    ask.add_argument("--output", type=Path, default=output)
+    doctor = commands.add_parser(
+        "doctor", help="Check the data room, Azure identity, Foundry models and Document Intelligence"
+    )
+    doctor.add_argument("--data-room", type=Path, default=data_room)
     return root
 
 
 async def _run(args: argparse.Namespace) -> None:
-    load_dotenv()
+    if args.command == "doctor":
+        checks = await run_doctor(args.data_room)
+        print(format_checks(checks))
+        if any(check.status == "FAIL" for check in checks):
+            sys.exit(1)
+        return
     if args.command == "build":
         result = await run_workflow(
             PipelineRequest(
@@ -73,12 +86,13 @@ def _publish(output_dir: Path, args: argparse.Namespace) -> dict[str, object]:
     publisher = BlobArtifactPublisher(
         account_url=account_url,
         container=container,
-        credential=DefaultAzureCredential(),
+        credential=azure_credential(),
     )
     return publisher.publish(output_dir, asset_id=args.asset_id)
 
 
 def main() -> None:
+    load_dotenv()
     asyncio.run(_run(parser().parse_args()))
 
 

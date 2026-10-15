@@ -16,6 +16,9 @@ any real, sensitive deal information.**
 
 ## Contents (mirrors the original data room layout)
 
+The synthetic room is in `data/sample-room/`; paths below are relative to it.
+The Microsoft briefing deck is in `docs/reference/`.
+
 | File | What it represents |
 |------|--------------------|
 | `LSB_UNITS_20260806/` (shapefile) | Drilling-unit polygons with NRI/WI by geologic zone |
@@ -61,19 +64,42 @@ workflow.
 
 ### Setup
 
+macOS or Linux:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -e ".[dev]"
+```
+
+Windows:
+
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
 ```
 
-The ComboCurve file is an Excel-protected OLE container despite its `.xlsx`
-extension. Parsing that specific file requires Windows with Microsoft Excel
-installed; all other parsers are ordinary Python readers.
+All parsers are ordinary Python readers (openpyxl, pyshp, pypdf); no Microsoft
+Excel installation is needed.
+
+### Configure Azure (keyless)
+
+```bash
+cp .env.example .env   # then fill in your Foundry and Document Intelligence endpoints
+az login
+data-room-intel doctor
+```
+
+`doctor` checks the data room, the Azure identity and tenant, a chat call, a
+vision call and Document Intelligence, and exits non-zero if any check fails.
+Authentication uses Microsoft Entra ID only. Set `AZURE_CLI_SUBSCRIPTION` when
+your Azure CLI default tenant differs from the resources' tenant; leave it empty
+in Azure so managed identity is used.
 
 ### Build the model and report
 
-```powershell
-.\.venv\Scripts\data-room-intel.exe build . --output output
+```bash
+data-room-intel build                     # defaults: data/sample-room -> output/
+data-room-intel build path/to/room --output out
 ```
 
 Outputs:
@@ -106,21 +132,17 @@ calculation, and final output serialization.
 
 ### Ask the agent
 
-Set `FOUNDRY_PROJECT_ENDPOINT` and `FOUNDRY_MODEL`, authenticate with Azure, then:
+After configuring `.env` and building:
 
-```powershell
-Copy-Item .env.example .env
-.\.venv\Scripts\data-room-intel.exe ask `
-  "What are the Wolfcamp A net acres, net locations and PV-10?" `
-  --output output
+```bash
+data-room-intel ask "What are the Wolfcamp A net acres, net locations and PV-10?"
 ```
 
 The agent can only query normalized metrics and QA findings. Calculations remain
 deterministic and do not depend on the language model.
 
-The checked-in `.env.example` targets the selected `proj-default` Foundry project
-and its `gpt-5.2` deployment. It contains no credential; authentication uses
-`DefaultAzureCredential`.
+The checked-in `.env.example` documents every variable and contains no
+credentials or environment-specific endpoints.
 
 ### Debug with Agent Inspector
 
