@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "asset_name": "Lone Star Basin",
-  "generated_at": "2026-10-15T17:02:10.231405+00:00",
+  "generated_at": "2026-10-15T19:14:08.422301+00:00",
   "production": [
     {
       "asset_segment": "LSBIV NET",
@@ -14,7 +14,7 @@
       "loe_usd": 1372732.78,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!C2:C12",
         "as_of": null
       }
@@ -30,7 +30,7 @@
       "loe_usd": 2361801.35,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!D2:D12",
         "as_of": null
       }
@@ -46,7 +46,7 @@
       "loe_usd": 4823989.18,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!E2:E12",
         "as_of": null
       }
@@ -62,7 +62,7 @@
       "loe_usd": 4398758.55,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!F2:F12",
         "as_of": null
       }
@@ -78,7 +78,7 @@
       "loe_usd": 4544087.6,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!G2:G12",
         "as_of": null
       }
@@ -94,7 +94,7 @@
       "loe_usd": 7201598.89,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!H2:H12",
         "as_of": null
       }
@@ -110,7 +110,7 @@
       "loe_usd": 7338025.04,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!I2:I12",
         "as_of": null
       }
@@ -126,7 +126,7 @@
       "loe_usd": 10245670.63,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!J2:J12",
         "as_of": null
       }
@@ -142,7 +142,7 @@
       "loe_usd": 7803841.94,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!K2:K12",
         "as_of": null
       }
@@ -158,7 +158,7 @@
       "loe_usd": 10297641.86,
       "operating_income_usd": -775.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!L2:L12",
         "as_of": null
       }
@@ -174,7 +174,7 @@
       "loe_usd": 8963623.18,
       "operating_income_usd": -257.3,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!M2:M12",
         "as_of": null
       }
@@ -190,7 +190,7 @@
       "loe_usd": 8702274.51,
       "operating_income_usd": 3451178.73,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!N2:N12",
         "as_of": null
       }
@@ -206,7 +206,7 @@
       "loe_usd": 8944417.14,
       "operating_income_usd": 2736353.49,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!Q2:Q12",
         "as_of": null
       }
@@ -222,7 +222,7 @@
       "loe_usd": 7266426.24,
       "operating_income_usd": 2530519.22,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!R2:R12",
         "as_of": null
       }
@@ -238,7 +238,7 @@
       "loe_usd": 8543780.04,
       "operating_income_usd": 2728690.5,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!S2:S12",
         "as_of": null
       }
@@ -254,7 +254,7 @@
       "loe_usd": 9179464.28,
       "operating_income_usd": 923440.7599999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!T2:T12",
         "as_of": null
       }
@@ -270,7 +270,7 @@
       "loe_usd": 8648934.57,
       "operating_income_usd": -79352.87000000002,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!U2:U12",
         "as_of": null
       }
@@ -286,7 +286,7 @@
       "loe_usd": 6017910.82,
       "operating_income_usd": 2851151.93,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!V2:V12",
         "as_of": null
       }
@@ -302,7 +302,7 @@
       "loe_usd": 6666326.38,
       "operating_income_usd": 2693355.659999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!W2:W12",
         "as_of": null
       }
@@ -318,7 +318,7 @@
       "loe_usd": 7708191.47,
       "operating_income_usd": 2062703.249999998,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!X2:X12",
         "as_of": null
       }
@@ -334,7 +334,7 @@
       "loe_usd": 6199339.0,
       "operating_income_usd": 5105476.52,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!Y2:Y12",
         "as_of": null
       }
@@ -350,7 +350,7 @@
       "loe_usd": 6035536.81,
       "operating_income_usd": 16353592.36,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!Z2:Z12",
         "as_of": null
       }
@@ -366,7 +366,7 @@
       "loe_usd": 7091596.82,
       "operating_income_usd": 14536214.76,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AA2:AA12",
         "as_of": null
       }
@@ -382,7 +382,7 @@
       "loe_usd": 5115235.66,
       "operating_income_usd": 17162308.97,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AB2:AB12",
         "as_of": null
       }
@@ -398,7 +398,7 @@
       "loe_usd": 6376052.06,
       "operating_income_usd": 29352990.19,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AE2:AE12",
         "as_of": null
       }
@@ -414,7 +414,7 @@
       "loe_usd": 5352385.88,
       "operating_income_usd": 30984089.49000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AF2:AF12",
         "as_of": null
       }
@@ -430,7 +430,7 @@
       "loe_usd": 4980954.2,
       "operating_income_usd": 35751255.84999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AG2:AG12",
         "as_of": null
       }
@@ -446,7 +446,7 @@
       "loe_usd": 3907556.29,
       "operating_income_usd": 51327100.06999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AH2:AH12",
         "as_of": null
       }
@@ -462,7 +462,7 @@
       "loe_usd": 5190200.26,
       "operating_income_usd": 54076165.13999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AI2:AI12",
         "as_of": null
       }
@@ -478,7 +478,7 @@
       "loe_usd": 4878140.64,
       "operating_income_usd": 61393726.05,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AJ2:AJ12",
         "as_of": null
       }
@@ -494,7 +494,7 @@
       "loe_usd": 5293541.58,
       "operating_income_usd": 73913554.14999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AK2:AK12",
         "as_of": null
       }
@@ -510,7 +510,7 @@
       "loe_usd": 5039936.66,
       "operating_income_usd": 82893060.27000004,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AL2:AL12",
         "as_of": null
       }
@@ -526,7 +526,7 @@
       "loe_usd": 4241022.16,
       "operating_income_usd": 88768949.05000003,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AM2:AM12",
         "as_of": null
       }
@@ -542,7 +542,7 @@
       "loe_usd": 3949689.51,
       "operating_income_usd": 92420968.23999998,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AN2:AN12",
         "as_of": null
       }
@@ -558,7 +558,7 @@
       "loe_usd": 4776647.89,
       "operating_income_usd": 71551977.66000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AO2:AO12",
         "as_of": null
       }
@@ -574,7 +574,7 @@
       "loe_usd": 3402334.13,
       "operating_income_usd": 67200282.44000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AP2:AP12",
         "as_of": null
       }
@@ -590,7 +590,7 @@
       "loe_usd": 3500981.48,
       "operating_income_usd": 69009083.99999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AS2:AS12",
         "as_of": null
       }
@@ -606,7 +606,7 @@
       "loe_usd": 3879955.83,
       "operating_income_usd": 52530218.55,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AT2:AT12",
         "as_of": null
       }
@@ -622,7 +622,7 @@
       "loe_usd": 3989481.1,
       "operating_income_usd": 45184672.38000002,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AU2:AU12",
         "as_of": null
       }
@@ -638,7 +638,7 @@
       "loe_usd": 4968693.73,
       "operating_income_usd": 35217300.34,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AV2:AV12",
         "as_of": null
       }
@@ -654,7 +654,7 @@
       "loe_usd": 2964127.68,
       "operating_income_usd": 41966768.83000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AW2:AW12",
         "as_of": null
       }
@@ -670,7 +670,7 @@
       "loe_usd": 2726438.53,
       "operating_income_usd": 44181003.68000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AX2:AX12",
         "as_of": null
       }
@@ -686,7 +686,7 @@
       "loe_usd": 2782756.79,
       "operating_income_usd": 42455997.92999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AY2:AY12",
         "as_of": null
       }
@@ -702,7 +702,7 @@
       "loe_usd": 2663073.78,
       "operating_income_usd": 33940041.33,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!AZ2:AZ12",
         "as_of": null
       }
@@ -718,7 +718,7 @@
       "loe_usd": 3373072.18,
       "operating_income_usd": 33958255.55000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BA2:BA12",
         "as_of": null
       }
@@ -734,7 +734,7 @@
       "loe_usd": 2213064.47,
       "operating_income_usd": 38132189.65,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BB2:BB12",
         "as_of": null
       }
@@ -750,7 +750,7 @@
       "loe_usd": 2613728.75,
       "operating_income_usd": 33959037.02999997,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BC2:BC12",
         "as_of": null
       }
@@ -766,7 +766,7 @@
       "loe_usd": 2540300.78,
       "operating_income_usd": 22351714.21,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BD2:BD12",
         "as_of": null
       }
@@ -782,7 +782,7 @@
       "loe_usd": 2847987.86,
       "operating_income_usd": 37608550.60999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BG2:BG12",
         "as_of": null
       }
@@ -798,7 +798,7 @@
       "loe_usd": 2961374.82,
       "operating_income_usd": 40926483.76000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BH2:BH12",
         "as_of": null
       }
@@ -814,7 +814,7 @@
       "loe_usd": 2657912.97,
       "operating_income_usd": 75485944.22000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BI2:BI12",
         "as_of": null
       }
@@ -830,7 +830,7 @@
       "loe_usd": 2769742.21,
       "operating_income_usd": 71213284.87,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BJ2:BJ12",
         "as_of": null
       }
@@ -846,7 +846,7 @@
       "loe_usd": 2738613.91,
       "operating_income_usd": 91716572.3,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BK2:BK12",
         "as_of": null
       }
@@ -862,7 +862,7 @@
       "loe_usd": 2470228.5,
       "operating_income_usd": 73303534.68999997,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BL2:BL12",
         "as_of": null
       }
@@ -878,7 +878,7 @@
       "loe_usd": 2295643.68,
       "operating_income_usd": 64736185.30999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BM2:BM12",
         "as_of": null
       }
@@ -894,7 +894,7 @@
       "loe_usd": 490552.19,
       "operating_income_usd": 2.03,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!C2:C12",
         "as_of": null
       }
@@ -910,7 +910,7 @@
       "loe_usd": 692930.63,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!D2:D12",
         "as_of": null
       }
@@ -926,7 +926,7 @@
       "loe_usd": 1242187.11,
       "operating_income_usd": -0.06,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!E2:E12",
         "as_of": null
       }
@@ -942,7 +942,7 @@
       "loe_usd": 1645848.84,
       "operating_income_usd": -28.89,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!F2:F12",
         "as_of": null
       }
@@ -958,7 +958,7 @@
       "loe_usd": 1537301.53,
       "operating_income_usd": 2.16,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!G2:G12",
         "as_of": null
       }
@@ -974,7 +974,7 @@
       "loe_usd": 1869858.41,
       "operating_income_usd": -0.5100000000000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!H2:H12",
         "as_of": null
       }
@@ -990,7 +990,7 @@
       "loe_usd": 1531079.4,
       "operating_income_usd": -20.59,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!I2:I12",
         "as_of": null
       }
@@ -1006,7 +1006,7 @@
       "loe_usd": 1622879.47,
       "operating_income_usd": -20.96,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!J2:J12",
         "as_of": null
       }
@@ -1022,7 +1022,7 @@
       "loe_usd": 1136628.74,
       "operating_income_usd": -4658.59,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!K2:K12",
         "as_of": null
       }
@@ -1038,7 +1038,7 @@
       "loe_usd": 1286553.74,
       "operating_income_usd": -27404.30000000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!L2:L12",
         "as_of": null
       }
@@ -1054,7 +1054,7 @@
       "loe_usd": 1280885.76,
       "operating_income_usd": -19280.45999999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!M2:M12",
         "as_of": null
       }
@@ -1070,7 +1070,7 @@
       "loe_usd": 963130.14,
       "operating_income_usd": 347791.6200000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!N2:N12",
         "as_of": null
       }
@@ -1086,7 +1086,7 @@
       "loe_usd": 1385855.95,
       "operating_income_usd": 655297.1599999998,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!Q2:Q12",
         "as_of": null
       }
@@ -1102,7 +1102,7 @@
       "loe_usd": 1505693.09,
       "operating_income_usd": 417343.4899999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!R2:R12",
         "as_of": null
       }
@@ -1118,7 +1118,7 @@
       "loe_usd": 1182556.19,
       "operating_income_usd": 309757.74,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!S2:S12",
         "as_of": null
       }
@@ -1134,7 +1134,7 @@
       "loe_usd": 1023591.65,
       "operating_income_usd": 211341.6500000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!T2:T12",
         "as_of": null
       }
@@ -1150,7 +1150,7 @@
       "loe_usd": 859282.07,
       "operating_income_usd": 214380.62,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!U2:U12",
         "as_of": null
       }
@@ -1166,7 +1166,7 @@
       "loe_usd": 1175063.69,
       "operating_income_usd": 408364.8100000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!V2:V12",
         "as_of": null
       }
@@ -1182,7 +1182,7 @@
       "loe_usd": 940539.89,
       "operating_income_usd": 6725004.369999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!W2:W12",
         "as_of": null
       }
@@ -1198,7 +1198,7 @@
       "loe_usd": 849493.7,
       "operating_income_usd": 7293793.439999996,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!X2:X12",
         "as_of": null
       }
@@ -1214,7 +1214,7 @@
       "loe_usd": 858397.31,
       "operating_income_usd": 9796969.21,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!Y2:Y12",
         "as_of": null
       }
@@ -1230,7 +1230,7 @@
       "loe_usd": 939248.96,
       "operating_income_usd": 12952585.27,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!Z2:Z12",
         "as_of": null
       }
@@ -1246,7 +1246,7 @@
       "loe_usd": 995325.52,
       "operating_income_usd": 8724422.689999998,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AA2:AA12",
         "as_of": null
       }
@@ -1262,7 +1262,7 @@
       "loe_usd": 638715.27,
       "operating_income_usd": 6980048.860000003,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AB2:AB12",
         "as_of": null
       }
@@ -1278,7 +1278,7 @@
       "loe_usd": 650565.1,
       "operating_income_usd": 9469926.290000003,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AE2:AE12",
         "as_of": null
       }
@@ -1294,7 +1294,7 @@
       "loe_usd": 622340.55,
       "operating_income_usd": 9232429.81,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AF2:AF12",
         "as_of": null
       }
@@ -1310,7 +1310,7 @@
       "loe_usd": 730996.51,
       "operating_income_usd": 15789940.45,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AG2:AG12",
         "as_of": null
       }
@@ -1326,7 +1326,7 @@
       "loe_usd": 599870.1,
       "operating_income_usd": 18644239.51,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AH2:AH12",
         "as_of": null
       }
@@ -1342,7 +1342,7 @@
       "loe_usd": 611596.2,
       "operating_income_usd": 17773801.52,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AI2:AI12",
         "as_of": null
       }
@@ -1358,7 +1358,7 @@
       "loe_usd": 559776.83,
       "operating_income_usd": 15910464.35,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AJ2:AJ12",
         "as_of": null
       }
@@ -1374,7 +1374,7 @@
       "loe_usd": 462520.94,
       "operating_income_usd": 18448489.62999998,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AK2:AK12",
         "as_of": null
       }
@@ -1390,7 +1390,7 @@
       "loe_usd": 2204077.25,
       "operating_income_usd": 0.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!C2:C12",
         "as_of": null
       }
@@ -1406,7 +1406,7 @@
       "loe_usd": 4515748.38,
       "operating_income_usd": -97475.0,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!D2:D12",
         "as_of": null
       }
@@ -1422,7 +1422,7 @@
       "loe_usd": 5186260.15,
       "operating_income_usd": -21.19,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!E2:E12",
         "as_of": null
       }
@@ -1438,7 +1438,7 @@
       "loe_usd": 6712998.41,
       "operating_income_usd": -28106.63,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!F2:F12",
         "as_of": null
       }
@@ -1454,7 +1454,7 @@
       "loe_usd": 9771799.94,
       "operating_income_usd": -72451.88,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!G2:G12",
         "as_of": null
       }
@@ -1470,7 +1470,7 @@
       "loe_usd": 9134148.17,
       "operating_income_usd": 6057421.930000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!H2:H12",
         "as_of": null
       }
@@ -1486,7 +1486,7 @@
       "loe_usd": 9559771.93,
       "operating_income_usd": 6794676.07,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!I2:I12",
         "as_of": null
       }
@@ -1502,7 +1502,7 @@
       "loe_usd": 12153469.99,
       "operating_income_usd": 5333418.379999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!J2:J12",
         "as_of": null
       }
@@ -1518,7 +1518,7 @@
       "loe_usd": 13101515.13,
       "operating_income_usd": 10403667.11,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!K2:K12",
         "as_of": null
       }
@@ -1534,7 +1534,7 @@
       "loe_usd": 8336894.24,
       "operating_income_usd": 26682154.16,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!L2:L12",
         "as_of": null
       }
@@ -1550,7 +1550,7 @@
       "loe_usd": 9873440.77,
       "operating_income_usd": 22448450.43,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!M2:M12",
         "as_of": null
       }
@@ -1566,7 +1566,7 @@
       "loe_usd": 8578938.2,
       "operating_income_usd": 25042200.18,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!N2:N12",
         "as_of": null
       }
@@ -1582,7 +1582,7 @@
       "loe_usd": 8330352.07,
       "operating_income_usd": 42562038.07000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!Q2:Q12",
         "as_of": null
       }
@@ -1598,7 +1598,7 @@
       "loe_usd": 8932710.86,
       "operating_income_usd": 44670641.83,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!R2:R12",
         "as_of": null
       }
@@ -1614,7 +1614,7 @@
       "loe_usd": 9242388.9,
       "operating_income_usd": 50175128.08000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!S2:S12",
         "as_of": null
       }
@@ -1630,7 +1630,7 @@
       "loe_usd": 6363586.54,
       "operating_income_usd": 70433508.28,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!T2:T12",
         "as_of": null
       }
@@ -1646,7 +1646,7 @@
       "loe_usd": 6755275.02,
       "operating_income_usd": 74113346.05000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!U2:U12",
         "as_of": null
       }
@@ -1662,7 +1662,7 @@
       "loe_usd": 5500375.8,
       "operating_income_usd": 87637807.58,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!V2:V12",
         "as_of": null
       }
@@ -1678,7 +1678,7 @@
       "loe_usd": 5578912.38,
       "operating_income_usd": 103501263.92,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!W2:W12",
         "as_of": null
       }
@@ -1694,7 +1694,7 @@
       "loe_usd": 5866993.63,
       "operating_income_usd": 113313490.8799999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!X2:X12",
         "as_of": null
       }
@@ -1710,7 +1710,7 @@
       "loe_usd": 5427920.37,
       "operating_income_usd": 128655542.2,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!Y2:Y12",
         "as_of": null
       }
@@ -1726,7 +1726,7 @@
       "loe_usd": 5161177.05,
       "operating_income_usd": 135434069.52,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!Z2:Z12",
         "as_of": null
       }
@@ -1742,7 +1742,7 @@
       "loe_usd": 6079216.96,
       "operating_income_usd": 103888043.8899999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AA2:AA12",
         "as_of": null
       }
@@ -1758,7 +1758,7 @@
       "loe_usd": 5699510.38,
       "operating_income_usd": 98292619.3,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AB2:AB12",
         "as_of": null
       }
@@ -1774,7 +1774,7 @@
       "loe_usd": 6062018.26,
       "operating_income_usd": 100118798.55,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AE2:AE12",
         "as_of": null
       }
@@ -1790,7 +1790,7 @@
       "loe_usd": 6104762.26,
       "operating_income_usd": 75215559.04999998,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AF2:AF12",
         "as_of": null
       }
@@ -1806,7 +1806,7 @@
       "loe_usd": 4518417.13,
       "operating_income_usd": 64485292.20999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AG2:AG12",
         "as_of": null
       }
@@ -1822,7 +1822,7 @@
       "loe_usd": 4445073.64,
       "operating_income_usd": 50243576.93000002,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AH2:AH12",
         "as_of": null
       }
@@ -1838,7 +1838,7 @@
       "loe_usd": 4984817.18,
       "operating_income_usd": 62069755.36999998,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AI2:AI12",
         "as_of": null
       }
@@ -1854,7 +1854,7 @@
       "loe_usd": 4960854.36,
       "operating_income_usd": 66203293.73000002,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AJ2:AJ12",
         "as_of": null
       }
@@ -1870,7 +1870,7 @@
       "loe_usd": 4376312.97,
       "operating_income_usd": 71369756.56,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AK2:AK12",
         "as_of": null
       }
@@ -1886,7 +1886,7 @@
       "loe_usd": 4644497.82,
       "operating_income_usd": 59177270.07,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AL2:AL12",
         "as_of": null
       }
@@ -1902,7 +1902,7 @@
       "loe_usd": 3814078.25,
       "operating_income_usd": 66354441.66000003,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AM2:AM12",
         "as_of": null
       }
@@ -1918,7 +1918,7 @@
       "loe_usd": 4196897.35,
       "operating_income_usd": 79566760.51000004,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AN2:AN12",
         "as_of": null
       }
@@ -1934,7 +1934,7 @@
       "loe_usd": 3605983.05,
       "operating_income_usd": 65080837.95000001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AO2:AO12",
         "as_of": null
       }
@@ -1950,7 +1950,7 @@
       "loe_usd": 3434594.25,
       "operating_income_usd": 45044671.52999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AP2:AP12",
         "as_of": null
       }
@@ -1966,7 +1966,7 @@
       "loe_usd": 2678979.52,
       "operating_income_usd": 69296727.09,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AS2:AS12",
         "as_of": null
       }
@@ -1982,7 +1982,7 @@
       "loe_usd": 2586050.86,
       "operating_income_usd": 71720185.77,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AT2:AT12",
         "as_of": null
       }
@@ -1998,7 +1998,7 @@
       "loe_usd": 2906347.5,
       "operating_income_usd": 132997233.5400001,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AU2:AU12",
         "as_of": null
       }
@@ -2014,7 +2014,7 @@
       "loe_usd": 3524528.94,
       "operating_income_usd": 130500290.2199999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AV2:AV12",
         "as_of": null
       }
@@ -2030,7 +2030,7 @@
       "loe_usd": 3456633.35,
       "operating_income_usd": 162137668.92,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AW2:AW12",
         "as_of": null
       }
@@ -2046,7 +2046,7 @@
       "loe_usd": 2430394.69,
       "operating_income_usd": 135962600.71,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AX2:AX12",
         "as_of": null
       }
@@ -2062,7 +2062,7 @@
       "loe_usd": 2350311.2,
       "operating_income_usd": 153392342.5,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB CENTRAL HZ!AY2:AY12",
         "as_of": null
       }
@@ -2078,7 +2078,7 @@
       "loe_usd": 116672.18,
       "operating_income_usd": -168.48,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB V HZ!C2:C12",
         "as_of": null
       }
@@ -2094,7 +2094,7 @@
       "loe_usd": 216670.56,
       "operating_income_usd": -74.22,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB V HZ!D2:D12",
         "as_of": null
       }
@@ -2110,7 +2110,7 @@
       "loe_usd": 317624.35,
       "operating_income_usd": -3270.6,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB V HZ!E2:E12",
         "as_of": null
       }
@@ -2126,7 +2126,7 @@
       "loe_usd": 375362.7,
       "operating_income_usd": -13461.91,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB V HZ!F2:F12",
         "as_of": null
       }
@@ -2142,7 +2142,7 @@
       "loe_usd": 501177.65,
       "operating_income_usd": 269458.5499999999,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB V HZ!G2:G12",
         "as_of": null
       }
@@ -2158,7 +2158,7 @@
       "loe_usd": 654180.39,
       "operating_income_usd": 1363035.3,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB V HZ!H2:H12",
         "as_of": null
       }
@@ -2174,7 +2174,7 @@
       "loe_usd": 397501.43,
       "operating_income_usd": 698215.95,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "GROSS LSB V HZ!I2:I12",
         "as_of": null
       }

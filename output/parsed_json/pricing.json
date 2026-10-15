@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "asset_name": "Lone Star Basin",
-  "generated_at": "2026-10-15T17:02:10.231405+00:00",
+  "generated_at": "2026-10-15T19:14:08.422301+00:00",
   "pricing": [
     {
       "period": "LSB Basis Report - Jan26",
@@ -14,7 +14,7 @@
       "net_gas_usd_mcf": 1.3733780588235294,
       "ngl_usd_gal": 0.22338370588235293,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB Basis Report_2026.09.15.xlsx",
+        "path": "September 2026 Updates/LSB Basis Report_2026.09.15.xlsx",
         "locator": "LSB Basis Report - Jan26!C10:AB76",
         "as_of": null
       }
@@ -30,7 +30,7 @@
       "net_gas_usd_mcf": 0.1010419411764706,
       "ngl_usd_gal": 0.22473200000000002,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB Basis Report_2026.09.15.xlsx",
+        "path": "September 2026 Updates/LSB Basis Report_2026.09.15.xlsx",
         "locator": "LSB Basis Report - Feb26!C10:AB77",
         "as_of": null
       }
@@ -46,7 +46,7 @@
       "net_gas_usd_mcf": 3.1122613529411765,
       "ngl_usd_gal": 0.21768870588235295,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB Basis Report_2026.09.15.xlsx",
+        "path": "September 2026 Updates/LSB Basis Report_2026.09.15.xlsx",
         "locator": "LSB Basis Report - Mar26!C10:AB77",
         "as_of": null
       }
@@ -62,7 +62,7 @@
       "net_gas_usd_mcf": -0.5451518823529411,
       "ngl_usd_gal": 0.22872529411764705,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB Basis Report_2026.09.15.xlsx",
+        "path": "September 2026 Updates/LSB Basis Report_2026.09.15.xlsx",
         "locator": "LSB Basis Report - Apr26!C10:AB77",
         "as_of": null
       }
@@ -78,7 +78,7 @@
       "net_gas_usd_mcf": 1.7698788823529412,
       "ngl_usd_gal": 0.2465113529411765,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB Basis Report_2026.09.15.xlsx",
+        "path": "September 2026 Updates/LSB Basis Report_2026.09.15.xlsx",
         "locator": "LSB Basis Report - May26!C10:AB77",
         "as_of": null
       }
@@ -94,7 +94,7 @@
       "net_gas_usd_mcf": 0.18985594117647062,
       "ngl_usd_gal": 0.24872482352941178,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB Basis Report_2026.09.15.xlsx",
+        "path": "September 2026 Updates/LSB Basis Report_2026.09.15.xlsx",
         "locator": "LSB Basis Report - Jun26!C10:AB77",
         "as_of": null
       }
@@ -110,7 +110,7 @@
       "net_gas_usd_mcf": 0.6131232941176471,
       "ngl_usd_gal": 0.2331824705882353,
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB Basis Report_2026.09.15.xlsx",
+        "path": "September 2026 Updates/LSB Basis Report_2026.09.15.xlsx",
         "locator": "LSB Basis Report-Jul26!C10:AB77",
         "as_of": null
       }

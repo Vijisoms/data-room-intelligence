@@ -5,8 +5,9 @@ from pathlib import Path
 
 from .analytics import calculate_metrics
 from .discovery import discover
-from .models import CanonicalModel, PipelineRequest, PipelineResult
+from .models import CanonicalModel, FileRecord, PipelineRequest, PipelineResult
 from .parsers import (
+    data_room_root,
     parse_basis,
     parse_combocurve,
     parse_gis,
@@ -24,7 +25,7 @@ def run_pipeline(request: PipelineRequest) -> PipelineResult:
     files = discover(root)
 
     def one(kind: str) -> Path:
-        matches = [Path(record.path) for record in files if record.kind == kind]
+        matches = [root / record.path for record in files if record.kind == kind]
         if len(matches) != 1:
             raise ValueError(f"Expected exactly one {kind} file, found {len(matches)}")
         return matches[0]
@@ -33,35 +34,29 @@ def run_pipeline(request: PipelineRequest) -> PipelineResult:
     combo_file = one("excel_combocurve")
     basis_file = one("excel_basis")
     los_file = one("excel_los")
-    gis_unit_candidates = [
-        Path(record.path)
-        for record in files
-        if record.kind == "gis_units" and "Maps_2026.09.09" in record.path
-    ]
-    if len(gis_unit_candidates) != 1:
-        raise ValueError(f"Expected one September GIS unit layer, found {len(gis_unit_candidates)}")
-    gis_unit_file = gis_unit_candidates[0]
+    gis_unit_file = _latest(files, "gis_units", root)
     gis_lease_file = one("gis_leasehold")
     gis_pdp_file = one("gis_pdp")
-    pdf_files = [Path(record.path) for record in files if record.kind == "pdf"]
+    pdf_files = [root / record.path for record in files if record.kind == "pdf"]
 
-    units, unit_metrics = parse_unit_details(unit_file)
-    wells, cash_flow, combo_metrics = parse_combocurve(combo_file)
-    spatial_links, gis_metrics = parse_gis(gis_unit_file, gis_lease_file, gis_pdp_file)
-    model = CanonicalModel(
-        asset_name=request.asset_name,
-        generated_at=datetime.now(timezone.utc),
-        data_room=str(root),
-        files=files,
-        units=units,
-        wells=wells,
-        production=parse_los(los_file),
-        metrics=unit_metrics + combo_metrics + gis_metrics,
-        findings=[],
-        pdf_facts=parse_pdfs(pdf_files),
-        pricing=parse_basis(basis_file),
-        cash_flow=cash_flow,
-    )
+    with data_room_root(root):
+        units, unit_metrics = parse_unit_details(unit_file)
+        wells, cash_flow, combo_metrics = parse_combocurve(combo_file)
+        spatial_links, gis_metrics = parse_gis(gis_unit_file, gis_lease_file, gis_pdp_file)
+        model = CanonicalModel(
+            asset_name=request.asset_name,
+            generated_at=datetime.now(timezone.utc),
+            data_room=_portable(root),
+            files=files,
+            units=units,
+            wells=wells,
+            production=parse_los(los_file),
+            metrics=unit_metrics + combo_metrics + gis_metrics,
+            findings=[],
+            pdf_facts=parse_pdfs(pdf_files),
+            pricing=parse_basis(basis_file),
+            cash_flow=cash_flow,
+        )
     reconcile(model, spatial_links)
     calculate_metrics(model)
     return write_outputs(
@@ -72,3 +67,21 @@ def run_pipeline(request: PipelineRequest) -> PipelineResult:
         combo_metrics=combo_metrics,
         gis_metrics=gis_metrics,
     )
+
+
+def _latest(files: list[FileRecord], kind: str, root: Path) -> Path:
+    """Pick the newest layer of a kind by the date in its file name."""
+    dated = sorted(
+        (record for record in files if record.kind == kind and record.as_of),
+        key=lambda record: record.as_of or "",
+    )
+    if not dated or (len(dated) > 1 and dated[-1].as_of == dated[-2].as_of):
+        raise ValueError(f"Expected one latest dated {kind} file, found {len(dated)}")
+    return root / dated[-1].path
+
+
+def _portable(root: Path) -> str:
+    try:
+        return root.relative_to(Path.cwd().resolve()).as_posix()
+    except ValueError:
+        return root.name

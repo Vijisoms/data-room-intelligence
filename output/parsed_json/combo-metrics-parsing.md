@@ -18,7 +18,7 @@ Metrics are derived from the ComboCurve `ONELINE` records and cited to the
 | `producing_well_count` | Count where normalized status is `PRODUCING` |
 | `average_wi` | Sum of parsed WI values divided by record count |
 | `average_nri` | Sum of parsed NRI values divided by record count |
-| `operated_location_fraction` | Fraction whose operator exactly equals `LONE STAR BASIN OPERATING LLC` |
+| `operated_location_fraction` | Fraction whose operator exactly equals `LONE STAR BASIN OPERATING LLC`; unconfirmed, because those locations carry the alias `NON-OP` (`OPERATOR_ALIAS_CONFLICT`) |
 
 Each metric includes `name`, `value`, `unit`, optional `dimensions`, source
 citations, and an optional calculation method.

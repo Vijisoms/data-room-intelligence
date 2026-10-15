@@ -3,6 +3,10 @@ from __future__ import annotations
 from collections import Counter
 
 from .models import CanonicalModel, QAFinding, SourceRef
+from .parsers import SELLER_OPERATOR
+
+BRIEFING = "docs/reference/Data Room Intelligence - MSFT Briefing.pptx"
+VALUE_TOLERANCE_MUSD = 1e-6  # one dollar
 
 
 def reconcile(model: CanonicalModel, spatial_links: list[dict[str, object]]) -> None:
@@ -22,9 +26,9 @@ def reconcile(model: CanonicalModel, spatial_links: list[dict[str, object]]) -> 
         if not link:
             continue
         matched += 1
-        mapped_unit = link.get("unit_name")
-        if mapped_unit:
-            well.unit_key = str(mapped_unit).upper().replace(" ", "_")
+        if link.get("unit_key"):
+            well.spatial_unit_key = str(link["unit_key"])
+    _record_source_conflicts(model)
     pdp_count = sum(well.status == "PRODUCING" for well in model.wells)
     spatial_count = len(spatial_links)
     if pdp_count != spatial_count:
@@ -112,6 +116,66 @@ def reconcile(model: CanonicalModel, spatial_links: list[dict[str, object]]) -> 
                 "The generated FIMU case uses the draft canonical adapter contract because an "
                 "authoritative FIMU input schema was not supplied."
             ),
-            sources=[SourceRef(path=model.data_room, locator="briefing slide 11")],
+            sources=[SourceRef(path=BRIEFING, locator="slide 11")],
         )
     )
+
+
+def _record_source_conflicts(model: CanonicalModel) -> None:
+    """Raise findings where sources disagree; never overwrite either value."""
+    unit_conflicts = [
+        well
+        for well in model.wells
+        if well.unit_key and well.spatial_unit_key and well.unit_key != well.spatial_unit_key
+    ]
+    if unit_conflicts:
+        example = unit_conflicts[0]
+        model.findings.append(
+            QAFinding(
+                severity="warning",
+                code="UNIT_ASSIGNMENT_CONFLICT",
+                message=(
+                    f"{len(unit_conflicts)} of {sum(bool(w.spatial_unit_key) for w in model.wells)} "
+                    "mapped wells have a ComboCurve UNIT that differs from the unit their GIS "
+                    f"lateral overlaps most (e.g. {example.well_name}: {example.unit_key} vs "
+                    f"{example.spatial_unit_key}). Both values are kept for review."
+                ),
+                sources=[well.source for well in unit_conflicts[:5]],
+            )
+        )
+    pv10_conflicts = [
+        well
+        for well in model.wells
+        if well.pv10_musd is not None
+        and well.pv10_alt_musd is not None
+        and abs(well.pv10_musd - well.pv10_alt_musd) > VALUE_TOLERANCE_MUSD
+    ]
+    if pv10_conflicts:
+        model.findings.append(
+            QAFinding(
+                severity="warning",
+                code="VALUE_FIELD_CONFLICT",
+                message=(
+                    f"ONELINE has two '10% Discount Cash Flow (M$)' columns (KY and MF); they "
+                    f"disagree for {len(pv10_conflicts)} of {len(model.wells)} locations. "
+                    "PV-10 uses KY until the seller confirms which is authoritative."
+                ),
+                sources=[well.source for well in pv10_conflicts[:5]],
+            )
+        )
+    seller_operated = [well for well in model.wells if well.operator == SELLER_OPERATOR]
+    aliased_non_op = [well for well in seller_operated if well.operator_alias == "NON-OP"]
+    if aliased_non_op:
+        model.findings.append(
+            QAFinding(
+                severity="warning",
+                code="OPERATOR_ALIAS_CONFLICT",
+                message=(
+                    f"{len(seller_operated)} of {len(model.wells)} locations list {SELLER_OPERATOR} "
+                    f"as Current Operator (the briefing's ~75% operated), but "
+                    f"{len(aliased_non_op)} of them carry the operator alias NON-OP. The "
+                    "definition of 'operated' needs confirmation."
+                ),
+                sources=[well.source for well in aliased_non_op[:5]],
+            )
+        )
