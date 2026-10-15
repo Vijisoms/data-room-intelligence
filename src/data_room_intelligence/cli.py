@@ -58,10 +58,18 @@ def parser() -> argparse.ArgumentParser:
     publish.add_argument("--reviewer")
     publish.add_argument("--reason")
     publish.add_argument("--force", action="store_true", help="Publish with open blocking issues (needs --reviewer and --reason)")
+    serve = commands.add_parser("serve", help="Run the API and web UI on localhost")
+    serve.add_argument("--port", type=int, default=8000)
     return root
 
 
 async def _run(args: argparse.Namespace) -> None:
+    if args.command == "serve":
+        import uvicorn
+
+        config = uvicorn.Config("data_room_intelligence.service.api:app", host="127.0.0.1", port=args.port, log_level="info")
+        await uvicorn.Server(config).serve()
+        return
     if args.command == "snapshot":
         from .azure_services import azure_options, mapping_model
         from .ontology.runner import BuildRequest, run_ontology_workflow
