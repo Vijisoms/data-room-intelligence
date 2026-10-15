@@ -4,14 +4,17 @@
     {
       "label": "Build Data Room Intelligence Outputs",
       "type": "shell",
-      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "windows": {
+        "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe"
+      },
       "args": [
         "-m",
         "data_room_intelligence.cli",
         "build",
-        "${workspaceFolder}",
+        "data/sample-room",
         "--output",
-        "${workspaceFolder}\\output"
+        "output"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
@@ -32,7 +35,10 @@
     {
       "label": "Run Agent/Workflow HTTP Server",
       "type": "shell",
-      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m debugpy --listen 127.0.0.1:5679 -m data_room_intelligence.debug_server",
+      "command": "${workspaceFolder}/.venv/bin/python -m debugpy --listen 127.0.0.1:5679 -m data_room_intelligence.debug_server",
+      "windows": {
+        "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m debugpy --listen 127.0.0.1:5679 -m data_room_intelligence.debug_server"
+      },
       "isBackground": true,
       "options": {
         "cwd": "${workspaceFolder}"
@@ -70,7 +76,10 @@
     {
       "label": "Run Agent/Workflow in Terminal",
       "type": "shell",
-      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m debugpy --listen 127.0.0.1:5679 -m data_room_intelligence.debug_server",
+      "command": "${workspaceFolder}/.venv/bin/python -m debugpy --listen 127.0.0.1:5679 -m data_room_intelligence.debug_server",
+      "windows": {
+        "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m debugpy --listen 127.0.0.1:5679 -m data_room_intelligence.debug_server"
+      },
       "isBackground": true,
       "options": {
         "cwd": "${workspaceFolder}"

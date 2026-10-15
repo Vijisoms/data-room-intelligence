@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "asset_name": "Lone Star Basin",
-  "generated_at": "2026-10-15T17:02:10.231405+00:00",
+  "generated_at": "2026-10-15T19:14:08.422301+00:00",
   "units": [
     {
       "unit_key": "DESERT_BASIN_EAST",
@@ -79,7 +79,7 @@
         "WDFD": 0.7423
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C8:EG8",
         "as_of": "2026-10-01"
       }
@@ -160,7 +160,7 @@
         "WDFD": 3.8032
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C9:EG9",
         "as_of": "2026-10-01"
       }
@@ -241,7 +241,7 @@
         "WDFD": 0.9474
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C10:EG10",
         "as_of": "2026-10-01"
       }
@@ -322,7 +322,7 @@
         "WDFD": 1.8133
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C11:EG11",
         "as_of": "2026-10-01"
       }
@@ -403,7 +403,7 @@
         "WDFD": 2.1094
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C12:EG12",
         "as_of": "2026-10-01"
       }
@@ -484,7 +484,7 @@
         "WDFD": 0.6231
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C13:EG13",
         "as_of": "2026-10-01"
       }
@@ -565,7 +565,7 @@
         "WDFD": 2.6319
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C14:EG14",
         "as_of": "2026-10-01"
       }
@@ -646,7 +646,7 @@
         "WDFD": 1.4649
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C15:EG15",
         "as_of": "2026-10-01"
       }
@@ -727,7 +727,7 @@
         "WDFD": 3.9741
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C16:EG16",
         "as_of": "2026-10-01"
       }
@@ -808,7 +808,7 @@
         "WDFD": 0.4587
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C17:EG17",
         "as_of": "2026-10-01"
       }
@@ -889,7 +889,7 @@
         "WDFD": 1.2844
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C18:EG18",
         "as_of": "2026-10-01"
       }
@@ -970,7 +970,7 @@
         "WDFD": 2.8149
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C19:EG19",
         "as_of": "2026-10-01"
       }
@@ -1051,7 +1051,7 @@
         "WDFD": 2.23
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C20:EG20",
         "as_of": "2026-10-01"
       }
@@ -1132,7 +1132,7 @@
         "WDFD": 1.1126
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C21:EG21",
         "as_of": "2026-10-01"
       }
@@ -1213,7 +1213,7 @@
         "WDFD": 3.7442
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C22:EG22",
         "as_of": "2026-10-01"
       }
@@ -1294,7 +1294,7 @@
         "WDFD": 0.5792
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C23:EG23",
         "as_of": "2026-10-01"
       }
@@ -1375,7 +1375,7 @@
         "WDFD": 0.6836
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C24:EG24",
         "as_of": "2026-10-01"
       }
@@ -1456,7 +1456,7 @@
         "WDFD": 1.2148
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C25:EG25",
         "as_of": "2026-10-01"
       }
@@ -1537,7 +1537,7 @@
         "WDFD": 0.5088
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C26:EG26",
         "as_of": "2026-10-01"
       }
@@ -1618,7 +1618,7 @@
         "WDFD": 0.943
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C27:EG27",
         "as_of": "2026-10-01"
       }
@@ -1699,7 +1699,7 @@
         "WDFD": 0.2707
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C28:EG28",
         "as_of": "2026-10-01"
       }
@@ -1780,7 +1780,7 @@
         "WDFD": 2.8398
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C29:EG29",
         "as_of": "2026-10-01"
       }
@@ -1861,7 +1861,7 @@
         "WDFD": 2.1662
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C30:EG30",
         "as_of": "2026-10-01"
       }
@@ -1942,7 +1942,7 @@
         "WDFD": 0.3702
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C31:EG31",
         "as_of": "2026-10-01"
       }
@@ -2023,7 +2023,7 @@
         "WDFD": 0.1628
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C32:EG32",
         "as_of": "2026-10-01"
       }
@@ -2104,7 +2104,7 @@
         "WDFD": 2.11
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C33:EG33",
         "as_of": "2026-10-01"
       }
@@ -2185,7 +2185,7 @@
         "WDFD": 0.7729
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C34:EG34",
         "as_of": "2026-10-01"
       }
@@ -2266,7 +2266,7 @@
         "WDFD": 3.3262
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C35:EG35",
         "as_of": "2026-10-01"
       }
@@ -2347,7 +2347,7 @@
         "WDFD": 0.6826
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C36:EG36",
         "as_of": "2026-10-01"
       }
@@ -2428,7 +2428,7 @@
         "WDFD": 1.5716
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C37:EG37",
         "as_of": "2026-10-01"
       }
@@ -2509,7 +2509,7 @@
         "WDFD": 0.6074
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C38:EG38",
         "as_of": "2026-10-01"
       }
@@ -2590,7 +2590,7 @@
         "WDFD": 0.0755
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C39:EG39",
         "as_of": "2026-10-01"
       }
@@ -2671,7 +2671,7 @@
         "WDFD": 3.6714
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C40:EG40",
         "as_of": "2026-10-01"
       }
@@ -2752,7 +2752,7 @@
         "WDFD": 1.1284
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C41:EG41",
         "as_of": "2026-10-01"
       }
@@ -2833,7 +2833,7 @@
         "WDFD": 0.7243
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C42:EG42",
         "as_of": "2026-10-01"
       }
@@ -2914,7 +2914,7 @@
         "WDFD": 1.2048
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C43:EG43",
         "as_of": "2026-10-01"
       }
@@ -2995,7 +2995,7 @@
         "WDFD": 1.3774
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C44:EG44",
         "as_of": "2026-10-01"
       }
@@ -3076,7 +3076,7 @@
         "WDFD": 3.0142
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C45:EG45",
         "as_of": "2026-10-01"
       }
@@ -3157,7 +3157,7 @@
         "WDFD": 1.5592
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C46:EG46",
         "as_of": "2026-10-01"
       }
@@ -3238,7 +3238,7 @@
         "WDFD": 0.2241
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C47:EG47",
         "as_of": "2026-10-01"
       }
@@ -3319,7 +3319,7 @@
         "WDFD": 0.9912
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C48:EG48",
         "as_of": "2026-10-01"
       }
@@ -3400,7 +3400,7 @@
         "WDFD": 3.903
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C49:EG49",
         "as_of": "2026-10-01"
       }
@@ -3481,7 +3481,7 @@
         "WDFD": 3.6171
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C50:EG50",
         "as_of": "2026-10-01"
       }
@@ -3562,7 +3562,7 @@
         "WDFD": 1.0151
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C51:EG51",
         "as_of": "2026-10-01"
       }
@@ -3643,7 +3643,7 @@
         "WDFD": 1.4514
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C52:EG52",
         "as_of": "2026-10-01"
       }
@@ -3724,7 +3724,7 @@
         "WDFD": 1.0323
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C53:EG53",
         "as_of": "2026-10-01"
       }
@@ -3805,7 +3805,7 @@
         "WDFD": 3.4809
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C54:EG54",
         "as_of": "2026-10-01"
       }
@@ -3886,7 +3886,7 @@
         "WDFD": 1.8524
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C55:EG55",
         "as_of": "2026-10-01"
       }
@@ -3967,7 +3967,7 @@
         "WDFD": 2.3882
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C56:EG56",
         "as_of": "2026-10-01"
       }
@@ -4048,7 +4048,7 @@
         "WDFD": 1.7586
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C57:EG57",
         "as_of": "2026-10-01"
       }
@@ -4129,7 +4129,7 @@
         "WDFD": 3.1729
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C58:EG58",
         "as_of": "2026-10-01"
       }
@@ -4210,7 +4210,7 @@
         "WDFD": 1.2711
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C59:EG59",
         "as_of": "2026-10-01"
       }
@@ -4291,7 +4291,7 @@
         "WDFD": 3.3892
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C60:EG60",
         "as_of": "2026-10-01"
       }
@@ -4372,7 +4372,7 @@
         "WDFD": 1.108
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C61:EG61",
         "as_of": "2026-10-01"
       }
@@ -4453,7 +4453,7 @@
         "WDFD": 2.2986
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C62:EG62",
         "as_of": "2026-10-01"
       }
@@ -4534,7 +4534,7 @@
         "WDFD": 1.3901
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C63:EG63",
         "as_of": "2026-10-01"
       }
@@ -4615,7 +4615,7 @@
         "WDFD": 3.6105
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C64:EG64",
         "as_of": "2026-10-01"
       }
@@ -4696,7 +4696,7 @@
         "WDFD": 1.1904
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C65:EG65",
         "as_of": "2026-10-01"
       }
@@ -4777,7 +4777,7 @@
         "WDFD": 2.3427
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C66:EG66",
         "as_of": "2026-10-01"
       }
@@ -4858,7 +4858,7 @@
         "WDFD": 3.3617
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C67:EG67",
         "as_of": "2026-10-01"
       }
@@ -4939,7 +4939,7 @@
         "WDFD": 0.1213
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C68:EG68",
         "as_of": "2026-10-01"
       }
@@ -5020,7 +5020,7 @@
         "WDFD": 0.5665
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C69:EG69",
         "as_of": "2026-10-01"
       }
@@ -5101,7 +5101,7 @@
         "WDFD": 2.1425
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C70:EG70",
         "as_of": "2026-10-01"
       }
@@ -5182,7 +5182,7 @@
         "WDFD": 2.902
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C71:EG71",
         "as_of": "2026-10-01"
       }
@@ -5263,7 +5263,7 @@
         "WDFD": 0.3367
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C72:EG72",
         "as_of": "2026-10-01"
       }
@@ -5344,7 +5344,7 @@
         "WDFD": 3.6872
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C73:EG73",
         "as_of": "2026-10-01"
       }
@@ -5425,7 +5425,7 @@
         "WDFD": 3.4127
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C74:EG74",
         "as_of": "2026-10-01"
       }
@@ -5506,7 +5506,7 @@
         "WDFD": 0.6831
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C75:EG75",
         "as_of": "2026-10-01"
       }
@@ -5587,7 +5587,7 @@
         "WDFD": 0.6228
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C76:EG76",
         "as_of": "2026-10-01"
       }
@@ -5668,7 +5668,7 @@
         "WDFD": 2.9128
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C77:EG77",
         "as_of": "2026-10-01"
       }
@@ -5749,7 +5749,7 @@
         "WDFD": 0.4749
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C78:EG78",
         "as_of": "2026-10-01"
       }
@@ -5830,7 +5830,7 @@
         "WDFD": 0.2649
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C79:EG79",
         "as_of": "2026-10-01"
       }
@@ -5911,7 +5911,7 @@
         "WDFD": 2.4605
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C80:EG80",
         "as_of": "2026-10-01"
       }
@@ -5992,7 +5992,7 @@
         "WDFD": 2.5009
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C81:EG81",
         "as_of": "2026-10-01"
       }
@@ -6073,7 +6073,7 @@
         "WDFD": 2.5601
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C82:EG82",
         "as_of": "2026-10-01"
       }
@@ -6154,7 +6154,7 @@
         "WDFD": 2.6962
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C83:EG83",
         "as_of": "2026-10-01"
       }
@@ -6235,7 +6235,7 @@
         "WDFD": 0.1491
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C84:EG84",
         "as_of": "2026-10-01"
       }
@@ -6316,7 +6316,7 @@
         "WDFD": 2.6059
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C85:EG85",
         "as_of": "2026-10-01"
       }
@@ -6397,7 +6397,7 @@
         "WDFD": 3.1294
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C86:EG86",
         "as_of": "2026-10-01"
       }
@@ -6478,7 +6478,7 @@
         "WDFD": 2.3686
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C87:EG87",
         "as_of": "2026-10-01"
       }
@@ -6514,7 +6514,7 @@
         "LSS": 0.614995,
         "DEAN": 0.542403,
         "WCA": 0.512055,
-        "WCB I": 0.43525200000000003,
+        "WCB I": 0.435252,
         "WCB II": 0.562353,
         "WCC": 0.566448,
         "WCD": 0.479054,
@@ -6559,7 +6559,7 @@
         "WDFD": 1.4571
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C88:EG88",
         "as_of": "2026-10-01"
       }
@@ -6640,7 +6640,7 @@
         "WDFD": 1.947
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C89:EG89",
         "as_of": "2026-10-01"
       }
@@ -6721,7 +6721,7 @@
         "WDFD": 1.5463
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C90:EG90",
         "as_of": "2026-10-01"
       }
@@ -6802,7 +6802,7 @@
         "WDFD": 0.0449
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C91:EG91",
         "as_of": "2026-10-01"
       }
@@ -6883,7 +6883,7 @@
         "WDFD": 1.5096
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C92:EG92",
         "as_of": "2026-10-01"
       }
@@ -6964,7 +6964,7 @@
         "WDFD": 0.5869
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C93:EG93",
         "as_of": "2026-10-01"
       }
@@ -7045,7 +7045,7 @@
         "WDFD": 2.0098
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C94:EG94",
         "as_of": "2026-10-01"
       }
@@ -7126,7 +7126,7 @@
         "WDFD": 2.7384
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C95:EG95",
         "as_of": "2026-10-01"
       }
@@ -7207,7 +7207,7 @@
         "WDFD": 2.6276
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C96:EG96",
         "as_of": "2026-10-01"
       }
@@ -7288,7 +7288,7 @@
         "WDFD": 2.0979
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!C97:EG97",
         "as_of": "2026-10-01"
       }

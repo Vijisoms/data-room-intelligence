@@ -26,11 +26,12 @@ For each PDP lateral, the parser:
 
 | Field | Source or derivation |
 |---|---|
-| `api_10` | PDP shapefile `API_10` |
-| `api_14` | PDP shapefile `API_14` |
+| `api_10` | PDP shapefile `API_10`, zero-padded digit text |
+| `api_14` | PDP shapefile `API_14`, zero-padded digit text |
 | `well_name` | PDP shapefile `Well_Name` |
 | `landing_zone` | PDP shapefile `Landing_Zo` |
 | `unit_name` | Selected intersecting unit polygon `UNIT_NAME` |
+| `unit_key` | `unit_name` normalized like Unit Details keys |
 | `intersects_leasehold` | Boolean spatial intersection with dissolved leasehold |
 
 An unmatched lateral has a null `unit_name`.

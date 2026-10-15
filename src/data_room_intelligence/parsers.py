@@ -2,20 +2,28 @@ from __future__ import annotations
 
 import re
 from collections import Counter
-from datetime import datetime
+from collections.abc import Iterator
+from contextlib import contextmanager
+from contextvars import ContextVar
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
 import shapefile
 from openpyxl import load_workbook
+from openpyxl.utils import get_column_letter
 from pypdf import PdfReader
 from pyproj import Geod
 from shapely.geometry import shape
 from shapely.ops import unary_union
 
-from .excel_io import export_sheets_with_excel
 from .models import Metric, MonthlyProduction, SourceRef, UnitRecord, WellRecord
+
+SELLER_OPERATOR = "LONE STAR BASIN OPERATING LLC"
+PV10_COLUMN = "10% Discount Cash Flow (M$)"
+PV10_ALT_COLUMN = "10% Discount Cash Flow (M$).1"
+_ROOM_ROOT: ContextVar[Path | None] = ContextVar("data_room_root", default=None)
 
 ZONES = [
     "USS",
@@ -37,7 +45,27 @@ ZONES = [
 
 
 def source(path: Path, locator: str, as_of: str | None = None) -> SourceRef:
-    return SourceRef(path=str(path.resolve()), locator=locator, as_of=as_of)
+    return SourceRef(path=room_path(path), locator=locator, as_of=as_of)
+
+
+@contextmanager
+def data_room_root(root: Path) -> Iterator[None]:
+    """Cite parsed sources relative to this data room instead of the local disk."""
+    token = _ROOM_ROOT.set(root.resolve())
+    try:
+        yield
+    finally:
+        _ROOM_ROOT.reset(token)
+
+
+def room_path(path: Path) -> str:
+    root = _ROOM_ROOT.get()
+    if root is not None:
+        try:
+            return path.resolve().relative_to(root).as_posix()
+        except ValueError:
+            pass
+    return path.name
 
 
 def parse_unit_details(path: Path) -> tuple[list[UnitRecord], list[Metric]]:
@@ -128,24 +156,17 @@ def parse_unit_details(path: Path) -> tuple[list[UnitRecord], list[Metric]]:
 
 
 def parse_combocurve(path: Path) -> tuple[list[WellRecord], list[dict[str, Any]], list[Metric]]:
-    sheets = export_sheets_with_excel(path, ["SUMMARY", "ONELINE", "CASHFLOW"])
-    oneline = pd.DataFrame(sheets["ONELINE"][1:], columns=sheets["ONELINE"][0])
-    oneline = oneline.loc[:, ~oneline.columns.duplicated()]
-    numeric_columns = [
-        "WI Oil (%)",
-        "NRI Oil (%)",
-        "Net BOE Sales Volume (MBBL)",
-        "10% Discount Cash Flow (M$)",
-        "Before Income Tax IRR (%)",
-    ]
-    for column in numeric_columns:
-        if column in oneline:
-            oneline[column] = pd.to_numeric(oneline[column], errors="coerce")
+    workbook = load_workbook(path, data_only=True, read_only=True)
+    try:
+        header, oneline = _sheet_records(workbook["ONELINE"])
+        _, cash_flow = _sheet_records(workbook["CASHFLOW"])
+    finally:
+        workbook.close()
     wells: list[WellRecord] = []
-    for index, row in oneline.iterrows():
-        api_14 = _optional_text(row.get("API 14"))
+    for row_number, row in oneline:
+        api_14 = _api_number(row.get("API 14"), 14)
         chosen = _optional_text(row.get("Chosen ID"))
-        name = _optional_text(row.get("Well Name")) or f"well-{index + 1}"
+        name = _optional_text(row.get("Well Name")) or f"well-{row_number - 1}"
         if api_14:
             well_key = api_14
             well_key_source = "api_14"
@@ -160,26 +181,30 @@ def parse_combocurve(path: Path) -> tuple[list[WellRecord], list[dict[str, Any]]
                 well_key=well_key,
                 chosen_id=chosen,
                 well_key_source=well_key_source,
-                api_10=_optional_text(row.get("API 10")),
+                api_10=_api_number(row.get("API 10"), 10),
                 api_14=api_14,
                 well_name=name,
-                unit_key=_key(_optional_text(row.get("UNIT")) or ""),
+                unit_key=_key(_optional_text(row.get("UNIT")) or "") or None,
                 operator=_optional_text(row.get("Current Operator")),
+                operator_alias=_optional_text(row.get("Current Operator Alias")),
                 status=(_optional_text(row.get("WELL STATUS")) or "UNKNOWN").upper(),
                 landing_zone=_optional_text(row.get("Landing Zone")),
                 county=_optional_text(row.get("County/Parish")),
                 wi=_optional_float(row.get("WI Oil (%)")),
                 nri=_optional_float(row.get("NRI Oil (%)")),
                 net_boe_mboe=_optional_float(row.get("Net BOE Sales Volume (MBBL)")),
-                pv10_musd=_thousand_dollars_to_millions(
-                    row.get("10% Discount Cash Flow (M$)")
-                ),
-                irr=_optional_float(row.get("Before Income Tax IRR (%)")),
-                source=source(path, f"ONELINE!row {index + 2}", "2026-10-01"),
+                pv10_musd=_thousand_dollars_to_millions(row.get(PV10_COLUMN)),
+                pv10_alt_musd=_thousand_dollars_to_millions(row.get(PV10_ALT_COLUMN)),
+                irr=_percent_to_fraction(row.get("IRR (%)")),
+                source=source(path, f"ONELINE!row {row_number}", "2026-10-01"),
             )
         )
-    cash_frame = pd.DataFrame(sheets["CASHFLOW"][1:], columns=sheets["CASHFLOW"][0])
-    cash_records = cash_frame.replace({float("nan"): None}).to_dict(orient="records")
+    cash_records = [record for _, record in cash_flow]
+    last_row = oneline[-1][0] if oneline else 2
+
+    def column(name: str) -> str:
+        return _column_range(header, name, "ONELINE", 2, last_row)
+
     counts = Counter(item.status for item in wells)
     metrics = [
         Metric(
@@ -198,22 +223,23 @@ def parse_combocurve(path: Path) -> tuple[list[WellRecord], list[dict[str, Any]]
             name="average_wi",
             value=sum(item.wi or 0 for item in wells) / len(wells),
             unit="fraction",
-            sources=[source(path, "ONELINE!JP2:JP641", "2026-10-01")],
+            sources=[source(path, column("WI Oil (%)"), "2026-10-01")],
         ),
         Metric(
             name="average_nri",
             value=sum(item.nri or 0 for item in wells) / len(wells),
             unit="fraction",
-            sources=[source(path, "ONELINE!JQ2:JQ641", "2026-10-01")],
+            sources=[source(path, column("NRI Oil (%)"), "2026-10-01")],
         ),
         Metric(
             name="operated_location_fraction",
-            value=sum(
-                item.operator == "LONE STAR BASIN OPERATING LLC" for item in wells
-            )
-            / len(wells),
+            value=sum(item.operator == SELLER_OPERATOR for item in wells) / len(wells),
             unit="fraction",
-            sources=[source(path, "ONELINE!M2:M641", "2026-10-01")],
+            sources=[source(path, column("Current Operator"), "2026-10-01")],
+            method=(
+                f"share of locations whose Current Operator is {SELLER_OPERATOR}; "
+                "definition unconfirmed (see OPERATOR_ALIAS_CONFLICT)"
+            ),
         ),
     ]
     return wells, cash_records, metrics
@@ -254,11 +280,12 @@ def parse_gis(
         matched = max(candidates, key=lambda item: item[1])[0] if candidates else None
         links.append(
             {
-                "api_10": record.get("API_10"),
-                "api_14": record.get("API_14"),
+                "api_10": _api_number(record.get("API_10"), 10),
+                "api_14": _api_number(record.get("API_14"), 14),
                 "well_name": record.get("Well_Name"),
                 "landing_zone": record.get("Landing_Zo"),
                 "unit_name": matched.get("UNIT_NAME") if matched else None,
+                "unit_key": _key(str(matched.get("UNIT_NAME"))) if matched else None,
                 "intersects_leasehold": lease_union.intersects(lateral),
             }
         )
@@ -417,6 +444,49 @@ def _key(value: str) -> str:
     return re.sub(r"[^A-Z0-9]+", "_", value.upper()).strip("_")
 
 
+def _sheet_records(sheet: Any) -> tuple[list[str], list[tuple[int, dict[str, Any]]]]:
+    """Read a header-row worksheet as (row number, record) pairs, skipping blank rows."""
+    rows = sheet.iter_rows(values_only=True)
+    header = _unique_headers(next(rows, ()))
+    records: list[tuple[int, dict[str, Any]]] = []
+    for row_number, values in enumerate(rows, start=2):
+        if all(value in (None, "") for value in values):
+            continue
+        records.append(
+            (row_number, {name: _json_value(value) for name, value in zip(header, values)})
+        )
+    return header, records
+
+
+def _unique_headers(values: tuple[Any, ...]) -> list[str]:
+    seen: Counter[str] = Counter()
+    headers: list[str] = []
+    for index, value in enumerate(values, start=1):
+        name = _optional_text(value) or f"column_{get_column_letter(index)}"
+        seen[name] += 1
+        headers.append(name if seen[name] == 1 else f"{name}.{seen[name] - 1}")
+    return headers
+
+
+def _column_range(header: list[str], name: str, sheet: str, first: int, last: int) -> str:
+    letter = get_column_letter(header.index(name) + 1)
+    return f"{sheet}!{letter}{first}:{letter}{last}"
+
+
+def _json_value(value: Any) -> Any:
+    return value.isoformat() if isinstance(value, (datetime, date)) else value
+
+
+def _api_number(value: Any, digits: int) -> str | None:
+    """Return an API well number as zero-padded digit text (Excel stores it as a number)."""
+    if isinstance(value, float) and value.is_integer():
+        value = int(value)
+    text = _optional_text(value)
+    if text is None:
+        return None
+    return text.zfill(digits) if text.isdigit() else text
+
+
 def _optional_text(value: Any) -> str | None:
     if value is None or (isinstance(value, float) and pd.isna(value)):
         return None
@@ -435,3 +505,8 @@ def _optional_float(value: Any) -> float | None:
 def _thousand_dollars_to_millions(value: Any) -> float | None:
     parsed = _optional_float(value)
     return parsed / 1000 if parsed is not None else None
+
+
+def _percent_to_fraction(value: Any) -> float | None:
+    parsed = _optional_float(value)
+    return parsed / 100 if parsed is not None else None

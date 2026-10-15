@@ -46,14 +46,17 @@ def classify(path: Path) -> str:
 
 
 def discover(data_room: Path) -> list[FileRecord]:
+    """List data-room files with room-relative POSIX paths; skip hidden and Office lock files."""
+    root = data_room.resolve()
     records: list[FileRecord] = []
-    for path in sorted(data_room.rglob("*")):
-        if not path.is_file() or path.name.startswith("~$"):
+    for path in sorted(root.rglob("*")):
+        relative = path.relative_to(root)
+        if not path.is_file() or any(part.startswith((".", "~$")) for part in relative.parts):
             continue
         stat = path.stat()
         records.append(
             FileRecord(
-                path=str(path.resolve()),
+                path=relative.as_posix(),
                 kind=classify(path),
                 size_bytes=stat.st_size,
                 modified_at=datetime.fromtimestamp(stat.st_mtime),

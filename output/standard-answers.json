@@ -4,8 +4,8 @@
     "gross_acres": 70440.39,
     "economic_locations": 640,
     "producing_wells": 320,
-    "average_wi": 0.49062560483593753,
-    "average_nri": 0.3774042099421875,
+    "average_wi": 0.4906256048151416,
+    "average_nri": 0.37740420994192214,
     "operated_fraction": 0.7546875
   },
   "well_status": {
@@ -48,38 +48,38 @@
       "WEST RED MESA"
     ],
     "zone_net_acres": {
-      "LR BRNT": 38806.806247,
-      "DEAN": 38345.175196,
-      "WCC": 38457.144485,
       "JM": 38492.745556,
-      "WCD": 38622.482278,
-      "LSS": 38528.949462,
-      "MSS": 38609.050586,
-      "WCB I": 38471.526976,
-      "STR / BND": 37823.118005,
-      "WCB II": 38239.964899,
-      "WCA": 38663.818792,
+      "DEAN": 38345.175196,
       "MSSP": 37578.205665,
+      "WCD": 38622.482278,
+      "WCB I": 38471.526976,
+      "WCB II": 38239.964899,
       "UP BRNT": 37861.374808,
+      "WCA": 38663.818792,
+      "STR / BND": 37823.118005,
+      "WCC": 38457.144485,
+      "USS": 38979.231023,
+      "MSS": 38609.050586,
+      "LR BRNT": 38806.806247,
       "WDFD": 38035.136884,
-      "USS": 38979.231023
+      "LSS": 38528.949462
     },
     "zone_net_locations": {
-      "LR BRNT": 93.7955515735,
-      "DEAN": 102.757824867,
-      "WCC": 93.4222629048,
       "JM": 104.5367332851,
-      "WCD": 98.8925947825,
-      "LSS": 110.6561051914,
-      "MSS": 97.8748270485,
-      "WCB I": 103.8957556578,
-      "STR / BND": 106.4092117929,
-      "WCB II": 100.9456238828,
-      "WCA": 96.9799901663,
+      "DEAN": 102.757824867,
       "MSSP": 90.5400449476,
+      "WCD": 98.8925947825,
+      "WCB I": 103.8957556578,
+      "WCB II": 100.9456238828,
       "UP BRNT": 102.5696297517,
+      "WCA": 96.9799901663,
+      "STR / BND": 106.4092117929,
+      "WCC": 93.4222629048,
+      "USS": 92.9208639887,
+      "MSS": 97.8748270485,
+      "LR BRNT": 93.7955515735,
       "WDFD": 83.4497745328,
-      "USS": 92.9208639887
+      "LSS": 110.6561051914
     }
   },
   "production_and_reserves": {
@@ -90,22 +90,22 @@
     "historical_decline_2024_to_2025": -0.30658136479169096,
     "latest_month": "2026-07-01",
     "latest_net_boe": 740322.6199999999,
-    "portfolio_net_boe_mboe": 303576.24964271,
+    "portfolio_net_boe_mboe": 303576.24964613677,
     "source": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBIV NET!BM2:BM12",
         "as_of": null
       },
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\LSB LOS_2026.09.17.xlsx",
+        "path": "September 2026 Updates/LSB LOS_2026.09.17.xlsx",
         "locator": "LSBV NET!AK2:AK12",
         "as_of": null
       }
     ]
   },
   "value_and_economics": {
-    "portfolio_pv10_musd": 6531.742150040394,
+    "portfolio_pv10_musd": 6531.742150054124,
     "latest_net_loe_usd": 2758164.62,
     "latest_net_loe_usd_boe": 3.7256252145855013,
     "latest_basis_period": "LSB Basis Report-Jul26",
@@ -113,7 +113,7 @@
     "latest_net_gas_usd_mcf": 0.6131232941176471,
     "latest_ngl_usd_gal": 0.2331824705882353,
     "pricing_source": {
-      "path": "C:\\Git\\fabdata-cleandataroom\\LSB Basis Report_2026.09.15.xlsx",
+      "path": "September 2026 Updates/LSB Basis Report_2026.09.15.xlsx",
       "locator": "LSB Basis Report-Jul26!C10:AB77",
       "as_of": null
     }
@@ -125,10 +125,10 @@
         "well_name": "MONTAGUE 1-24 C 16MP",
         "unit_key": "SCARLET_BUTTE_WEST",
         "zone": "WOLFCAMP B2",
-        "pv10_musd": 47.898996679999996,
-        "irr": null,
+        "pv10_musd": 47.8989966832034,
+        "irr": 0.6224838660846047,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 507",
           "as_of": "2026-10-01"
         }
@@ -138,10 +138,10 @@
         "well_name": "KENDRICK 4-3 D 5LS",
         "unit_key": "CANYON_CROSSING_EAST",
         "zone": "JO MILL",
-        "pv10_musd": 43.701208460000004,
-        "irr": null,
+        "pv10_musd": 43.701208457196564,
+        "irr": 0.8462015703230138,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 510",
           "as_of": "2026-10-01"
         }
@@ -151,10 +151,10 @@
         "well_name": "OAKLEY 3-34 B 19SS",
         "unit_key": "SLATE_BUTTE",
         "zone": "UPR SPRB SHALE",
-        "pv10_musd": 42.55828237,
-        "irr": null,
+        "pv10_musd": 42.55828236685826,
+        "irr": 0.8692181395357899,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 452",
           "as_of": "2026-10-01"
         }
@@ -164,10 +164,10 @@
         "well_name": "ABERNATHY 29-18 F 12SB",
         "unit_key": "RIDGE_HOLLOW_EAST",
         "zone": "WOLFCAMP C",
-        "pv10_musd": 41.93062319,
-        "irr": null,
+        "pv10_musd": 41.9306231912318,
+        "irr": 0.318473751565454,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 596",
           "as_of": "2026-10-01"
         }
@@ -177,10 +177,10 @@
         "well_name": "STOCKTON 45-19 F 9WB",
         "unit_key": "PIONEER_JUNIPER_SOUTH",
         "zone": "JO MILL",
-        "pv10_musd": 39.02987658,
-        "irr": null,
+        "pv10_musd": 39.02987658122849,
+        "irr": 0.3527672051774892,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 538",
           "as_of": "2026-10-01"
         }
@@ -190,10 +190,10 @@
         "well_name": "MONTAGUE 8-5 F 7WA",
         "unit_key": "RIDGE_HOLLOW_EAST",
         "zone": "WOLFCAMP B2",
-        "pv10_musd": 38.76220305,
-        "irr": null,
+        "pv10_musd": 38.76220305292463,
+        "irr": 0.7001842811827841,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 542",
           "as_of": "2026-10-01"
         }
@@ -203,10 +203,10 @@
         "well_name": "GENTRY 21-38 A 12SB",
         "unit_key": "LONESTAR_MESA_EAST",
         "zone": "WOLFCAMP C",
-        "pv10_musd": 37.69239822,
-        "irr": null,
+        "pv10_musd": 37.69239822498924,
+        "irr": 0.6761365279051492,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 577",
           "as_of": "2026-10-01"
         }
@@ -216,10 +216,10 @@
         "well_name": "WETHERBY 41-28 B 12SB",
         "unit_key": "CANYON_CROSSING_EAST",
         "zone": "WOLFCAMP C",
-        "pv10_musd": 35.8863885,
-        "irr": null,
+        "pv10_musd": 35.88638849996756,
+        "irr": 0.3938672183402214,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 406",
           "as_of": "2026-10-01"
         }
@@ -229,10 +229,10 @@
         "well_name": "FAIRBANKS 12-7 F 19SS",
         "unit_key": "TITAN_RIDGE_EAST",
         "zone": "MID SPRB SHALE",
-        "pv10_musd": 35.884041149999995,
-        "irr": null,
+        "pv10_musd": 35.88404114777509,
+        "irr": 0.36312495006775697,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 322",
           "as_of": "2026-10-01"
         }
@@ -242,10 +242,10 @@
         "well_name": "DRISKELL 2-6 E 15LB",
         "unit_key": "BADGER_DRAW",
         "zone": "LWR SPRB SAND",
-        "pv10_musd": 35.76561459,
-        "irr": null,
+        "pv10_musd": 35.76561459215551,
+        "irr": 0.5109145471889781,
         "source": {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 454",
           "as_of": "2026-10-01"
         }
@@ -278,79 +278,79 @@
       "LWR SPRB SAND": 62,
       "WOLFCAMP B2": 52
     },
-    "qa_finding_count": 6
+    "qa_finding_count": 8
   },
   "worked_example_wca": {
     "net_acres": 38663.818792,
     "unit_schedule_net_locations": 96.9799901663,
-    "undeveloped_combocurve_net_locations": 18.826123342,
-    "undeveloped_pv10_musd": 356.0634961067,
+    "undeveloped_combocurve_net_locations": 18.826123339109518,
+    "undeveloped_pv10_musd": 356.0634961028635,
     "note": "Unit schedule and ComboCurve location counts use different populations and are reported separately rather than silently forced to agree.",
     "citations": {
       "net_acres": [
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+          "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
           "locator": "Unit Details zone WCA",
           "as_of": "2026-10-01"
         }
       ],
       "unit_schedule_net_locations": [
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+          "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
           "locator": "Unit Details zone WCA",
           "as_of": "2026-10-01"
         }
       ],
       "undeveloped_combocurve_net_locations": [
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 327",
           "as_of": "2026-10-01"
         },
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 340",
           "as_of": "2026-10-01"
         },
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 349",
           "as_of": "2026-10-01"
         },
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 356",
           "as_of": "2026-10-01"
         },
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 362",
           "as_of": "2026-10-01"
         }
       ],
       "undeveloped_pv10_musd": [
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 327",
           "as_of": "2026-10-01"
         },
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 340",
           "as_of": "2026-10-01"
         },
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 349",
           "as_of": "2026-10-01"
         },
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 356",
           "as_of": "2026-10-01"
         },
         {
-          "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+          "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
           "locator": "ONELINE!row 362",
           "as_of": "2026-10-01"
         }
@@ -360,103 +360,103 @@
   "citations": {
     "gross_acres": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details!H8:H97",
         "as_of": "2026-10-01"
       }
     ],
     "economic_locations": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "SUMMARY!B10",
         "as_of": "2026-10-01"
       }
     ],
     "producing_wells": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "SUMMARY!B8",
         "as_of": "2026-10-01"
       }
     ],
     "average_wi": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!JP2:JP641",
         "as_of": "2026-10-01"
       }
     ],
     "average_nri": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!JQ2:JQ641",
         "as_of": "2026-10-01"
       }
     ],
     "wca_net_acres": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details zone WCA",
         "as_of": "2026-10-01"
       }
     ],
     "wca_unit_net_locations": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
+        "path": "Lone Star Basin Unit Details_vF_2026.08.06.xlsx",
         "locator": "Unit Details zone WCA",
         "as_of": "2026-10-01"
       }
     ],
     "wca_combo_net_locations": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 327",
         "as_of": "2026-10-01"
       },
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 340",
         "as_of": "2026-10-01"
       },
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 349",
         "as_of": "2026-10-01"
       },
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 356",
         "as_of": "2026-10-01"
       },
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 362",
         "as_of": "2026-10-01"
       }
     ],
     "wca_pv10": [
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 327",
         "as_of": "2026-10-01"
       },
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 340",
         "as_of": "2026-10-01"
       },
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 349",
         "as_of": "2026-10-01"
       },
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 356",
         "as_of": "2026-10-01"
       },
       {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
+        "path": "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx",
         "locator": "ONELINE!row 362",
         "as_of": "2026-10-01"
       }

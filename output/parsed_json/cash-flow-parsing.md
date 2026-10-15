@@ -2,9 +2,9 @@
 
 ## Source and method
 
-The ComboCurve `CASHFLOW` worksheet is exported through Excel COM to temporary
-CSV. Its first row becomes the header. All remaining rows are converted to
-record dictionaries. pandas `NaN` values are replaced by JSON `null`.
+The ComboCurve `CASHFLOW` worksheet is read natively with `openpyxl` (cached
+values). Its first row becomes the header; duplicate header names get `.1`,
+`.2` suffixes. Every non-blank row is converted to a record dictionary.
 
 ## Output
 
@@ -19,6 +19,6 @@ than mapping it into the typed well schema.
 ## Important behavior
 
 - No PV-10 is recalculated from these rows.
-- No column-specific numeric coercion is applied to this dataset.
-- Column names and values follow the exported worksheet.
+- Cell values keep their workbook types; dates become ISO 8601 text.
+- Column names follow the worksheet header.
 - The output is raw normalized transport data for later economics validation.

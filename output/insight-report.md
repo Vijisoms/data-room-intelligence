@@ -46,11 +46,13 @@ Unit schedule and ComboCurve location counts use different populations and are r
 
 ## Reconciliation and risk
 
+- **WARNING — UNIT_ASSIGNMENT_CONFLICT:** 317 of 320 mapped wells have a ComboCurve UNIT that differs from the unit their GIS lateral overlaps most (e.g. JARDINE 4-27 A 4LS: BADGER_DRAW vs GOLDEN_CROSSING_WEST). Both values are kept for review.
+- **WARNING — VALUE_FIELD_CONFLICT:** ONELINE has two '10% Discount Cash Flow (M$)' columns (KY and MF); they disagree for 640 of 640 locations. PV-10 uses KY until the seller confirms which is authoritative.
+- **WARNING — OPERATOR_ALIAS_CONFLICT:** 483 of 640 locations list LONE STAR BASIN OPERATING LLC as Current Operator (the briefing's ~75% operated), but 483 of them carry the operator alias NON-OP. The definition of 'operated' needs confirmation.
 - **INFO — PDP_COUNT_RECONCILED:** Producing well count reconciles at 320 across ComboCurve and GIS.
 - **WARNING — PRICE_SENSITIVITY_UNAVAILABLE:** The room contains one economic price case but no location-level oil/gas sensitivity grid; scenario sensitivity requires rerunning the economics engine.
 - **WARNING — AREA_DEFINITION_DIFFERENCE:** Mapped unit footprint exceeds contractual gross acres by 33,721 acres; do not substitute geometry area for ownership acreage.
 - **INFO — PDF_GROSS_ACRES_CHECK:** PDF gross acres differ from the canonical workbook value by 0.39 acres.
-- **WARNING — UNITS_WITHOUT_WELLS:** 1 of 90 units have no matched economic well/location record.
 - **WARNING — FIMU_CONTRACT_PENDING:** The generated FIMU case uses the draft canonical adapter contract because an authoritative FIMU input schema was not supplied.
 
 ## Source files

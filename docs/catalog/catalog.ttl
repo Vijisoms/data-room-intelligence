@@ -1,0 +1,367 @@
+# Generated from ontology/catalog.yaml. Replace the namespace when XOM assigns one.
+# Measures are dimensional facts and are documented in catalog.md, not modeled as OWL properties.
+@prefix dri: <https://example.org/data-room-intelligence/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+
+<https://example.org/data-room-intelligence/ontology> a owl:Ontology ;
+  owl:versionInfo "0.1.0" ;
+  rdfs:comment "Upstream M&A data-room ontology for acquisition screening. Entities carry deterministic type:key IDs; every link has an inspectable build rule; measured values are facts with dimensions and source locations. Competing source values are kept side by side and reconciled through rules and review decisions." .
+
+dri:Asset a owl:Class ;
+  rdfs:label "Asset" ;
+  rdfs:comment "The asset (deal) described by the data room; parent of units and reporting scopes." .
+dri:asset_name a owl:DatatypeProperty ;
+  rdfs:label "Asset.name" ;
+  rdfs:domain dri:Asset ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Asset name from the room inventory" .
+
+dri:Unit a owl:Class ;
+  rdfs:label "Unit" ;
+  rdfs:comment "Drilling or spacing unit. Names are normalized for case and underscores; original spellings are kept as aliases." .
+dri:unit_name a owl:DatatypeProperty ;
+  rdfs:label "Unit.name" ;
+  rdfs:domain dri:Unit ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Unit Details C; ComboCurve UNIT; shapefile UNIT_NAME" .
+dri:unit_gross_acres a owl:DatatypeProperty ;
+  rdfs:label "Unit.gross_acres" ;
+  rdfs:domain dri:Unit ;
+  rdfs:range xsd:decimal ;
+  rdfs:comment "Contractual gross acres (Unit Details H)" .
+dri:unit_lateral_length_ft a owl:DatatypeProperty ;
+  rdfs:label "Unit.lateral_length_ft" ;
+  rdfs:domain dri:Unit ;
+  rdfs:range xsd:decimal ;
+  rdfs:comment "Planned lateral length (Unit Details I)" .
+dri:unit_mapped_acres a owl:DatatypeProperty ;
+  rdfs:label "Unit.mapped_acres" ;
+  rdfs:domain dri:Unit ;
+  rdfs:range xsd:decimal ;
+  rdfs:comment "WGS84 geodesic area of the unit polygon" .
+dri:unit_polygon a owl:DatatypeProperty ;
+  rdfs:label "Unit.polygon" ;
+  rdfs:domain dri:Unit ;
+  rdfs:range geo:wktLiteral ;
+  rdfs:comment "Unit polygon, EPSG:4326" .
+
+dri:Zone a owl:Class ;
+  rdfs:label "Zone" ;
+  rdfs:comment "Geologic bench used for ownership and location counts. Landing zones map to benches through an approved alias table." .
+dri:zone_code a owl:DatatypeProperty ;
+  rdfs:label "Zone.code" ;
+  rdfs:domain dri:Zone ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Bench code from the Unit Details zone headers" .
+
+dri:Well a owl:Class ;
+  rdfs:label "Well" ;
+  rdfs:comment "Drilled wellbore with a mapped lateral. API-14 is stored as text; API-10 is kept as an alias." .
+dri:well_api_14 a owl:DatatypeProperty ;
+  rdfs:label "Well.api_14" ;
+  rdfs:domain dri:Well ;
+  rdfs:range xsd:string ;
+  rdfs:comment "PDP shapefile API_14; ComboCurve API 14" .
+dri:well_api_10 a owl:DatatypeProperty ;
+  rdfs:label "Well.api_10" ;
+  rdfs:domain dri:Well ;
+  rdfs:range xsd:string ;
+  rdfs:comment "PDP shapefile API_10; ComboCurve API 10" .
+dri:well_well_name a owl:DatatypeProperty ;
+  rdfs:label "Well.well_name" ;
+  rdfs:domain dri:Well ;
+  rdfs:range xsd:string ;
+  rdfs:comment "PDP shapefile Well_Name" .
+dri:well_landing_zone a owl:DatatypeProperty ;
+  rdfs:label "Well.landing_zone" ;
+  rdfs:domain dri:Well ;
+  rdfs:range xsd:string ;
+  rdfs:comment "PDP shapefile Landing_Zo" .
+dri:well_lateral_length_ft a owl:DatatypeProperty ;
+  rdfs:label "Well.lateral_length_ft" ;
+  rdfs:domain dri:Well ;
+  rdfs:range xsd:decimal ;
+  rdfs:comment "Geodesic length of the lateral" .
+dri:well_lateral a owl:DatatypeProperty ;
+  rdfs:label "Well.lateral" ;
+  rdfs:domain dri:Well ;
+  rdfs:range geo:wktLiteral ;
+  rdfs:comment "PDP lateral line, EPSG:4326" .
+
+dri:EconomicLocation a owl:Class ;
+  rdfs:label "EconomicLocation" ;
+  rdfs:comment "A row of the economics one-line. Separate from Well because 320 locations have no API (undeveloped, DUC, permit, drilling)." .
+dri:location_inpt_id a owl:DatatypeProperty ;
+  rdfs:label "EconomicLocation.inpt_id" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve INPT ID" .
+dri:location_well_name a owl:DatatypeProperty ;
+  rdfs:label "EconomicLocation.well_name" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve Well Name" .
+dri:location_status a owl:DatatypeProperty ;
+  rdfs:label "EconomicLocation.status" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve WELL STATUS" .
+dri:location_landing_zone a owl:DatatypeProperty ;
+  rdfs:label "EconomicLocation.landing_zone" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve Landing Zone" .
+dri:location_county a owl:DatatypeProperty ;
+  rdfs:label "EconomicLocation.county" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve County/Parish" .
+dri:location_reserves_category a owl:DatatypeProperty ;
+  rdfs:label "EconomicLocation.reserves_category" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve Econ PRMS Reserves Category" .
+dri:location_first_prod_date a owl:DatatypeProperty ;
+  rdfs:label "EconomicLocation.first_prod_date" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range xsd:date ;
+  rdfs:comment "ComboCurve First Prod Date" .
+dri:location_spud_date a owl:DatatypeProperty ;
+  rdfs:label "EconomicLocation.spud_date" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range xsd:date ;
+  rdfs:comment "ComboCurve Spud Date" .
+
+dri:EconomicCase a owl:Class ;
+  rdfs:label "EconomicCase" ;
+  rdfs:comment "Economic run (project and scenario) that valued the locations." .
+dri:case_project a owl:DatatypeProperty ;
+  rdfs:label "EconomicCase.project" ;
+  rdfs:domain dri:EconomicCase ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve Project Name" .
+dri:case_scenario a owl:DatatypeProperty ;
+  rdfs:label "EconomicCase.scenario" ;
+  rdfs:domain dri:EconomicCase ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve Scenario Name" .
+dri:case_pricing a owl:DatatypeProperty ;
+  rdfs:label "EconomicCase.pricing" ;
+  rdfs:domain dri:EconomicCase ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve Pricing Qualifier" .
+dri:case_as_of a owl:DatatypeProperty ;
+  rdfs:label "EconomicCase.as_of" ;
+  rdfs:domain dri:EconomicCase ;
+  rdfs:range xsd:date ;
+  rdfs:comment "ComboCurve As Of Date" .
+
+dri:LeaseholdTract a owl:Class ;
+  rdfs:label "LeaseholdTract" ;
+  rdfs:comment "Leasehold polygon. The source has no tract ID, so the key is a hash of the geometry." .
+dri:tract_geometry_hash a owl:DatatypeProperty ;
+  rdfs:label "LeaseholdTract.geometry_hash" ;
+  rdfs:domain dri:LeaseholdTract ;
+  rdfs:range xsd:string ;
+  rdfs:comment "First 12 hex digits of the SHA-256 of the WKB geometry" .
+dri:tract_status a owl:DatatypeProperty ;
+  rdfs:label "LeaseholdTract.status" ;
+  rdfs:domain dri:LeaseholdTract ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Leasehold shapefile STATUS" .
+dri:tract_mapped_acres a owl:DatatypeProperty ;
+  rdfs:label "LeaseholdTract.mapped_acres" ;
+  rdfs:domain dri:LeaseholdTract ;
+  rdfs:range xsd:decimal ;
+  rdfs:comment "WGS84 geodesic area" .
+dri:tract_polygon a owl:DatatypeProperty ;
+  rdfs:label "LeaseholdTract.polygon" ;
+  rdfs:domain dri:LeaseholdTract ;
+  rdfs:range geo:wktLiteral ;
+  rdfs:comment "Tract polygon, EPSG:4326" .
+
+dri:Operator a owl:Class ;
+  rdfs:label "Operator" ;
+  rdfs:comment "Current operator. The source alias (NON-OP, LSB V) is kept on the OPERATED_BY link." .
+dri:operator_name a owl:DatatypeProperty ;
+  rdfs:label "Operator.name" ;
+  rdfs:domain dri:Operator ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve Current Operator" .
+
+dri:County a owl:Class ;
+  rdfs:label "County" ;
+  rdfs:comment "County or parish." .
+dri:county_name a owl:DatatypeProperty ;
+  rdfs:label "County.name" ;
+  rdfs:domain dri:County ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Unit Details D" .
+
+dri:DevelopmentArea a owl:Class ;
+  rdfs:label "DevelopmentArea" ;
+  rdfs:comment "Seller development area. The unit shapefile field ROAD_MAP_A carries the same values." .
+dri:devarea_name a owl:DatatypeProperty ;
+  rdfs:label "DevelopmentArea.name" ;
+  rdfs:domain dri:DevelopmentArea ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Unit Details F" .
+
+dri:BatteryCode a owl:Class ;
+  rdfs:label "BatteryCode" ;
+  rdfs:comment "Economics battery code used for sales routing." .
+dri:battery_code a owl:DatatypeProperty ;
+  rdfs:label "BatteryCode.code" ;
+  rdfs:domain dri:BatteryCode ;
+  rdfs:range xsd:string ;
+  rdfs:comment "ComboCurve BATTERY" .
+
+dri:PricingFacility a owl:Class ;
+  rdfs:label "PricingFacility" ;
+  rdfs:comment "Facility named in the monthly basis report (tank battery or central tank battery)." .
+dri:facility_name a owl:DatatypeProperty ;
+  rdfs:label "PricingFacility.name" ;
+  rdfs:domain dri:PricingFacility ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Basis report facility column" .
+dri:facility_well_type a owl:DatatypeProperty ;
+  rdfs:label "PricingFacility.well_type" ;
+  rdfs:domain dri:PricingFacility ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Basis report Well Type" .
+
+dri:ReportingScope a owl:Class ;
+  rdfs:label "ReportingScope" ;
+  rdfs:comment "Aggregate reporting group (lease operating statement tab or the economics cash-flow group). Has no well membership." .
+dri:scope_name a owl:DatatypeProperty ;
+  rdfs:label "ReportingScope.name" ;
+  rdfs:domain dri:ReportingScope ;
+  rdfs:range xsd:string ;
+  rdfs:comment "LOS worksheet title or CASHFLOW group" .
+dri:scope_basis a owl:DatatypeProperty ;
+  rdfs:label "ReportingScope.basis" ;
+  rdfs:domain dri:ReportingScope ;
+  rdfs:range xsd:string ;
+  rdfs:comment "net or gross" .
+
+dri:DocumentClaim a owl:Class ;
+  rdfs:label "DocumentClaim" ;
+  rdfs:comment "Headline number stated in a document (KPI card or chart), compared with the computed value." .
+dri:claim_claim_id a owl:DatatypeProperty ;
+  rdfs:label "DocumentClaim.claim_id" ;
+  rdfs:domain dri:DocumentClaim ;
+  rdfs:range xsd:string ;
+  rdfs:comment "document slug, page and label" .
+dri:claim_label a owl:DatatypeProperty ;
+  rdfs:label "DocumentClaim.label" ;
+  rdfs:domain dri:DocumentClaim ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Claim label as printed" .
+dri:claim_value a owl:DatatypeProperty ;
+  rdfs:label "DocumentClaim.value" ;
+  rdfs:domain dri:DocumentClaim ;
+  rdfs:range xsd:decimal ;
+  rdfs:comment "Claimed value" .
+dri:claim_unit a owl:DatatypeProperty ;
+  rdfs:label "DocumentClaim.unit" ;
+  rdfs:domain dri:DocumentClaim ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Claimed unit" .
+dri:claim_page a owl:DatatypeProperty ;
+  rdfs:label "DocumentClaim.page" ;
+  rdfs:domain dri:DocumentClaim ;
+  rdfs:range xsd:integer ;
+  rdfs:comment "Page number" .
+
+dri:IS_WELL a owl:ObjectProperty ;
+  rdfs:label "IS_WELL" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range dri:Well ;
+  rdfs:comment "key: ComboCurve API 14 equals PDP API_14, both as 14-digit text" .
+
+dri:ASSIGNED_TO_UNIT a owl:ObjectProperty ;
+  rdfs:label "ASSIGNED_TO_UNIT" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range dri:Unit ;
+  rdfs:comment "source: ComboCurve UNIT after name normalization" .
+
+dri:LATERAL_IN_UNIT a owl:ObjectProperty ;
+  rdfs:label "LATERAL_IN_UNIT" ;
+  rdfs:domain dri:Well ;
+  rdfs:range dri:Unit ;
+  rdfs:comment "spatial: PDP lateral covered by the unit polygon" .
+
+dri:CROSSES_TRACT a owl:ObjectProperty ;
+  rdfs:label "CROSSES_TRACT" ;
+  rdfs:domain dri:Well ;
+  rdfs:range dri:LeaseholdTract ;
+  rdfs:comment "spatial: PDP lateral intersects the tract polygon" .
+
+dri:WITHIN_UNIT a owl:ObjectProperty ;
+  rdfs:label "WITHIN_UNIT" ;
+  rdfs:domain dri:LeaseholdTract ;
+  rdfs:range dri:Unit ;
+  rdfs:comment "spatial: Tract polygon covered by the unit polygon" .
+
+dri:TARGETS_ZONE a owl:ObjectProperty ;
+  rdfs:label "TARGETS_ZONE" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range dri:Zone ;
+  rdfs:comment "alias: Landing Zone through the landing_zones alias table" .
+
+dri:VALUED_IN a owl:ObjectProperty ;
+  rdfs:label "VALUED_IN" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range dri:EconomicCase ;
+  rdfs:comment "source: ComboCurve Project Name and qualifiers" .
+
+dri:OPERATED_BY a owl:ObjectProperty ;
+  rdfs:label "OPERATED_BY" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range dri:Operator ;
+  rdfs:comment "source: ComboCurve Current Operator; Current Operator Alias kept on the link" .
+
+dri:SOLD_THROUGH a owl:ObjectProperty ;
+  rdfs:label "SOLD_THROUGH" ;
+  rdfs:domain dri:EconomicLocation ;
+  rdfs:range dri:BatteryCode ;
+  rdfs:comment "source: ComboCurve BATTERY" .
+
+dri:PRICED_AT a owl:ObjectProperty ;
+  rdfs:label "PRICED_AT" ;
+  rdfs:domain dri:BatteryCode ;
+  rdfs:range dri:PricingFacility ;
+  rdfs:comment "crosswalk: Customer-supplied battery-to-facility crosswalk (none supplied)" .
+
+dri:IN_COUNTY a owl:ObjectProperty ;
+  rdfs:label "IN_COUNTY" ;
+  rdfs:domain dri:Unit ;
+  rdfs:range dri:County ;
+  rdfs:comment "source: Unit Details County" .
+
+dri:IN_DEV_AREA a owl:ObjectProperty ;
+  rdfs:label "IN_DEV_AREA" ;
+  rdfs:domain dri:Unit ;
+  rdfs:range dri:DevelopmentArea ;
+  rdfs:comment "source: Unit Details Development Area" .
+
+dri:PART_OF a owl:ObjectProperty ;
+  rdfs:label "PART_OF" ;
+  rdfs:domain dri:Unit ;
+  rdfs:range dri:Asset ;
+  rdfs:comment "source: Room inventory" .
+
+dri:REPORTS_ON a owl:ObjectProperty ;
+  rdfs:label "REPORTS_ON" ;
+  rdfs:domain dri:ReportingScope ;
+  rdfs:range dri:Asset ;
+  rdfs:comment "source: Room inventory" .
+
+dri:ABOUT a owl:ObjectProperty ;
+  rdfs:label "ABOUT" ;
+  rdfs:domain dri:DocumentClaim ;
+  rdfs:range dri:Asset ;
+  rdfs:comment "document: Claim extracted from a room document" .

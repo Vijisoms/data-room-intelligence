@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "asset_name": "Lone Star Basin",
-  "generated_at": "2026-10-15T17:02:10.231405+00:00",
+  "generated_at": "2026-10-15T19:14:08.422301+00:00",
   "pdf_facts": {
     "Lone Star Basin Asset Overview vF_2026.08.05.pdf": {
       "page_count": 5,
@@ -12,7 +12,7 @@
         "producing_wells": 320.0
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Asset Overview vF_2026.08.05.pdf",
+        "path": "Lone Star Basin Asset Overview vF_2026.08.05.pdf",
         "locator": "all pages",
         "as_of": null
       }
@@ -29,7 +29,7 @@
         "breakeven_usd_bbl": 41.0
       },
       "source": {
-        "path": "C:\\Git\\fabdata-cleandataroom\\Lone Star Basin Development Model Output_2026.08.06.pdf",
+        "path": "Lone Star Basin Development Model Output_2026.08.06.pdf",
         "locator": "all pages",
         "as_of": null
       }

@@ -78,8 +78,8 @@ def _well_guide(model: CanonicalModel) -> str:
 ## Source
 
 `Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx`,
-worksheet `ONELINE`. Excel COM exports the OLE workbook worksheet to a
-temporary CSV before pandas reads it.
+worksheet `ONELINE`, read natively with `openpyxl` (cached values). Row 1 is the
+header; every non-blank row below it is one location.
 
 ## Output
 
@@ -104,34 +104,39 @@ whether the selected key came from `api_14`, `chosen_id`, or `well_name`.
 | `well_key` | Identifier priority described above |
 | `chosen_id` | `Chosen ID` |
 | `well_key_source` | Derived identifier provenance |
-| `api_10` / `api_14` | `API 10` / `API 14` |
+| `api_10` / `api_14` | `API 10` / `API 14`, normalized to zero-padded digit text |
 | `well_name` | `Well Name`; fallback `well-N` |
-| `unit_key` | Normalized `UNIT`, then potentially replaced by GIS reconciliation |
-| `operator` | `Current Operator` |
+| `unit_key` | Normalized `UNIT` (the source assignment; never overwritten) |
+| `spatial_unit_key` | Unit whose GIS polygon the PDP lateral overlaps most (producing wells) |
+| `operator` / `operator_alias` | `Current Operator` / `Current Operator Alias` |
 | `status` | Uppercase `WELL STATUS`; fallback `UNKNOWN` |
 | `landing_zone` | `Landing Zone` |
 | `county` | `County/Parish` |
-| `wi` / `nri` | Numeric `WI Oil (%)` / `NRI Oil (%)` |
+| `wi` / `nri` | Numeric `WI Oil (%)` / `NRI Oil (%)`; the source already holds fractions |
 | `net_boe_mboe` | Numeric `Net BOE Sales Volume (MBBL)` |
-| `pv10_musd` | `10% Discount Cash Flow (M$)` divided by 1,000 |
-| `irr` | Numeric `Before Income Tax IRR (%)` |
+| `pv10_musd` | `10% Discount Cash Flow (M$)` (column KY) divided by 1,000 |
+| `pv10_alt_musd` | Second `10% Discount Cash Flow (M$)` column (MF) divided by 1,000 |
+| `irr` | `IRR (%)` percentage points divided by 100 (fraction) |
 | `source` | ComboCurve path and exact ONELINE row |
 
 The parser does not recalculate PV-10 from monthly cash flow. It normalizes the
-source-model result from thousands of dollars to millions of dollars.
+source-model result from thousands of dollars to millions of dollars. The
+workbook has two `10% Discount Cash Flow (M$)` columns that disagree; both are
+kept and `VALUE_FIELD_CONFLICT` reports the difference.
 
 ## GIS reconciliation
 
 Producing wells are matched to PDP laterals by API-14 and then uppercase well
-name. The unit polygon having the longest intersection with a lateral becomes
-the reconciled `unit_key`. The supporting spatial result is preserved in
+name. The unit polygon having the longest intersection with a lateral is stored
+as `spatial_unit_key`. The source `unit_key` is kept, and disagreements are
+reported as `UNIT_ASSIGNMENT_CONFLICT`. The spatial result is also in
 `spatial_links.json` and `well-unit-links.csv`.
 
-## Current identifier caveat
+## Identifiers
 
-Excel CSV export renders populated API-14 values in scientific notation and
-can lose precision. API-10 and retained Chosen ID should be used to audit those
-records until API-14 text preservation is corrected.
+Excel stores API numbers as numbers and the GIS layer stores them as text. Both
+are normalized to zero-padded digit text, so the 320 producing wells keep 320
+unique API-14 values and join to GIS by API-14.
 """
 
 
@@ -144,9 +149,9 @@ def _cash_flow_guide(model: CanonicalModel) -> str:
 
 ## Source and method
 
-The ComboCurve `CASHFLOW` worksheet is exported through Excel COM to temporary
-CSV. Its first row becomes the header. All remaining rows are converted to
-record dictionaries. pandas `NaN` values are replaced by JSON `null`.
+The ComboCurve `CASHFLOW` worksheet is read natively with `openpyxl` (cached
+values). Its first row becomes the header; duplicate header names get `.1`,
+`.2` suffixes. Every non-blank row is converted to a record dictionary.
 
 ## Output
 
@@ -161,8 +166,8 @@ than mapping it into the typed well schema.
 ## Important behavior
 
 - No PV-10 is recalculated from these rows.
-- No column-specific numeric coercion is applied to this dataset.
-- Column names and values follow the exported worksheet.
+- Cell values keep their workbook types; dates become ISO 8601 text.
+- Column names follow the worksheet header.
 - The output is raw normalized transport data for later economics validation.
 """
 
@@ -189,7 +194,7 @@ Metrics are derived from the ComboCurve `ONELINE` records and cited to the
 | `producing_well_count` | Count where normalized status is `PRODUCING` |
 | `average_wi` | Sum of parsed WI values divided by record count |
 | `average_nri` | Sum of parsed NRI values divided by record count |
-| `operated_location_fraction` | Fraction whose operator exactly equals `LONE STAR BASIN OPERATING LLC` |
+| `operated_location_fraction` | Fraction whose operator exactly equals `LONE STAR BASIN OPERATING LLC`; unconfirmed, because those locations carry the alias `NON-OP` (`OPERATOR_ALIAS_CONFLICT`) |
 
 Each metric includes `name`, `value`, `unit`, optional `dimensions`, source
 citations, and an optional calculation method.
@@ -225,11 +230,12 @@ For each PDP lateral, the parser:
 
 | Field | Source or derivation |
 |---|---|
-| `api_10` | PDP shapefile `API_10` |
-| `api_14` | PDP shapefile `API_14` |
+| `api_10` | PDP shapefile `API_10`, zero-padded digit text |
+| `api_14` | PDP shapefile `API_14`, zero-padded digit text |
 | `well_name` | PDP shapefile `Well_Name` |
 | `landing_zone` | PDP shapefile `Landing_Zo` |
 | `unit_name` | Selected intersecting unit polygon `UNIT_NAME` |
+| `unit_key` | `unit_name` normalized like Unit Details keys |
 | `intersects_leasehold` | Boolean spatial intersection with dissolved leasehold |
 
 An unmatched lateral has a null `unit_name`.
@@ -440,8 +446,8 @@ contains the reconciled keys, QA findings, and appended analytical metrics.
 
 Two lookup indexes are built from `spatial_links`: one by nonblank API-14 and
 one by uppercase well name. Each canonical well is matched by API-14 first and
-well name second. For a match having a GIS `unit_name`, the well's existing
-ComboCurve `unit_key` is replaced by the normalized spatially selected unit.
+well name second. For a match having a GIS unit, the spatially selected unit is
+stored in `spatial_unit_key`. The ComboCurve `unit_key` is never replaced.
 
 ### Cross-source QA findings
 
@@ -457,9 +463,13 @@ Reconciliation appends findings to `model.findings`:
 | `PDF_GROSS_ACRES_CHECK` | PDF acreage is compared with workbook contractual acreage |
 | `UNITS_WITHOUT_WELLS` | Some Unit Details keys have no economic well/location |
 | `FIMU_CONTRACT_PENDING` | The generated FIMU case uses the draft adapter contract |
+| `UNIT_ASSIGNMENT_CONFLICT` | ComboCurve `UNIT` differs from the GIS-selected unit |
+| `VALUE_FIELD_CONFLICT` | The two `10% Discount Cash Flow (M$)` columns disagree |
+| `OPERATOR_ALIAS_CONFLICT` | Seller-operated locations carry the alias `NON-OP` |
 
-Reconciliation does not silently replace contractual acreage with GIS area.
-It preserves both definitions and records the difference as a QA warning.
+Reconciliation does not silently replace contractual acreage with GIS area,
+or source unit assignments with map results. It preserves both values and
+records the difference as a QA warning.
 
 ## 2. `calculate_metrics(model)`
 
@@ -511,8 +521,7 @@ for the canonical model, report, FIMU case, QA file, and output directory.
 
 Changing the order changes persisted behavior:
 
-- Writing before reconciliation would preserve unverified ComboCurve unit keys
-  and omit QA findings.
+- Writing before reconciliation would omit spatial unit keys and QA findings.
 - Writing before metric calculation would omit WCA analytics and latest net
   production.
 - Calculating before reconciliation would currently produce the same WCA sums,

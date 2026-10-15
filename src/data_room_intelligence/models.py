@@ -59,7 +59,9 @@ class WellRecord(BaseModel):
     api_14: str | None = None
     well_name: str
     unit_key: str | None = None
+    spatial_unit_key: str | None = None
     operator: str | None = None
+    operator_alias: str | None = None
     status: str
     landing_zone: str | None = None
     county: str | None = None
@@ -67,7 +69,8 @@ class WellRecord(BaseModel):
     nri: float | None = None
     net_boe_mboe: float | None = None
     pv10_musd: float | None = None
-    irr: float | None = None
+    pv10_alt_musd: float | None = None
+    irr: float | None = Field(default=None, description="Fraction; source IRR (%) / 100")
     source: SourceRef
 
 

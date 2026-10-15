@@ -1,0 +1,59 @@
+# Reconciliation rules. Each rule creates one issue per conflicting subject with a
+# deterministic ID: issue:<rule>:<subject>[:<qualifier>]. Severity "blocking" holds publishing
+# of the answers listed in "blocks" until a reviewer decides.
+rules_version: 0.1.0
+rules:
+  - code: UNIT_ASSIGNMENT_CONFLICT
+    title: Unit assignment conflict
+    subject: Well
+    check: ComboCurve UNIT differs from the unit polygon that contains the PDP lateral
+    severity: blocking
+    blocks: Unit-level economics totals
+  - code: OWNERSHIP_VALUE_CONFLICT
+    title: Ownership value conflict
+    subject: Unit
+    check: Unit shapefile WI differs from Unit Details operational WI for a zone
+    severity: blocking
+    blocks: WI and NRI answers
+  - code: VALUE_FIELD_CONFLICT
+    title: Two 10% discount columns disagree
+    subject: EconomicLocation
+    check: ONELINE KY and MF are both labelled 10% Discount Cash Flow (M$) and differ
+    severity: blocking
+    blocks: PV-10 answers
+  - code: ZONE_ALIAS_MISSING
+    title: Landing zone without a bench
+    subject: EconomicLocation
+    check: Landing zone has no approved bench in the landing_zones alias table
+    severity: warning
+    blocks: Zone totals
+  - code: OPERATOR_ALIAS_CONFLICT
+    title: Operator alias conflict
+    subject: EconomicLocation
+    check: Seller-operated location carries the operator alias NON-OP
+    severity: warning
+    blocks: Operated versus non-operated split
+  - code: CROSSWALK_MISSING
+    title: Pricing crosswalk missing
+    subject: BatteryCode
+    check: Battery code has no basis-report pricing facility
+    severity: info
+    blocks: Nothing; price answers are marked unsupported
+  - code: FORMULA_CACHE_MISSING
+    title: Formula without a saved value
+    subject: ReportingScope
+    check: Workbook formula cell has no cached result; it is flagged, never read as zero
+    severity: info
+    blocks: Nothing; derived values are recomputed from base facts
+  - code: CLAIM_MISMATCH
+    title: Document claim does not match
+    subject: DocumentClaim
+    check: Number stated in a document differs from the value computed from the room
+    severity: warning
+    blocks: Nothing
+  - code: UNMATCHED_KEY
+    title: Key does not match an entity
+    subject: Asset
+    check: A mapped key value in a new dataset matches no existing entity
+    severity: warning
+    blocks: Facts from the unmatched rows

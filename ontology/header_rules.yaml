@@ -1,0 +1,31 @@
+# Header rules: approved mappings from source headers to catalog targets.
+# Patterns match the normalized header (lowercase; punctuation becomes spaces).
+# Targets are Type.property, Type.measure, a dimension (Type.month) or a link (Type.<relationship>).
+# Headers not covered here are proposed by value overlap or the model and need approval.
+rules_version: 0.1.0
+rules:
+  - {pattern: "^api 14$", target: Well.api_14, kind: key}
+  - {pattern: "^api 10$", target: Well.api_10, kind: property}
+  - {pattern: "^inpt id$", target: EconomicLocation.inpt_id, kind: key}
+  - {pattern: "^well name$", target: EconomicLocation.well_name, kind: property}
+  - {pattern: "^well status$", target: EconomicLocation.status, kind: property}
+  - {pattern: "^landing zone$", target: EconomicLocation.landing_zone, kind: property}
+  - {pattern: "^county parish$", target: EconomicLocation.county, kind: property}
+  - {pattern: "^econ prms reserves category$", target: EconomicLocation.reserves_category, kind: property}
+  - {pattern: "^spud date$", target: EconomicLocation.spud_date, kind: property}
+  - {pattern: "^first prod date$", target: EconomicLocation.first_prod_date, kind: property}
+  - {pattern: "^unit$", target: EconomicLocation.assigned_to_unit, kind: link}
+  - {pattern: "^current operator$", target: EconomicLocation.operated_by, kind: link}
+  - {pattern: "^battery$", target: EconomicLocation.sold_through, kind: link}
+  - {pattern: "^project name$", target: EconomicLocation.valued_in, kind: link}
+  - {pattern: "^wi oil$", target: EconomicLocation.wi, kind: measure}
+  - {pattern: "^nri oil$", target: EconomicLocation.nri, kind: measure}
+  - {pattern: "^10 discount cash flow m$", target: EconomicLocation.dcf10_ky, kind: measure}
+  - {pattern: "^10 discount cash flow m 1$", target: EconomicLocation.dcf10_mf, kind: measure}
+  - {pattern: "^irr$", target: EconomicLocation.irr, kind: measure, transform: "divide:100"}
+  - {pattern: "^net oil sales volume mbbl$", target: EconomicLocation.net_oil_mbbl, kind: measure}
+  - {pattern: "^net gas sales volume mmcf$", target: EconomicLocation.net_gas_mmcf, kind: measure}
+  - {pattern: "^net boe sales volume mbbl$", target: EconomicLocation.net_boe_mbbl, kind: measure}
+  - {pattern: "^total net revenue m$", target: EconomicLocation.net_revenue, kind: measure}
+  - {pattern: "^perf lateral length ft$", target: EconomicLocation.perf_lateral_ft, kind: measure}
+  - {pattern: "^(prod|production|report) ?(month|date|period)$|^month$", target: "*.month", kind: dimension}

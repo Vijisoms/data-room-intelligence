@@ -8,11 +8,11 @@ from typing import Annotated
 from agent_framework import Agent, tool
 from agent_framework.foundry import FoundryChatClient
 from azure.core.credentials import TokenCredential
-from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 from pydantic import Field
 
 from .artifacts import ArtifactReader, BlobArtifactReader, LocalArtifactReader
+from .credentials import azure_credential
 
 
 class CanonicalQueryTools:
@@ -84,7 +84,7 @@ def create_qa_agent_from_reader(artifacts: ArtifactReader) -> Agent:
         client=FoundryChatClient(
             project_endpoint=endpoint,
             model=model,
-            credential=DefaultAzureCredential(),
+            credential=azure_credential(),
         ),
         name="DataRoomIntelligenceAgent",
         instructions=(

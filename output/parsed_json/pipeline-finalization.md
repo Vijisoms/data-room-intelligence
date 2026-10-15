@@ -25,8 +25,8 @@ contains the reconciled keys, QA findings, and appended analytical metrics.
 
 Two lookup indexes are built from `spatial_links`: one by nonblank API-14 and
 one by uppercase well name. Each canonical well is matched by API-14 first and
-well name second. For a match having a GIS `unit_name`, the well's existing
-ComboCurve `unit_key` is replaced by the normalized spatially selected unit.
+well name second. For a match having a GIS unit, the spatially selected unit is
+stored in `spatial_unit_key`. The ComboCurve `unit_key` is never replaced.
 
 ### Cross-source QA findings
 
@@ -42,9 +42,13 @@ Reconciliation appends findings to `model.findings`:
 | `PDF_GROSS_ACRES_CHECK` | PDF acreage is compared with workbook contractual acreage |
 | `UNITS_WITHOUT_WELLS` | Some Unit Details keys have no economic well/location |
 | `FIMU_CONTRACT_PENDING` | The generated FIMU case uses the draft adapter contract |
+| `UNIT_ASSIGNMENT_CONFLICT` | ComboCurve `UNIT` differs from the GIS-selected unit |
+| `VALUE_FIELD_CONFLICT` | The two `10% Discount Cash Flow (M$)` columns disagree |
+| `OPERATOR_ALIAS_CONFLICT` | Seller-operated locations carry the alias `NON-OP` |
 
-Reconciliation does not silently replace contractual acreage with GIS area.
-It preserves both definitions and records the difference as a QA warning.
+Reconciliation does not silently replace contractual acreage with GIS area,
+or source unit assignments with map results. It preserves both values and
+records the difference as a QA warning.
 
 ## 2. `calculate_metrics(model)`
 
@@ -96,8 +100,7 @@ for the canonical model, report, FIMU case, QA file, and output directory.
 
 Changing the order changes persisted behavior:
 
-- Writing before reconciliation would preserve unverified ComboCurve unit keys
-  and omit QA findings.
+- Writing before reconciliation would omit spatial unit keys and QA findings.
 - Writing before metric calculation would omit WCA analytics and latest net
   production.
 - Calculating before reconciliation would currently produce the same WCA sums,

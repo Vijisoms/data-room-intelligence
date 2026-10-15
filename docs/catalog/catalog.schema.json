@@ -1,0 +1,417 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Data Room Intelligence catalog 0.1.0",
+  "$defs": {
+    "Asset": {
+      "type": "object",
+      "description": "The asset (deal) described by the data room; parent of units and reporting scopes.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^asset:"
+        },
+        "name": {
+          "type": "string",
+          "description": "Asset name from the room inventory"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "Unit": {
+      "type": "object",
+      "description": "Drilling or spacing unit. Names are normalized for case and underscores; original spellings are kept as aliases.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^unit:"
+        },
+        "name": {
+          "type": "string",
+          "description": "Unit Details C; ComboCurve UNIT; shapefile UNIT_NAME"
+        },
+        "gross_acres": {
+          "type": "number",
+          "description": "Contractual gross acres (Unit Details H) Unit: acres."
+        },
+        "lateral_length_ft": {
+          "type": "number",
+          "description": "Planned lateral length (Unit Details I) Unit: ft."
+        },
+        "mapped_acres": {
+          "type": "number",
+          "description": "WGS84 geodesic area of the unit polygon Unit: acres."
+        },
+        "polygon": {
+          "type": "object",
+          "description": "Unit polygon, EPSG:4326"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "Zone": {
+      "type": "object",
+      "description": "Geologic bench used for ownership and location counts. Landing zones map to benches through an approved alias table.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^zone:"
+        },
+        "code": {
+          "type": "string",
+          "description": "Bench code from the Unit Details zone headers"
+        }
+      },
+      "required": [
+        "id",
+        "code"
+      ]
+    },
+    "Well": {
+      "type": "object",
+      "description": "Drilled wellbore with a mapped lateral. API-14 is stored as text; API-10 is kept as an alias.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^well:"
+        },
+        "api_14": {
+          "type": "string",
+          "description": "PDP shapefile API_14; ComboCurve API 14"
+        },
+        "api_10": {
+          "type": "string",
+          "description": "PDP shapefile API_10; ComboCurve API 10"
+        },
+        "well_name": {
+          "type": "string",
+          "description": "PDP shapefile Well_Name"
+        },
+        "landing_zone": {
+          "type": "string",
+          "description": "PDP shapefile Landing_Zo"
+        },
+        "lateral_length_ft": {
+          "type": "number",
+          "description": "Geodesic length of the lateral Unit: ft."
+        },
+        "lateral": {
+          "type": "object",
+          "description": "PDP lateral line, EPSG:4326"
+        }
+      },
+      "required": [
+        "id",
+        "api_14"
+      ]
+    },
+    "EconomicLocation": {
+      "type": "object",
+      "description": "A row of the economics one-line. Separate from Well because 320 locations have no API (undeveloped, DUC, permit, drilling).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^location:"
+        },
+        "inpt_id": {
+          "type": "string",
+          "description": "ComboCurve INPT ID"
+        },
+        "well_name": {
+          "type": "string",
+          "description": "ComboCurve Well Name"
+        },
+        "status": {
+          "type": "string",
+          "description": "ComboCurve WELL STATUS"
+        },
+        "landing_zone": {
+          "type": "string",
+          "description": "ComboCurve Landing Zone"
+        },
+        "county": {
+          "type": "string",
+          "description": "ComboCurve County/Parish"
+        },
+        "reserves_category": {
+          "type": "string",
+          "description": "ComboCurve Econ PRMS Reserves Category"
+        },
+        "first_prod_date": {
+          "type": "string",
+          "format": "date",
+          "description": "ComboCurve First Prod Date"
+        },
+        "spud_date": {
+          "type": "string",
+          "format": "date",
+          "description": "ComboCurve Spud Date"
+        }
+      },
+      "required": [
+        "id",
+        "inpt_id"
+      ]
+    },
+    "EconomicCase": {
+      "type": "object",
+      "description": "Economic run (project and scenario) that valued the locations.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^case:"
+        },
+        "project": {
+          "type": "string",
+          "description": "ComboCurve Project Name"
+        },
+        "scenario": {
+          "type": "string",
+          "description": "ComboCurve Scenario Name"
+        },
+        "pricing": {
+          "type": "string",
+          "description": "ComboCurve Pricing Qualifier"
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date",
+          "description": "ComboCurve As Of Date"
+        }
+      },
+      "required": [
+        "id",
+        "project"
+      ]
+    },
+    "LeaseholdTract": {
+      "type": "object",
+      "description": "Leasehold polygon. The source has no tract ID, so the key is a hash of the geometry.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^tract:"
+        },
+        "geometry_hash": {
+          "type": "string",
+          "description": "First 12 hex digits of the SHA-256 of the WKB geometry"
+        },
+        "status": {
+          "type": "string",
+          "description": "Leasehold shapefile STATUS"
+        },
+        "mapped_acres": {
+          "type": "number",
+          "description": "WGS84 geodesic area Unit: acres."
+        },
+        "polygon": {
+          "type": "object",
+          "description": "Tract polygon, EPSG:4326"
+        }
+      },
+      "required": [
+        "id",
+        "geometry_hash"
+      ]
+    },
+    "Operator": {
+      "type": "object",
+      "description": "Current operator. The source alias (NON-OP, LSB V) is kept on the OPERATED_BY link.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^operator:"
+        },
+        "name": {
+          "type": "string",
+          "description": "ComboCurve Current Operator"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "County": {
+      "type": "object",
+      "description": "County or parish.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^county:"
+        },
+        "name": {
+          "type": "string",
+          "description": "Unit Details D"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "DevelopmentArea": {
+      "type": "object",
+      "description": "Seller development area. The unit shapefile field ROAD_MAP_A carries the same values.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^devarea:"
+        },
+        "name": {
+          "type": "string",
+          "description": "Unit Details F"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "BatteryCode": {
+      "type": "object",
+      "description": "Economics battery code used for sales routing.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^battery:"
+        },
+        "code": {
+          "type": "string",
+          "description": "ComboCurve BATTERY"
+        }
+      },
+      "required": [
+        "id",
+        "code"
+      ]
+    },
+    "PricingFacility": {
+      "type": "object",
+      "description": "Facility named in the monthly basis report (tank battery or central tank battery).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^facility:"
+        },
+        "name": {
+          "type": "string",
+          "description": "Basis report facility column"
+        },
+        "well_type": {
+          "type": "string",
+          "description": "Basis report Well Type"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "ReportingScope": {
+      "type": "object",
+      "description": "Aggregate reporting group (lease operating statement tab or the economics cash-flow group). Has no well membership.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^scope:"
+        },
+        "name": {
+          "type": "string",
+          "description": "LOS worksheet title or CASHFLOW group"
+        },
+        "basis": {
+          "type": "string",
+          "description": "net or gross"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "DocumentClaim": {
+      "type": "object",
+      "description": "Headline number stated in a document (KPI card or chart), compared with the computed value.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^claim:"
+        },
+        "claim_id": {
+          "type": "string",
+          "description": "document slug, page and label"
+        },
+        "label": {
+          "type": "string",
+          "description": "Claim label as printed"
+        },
+        "value": {
+          "type": "number",
+          "description": "Claimed value"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Claimed unit"
+        },
+        "page": {
+          "type": "integer",
+          "description": "Page number"
+        }
+      },
+      "required": [
+        "id",
+        "claim_id"
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Asset"
+    },
+    {
+      "$ref": "#/$defs/Unit"
+    },
+    {
+      "$ref": "#/$defs/Zone"
+    },
+    {
+      "$ref": "#/$defs/Well"
+    },
+    {
+      "$ref": "#/$defs/EconomicLocation"
+    },
+    {
+      "$ref": "#/$defs/EconomicCase"
+    },
+    {
+      "$ref": "#/$defs/LeaseholdTract"
+    },
+    {
+      "$ref": "#/$defs/Operator"
+    },
+    {
+      "$ref": "#/$defs/County"
+    },
+    {
+      "$ref": "#/$defs/DevelopmentArea"
+    },
+    {
+      "$ref": "#/$defs/BatteryCode"
+    },
+    {
+      "$ref": "#/$defs/PricingFacility"
+    },
+    {
+      "$ref": "#/$defs/ReportingScope"
+    },
+    {
+      "$ref": "#/$defs/DocumentClaim"
+    }
+  ]
+}
