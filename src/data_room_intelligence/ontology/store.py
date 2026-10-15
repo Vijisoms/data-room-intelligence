@@ -152,12 +152,14 @@ class Snapshot:
                 clauses.append(f"{column} = ?")
                 params.append(value)
         where = f"where {' and '.join(clauses)}" if clauses else ""
-        cursor = self.con.execute(f"select * from facts {where}", params)
-        columns = [d[0] for d in cursor.description]
-        return [dict(zip(columns, row)) for row in cursor.fetchall()]
+        with self.con.cursor() as cursor:  # one cursor per call: API requests run on several threads
+            cursor.execute(f"select * from facts {where}", params)
+            columns = [d[0] for d in cursor.description]
+            return [dict(zip(columns, row)) for row in cursor.fetchall()]
 
     def sql(self, query: str, params: list[Any] | None = None) -> list[tuple[Any, ...]]:
-        return self.con.execute(query, params or []).fetchall()
+        with self.con.cursor() as cursor:
+            return cursor.execute(query, params or []).fetchall()
 
     @cached_property
     def documents(self) -> dict[str, dict[str, Any]]:

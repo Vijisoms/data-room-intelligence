@@ -14,6 +14,7 @@ from typing import Any
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+from openpyxl.utils import column_index_from_string
 from pydantic import BaseModel, Field
 
 from ..config import REPO_ROOT, RoomPaths, offline, slug
@@ -163,6 +164,16 @@ def graph_stats() -> dict[str, Any]:
 @app.get("/api/graph/operations")
 def graph_operations() -> dict[str, str]:
     return ops.OPERATIONS
+
+
+@app.post("/api/graph/operations/{name}")
+def run_named_operation(name: str, args: dict[str, str | None] | None = None) -> dict[str, Any]:
+    if name not in ops.OPERATIONS:
+        raise HTTPException(404, f"unknown operation {name}")
+    try:
+        return ops.run_operation(state.snapshot, name, args or {})
+    except TypeError as error:
+        raise HTTPException(422, f"bad arguments for {name}: {error}") from error
 
 
 @app.get("/api/graph/gaps")
@@ -328,7 +339,8 @@ def file_detail(file_id: str) -> dict[str, Any]:
     datasets = [s for s in snap.schemas if s["file"] == entry["path"]]
     tables = {d: t for d, t in snap.tables.items() if t["file_id"] == file_id}
     mappings = [m for m in snap.mappings if m["file"] == entry["path"]]
-    return {"entry": entry, "datasets": datasets, "tables": tables, "mappings": mappings, "document": snap.documents.get(file_id)}
+    claims = {n["props"]["claim_id"]: {k: n["props"].get(k) for k in ("check", "computed", "computed_from")} | {"entity": n["id"]} for n in snap.nodes.values() if n["type"] == "DocumentClaim" and n["file"] == entry["path"]}
+    return {"entry": entry, "datasets": datasets, "tables": tables, "mappings": mappings, "document": snap.documents.get(file_id), "claim_checks": claims}
 
 
 @app.get("/api/files/{file_id}/grid")
@@ -367,8 +379,11 @@ def cell_lineage(file_id: str, sheet: str, cell: str = Query(pattern=r"^[A-Z]{1,
         if not entities:
             entities = {s for s, loc in snap.sql("select distinct subject, locator from facts where file = ? and locator like ?", [path, f"{sheet}!%{row}"]) if row_pattern.match(loc)}
     mapping = next((m for m in snap.mappings if m["file"] == path and m["column"] == re.sub(r"\d", "", cell) and snap.tables.get(m["dataset_id"], {}).get("sheet") == sheet), None)
+    grid = _grids(snap.snapshot_id, file_id).get(sheet) if _entry(snap, file_id)["kind"] in {"excel", "csv"} else None
+    value = grid.get(row, column_index_from_string(re.sub(r"\d", "", cell))) if grid else None
     return {
         "locator": locator,
+        "value": value.isoformat()[:10] if hasattr(value, "isoformat") else value,
         "facts": [dict(zip(["subject", "measure", "value", "unit", "zone", "period", "item", "quality"], f)) for f in facts],
         "links": [{"kind": e["kind"], "source": e["source"], "target": e["target"], "method": e["method"]} for e in edges],
         "entities": [_node_card(snap, snap.nodes[e]) for e in sorted(entities) if e in snap.nodes],
@@ -498,6 +513,8 @@ if FRONTEND.exists():
 
     @app.get("/{path:path}", include_in_schema=False)
     def spa(path: str) -> FileResponse:
+        if path.startswith("api/"):
+            raise HTTPException(404, "unknown endpoint")
         candidate = (FRONTEND / path).resolve()
         if path and candidate.is_file() and candidate.is_relative_to(FRONTEND.resolve()):
             return FileResponse(candidate)

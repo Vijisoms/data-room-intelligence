@@ -67,6 +67,37 @@ def test_files_documents_and_layers(client: TestClient) -> None:
     assert all(feature["properties"]["entity"] for feature in layer["features"])
 
 
+def test_named_operation_endpoint_cell_value_and_claim_checks(client: TestClient) -> None:
+    zone = client.post("/api/graph/operations/zone_summary", json={"zone": "WCA"}).json()
+    assert zone["data"]["net_acres"] == 38663.82 and zone["citations"]
+    assert client.post("/api/graph/operations/unknown", json={}).status_code == 404
+    assert client.post("/api/graph/operations/zone_summary", json={"bogus": "x"}).status_code == 422
+    lineage = client.get("/api/files/combocurve/lineage", params={"sheet": "ONELINE", "cell": "KY2"}).json()
+    assert round(lineage["value"], 2) == 6816.98
+    checks = client.get("/api/files/asset-overview").json()["claim_checks"]
+    assert sum(c["check"] == "mismatch" for c in checks.values()) == 2
+
+
+def test_snapshot_queries_are_thread_safe(client: TestClient) -> None:
+    from concurrent.futures import ThreadPoolExecutor
+
+    from shapely import from_wkb
+
+    from data_room_intelligence.service import api
+
+    snap = api.state.snapshot
+    ids = ["unit:golden-crossing-west", "unit:badger-draw", "well:42901144110000"] * 20
+
+    def geometry_and_facts(entity: str) -> tuple[str, int]:
+        wkb = snap.sql("select wkb from geometries where entity = ?", [entity])[0][0]
+        return from_wkb(wkb).geom_type, len(snap.facts(entity))
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        results = list(pool.map(geometry_and_facts, ids))
+    assert {kind for kind, _ in results} == {"Polygon", "LineString"}
+    assert results[0][1] == 150
+
+
 def test_offline_chat_routes_to_operations(client: TestClient) -> None:
     answer = client.post("/api/graph/ask", json={"question": "What are the Wolfcamp A net acres, net locations and PV-10?"}).json()
     assert answer["operations"][0]["operation"] == "zone_summary"

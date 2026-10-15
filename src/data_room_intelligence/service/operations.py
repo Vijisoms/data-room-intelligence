@@ -184,6 +184,7 @@ def well_profile(snap: Snapshot, well: str) -> dict[str, Any]:
     spatial = next((e for e in snap.out.get(well_node["id"], []) if e["kind"] == "LATERAL_IN_UNIT"), None) if well_node else None
     economics = {f["measure"]: f for f in snap.facts(location["id"])} if location else {}
     production_facts = [f for f in snap.facts(well_node["id"]) if f["measure"] in {"oil_bbl", "gas_mcf", "water_bbl", "days_on"}] if well_node else []
+    latest_oil = max((f for f in production_facts if f["measure"] == "oil_bbl"), key=lambda f: f["period"] or "", default=None)
     production: dict[str, dict[str, Any]] = {}
     for fact in sorted(production_facts, key=lambda f: f["period"] or ""):
         production.setdefault(fact["period"], {"month": fact["period"]})[fact["measure"]] = fact["value"]
@@ -227,7 +228,7 @@ def well_profile(snap: Snapshot, well: str) -> dict[str, Any]:
         cite(well_node["file"], well_node["locator"], f"PDP {well_node['locator']}") if well_node else None,
         cite(economics["dcf10_ky"]["file"], economics["dcf10_ky"]["locator"]) if "dcf10_ky" in economics else None,
         cite(economics["dcf10_mf"]["file"], economics["dcf10_mf"]["locator"]) if "dcf10_mf" in economics else None,
-        cite(production_facts[-1]["file"], production_facts[-1]["locator"], f"seller production {production_facts[-1]['locator']}") if production_facts else None,
+        cite(latest_oil["file"], latest_oil["locator"], f"seller production oil {latest_oil['locator']}") if latest_oil else None,
     ] if c]
     target = (well_node or location)["id"]
     return result("well_profile", {"well": data["well"]}, data, "; ".join(parts) + ".", citations, [{"type": "inspect", "entity": target, "label": "Details"}, {"type": "focus", "entity": target, "label": "Show on graph"}])

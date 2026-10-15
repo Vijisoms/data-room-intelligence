@@ -149,3 +149,68 @@ credentials or environment-specific endpoints.
 After setup and a successful build, press `F5` and select
 `Debug Local Agent/Workflow HTTP Server`. The VS Code tasks start the Agent
 Framework DevUI endpoint on port 8088 and open Foundry Toolkit Agent Inspector.
+
+## Ontology platform: snapshots, review, chat and UI
+
+The ontology platform turns the room into a versioned knowledge graph that people
+can explore, question and correct.
+
+| Step | Command | Result |
+|---|---|---|
+| Catalog | `data-room-intel catalog validate` / `catalog export --out docs/catalog` | Validates `ontology/catalog.yaml` (14 entity types, 15 relationship types, 27 measures) and renders the dictionary, Mermaid, JSON Schema and Turtle |
+| Ingest | `data-room-intel ingest` | Bronze copy and manifest, then silver: GIS features and spatial candidates, staged workbook values, PDF layout, figures and claims |
+| Snapshot | `data-room-intel snapshot` | Agent Framework workflow: discover, then GIS, tabular and PDF tracks in parallel, ontology build, reconciliation rules and a review gate. Writes gold tables, `ontology.duckdb` and `snapshot.json` |
+| Publish | `data-room-intel publish-snapshot` | Refuses while blocking issues are open; `--force --reviewer --reason` records an override |
+| Serve | `data-room-intel serve [--port 8000]` | FastAPI and the web UI on 127.0.0.1 |
+
+Snapshots are deterministic: the snapshot ID hashes the file manifest, the catalog
+and the pipeline version, and a rebuild produces byte-identical gold tables. Data
+lives under `DRI_DATA_ROOT` (default `.dri-data/`, git-ignored). Competing source
+values are kept side by side and raised as issues; reviewers record decisions with
+a reason in an append-only log.
+
+### Offline mode
+
+`DRI_OFFLINE=1` uses the seeded extraction cache in `data/extraction-cache/`
+(Document Intelligence layouts and chart reads) and a keyword chat router, so the
+pipeline, the tests and the UI run without Azure.
+
+### Web UI
+
+```bash
+(cd frontend && npm ci && npm run build)
+data-room-intel snapshot
+data-room-intel serve --port 8765        # open http://127.0.0.1:8765
+```
+
+For UI development run `npm run dev` in `frontend/` (Vite proxies `/api` to port 8000).
+
+| View | What it shows |
+|---|---|
+| Explore | Schema graph and entity neighborhoods with search (`/`), type, link and severity filters, conflict links and a quick card; double-click a node for the inspector (properties, relationships, facts, sources, issues, schema) |
+| Inputs | Every file: a windowed sheet grid with mapped columns and cell lineage, PDF pages with text, figure and claim overlays and chart cross-checks, and a map of units, tracts and laterals; upload new datasets and approve field mappings |
+| Schema | The catalog as a data dictionary: entity types, relationships with build rules, measures, rules and alias tables |
+| Review | Reconciliation rules, the issue queue, side-by-side evidence with citations, decisions (reason required) and the publish gate |
+| Chat | gpt-5.4-mini on Foundry calling named operations only. Every number in an answer must appear in an operation result; answers cite cells, pages and map features, and actions open the graph, review queue or document |
+
+### Reusability: add a new dataset
+
+`data/scenarios/new-dataset/Seller Well Production_2026.07.xlsx` is a seller
+production export with headers the pipeline has not seen (dashed API numbers,
+"Oil Volume", "Production Month"). Upload it from **Inputs → Upload dataset**, or
+copy it to `.dri-data/rooms/lone-star-basin/incoming/` and rebuild:
+
+1. Each column gets a mapping proposal: header rules first (Production Month →
+   dimension), then key-value overlap (API Number → `Well.api_14`: 240 of 252
+   values match existing wells after normalization), then the model for the rest
+   (Oil, Gas and Water Volume and Days Producing → `Well` measures).
+2. Approve the proposals and rebuild: 960 monthly production facts attach to 40
+   existing wells, each citing its cell (for example `Monthly Production!D2`). The
+   12 rows for two unknown wells raise `UNMATCHED_KEY` instead of being dropped.
+3. Ask "What did JARDINE 4-27 A 4LS produce in June 2026?". The answer uses the new
+   facts and cites the seller file.
+
+Mapping decisions are remembered by header, so the next export with the same
+headers maps without another review. To reset the demo, delete
+`.dri-data/rooms/lone-star-basin/incoming` and `.../reviews`, then run
+`data-room-intel snapshot`.
