@@ -7,28 +7,31 @@ from typing import Annotated
 
 from agent_framework import Agent, tool
 from agent_framework.foundry import FoundryChatClient
+from azure.core.credentials import TokenCredential
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 from pydantic import Field
 
+from .artifacts import ArtifactReader, BlobArtifactReader, LocalArtifactReader
+
 
 class CanonicalQueryTools:
-    def __init__(self, output_dir: Path) -> None:
-        self.output_dir = output_dir
+    def __init__(self, artifacts: ArtifactReader) -> None:
+        self.artifacts = artifacts
 
     @tool(
         name="get_standard_answers",
         description="Return reconciled standard acquisition answers with deterministic calculations.",
     )
     def get_standard_answers(self) -> str:
-        return (self.output_dir / "standard-answers.json").read_text(encoding="utf-8")
+        return self.artifacts.read_text("standard-answers.json")
 
     @tool(
         name="get_qa_findings",
         description="Return cross-source conflicts, data gaps, and reconciliation findings.",
     )
     def get_qa_findings(self) -> str:
-        return (self.output_dir / "qa-findings.json").read_text(encoding="utf-8")
+        return self.artifacts.read_text("qa-findings.json")
 
     @tool(
         name="search_metrics",
@@ -38,7 +41,7 @@ class CanonicalQueryTools:
         self,
         query: Annotated[str, Field(description="Metric, zone, or dimension term")],
     ) -> str:
-        model = json.loads((self.output_dir / "canonical-model.json").read_text(encoding="utf-8"))
+        model = json.loads(self.artifacts.read_text("canonical-model.json"))
         needle = query.casefold()
         matches = [
             metric
@@ -49,6 +52,26 @@ class CanonicalQueryTools:
 
 
 def create_qa_agent(output_dir: Path) -> Agent:
+    return create_qa_agent_from_reader(LocalArtifactReader(output_dir))
+
+
+def create_blob_qa_agent(
+    account_url: str,
+    container: str,
+    asset_id: str,
+    credential: TokenCredential,
+) -> Agent:
+    return create_qa_agent_from_reader(
+        BlobArtifactReader(
+            account_url=account_url,
+            container=container,
+            asset_id=asset_id,
+            credential=credential,
+        )
+    )
+
+
+def create_qa_agent_from_reader(artifacts: ArtifactReader) -> Agent:
     load_dotenv()
     endpoint = os.environ.get("FOUNDRY_PROJECT_ENDPOINT")
     model = os.environ.get("FOUNDRY_MODEL")
@@ -56,7 +79,7 @@ def create_qa_agent(output_dir: Path) -> Agent:
         raise RuntimeError(
             "Set FOUNDRY_PROJECT_ENDPOINT and FOUNDRY_MODEL to enable Agent Framework Q&A."
         )
-    tools = CanonicalQueryTools(output_dir)
+    tools = CanonicalQueryTools(artifacts)
     return Agent(
         client=FoundryChatClient(
             project_endpoint=endpoint,
