@@ -50,10 +50,37 @@ def parser() -> argparse.ArgumentParser:
     ingest = commands.add_parser("ingest", help="Discover the room and extract GIS, tables and PDFs into Silver")
     ingest.add_argument("data_room", type=Path, nargs="?", default=data_room)
     ingest.add_argument("--room-id", default=os.environ.get("DATA_ROOM_ASSET_ID", "lone-star-basin"))
+    snapshot = commands.add_parser("snapshot", help="Run the ontology workflow: discover, extract in parallel, build, reconcile, review gate")
+    snapshot.add_argument("data_room", type=Path, nargs="?", default=data_room)
+    snapshot.add_argument("--room-id", default=os.environ.get("DATA_ROOM_ASSET_ID", "lone-star-basin"))
+    publish = commands.add_parser("publish-snapshot", help="Publish the latest snapshot if no blocking issue is open")
+    publish.add_argument("--room-id", default=os.environ.get("DATA_ROOM_ASSET_ID", "lone-star-basin"))
+    publish.add_argument("--reviewer")
+    publish.add_argument("--reason")
+    publish.add_argument("--force", action="store_true", help="Publish with open blocking issues (needs --reviewer and --reason)")
     return root
 
 
 async def _run(args: argparse.Namespace) -> None:
+    if args.command == "snapshot":
+        from .azure_services import azure_options, mapping_model
+        from .ontology.runner import BuildRequest, run_ontology_workflow
+
+        def show(event: object) -> None:
+            data = getattr(event, "data", None)
+            label = getattr(data, "track", None) or type(data).__name__
+            print(f"[{event.type}] {label}", file=sys.stderr)
+
+        result = await run_ontology_workflow(
+            BuildRequest(args.room_id, str(args.data_room)), {**azure_options(), "mapping_model": mapping_model()}, on_event=show
+        )
+        print(json.dumps({"snapshot_id": result.snapshot_id, "status": result.status, "counts": result.counts}, indent=2))
+        return
+    if args.command == "publish-snapshot":
+        from .ontology.pipeline import publish as publish_snapshot
+
+        print(json.dumps(publish_snapshot(args.room_id, reviewer=args.reviewer, reason=args.reason, force=args.force), indent=2))
+        return
     if args.command == "ingest":
         from .azure_services import azure_options
         from .ingest.run import ingest

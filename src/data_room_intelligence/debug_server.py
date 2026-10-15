@@ -7,6 +7,7 @@ from agent_framework.devui import serve
 from dotenv import load_dotenv
 
 from .agent import create_qa_agent
+from .ontology.workflow import create_ontology_workflow
 from .workflow import create_workflow
 
 
@@ -18,7 +19,7 @@ def main() -> None:
             f"{output_dir / 'canonical-model.json'} is missing. Run the build command first."
         )
     serve(
-        entities=[create_qa_agent(output_dir), create_workflow()],
+        entities=[create_qa_agent(output_dir), create_workflow(), create_ontology_workflow()],
         port=8088,
         host="127.0.0.1",
         auto_open=False,

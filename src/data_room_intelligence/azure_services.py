@@ -25,3 +25,7 @@ def azure_options() -> dict[str, Any]:
         "vision_model": os.environ.get("FOUNDRY_VISION_MODEL"),
         "client_factory": client_factory if endpoint else None,
     }
+
+
+def mapping_model() -> str | None:
+    return None if offline() else os.environ.get("FOUNDRY_MODEL")
