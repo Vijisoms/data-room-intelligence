@@ -153,7 +153,9 @@ Framework DevUI endpoint on port 8088 and open Foundry Toolkit Agent Inspector.
 ## Ontology platform: snapshots, review, chat and UI
 
 The ontology platform turns the room into a versioned knowledge graph that people
-can explore, question and correct.
+can explore, question and correct. [docs/HOW_IT_WORKS.md](docs/HOW_IT_WORKS.md)
+explains the workflow, ontology, normalization, field mapping, rules, document
+claims, review and chat in detail, with examples from the sample room.
 
 | Step | Command | Result |
 |---|---|---|
