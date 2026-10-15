@@ -27,7 +27,8 @@ from ..ontology.store import Snapshot, list_rooms
 from . import chat, operations as ops
 
 ROOM_ID = os.environ.get("DATA_ROOM_ASSET_ID", "lone-star-basin")
-ROOM_DIR = Path(os.environ.get("DATA_ROOM_PATH", REPO_ROOT / "data" / "sample-room"))
+# Relative paths are repository-relative so the server can start from any directory.
+ROOM_DIR = REPO_ROOT / os.environ.get("DATA_ROOM_PATH", "data/sample-room")
 UPLOAD_TYPES = {".xlsx", ".csv"}
 MAX_UPLOAD_BYTES = 20 * 1024 * 1024
 TYPE_ORDER = [t.name for t in load_catalog().entity_types]

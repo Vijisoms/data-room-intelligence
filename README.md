@@ -177,13 +177,89 @@ pipeline, the tests and the UI run without Azure.
 
 ### Web UI
 
+The UI is a React and Vite app in `frontend/`. FastAPI serves the built files from
+`frontend/dist`, so after one build you only need the Python server. Commands below
+run from the repository root with the virtual environment active
+(`source .venv/bin/activate`, or `.\.venv\Scripts\Activate.ps1` on Windows).
+
+**Prerequisites**
+
+- The Python setup above (`pip install -e ".[dev]"`).
+- Node.js 20.19+ or 22.12+ with npm (required by Vite 8). Check with `node --version`.
+- For the live chat and model-proposed field mappings: a configured `.env` and
+  `az login` (see [Configure Azure](#configure-azure-keyless)). Without Azure, set
+  `DRI_OFFLINE=1` for every command below; the chat then uses the keyword router.
+
+**1. Build a snapshot**
+
 ```bash
-(cd frontend && npm ci && npm run build)
-data-room-intel snapshot
-data-room-intel serve --port 8765        # open http://127.0.0.1:8765
+data-room-intel snapshot            # offline: DRI_OFFLINE=1 data-room-intel snapshot
 ```
 
-For UI development run `npm run dev` in `frontend/` (Vite proxies `/api` to port 8000).
+The server loads the latest snapshot under `DRI_DATA_ROOT` (default `.dri-data/`).
+Without one, every API call returns 503 "No snapshot built yet".
+
+**2. Build the UI**
+
+```bash
+cd frontend
+npm ci
+npm run build                       # type-checks, then writes frontend/dist
+cd ..
+```
+
+**3. Start the server and open the UI**
+
+```bash
+data-room-intel serve --port 8765
+```
+
+Open http://127.0.0.1:8765. Use `--port` to pick any free port (the default is 8000).
+Build the UI before starting the server, because the server serves `frontend/dist`
+only if it exists at startup. After a later UI rebuild, reload the page; restart the
+server only after Python changes. The server listens on 127.0.0.1 and has no sign-in,
+so do not expose it on a network.
+
+**Develop with hot reload**
+
+Run the API and the Vite dev server in two terminals:
+
+```bash
+data-room-intel serve --port 8765                              # terminal 1
+cd frontend && DRI_API_URL=http://127.0.0.1:8765 npm run dev   # terminal 2
+```
+
+On Windows PowerShell, set the variable first: `$env:DRI_API_URL="http://127.0.0.1:8765"; npm run dev`.
+Open http://localhost:5173. Vite forwards `/api` to `DRI_API_URL` (default
+`http://127.0.0.1:8000`), and edits under `frontend/src` appear immediately. Run
+`npm run build` before committing; CI runs the same type-check and build.
+
+**Settings**
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `DRI_DATA_ROOT` | `.dri-data/` | Snapshots, review decisions, uploads and caches |
+| `DRI_OFFLINE` | unset | `1` uses the cached extraction and the keyword chat router; no Azure calls |
+| `DATA_ROOM_PATH` | `data/sample-room` | Room folder that uploads and **Rebuild** use (relative paths are repository-relative) |
+| `DATA_ROOM_ASSET_ID` | `lone-star-basin` | Room the server loads; must match `snapshot --room-id` |
+| `DRI_API_URL` | `http://127.0.0.1:8000` | Dev server only: where Vite forwards `/api` |
+
+The URL hash keeps the view state, so links can open a specific place, for example
+`#view=inputs&fileId=combocurve&sheet=ONELINE&cell=KY2` (a cell and its lineage),
+`#view=review&rule=VALUE_FIELD_CONFLICT` or `#drawer=well:42901144110000` (an
+entity's inspector). Add `&theme=light` or `&chat=off` as needed.
+
+**Troubleshooting**
+
+| Symptom | Fix |
+|---|---|
+| `address already in use` | Another process has the port; start with `--port` and a free port |
+| `{"detail":"Not Found"}` at the page root | `frontend/dist` was missing at startup: run `npm run build`, then restart `serve` |
+| "Could not load data … 503 No snapshot built yet" | Run `data-room-intel snapshot` with the same `DRI_DATA_ROOT` and room ID |
+| The chat header shows "offline router" | `DRI_OFFLINE=1` is set or `.env` lacks the Foundry settings; run `data-room-intel doctor` |
+| `npm ci` reports an unsupported engine | Upgrade Node.js to 20.19+ or 22.12+ |
+
+**Views**
 
 | View | What it shows |
 |---|---|

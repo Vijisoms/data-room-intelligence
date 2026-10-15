@@ -98,6 +98,17 @@ def test_snapshot_queries_are_thread_safe(client: TestClient) -> None:
     assert results[0][1] == 150
 
 
+def test_room_path_resolves_from_any_working_directory(tmp_path: Path) -> None:
+    import os
+    import subprocess
+    import sys
+
+    env = {**os.environ, "DATA_ROOM_PATH": "data/sample-room"}
+    probe = "from data_room_intelligence.service import api; print(api.ROOM_DIR.is_dir())"
+    result = subprocess.run([sys.executable, "-c", probe], cwd=tmp_path, env=env, capture_output=True, text=True, check=True)
+    assert result.stdout.strip() == "True"
+
+
 def test_offline_chat_routes_to_operations(client: TestClient) -> None:
     answer = client.post("/api/graph/ask", json={"question": "What are the Wolfcamp A net acres, net locations and PV-10?"}).json()
     assert answer["operations"][0]["operation"] == "zone_summary"
