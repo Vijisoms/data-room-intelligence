@@ -47,10 +47,20 @@ def parser() -> argparse.ArgumentParser:
     catalog = commands.add_parser("catalog", help="Validate the ontology catalog or export review artifacts")
     catalog.add_argument("action", choices=["validate", "export"])
     catalog.add_argument("--out", type=Path, default=Path("docs/catalog"))
+    ingest = commands.add_parser("ingest", help="Discover the room and extract GIS, tables and PDFs into Silver")
+    ingest.add_argument("data_room", type=Path, nargs="?", default=data_room)
+    ingest.add_argument("--room-id", default=os.environ.get("DATA_ROOM_ASSET_ID", "lone-star-basin"))
     return root
 
 
 async def _run(args: argparse.Namespace) -> None:
+    if args.command == "ingest":
+        from .azure_services import azure_options
+        from .ingest.run import ingest
+
+        _, summary = await ingest(args.room_id, args.data_room, **azure_options())
+        print(json.dumps(summary, indent=2))
+        return
     if args.command == "catalog":
         _catalog(args)
         return

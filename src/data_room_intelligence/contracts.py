@@ -49,6 +49,7 @@ class SourceLocation(Contract):
 
 class ManifestEntry(Contract):
     path: str = Field(description="Room-relative POSIX path")
+    file_id: str = Field(pattern=r"^[a-z0-9-]+$", description="Stable short ID used in URLs")
     sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
     size_bytes: int = Field(ge=0)
     kind: FileKind

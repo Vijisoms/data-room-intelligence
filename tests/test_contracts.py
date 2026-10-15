@@ -85,10 +85,10 @@ def test_mapping_decisions_must_be_attributed() -> None:
 
 
 def test_manifest_requires_sha256() -> None:
-    entry = ManifestEntry(path="a.pdf", sha256="0" * 64, size_bytes=1, kind="pdf")
+    entry = ManifestEntry(path="a.pdf", file_id="a", sha256="0" * 64, size_bytes=1, kind="pdf")
     Manifest(room_id="sample", snapshot_id="s1", created_at="2026-10-15T00:00:00Z", files=[entry])
     with pytest.raises(ValidationError):
-        ManifestEntry(path="a.pdf", sha256="not-a-hash", size_bytes=1, kind="pdf")
+        ManifestEntry(path="a.pdf", file_id="a", sha256="not-a-hash", size_bytes=1, kind="pdf")
 
 
 def test_catalog_references_must_resolve() -> None:
