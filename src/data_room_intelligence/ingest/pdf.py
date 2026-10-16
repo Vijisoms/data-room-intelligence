@@ -17,14 +17,15 @@ from ..config import cache_dirs, offline, slug
 
 DI_API_VERSION = "2024-11-30"
 DI_SCOPE = "https://cognitiveservices.azure.com/.default"
-CHART_PROMPT_VERSION = "chart-v1"
+CHART_PROMPT_VERSION = "chart-v2"
 PAGE_DPI = 96
 CROP_DPI = 144
 CHART_PROMPT = (
     "You read charts from upstream oil and gas data-room slides. Extract the chart in this "
     "image as data. Read values from data labels when present; otherwise estimate from the "
-    "axis and say so in notes. Use the category label as x. If the image is not a chart, set "
-    "is_chart to false and leave series empty."
+    "axis and say so in notes. Use the category label as x. If the image is not a chart (for "
+    "example a map, a well-layout or spatial diagram, a photo or a table), set is_chart to "
+    "false and leave series empty."
 )
 VALUE = r"\$?\d[\d,]*(?:\.\d+)?"
 LABEL_VALUE = re.compile(rf"^(?P<label>[A-Za-z][A-Za-z0-9 &/().%'$\-]*?)\s+(?P<value>{VALUE})\s*(?P<unit>%|MM|K)?$")

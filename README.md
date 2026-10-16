@@ -199,7 +199,7 @@ entity's inspector). Add `&theme=light` or `&chat=off` as needed.
 | Inputs | Every file: a windowed sheet grid with mapped columns and cell lineage, PDF pages with text, figure and claim overlays and chart cross-checks, and a map of units, tracts and laterals; upload new datasets and approve field mappings |
 | Schema | The catalog as a data dictionary: entity types, relationships with build rules, measures, rules and alias tables |
 | Review | Reconciliation rules, the issue queue, side-by-side evidence with citations, decisions (reason required) and the publish gate |
-| Chat | gpt-5.4-mini on Foundry calling named operations only. Every number in an answer must appear in an operation result; answers cite cells, pages and map features, and actions open the graph, review queue or document |
+| Chat | gpt-6-astra on Foundry calling named operations only. Every number in an answer must appear in an operation result; answers cite cells, pages and map features, and actions open the graph, review queue or document |
 
 ### Reusability: add a new dataset
 

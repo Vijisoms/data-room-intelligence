@@ -1,0 +1,1 @@
+{"model": "gpt-6-astra", "chart": {"is_chart": false, "chart_type": "spatial diagram", "title": null, "x_axis": "Longitude (synthetic)", "y_axis": "Latitude (synthetic)", "unit": null, "series": [], "notes": "Spatial well-layout diagram showing red well trajectories within rectangular blocks, not a data chart."}}
