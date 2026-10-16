@@ -203,10 +203,15 @@ entity's inspector). Add `&theme=light` or `&chat=off` as needed.
 
 ### Reusability: add a new dataset
 
-`data/scenarios/new-dataset/Seller Well Production_2026.07.xlsx` is a seller
-production export with headers the pipeline has not seen (dashed API numbers,
-"Oil Volume", "Production Month"). Upload it from **Inputs → Upload dataset**, or
-copy it to `.dri-data/rooms/lone-star-basin/incoming/` and rebuild:
+`data/scenarios/new-dataset/Seller Well Production_2026.07.xlsx` is a **mock file we
+created; it is not part of the customer's data room**. The customer's files are all
+handled by built-in recipes, so we generated one unseen file (with `make_dataset.py`)
+to show how a new source is onboarded. It imitates a seller's monthly production
+export: 40 real API numbers from the room's PDP layer written with dashes, headers
+no rule knows ("API Number", "Oil Volume", "Days Producing"), 2 wells that are not in the room,
+and randomly generated volumes. It only appears in the app if you upload it, from
+**Inputs → Upload dataset** or by copying it to
+`.dri-data/rooms/lone-star-basin/incoming/` and rebuilding:
 
 1. Each column gets a mapping proposal: header rules first (Production Month →
    dimension), then key-value overlap (API Number → `Well.api_14`: 240 of 252
@@ -216,7 +221,7 @@ copy it to `.dri-data/rooms/lone-star-basin/incoming/` and rebuild:
    existing wells, each citing its cell (for example `Monthly Production!D2`). The
    12 rows for two unknown wells raise `UNMATCHED_KEY` instead of being dropped.
 3. Ask "What did JARDINE 4-27 A 4LS produce in June 2026?". The answer uses the new
-   facts and cites the seller file.
+   facts and cites the mock file.
 
 Mapping decisions are remembered by header, so the next export with the same
 headers maps without another review. To reset the demo, delete

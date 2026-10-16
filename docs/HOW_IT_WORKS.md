@@ -209,8 +209,8 @@ evaluates the rules (`ontology/rules.py`) and writes:
 ```
 
 The sample room produces 1,596 entities, 4,928 links, 38,463 facts, 770 geometries and
-2,984 issues (2,307 blocking). After the uploaded production file is approved, facts rise
-to 39,423.
+2,984 issues (2,307 blocking). Uploading and approving the mock production file from
+[section 6](#6-field-mapping-and-new-datasets) adds 960 facts (39,423 in total).
 
 ## 4. The ontology
 
@@ -305,7 +305,7 @@ EconomicLocation  JARDINE 4-27 A 4LS        (ONELINE!C2)   status PRODUCING, lan
 Well 42901144110000
  ├─ LATERAL_IN_UNIT   spatial  "feature 0 covered by unit feature 36" → Unit GOLDEN CROSSING WEST
  ├─ CROSSES_TRACT     spatial  (one link per leasehold tract crossed, with crossing length)
- └─ facts from the uploaded seller file: oil_bbl, gas_mcf, water_bbl, days_on by month
+ └─ facts from the mock production file (section 6), once uploaded: oil_bbl, gas_mcf, water_bbl, days_on by month
 ```
 
 The two unit links disagree (BADGER DRAW versus GOLDEN CROSSING WEST), so both stay and
@@ -318,7 +318,7 @@ spellings are kept as aliases, and nothing is fuzzy-matched.
 
 | What | Rule | Example |
 |---|---|---|
-| API numbers | Digits only; Excel numbers lose the `.0`; 10, 12 or 14 digits are padded to 14-digit text | `42901144110000.0` (Excel) and `42-901-14411-0000` (seller file) both become `42901144110000`. API-10 `4290114411` is kept as an alias |
+| API numbers | Digits only; Excel numbers lose the `.0`; 10, 12 or 14 digits are padded to 14-digit text | `42901144110000.0` (Excel) and `42-901-14411-0000` (mock production file) both become `42901144110000`. API-10 `4290114411` is kept as an alias |
 | Unit names | Uppercase, underscores to spaces, collapse spaces; the ID uses a slug | `GOLDEN_CROSSING_WEST_` → `GOLDEN CROSSING WEST` → `unit:golden-crossing-west`; the original spellings are searchable aliases |
 | Headers | Lowercase, punctuation to spaces (the header key); a repeated header gets `.1` | `10% Discount Cash Flow (M$)` → `10 discount cash flow m` (column KY); the second one → `10 discount cash flow m 1` (column MF) |
 | Percent columns | Profiling labels the scale from the values: a maximum of 1.5 or less is a fraction, larger is percent points. Mappings convert to fractions | `WI Oil (%)` holds `0.194` and is stored as is; `IRR (%)` holds percent points (`44.2`), so its mapping divides by 100 → 0.442 |
@@ -360,11 +360,27 @@ target, so the next file with the same headers is mapped without another review.
 next rebuild, approved key and measure mappings become facts on the matched entities, each
 citing its cell.
 
-### Example: the seller production file
+### Example: a mock production file
 
-`data/scenarios/new-dataset/Seller Well Production_2026.07.xlsx` has a sheet "Monthly
-Production" with 42 wells × 6 months. Two of the wells do not exist in the room. After
-upload, the proposals are:
+This file is **not from the customer**. All of the customer's tables are handled by
+built-in recipes, so none of them exercises the path for an unseen file. We generated
+`data/scenarios/new-dataset/Seller Well Production_2026.07.xlsx` with `make_dataset.py`
+to imitate a seller's monthly production export:
+
+- It reuses 40 real API numbers from the PDP map layer, so its rows can link to
+  existing wells, but writes them with dashes, as many exports do.
+- Its headers ("API Number", "Oil Volume", "Days Producing") match no built-in recipe
+  or header rule, so most mappings have to be proposed and approved. Only "Production
+  Month" is recognized by a header rule.
+- It adds 2 wells that are not in the room, to show how unmatched rows are reported.
+- The volumes are randomly generated with a plausible decline.
+- The room has no monthly production per well (the LOS covers whole reporting
+  scopes), so the example adds new information rather than repeating it.
+
+The automated tests use the same file. It only appears in the app if someone
+uploads it.
+
+After upload, the sheet "Monthly Production" (42 wells × 6 months) gets these proposals:
 
 | Column | Header | Proposed target | How | Confidence | Rationale |
 |---|---|---|---|---|---|
@@ -383,7 +399,7 @@ After a reviewer approves A and D to G and rebuilds:
 - The 12 rows for `42-901-99998-0000` and `42-901-99999-0000` match no well, so one
   `UNMATCHED_KEY` issue lists them instead of dropping them silently.
 - The chat can now answer "What did JARDINE 4-27 A 4LS produce in June 2026?" with 6,578 bbl
-  oil, 25,406 mcf gas and 7,842 bbl water, citing the seller file.
+  oil, 25,406 mcf gas and 7,842 bbl water, citing the mock file.
 
 ## 7. Reconciliation rules and issues
 
@@ -596,14 +612,15 @@ Citations: `Unit Details!P8:P97` (net acres), `Unit Details!CR8:CR97` (WI),
 `Unit Details!DX8:DX97` (locations), `ONELINE!KY2:KY641` and `ONELINE!MF2:MF641`. Actions:
 show the zone on the graph, or review the PV-10 conflict.
 
-**"What did JARDINE 4-27 A 4LS produce in June 2026?"** → `well_profile(well="JARDINE 4-27 A 4LS")`
+**"What did JARDINE 4-27 A 4LS produce in June 2026?"** → `well_profile(well="JARDINE 4-27 A 4LS")`,
+answerable only after the mock production file from section 6 is uploaded and approved
 
 > JARDINE 4-27 A 4LS produced 6,578 bbl oil, 25,406 mcf gas, and 7,842 bbl water in June
 > 2026. There is an open blocking unit assignment conflict: ComboCurve assigns BADGER DRAW,
 > but the lateral lies in GOLDEN CROSSING WEST. There is also an open blocking value field
 > conflict on 10% discount cash flow.
 
-The citations include the seller file's oil cell for June; clicking it opens the uploaded
+The citations include the mock file's oil cell for June; clicking it opens the uploaded
 workbook at that cell with its lineage.
 
 **"Does the asset overview deck agree with the data?"** → `claim_check`
