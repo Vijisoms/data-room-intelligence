@@ -37,10 +37,15 @@ export type DrawerState =
 
 export interface ChatMessage { id: number; role: "user" | "bot"; text?: string; answer?: Answer; pending?: boolean; error?: string }
 
+export interface Place { nav: Nav; drawer: DrawerState | null }
+type HistoryEntry = Place & { back: Place | null };
+
 interface AppValue {
   nav: Nav;
   patch: (p: Partial<Nav>) => void;
   go: (view: View, p?: Partial<Nav>) => void;
+  back: Place | null;
+  goBack: () => void;
   version: number;
   refresh: () => void;
   room: Room | null;
@@ -115,6 +120,8 @@ function navFromHash(): { nav: Nav; drawer: DrawerState | null; ask: string | nu
   return { nav, drawer, ask: params.get("ask"), chat: params.get("chat") !== "off" };
 }
 
+const savedEntry = (state: unknown): HistoryEntry | null => (state as { dri?: HistoryEntry } | null)?.dri ?? null;
+
 function parseLocator(locator: string | null | undefined): Partial<Nav> {
   if (!locator) return {};
   let m = /^(.+?)!\$?([A-Z]{1,3})\$?(\d+)/.exec(locator);
@@ -130,6 +137,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const boot = useMemo(navFromHash, []);
   const [nav, setNav] = useState<Nav>(boot.nav);
   const [drawer, setDrawer] = useState<DrawerState | null>(boot.drawer);
+  const [back, setBack] = useState<Place | null>(() => savedEntry(history.state)?.back ?? null);
+  const backRef = useRef(back);
+  const shown = useRef<Place | null>(null);
+  const restoring = useRef(false);
   const [version, setVersion] = useState(0);
   const [chatOpen, setChatOpen] = useState(boot.chat);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -148,8 +159,31 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (drawer?.kind === "entity") params.set("drawer", drawer.id);
     if (drawer?.kind === "type") params.set("drawer", `type:${drawer.name}`);
     if (!document.documentElement.classList.contains("dark")) params.set("theme", "light");
-    history.replaceState(null, "", `#${params.toString()}`);
+    const url = `#${params.toString()}`;
+    const previous = shown.current;
+    shown.current = { nav, drawer };
+    // A view change adds a browser history entry, so Back (in-app or browser) restores the view as it was left.
+    if (previous && previous.nav.view !== nav.view && !restoring.current) {
+      backRef.current = previous;
+      setBack(previous);
+      history.pushState({ dri: { nav, drawer, back: previous } }, "", url);
+    } else history.replaceState({ dri: { nav, drawer, back: backRef.current } }, "", url);
+    restoring.current = false;
   }, [nav, drawer]);
+
+  useEffect(() => {
+    const onPop = (event: PopStateEvent) => {
+      const saved = savedEntry(event.state);
+      const place = saved ? { nav: { ...DEFAULT_NAV, ...saved.nav }, drawer: saved.drawer } : navFromHash();
+      restoring.current = true;
+      backRef.current = saved?.back ?? null;
+      setBack(backRef.current);
+      setNav(place.nav);
+      setDrawer(place.drawer);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
 
   useEffect(() => {
     if (chatOpen) document.documentElement.style.removeProperty("--chat-w");
@@ -158,6 +192,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const patch = useCallback((p: Partial<Nav>) => setNav((current) => ({ ...current, ...p })), []);
   const go = useCallback((view: View, p?: Partial<Nav>) => setNav((current) => ({ ...current, ...p, view })), []);
+  const goBack = useCallback(() => history.back(), []);
   const refresh = useCallback(() => {
     api.invalidate();
     setVersion((v) => v + 1);
@@ -230,7 +265,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [boot.ask, ask]);
 
   const value: AppValue = {
-    nav, patch, go, version, refresh, room, health, files, fileByPath, drawer, openDrawer, closeDrawer, openEntity, focusGraph, openSource,
+    nav, patch, go, back, goBack, version, refresh, room, health, files, fileByPath, drawer, openDrawer, closeDrawer, openEntity, focusGraph, openSource,
     chatOpen, setChatOpen, messages, ask, runAction, toast, notify,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

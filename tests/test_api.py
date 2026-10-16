@@ -129,6 +129,13 @@ def test_review_decision_requires_reason(client: TestClient) -> None:
     assert client.post("/api/publish", json={}).json()["published"] is False
 
 
+def test_issue_lookup_by_id_beyond_first_page(client: TestClient) -> None:
+    listed = client.get("/api/issues", params={"rule": "UNIT_ASSIGNMENT_CONFLICT", "limit": 2000}).json()["items"]
+    target = listed[150]["issue_id"]
+    found = client.get("/api/issues", params={"issue_id": target}).json()
+    assert found["total"] == 1 and found["items"][0]["issue_id"] == target
+
+
 def test_new_dataset_reusability_flow(client: TestClient) -> None:
     rejected = client.post("/api/uploads", files={"file": ("notes.txt", b"hello", "text/plain")})
     assert rejected.status_code == 400
