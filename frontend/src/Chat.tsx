@@ -5,7 +5,7 @@ import { useApp } from "./store";
 import { Cite, Icon, SevChip } from "./ui";
 import { nf } from "./util";
 
-const PROMPTS = ["What did JARDINE 4-27 A 4LS produce in June 2026?", "What are the Wolfcamp A net acres, net locations and PV-10?", "Does the asset overview deck agree with the data?", "What are the data gaps?"];
+const PROMPTS = ["Tell me about JARDINE 4-27 A 4LS", "What are the Wolfcamp A net acres, net locations and PV-10?", "Does the asset overview deck agree with the data?", "What are the data gaps?"];
 
 function ResultWidget({ answer }: { answer: Answer }) {
   const result = answer.results[0];
