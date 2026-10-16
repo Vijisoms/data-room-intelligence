@@ -1,0 +1,115 @@
+erDiagram
+    SNAPSHOT ||--o{ SOURCE_FILE : contains
+    SOURCE_FILE ||--o{ SOURCE_DATASET : "sheet, layer, page"
+    SOURCE_DATASET ||--o{ SOURCE_FIELD : "extracted schema"
+    SOURCE_FIELD ||--o| FIELD_MAPPING : "maps to"
+    SNAPSHOT ||--o{ NODE : publishes
+    NODE ||--o{ ENTITY_ALIAS : "known as"
+    NODE ||--o{ EDGE : "links"
+    NODE ||--o{ FACT : "subject of"
+    NODE ||--o| GEOMETRY : "shape"
+    SOURCE_DATASET ||--o{ FACT : evidences
+    SOURCE_DATASET ||--o{ EDGE : evidences
+    ISSUE }o--o{ NODE : flags
+    ISSUE ||--o{ REVIEW_DECISION : "resolved by"
+    FACT ||--o{ RESOLVED_FACT : "chosen assertion"
+    REVIEW_DECISION ||--o{ RESOLVED_FACT : justifies
+    SNAPSHOT {
+        string snapshot_id PK
+        string room_id
+        string parent_snapshot_id
+        string status "draft, in_review, published"
+        string ontology_version
+        string rules_version
+    }
+    SOURCE_FILE {
+        string file_id PK "sha256"
+        string snapshot_id FK
+        string path
+        string role
+        string protection "none, password, irm"
+    }
+    SOURCE_DATASET {
+        string dataset_id PK
+        string file_id FK
+        string kind "sheet_table, gis_layer, pdf_page"
+        string region "e.g. C8:EG97"
+        int row_count
+        string crs
+    }
+    SOURCE_FIELD {
+        string field_id PK
+        string dataset_id FK
+        string column_ref
+        string header_path "WI by zone > WCA"
+        string inferred_type
+        string unit
+        float null_rate
+    }
+    FIELD_MAPPING {
+        string field_id FK
+        string property "UnitZone.operational_wi"
+        string method "rule, alias, llm, human"
+        string status "proposed, approved"
+    }
+    NODE {
+        string node_id PK "type:key"
+        string type
+        string label
+        json props
+        string dataset_id FK
+        string locator
+    }
+    ENTITY_ALIAS {
+        string node_id FK
+        string namespace
+        string alias
+    }
+    EDGE {
+        string edge_id PK
+        string source_id FK
+        string kind
+        string target_id FK
+        string method "source, key, alias, spatial"
+        string locator
+    }
+    FACT {
+        string fact_id PK
+        string subject_id FK
+        string measure
+        double value
+        string unit
+        string zone
+        string period
+        string case_id
+        string basis "net, gross, 8/8ths"
+        string locator
+        string quality "ok, uncached_formula"
+    }
+    GEOMETRY {
+        string node_id FK
+        string crs
+        binary wkb
+        double geodesic_acres
+    }
+    ISSUE {
+        string issue_id PK "rule:subject"
+        string rule_id
+        string severity
+        string status
+        boolean blocks_publish
+    }
+    REVIEW_DECISION {
+        string decision_id PK
+        string issue_id FK
+        string action "choose, accept_both, override, defer"
+        string rationale
+        string reviewer
+    }
+    RESOLVED_FACT {
+        string subject_id
+        string measure
+        double value
+        string chosen_fact_id FK
+        string decision_or_rule
+    }
