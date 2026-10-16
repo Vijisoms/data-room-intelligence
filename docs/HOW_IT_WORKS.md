@@ -181,7 +181,7 @@ as `(M$)`), scale, null rate, distinct count, samples and whether the column cou
 3. **Figures** are cropped at 144 dpi from the page. For charts with 45-degree axis labels,
    Document Intelligence returned rotated or off-page regions, so the crop falls back to the
    whole page and records that.
-4. **Charts** are read by a vision model (gpt-5.4) with structured output: chart type,
+4. **Charts** are read by a vision model (gpt-6-astra) with structured output: chart type,
    title, unit and series of (x, y) points. Results are cached by the file hash, figure,
    crop type and prompt version.
 5. **Claims**: headline numbers are extracted from the paragraphs (see
@@ -350,7 +350,7 @@ tiers:
    `Unit.name`). If at least half match, the column is proposed as that key, with the match
    rate.
 3. **Model proposals**: once the key tells us what the rows describe (for example
-   `Well`), the remaining columns, with sample values, are sent to gpt-5.4-mini. The prompt
+   `Well`), the remaining columns, with sample values, are sent to gpt-6-astra. The prompt
    lists only the targets the catalog allows for that type, and the model returns structured
    output: target, confidence and a one-sentence rationale. Answers are cached. Offline, a
    keyword heuristic proposes the same targets for oil, gas, water and days columns.
@@ -507,9 +507,9 @@ Note that "Operated % 75%" matches only when you count by operator name. Every o
 The vision model's chart readings are marked approximate and never override workbook
 facts. They are used for cross-checks. The ownership chart (Asset Overview page 4, figure
 4.1) plots working interest by zone. The `claim_check` operation compares each bar with the
-mean Unit Details operational WI for that zone: 13 of 15 zones agree within 0.5 points, and
-the larger differences are MSSP and WDFD. The Inputs view shows this table next to the crop
-that was sent to the model.
+mean Unit Details operational WI for that zone: all 15 zones agree within 0.5 points. The
+Inputs view shows this table next to the crop that was sent to the model. Maps and other
+pictures are recorded as "not a chart", so the well-layout map on page 3 has no values.
 
 ## 9. Review and publishing
 
@@ -566,7 +566,7 @@ one-paragraph summary, citations and UI actions:
 ### 10.1 How a question is answered
 
 ```text
-question ─▶ chat agent (gpt-5.4-mini, Agent Framework) whose only tools are the 9 operations
+question ─▶ chat agent (gpt-6-astra, Agent Framework) whose only tools are the 9 operations
                │ calls one operation (two if needed)
                ▼
          operation result (data, summary, citations, actions)
@@ -589,7 +589,8 @@ operation the data.
 ### 10.2 Examples
 
 The first quote in each example is the operation's own summary (what offline mode shows);
-the others are answers from gpt-5.4-mini in a live run.
+the others are answers from the chat model in a live run (the deck and gap answers from
+gpt-6-astra; the production answer from an earlier run with gpt-5.4-mini).
 
 **"What are the Wolfcamp A net acres, net locations and PV-10?"** → `zone_summary(zone="WCA")`
 
@@ -625,19 +626,21 @@ workbook at that cell with its lineage.
 
 **"Does the asset overview deck agree with the data?"** → `claim_check`
 
-> Mostly yes, but not fully. The overview deck matches 8 of 10 headline claims. Two claims
-> do not match: Avg Net Revenue Interest 37.8% versus 37.74 computed from the room, and Avg
-> Working Interest 51.1% versus 49.06 computed from the room. The ownership chart on page 4
-> is also only approximate: it matches Unit Details within 0.5 points for 13 of 15 zones,
-> with larger differences in MSSP and WDFD.
+> Mostly. Of 10 headline claims, 8 match the room and 2 conflict with the data. On page 2,
+> average net revenue interest is stated as 37.8%, versus 37.7404% from ComboCurve. Average
+> working interest is stated as 51.1%, versus 49.0626%. Both comparisons use mean ownership
+> across 640 locations; these discrepancies remain unresolved. The other headline claims
+> match, including acreage, drilling units, producing wells, and economic locations. The
+> approximate ownership chart on page 4 agrees with Unit Details within 0.5 points for 15 of
+> 15 zones.
 
 **"What are the data gaps?"** → `gap_report`
 
-> The main data gaps are: no crosswalk links 92 battery codes to 38 basis-report
-> facilities, so price answers are unsupported; 62 locations have a landing zone with no
-> approved bench; 38 LOS line items contain formulas without saved values; 8 document
-> claims cannot be computed from the room; 1 field mapping awaits approval; and 1 dataset
-> has unmatched keys.
+> The data room has these gaps: no crosswalk links 92 battery codes to 38 basis-report
+> facilities, so price answers are unsupported; 62 locations have landing zones with no
+> approved bench mapping; 38 LOS line items contain formulas without saved values; 8
+> document claims cannot be computed from the room. There are 0 unmatched keys and 0
+> proposed mappings.
 
 ## 11. The web UI
 
