@@ -1,0 +1,23 @@
+flowchart TB
+    subgraph S1["1 · Data room snapshot — read-only originals"]
+        direction LR
+        X1["Excel workbooks"] ~~~ X2["GIS shapefile bundles"] ~~~ X3["PDF and slide decks"]
+    end
+    subgraph S2["2 · Agent Framework workflow — checkpointed, deterministic first"]
+        direction LR
+        D["Discover<br/>fingerprint · classify"] --> P["Parse in parallel<br/>Excel · GIS · documents"] --> SX["Extract schemas<br/>stage typed records"] --> MAP["Map fields to ontology<br/>rules first · LLM proposals reviewed"] --> OB["Build ontology<br/>entities · links · facts"] --> RC["Reconcile<br/>rules raise issues"] --> GATE{"Blocking<br/>issues?"}
+        GATE -- "yes" --> RV["Human review<br/>decision recorded"] --> PUB["Publish<br/>versioned snapshot"]
+        GATE -- "no" --> PUB
+    end
+    subgraph S3["3 · Storage — files first for the PoC; same layout on ADLS Gen2 and PostgreSQL later"]
+        direction LR
+        B[("Bronze<br/>originals + manifest")] ~~~ SV[("Silver<br/>schemas + staged Parquet")] ~~~ G[("Gold<br/>ontology Parquet + DuckDB")] ~~~ L[("Reviews<br/>append-only decisions")]
+    end
+    subgraph S4["4 · Serving — Permian-compatible API (UI to discuss later)"]
+        direction LR
+        API["FastAPI<br/>graph · metrics · review"] --> UI["Workspace UI<br/>map · graph explorer · copilot"]
+        API --> AG["Foundry agent<br/>named operations only"]
+    end
+    S1 --> S2
+    S2 -- "every stage persists its results" --> S3
+    S3 -- "published snapshot" --> S4

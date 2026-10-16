@@ -1,0 +1,49 @@
+flowchart TB
+    subgraph LAND["Land and subsurface"]
+        U["Unit / DSU · 90"]
+        W["Well · 320<br/>key: API-14"]
+        T["LeaseholdTract · 360<br/>key: geometry hash"]
+        Z["Zone / bench · 15"]
+    end
+    subgraph ECON["Economics and operations"]
+        EL["EconomicLocation · 640<br/>key: INPT ID"]
+        C["EconomicCase · 1"]
+        OP["Operator · 2"]
+        BC["BatteryCode · 92"]
+        PF["PricingFacility · 68"]
+        RS["ReportingScope<br/>LOS 4 · forecast 1"]
+    end
+    subgraph REF["Reference"]
+        A["Asset"]
+        CO["County · 8"]
+        DA["DevelopmentArea · 6"]
+    end
+    subgraph GOV["Evidence and governance"]
+        SD["SourceDataset<br/>sheet · layer · page"]
+        DC["DocumentClaim"]
+        I["ReconciliationIssue"]
+        RD["ReviewDecision"]
+    end
+    EL -- "IS_WELL · exact API-14 · 320" --> W
+    EL -- "ASSIGNED_TO_UNIT · source · 640" --> U
+    W -- "LATERAL_IN_UNIT · spatial · 320" --> U
+    W -- "CROSSES_TRACT · spatial · 790" --> T
+    T -- "WITHIN_UNIT · spatial · 360" --> U
+    EL -- "TARGETS_ZONE · alias · 578 of 640" --> Z
+    U -. "zone interest facts · 13,500" .-> Z
+    EL -- "VALUED_IN · 640" --> C
+    EL -- "OPERATED_BY · 640" --> OP
+    EL -- "SOLD_THROUGH · 347" --> BC
+    BC -. "PRICED_AT · crosswalk missing" .-> PF
+    U -- "IN_COUNTY · 90" --> CO
+    U -- "IN_DEV_AREA · 90" --> DA
+    U -- "PART_OF" --> A
+    RS -- "PART_OF" --> A
+    DC -- "ABOUT" --> A
+    I -. "FLAGS any entity or link" .-> EL
+    RD -- "RESOLVES" --> I
+    SD -. "EVIDENCES every node, link and fact" .-> EL
+    classDef gov fill:#fff4e5,stroke:#e8913c,color:#3d2a12
+    classDef ref fill:#eef3f8,stroke:#5b7a99,color:#1d2b3a
+    class SD,DC,I,RD gov
+    class A,CO,DA ref
