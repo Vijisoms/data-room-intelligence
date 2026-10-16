@@ -126,6 +126,8 @@ svg.icon { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-w
   color: hsl(var(--secondary-text));
 }
 .icon-btn:hover { background: hsl(var(--hover)); color: hsl(var(--foreground)); }
+.back-btn { flex: none; height: 30px; padding: 0 10px 0 7px; white-space: nowrap; }
+.back-detail { max-width: 220px; overflow: hidden; text-overflow: ellipsis; font-size: 11.5px; font-weight: 400; color: hsl(var(--muted-text)); }
 
 .rail {
   grid-row: 2; display: flex; flex-direction: column; gap: 4px; padding: 10px 8px;
