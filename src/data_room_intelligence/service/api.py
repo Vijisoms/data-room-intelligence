@@ -430,9 +430,9 @@ def layer(file_id: str) -> JSONResponse:
 
 
 @app.get("/api/issues")
-def issues(rule: str | None = None, subject: str | None = None, status: str | None = None, limit: int = Query(200, le=2000), offset: int = Query(0, ge=0)) -> dict[str, Any]:
+def issues(rule: str | None = None, subject: str | None = None, status: str | None = None, issue_id: str | None = None, limit: int = Query(200, le=2000), offset: int = Query(0, ge=0)) -> dict[str, Any]:
     snap = state.snapshot
-    selected = [i for i in snap.issues if (not rule or i["rule"] == rule) and (not subject or i["subject"] == subject) and (not status or i["status"] == status)]
+    selected = [i for i in snap.issues if (not rule or i["rule"] == rule) and (not subject or i["subject"] == subject) and (not status or i["status"] == status) and (not issue_id or i["issue_id"] == issue_id)]
     page = selected[offset: offset + limit]
     return {"total": len(selected), "items": [i | {"subject_label": snap.nodes[i["subject"]]["label"], "subject_type": snap.nodes[i["subject"]]["type"]} for i in page]}
 

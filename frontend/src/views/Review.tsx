@@ -163,7 +163,24 @@ export function Review() {
   useEffect(() => setPage(0), [rule, status]);
   const issues = useFetch<{ total: number; items: Issue[] }>(rule ? `/api/issues?${q({ rule, status: status || null, limit: PAGE, offset: page * PAGE })}` : null, version);
   const items = issues.data?.items ?? [];
-  const selected = items.find((i) => i.issue_id === nav.issueId) ?? items[0];
+  const listed = items.find((i) => i.issue_id === nav.issueId);
+  // An issue opened from another view can sit outside the current page or status filter, so load it directly.
+  const outside = nav.issueId && issues.data && !listed ? nav.issueId : null;
+  const direct = useFetch<{ total: number; items: Issue[] }>(outside ? `/api/issues?${q({ issue_id: outside })}` : null, version);
+  const selected = listed ?? direct.data?.items.find((i) => i.issue_id === outside) ?? (direct.loading ? undefined : items[0]);
+  const turnPage = (next: number) => {
+    setPage(next);
+    patch({ issueId: null });
+  };
+  const filterStatus = (next: typeof status) => {
+    if (next === status) return;
+    setStatus(next);
+    patch({ issueId: null });
+  };
+  const decided = () => {
+    if (status === "open") patch({ issueId: null });
+    refresh();
+  };
   const [publishing, setPublishing] = useState(false);
   const publish = async () => {
     setPublishing(true);
@@ -187,7 +204,7 @@ export function Review() {
           <span className="small muted">{`${nf(room?.open_issues.blocking ?? 0)} open blocking · ${nf(room?.decided_issues ?? 0)} decided`}</span>
           <span style={{ flex: 1 }} />
           <div className="seg" role="group" aria-label="Issue status">
-            {(["open", "decided", ""] as const).map((s) => <button key={s || "all"} aria-pressed={status === s} onClick={() => setStatus(s)}>{s || "all"}</button>)}
+            {(["open", "decided", ""] as const).map((s) => <button key={s || "all"} aria-pressed={status === s} onClick={() => filterStatus(s)}>{s || "all"}</button>)}
           </div>
           <button className="btn primary" disabled={publishing} onClick={publish}><Icon name="shield" />{publishing ? "Checking gate…" : "Publish snapshot"}</button>
         </div>
@@ -227,13 +244,13 @@ export function Review() {
           )}
           {issues.data && issues.data.total > PAGE ? (
             <div className="pager">
-              <button className="btn" disabled={page === 0} onClick={() => setPage(page - 1)}>Previous</button>
+              <button className="btn" disabled={page === 0} onClick={() => turnPage(page - 1)}>Previous</button>
               <span>{`Page ${page + 1} of ${Math.ceil(issues.data.total / PAGE)}`}</span>
-              <button className="btn" disabled={(page + 1) * PAGE >= issues.data.total} onClick={() => setPage(page + 1)}>Next</button>
+              <button className="btn" disabled={(page + 1) * PAGE >= issues.data.total} onClick={() => turnPage(page + 1)}>Next</button>
             </div>
           ) : null}
         </div>
-        <div>{selected ? <Evidence issue={selected} onDecided={refresh} /> : <div className="muted">{issues.data ? "No issues with this status." : ""}</div>}</div>
+        <div>{selected ? <Evidence issue={selected} onDecided={decided} /> : direct.loading ? <Loading label="Loading issue" /> : <div className="muted">{issues.data ? "No issues with this status." : ""}</div>}</div>
       </div>
     </div>
   );
