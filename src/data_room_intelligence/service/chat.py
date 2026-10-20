@@ -94,7 +94,7 @@ def route_offline(snap: Snapshot, question: str, scope: str | None = None) -> di
     target = re.sub(r"^(tell me about|summari[sz]e( unit)?|show( me)?|what about|profile( of)?|where does .* come from\??)\s+", "", question.strip(), flags=re.I).rstrip("?.! ")
     if "lineage" in text or "come from" in text or "source" in text:
         return ops.lineage(snap, scope or target)
-    node = ops.resolve_entity(snap, target) or (snap.nodes.get(scope) if scope else None)
+    node = ops.resolve_entity(snap, target) or _mentioned_entity(snap, text) or (snap.nodes.get(scope) if scope else None)
     if node and node["type"] == "Unit":
         return ops.unit_profile(snap, node["id"])
     if node and node["type"] in {"Well", "EconomicLocation"}:
@@ -102,6 +102,24 @@ def route_offline(snap: Snapshot, question: str, scope: str | None = None) -> di
     if node:
         return ops.lineage(snap, node["id"])
     return ops.result("none", {}, {}, "I answer from named operations: room overview, zone summary, unit or well profile, locations, conflicts, claim check, gap report and lineage. Try a unit, well, API number or bench such as Wolfcamp A.", [])
+
+
+def _mentioned_entity(snap: Snapshot, text: str) -> dict[str, Any] | None:
+    """The well, location or unit whose name (or API number) appears anywhere in the question; the longest match wins."""
+    digits = re.sub(r"\D", "", text)
+    for length in (14, 10):
+        for match in re.finditer(rf"\d{{{length}}}", digits):
+            node = snap.nodes.get(f"well:{match.group(0).ljust(14, '0')}")
+            if node:
+                return node
+    best, best_length = None, 0
+    for node in snap.nodes.values():
+        if node["type"] not in {"Well", "EconomicLocation", "Unit"}:
+            continue
+        label = node["label"].lower()
+        if len(label) >= 5 and len(label) > best_length and re.search(rf"(?<![a-z0-9]){re.escape(label)}(?![a-z0-9])", text):
+            best, best_length = node, len(label)
+    return best
 
 
 def _verified(answer: str, results: list[dict[str, Any]]) -> bool:

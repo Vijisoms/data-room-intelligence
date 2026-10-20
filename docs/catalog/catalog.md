@@ -290,6 +290,7 @@ classDiagram
 | `FORMULA_CACHE_MISSING` | ReportingScope | Workbook formula cell has no cached result; it is flagged, never read as zero | info | Nothing; derived values are recomputed from base facts |
 | `CLAIM_MISMATCH` | DocumentClaim | Number stated in a document differs from the value computed from the room | warning | Nothing |
 | `UNMATCHED_KEY` | Asset | A mapped key value in a new dataset matches no existing entity | warning | Facts from the unmatched rows |
+| `UNMATCHED_LINK` | Asset | A mapped link column in a new dataset names an entity that does not exist in the room | warning | Links from the unmatched rows |
 
 ## Alias Tables
 

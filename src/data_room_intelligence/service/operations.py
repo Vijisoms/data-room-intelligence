@@ -88,6 +88,30 @@ def room_overview(snap: Snapshot) -> dict[str, Any]:
     return result("room_overview", {}, data, summary, [cite(f["path"], "file") for f in snap.manifest["files"] if f["kind"] in {"excel", "pdf", "gis_layer"}][:6], [{"type": "view", "view": "explore", "mode": "schema", "label": "Show schema graph"}])
 
 
+def pv10_choice(snap: Snapshot) -> tuple[str | None, dict[str, Any] | None]:
+    """Which 10% discount column is PV-10, once the VALUE_FIELD_CONFLICT decision says so (rule-wide or for every issue)."""
+    policy = snap.policy("VALUE_FIELD_CONFLICT")
+    if not policy:
+        return None, None
+    choice = policy["choice"].upper()
+    measure = "dcf10_ky" if choice.startswith("KY") else "dcf10_mf" if choice.startswith("MF") else None
+    return measure, policy if measure else None
+
+
+def unit_choice(snap: Snapshot) -> tuple[str | None, dict[str, Any] | None]:
+    """Which unit assignment governs (ComboCurve or the map), once the UNIT_ASSIGNMENT_CONFLICT decision says so."""
+    policy = snap.policy("UNIT_ASSIGNMENT_CONFLICT")
+    if not policy:
+        return None, None
+    choice = policy["choice"].lower()
+    source = "combocurve" if "combocurve" in choice or "economics" in choice else "map" if "gis" in choice or "map" in choice else None
+    return source, policy if source else None
+
+
+def decided_by(policy: dict[str, Any]) -> str:
+    return f"{policy['choice']}, decided by {policy.get('reviewer') or 'a reviewer'}" + (" for the whole rule" if policy.get("scope") == "rule" else "")
+
+
 def zone_summary(snap: Snapshot, zone: str) -> dict[str, Any]:
     code = zone_code(zone) or zone.upper()
     acres = snap.sql("select sum(value) from facts where measure = 'net_acres' and zone = ?", [code])[0][0] or 0
@@ -112,11 +136,17 @@ def zone_summary(snap: Snapshot, zone: str) -> dict[str, Any]:
     pv_conflicts = sum(1 for location in locations for issue in snap.issues_by_subject.get(location, []) if issue["rule"] == "VALUE_FIELD_CONFLICT" and issue["status"] == "open")
     index = ZONES.index(code) if code in ZONES else 0
     column = lambda start: _col(start, index)  # noqa: E731
-    data = {"zone": code, "zone_name": BENCH_NAMES.get(code, code), "net_acres": round(acres, 2), "net_locations_10k": round(net_locations, 2), "economic_locations": len(locations), "by_status": table, "pv10_open_conflicts": pv_conflicts}
+    chosen, policy = pv10_choice(snap)
+    pv10 = round(sum(row["ky_musd" if chosen == "dcf10_ky" else "mf_musd"] for row in table), 1) if chosen and locations else None
+    data = {
+        "zone": code, "zone_name": BENCH_NAMES.get(code, code), "net_acres": round(acres, 2), "net_locations_10k": round(net_locations, 2), "economic_locations": len(locations), "by_status": table,
+        "pv10_open_conflicts": pv_conflicts, "pv10_musd": pv10, "pv10_basis": {"measure": chosen, "column": "KY" if chosen == "dcf10_ky" else "MF", "decision": policy} if chosen else None,
+    }
     summary = (
         f"{data['zone_name']} ({code}): {acres:,.2f} net acres and {net_locations:,.2f} net locations (10,000-ft equivalents x operational WI) from Unit Details; "
         f"{len(locations)} economic locations target this bench."
-        + (f" PV-10 is not resolved: both '10% Discount Cash Flow' columns are shown because {pv_conflicts} locations have an open VALUE_FIELD_CONFLICT." if pv_conflicts else "")
+        + (f" PV-10 is ${pv10:,.1f} MM from the {data['pv10_basis']['column']} column ({decided_by(policy)}); the other column is kept for reference." if pv10 is not None else "")
+        + (f" PV-10 is not resolved: both '10% Discount Cash Flow' columns are shown because {pv_conflicts} locations have an open VALUE_FIELD_CONFLICT." if pv_conflicts and pv10 is None else "")
     )
     unit_details = "Lone Star Basin Unit Details_vF_2026.08.06.xlsx"
     oneline = "Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx"
@@ -128,8 +158,8 @@ def zone_summary(snap: Snapshot, zone: str) -> dict[str, Any]:
         cite(oneline, "ONELINE!MF2:MF641", "ONELINE MF (10% DCF, same header)"),
     ]
     actions = [{"type": "focus", "entity": zone_id, "label": "Show on graph"}]
-    if pv_conflicts:
-        actions.append({"type": "review", "rule": "VALUE_FIELD_CONFLICT", "label": "Review PV-10 conflict"})
+    if pv_conflicts or pv10 is not None:
+        actions.append({"type": "review", "rule": "VALUE_FIELD_CONFLICT", "label": "Review PV-10 conflict" if pv_conflicts else "See PV-10 decision"})
     return result("zone_summary", {"zone": code}, data, summary, citations, actions)
 
 
@@ -190,30 +220,44 @@ def well_profile(snap: Snapshot, well: str) -> dict[str, Any]:
         production.setdefault(fact["period"], {"month": fact["period"]})[fact["measure"]] = fact["value"]
     issues = [*(snap.issues_by_subject.get(well_node["id"], []) if well_node else []), *(snap.issues_by_subject.get(location["id"], []) if location else [])]
     props = (location or well_node)["props"]
+    unit_source, unit_policy = unit_choice(snap)
+    pv_measure, pv_policy = pv10_choice(snap)
+    unit_combo = snap.nodes[assigned["target"]]["label"] if assigned else None
+    unit_map = snap.nodes[spatial["target"]]["label"] if spatial else None
+    governing_unit = (unit_combo if unit_source == "combocurve" else unit_map) if unit_source else None
     data = {
         "well": (well_node or location)["label"],
         "api_14": well_node["props"].get("api_14") if well_node else None,
         "location_id": location["id"] if location else None,
         "status": props.get("status"),
         "landing_zone": props.get("landing_zone"),
-        "unit_comboCurve": snap.nodes[assigned["target"]]["label"] if assigned else None,
-        "unit_map": snap.nodes[spatial["target"]]["label"] if spatial else None,
+        "unit_comboCurve": unit_combo,
+        "unit_map": unit_map,
+        "unit": governing_unit or (unit_combo if unit_combo == unit_map else None),
+        "unit_basis": {"source": unit_source, "decision": unit_policy} if unit_source else None,
         "wi": economics.get("wi", {}).get("value"),
         "nri": economics.get("nri", {}).get("value"),
         "irr": economics.get("irr", {}).get("value"),
         "dcf10_ky_musd": round(economics["dcf10_ky"]["value"] / 1000, 3) if "dcf10_ky" in economics else None,
         "dcf10_mf_musd": round(economics["dcf10_mf"]["value"] / 1000, 3) if "dcf10_mf" in economics else None,
+        "pv10_musd": round(economics[pv_measure]["value"] / 1000, 3) if pv_measure and pv_measure in economics else None,
+        "pv10_basis": {"measure": pv_measure, "column": "KY" if pv_measure == "dcf10_ky" else "MF", "decision": pv_policy} if pv_measure else None,
         "issues": [{"rule": i["rule"], "severity": i["severity"], "detail": i["detail"], "status": i["status"]} for i in issues],
         "monthly_production": list(production.values()),
     }
     parts = [f"{data['well']}: {str(data['status'] or 'mapped well').lower()}" + (f", {data['landing_zone']}" if data["landing_zone"] else "")]
     if data["wi"] is not None:
         parts.append(f"WI {data['wi']:.1%}, NRI {data['nri']:.1%}" + (f", IRR {data['irr']:.1%}" if data["irr"] is not None else ""))
-    if data["unit_comboCurve"] and data["unit_map"] and data["unit_comboCurve"] != data["unit_map"]:
-        parts.append(f"two unit assignments are kept: ComboCurve says {data['unit_comboCurve']}, but the lateral lies in {data['unit_map']}")
-    elif data["unit_comboCurve"]:
-        parts.append(f"unit {data['unit_comboCurve']}")
-    if data["dcf10_ky_musd"] is not None:
+    if unit_combo and unit_map and unit_combo != unit_map and governing_unit:
+        other = unit_map if unit_source == "combocurve" else unit_combo
+        parts.append(f"unit {governing_unit} ({'the economics file' if unit_source == 'combocurve' else 'the map'} governs: {decided_by(unit_policy)}; {'the map' if unit_source == 'combocurve' else 'the economics file'} says {other})")
+    elif unit_combo and unit_map and unit_combo != unit_map:
+        parts.append(f"two unit assignments are kept: ComboCurve says {unit_combo}, but the lateral lies in {unit_map}")
+    elif unit_combo:
+        parts.append(f"unit {unit_combo}")
+    if data["pv10_musd"] is not None:
+        parts.append(f"PV-10 ${data['pv10_musd']:.2f} MM from the {data['pv10_basis']['column']} column ({decided_by(pv_policy)})")
+    elif data["dcf10_ky_musd"] is not None:
         parts.append(f"10% discount cash flow ${data['dcf10_ky_musd']:.2f} MM (KY) vs ${data['dcf10_mf_musd']:.2f} MM (MF)")
     if production:
         months = list(production.values())
@@ -253,9 +297,14 @@ def locations(snap: Snapshot, zone: str | None = None, status: str | None = None
     if ids:
         for measure, total in snap.sql(f"select measure, sum(value) from facts where measure in ('dcf10_ky', 'dcf10_mf') and subject in ({','.join('?' * len(ids))}) group by 1", ids):
             totals[f"{measure}_musd"] = round(total / 1000, 1)
-    data = {"count": len(selected), "by_status": dict(Counter(n["props"].get("status") for n in selected)), **totals, "sample": [{"id": n["id"], "label": n["label"], "status": n["props"].get("status")} for n in selected[:12]]}
+    chosen, policy = pv10_choice(snap)
+    pv10 = totals[f"{chosen}_musd"] if chosen else None
+    data = {"count": len(selected), "by_status": dict(Counter(n["props"].get("status") for n in selected)), **totals, "pv10_musd": pv10, "pv10_basis": {"measure": chosen, "column": "KY" if chosen == "dcf10_ky" else "MF", "decision": policy} if chosen else None, "sample": [{"id": n["id"], "label": n["label"], "status": n["props"].get("status")} for n in selected[:12]]}
     filters = ", ".join(f"{k} {v}" for k, v in (("zone", code), ("status", status), ("unit", unit_node["label"] if unit_node else None)) if v) or "all"
-    summary = f"{len(selected)} economic locations ({filters}); 10% discount cash flow totals ${totals['dcf10_ky_musd']:,.1f} MM (KY) vs ${totals['dcf10_mf_musd']:,.1f} MM (MF)."
+    summary = f"{len(selected)} economic locations ({filters}); " + (
+        f"PV-10 totals ${pv10:,.1f} MM from the {data['pv10_basis']['column']} column ({decided_by(policy)})." if pv10 is not None
+        else f"10% discount cash flow totals ${totals['dcf10_ky_musd']:,.1f} MM (KY) vs ${totals['dcf10_mf_musd']:,.1f} MM (MF)."
+    )
     return result("locations", {"zone": code, "status": status, "unit": unit_node["label"] if unit_node else None}, data, summary, [cite("Lone Star Basin ComboCurve Oneline and Project Link_2026.08.07.xlsx", "ONELINE")])
 
 
@@ -306,20 +355,25 @@ def gap_report(snap: Snapshot) -> dict[str, Any]:
     counts = Counter(i["rule"] for i in snap.issues if i["status"] == "open")
     batteries = sum(n["type"] == "BatteryCode" for n in snap.nodes.values())
     facilities = sum(n["type"] == "PricingFacility" for n in snap.nodes.values())
+    linked = len({e["source"] for e in snap.edges if e["kind"] == "PRICED_AT"})
     data = {
-        "pricing_crosswalk": {"battery_codes": batteries, "pricing_facilities": facilities, "linked": 0},
+        "pricing_crosswalk": {"battery_codes": batteries, "pricing_facilities": facilities, "linked": linked},
         "unmapped_landing_zones": counts.get("ZONE_ALIAS_MISSING", 0),
         "uncached_formula_groups": counts.get("FORMULA_CACHE_MISSING", 0),
-        "unmatched_keys": counts.get("UNMATCHED_KEY", 0),
+        "unmatched_keys": counts.get("UNMATCHED_KEY", 0) + counts.get("UNMATCHED_LINK", 0),
         "unverifiable_claims": sum(1 for n in snap.nodes.values() if n["type"] == "DocumentClaim" and n["props"].get("check") == "unverifiable"),
         "proposed_mappings": sum(1 for m in snap.mappings if m["status"] == "proposed"),
     }
+    crosswalk = (
+        f"no crosswalk links {batteries} battery codes to {facilities} basis-report facilities, so price answers are unsupported"
+        if not linked else f"a crosswalk links {linked} of {batteries} battery codes to basis-report facilities" + (f" ({batteries - linked} still unlinked)" if batteries - linked else "")
+    )
     summary = (
-        f"Gaps: no crosswalk links {batteries} battery codes to {facilities} basis-report facilities, so price answers are unsupported; "
+        f"Gaps: {crosswalk}; "
         f"{data['unmapped_landing_zones']} locations have a landing zone with no approved bench; {data['uncached_formula_groups']} LOS line items contain formulas without saved values; "
         f"{data['unverifiable_claims']} document claims cannot be computed from the room"
         + (f"; {data['proposed_mappings']} field mappings await approval" if data["proposed_mappings"] else "")
-        + (f"; {data['unmatched_keys']} datasets have unmatched keys" if data["unmatched_keys"] else "") + "."
+        + (f"; {data['unmatched_keys']} datasets have unmatched keys or links" if data["unmatched_keys"] else "") + "."
     )
     return result("gap_report", {}, data, summary, [], [{"type": "review", "rule": "CROSSWALK_MISSING", "label": "Open gaps in review"}])
 

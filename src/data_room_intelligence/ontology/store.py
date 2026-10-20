@@ -15,14 +15,28 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 from ..config import RoomPaths
+from ..contracts import Catalog
 from .build import Gold
 from .reviews import issue_decisions
 
 TABLES = ["nodes", "edges", "facts", "geometries", "aliases", "issues"]
+_S, _D = pa.string(), pa.float64()
+# Column layout of each Gold table, so a project with no data yet still gets queryable (empty) tables.
+EMPTY_SCHEMAS = {
+    "nodes": pa.schema([("id", _S), ("type", _S), ("key", _S), ("label", _S), ("file", _S), ("locator", _S), ("props", _S)]),
+    "edges": pa.schema([("id", _S), ("source", _S), ("kind", _S), ("target", _S), ("method", _S), ("file", _S), ("locator", _S), ("props", _S)]),
+    "facts": pa.schema([("subject", _S), ("measure", _S), ("value", _D), ("unit", _S), ("zone", _S), ("period", _S), ("item", _S), ("section", _S), ("case_id", _S), ("dataset_id", _S), ("file", _S), ("locator", _S), ("quality", _S)]),
+    "geometries": pa.schema([("entity", _S), ("kind", _S), ("wkb", pa.binary()), ("geodesic_acres", _D), ("length_ft", _D), ("file", _S), ("locator", _S)]),
+    "aliases": pa.schema([("entity", _S), ("alias", _S), ("source", _S)]),
+    "issues": pa.schema([("issue_id", _S), ("rule", _S), ("severity", _S), ("subject", _S), ("qualifier", _S), ("detail", _S), ("blocks", _S), ("assertions", _S), ("extra", _S)]),
+}
 
 
-def write_gold(gold_dir: Path, gold: Gold, issues: list[dict[str, Any]], meta: dict[str, Any]) -> dict[str, Any]:
+def write_gold(gold_dir: Path, gold: Gold, issues: list[dict[str, Any]], meta: dict[str, Any], catalog: Catalog | None = None) -> dict[str, Any]:
     gold_dir.mkdir(parents=True, exist_ok=True)
+    if catalog is not None:
+        # The exact model that built this snapshot, so queries never depend on later catalog changes.
+        (gold_dir / "catalog.json").write_text(catalog.model_dump_json(indent=1), encoding="utf-8")
     rows = {
         "nodes": [{**n, "props": json.dumps(n["props"], default=str, sort_keys=True)} for n in sorted(gold.nodes.values(), key=lambda n: n["id"])],
         "edges": [{**e, "props": json.dumps(e["props"], default=str, sort_keys=True)} for e in gold.edges],
@@ -39,7 +53,7 @@ def write_gold(gold_dir: Path, gold: Gold, issues: list[dict[str, Any]], meta: d
         ],
     }
     for name, records in rows.items():
-        table = pa.Table.from_pylist(records) if records else pa.table({"empty": pa.array([], pa.string())})
+        table = pa.Table.from_pylist(records) if records else pa.Table.from_pylist([], schema=EMPTY_SCHEMAS[name])
         pq.write_table(table, gold_dir / f"{name}.parquet")
     database = gold_dir / "ontology.duckdb"
     database.unlink(missing_ok=True)
@@ -81,9 +95,13 @@ def list_rooms() -> list[dict[str, Any]]:
         snapshots = []
         for gold in sorted(folder.glob("snapshots/*/gold/snapshot.json")):
             meta = json.loads(gold.read_text("utf-8"))
-            snapshots.append({k: meta.get(k) for k in ("snapshot_id", "status", "built_at", "catalog_version")} | {"counts": {k: meta["counts"][k] for k in ("entities", "relationships", "facts", "issues")}})
+            snapshots.append({k: meta.get(k) for k in ("snapshot_id", "status", "built_at", "catalog_version", "files", "published_by")} | {"counts": {k: meta["counts"][k] for k in ("entities", "relationships", "facts", "issues")}})
         rooms.append({"room_id": folder.name, "latest": latest_snapshot_id(folder.name), "snapshots": sorted(snapshots, key=lambda s: s["built_at"] or "")})
     return rooms
+
+
+def list_snapshots(room_id: str) -> list[dict[str, Any]]:
+    return next((r["snapshots"] for r in list_rooms() if r["room_id"] == room_id), [])
 
 
 class Snapshot:
@@ -135,6 +153,34 @@ class Snapshot:
         for issue in self.issues:
             self.issues_by_subject[issue["subject"]].append(issue)
         self.issue_index = {issue["issue_id"]: issue for issue in self.issues}
+
+    @cached_property
+    def catalog(self) -> Catalog:
+        """The model this snapshot was built with (older snapshots fall back to the project's current model)."""
+        path = self.gold_dir / "catalog.json"
+        if path.exists():
+            return Catalog.model_validate_json(path.read_text("utf-8"))
+        from .catalog import room_catalog
+
+        return room_catalog(self.room_id)
+
+    @cached_property
+    def type_order(self) -> list[str]:
+        return [t.name for t in self.catalog.entity_types]
+
+    def policy(self, rule: str) -> dict[str, Any] | None:
+        """A rule-wide decision ("the map governs"), or the single choice shared by every decided issue of the rule."""
+        issues = [i for i in self.issues if i["rule"] == rule]
+        if not issues:
+            return None
+        rule_wide = next((i["decision"] for i in issues if i["decision"] and i["decision"].get("scope") == "rule"), None)
+        if rule_wide:
+            return rule_wide
+        if all(i["status"] == "decided" for i in issues):
+            choices = {i["decision"]["choice"] for i in issues}
+            if len(choices) == 1:
+                return issues[0]["decision"]
+        return None
 
     @cached_property
     def graph(self) -> nx.MultiDiGraph:

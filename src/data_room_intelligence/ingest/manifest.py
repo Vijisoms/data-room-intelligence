@@ -126,7 +126,7 @@ def build_manifest(
 
 
 def room_sources(room_dir: Path, incoming: Path | None = None) -> list[tuple[Path, Path]]:
-    sources = [(room_dir, path) for path in room_dir.rglob("*") if path.is_file()]
+    sources = [(room_dir, path) for path in room_dir.rglob("*") if path.is_file()] if room_dir.is_dir() else []
     if incoming and incoming.is_dir():
         sources += [(incoming.parent, path) for path in incoming.rglob("*") if path.is_file()]
     return sources
@@ -141,4 +141,5 @@ def copy_bronze(manifest: Manifest, sources: list[tuple[Path, Path]], bronze: Pa
             continue
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(by_path[entry.path], target)
+    bronze.mkdir(parents=True, exist_ok=True)
     (bronze / "manifest.json").write_text(manifest.model_dump_json(indent=2), encoding="utf-8")

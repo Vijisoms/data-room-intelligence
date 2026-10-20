@@ -38,7 +38,7 @@ def discover(room_id: str, room_dir: Path) -> IngestContext:
     paths = RoomPaths(room_id)
     sources = room_sources(room_dir, paths.incoming)
     manifest = build_manifest(room_id, sources)
-    seed = f"{manifest.snapshot_id}|{catalog_fingerprint()}|{PIPELINE_VERSION}"
+    seed = f"{manifest.snapshot_id}|{catalog_fingerprint(room_id=room_id)}|{PIPELINE_VERSION}"
     snapshot_id = "s-" + hashlib.sha256(seed.encode()).hexdigest()[:12]
     manifest = manifest.model_copy(update={"snapshot_id": snapshot_id})
     copy_bronze(manifest, sources, paths.bronze(snapshot_id))

@@ -200,7 +200,7 @@ function EntityDrawer({ id }: { id: string }) {
               <li key={i.issue_id}>
                 <SevChip sev={i.status === "open" ? i.severity : "ok"}>{i.status === "open" ? i.severity : "decided"}</SevChip>
                 <div style={{ flex: 1 }}><div style={{ fontWeight: 600 }}>{i.rule}</div><div className="small muted">{i.detail}</div></div>
-                <button className="btn" onClick={() => { closeDrawer(); go("review", { rule: i.rule, issueId: i.issue_id }); }}>Review</button>
+                <button className="btn" onClick={() => { closeDrawer(); go("decisions", { rule: i.rule, issueId: i.issue_id, queue: true }); }}>Review</button>
               </li>
             ))}
           </ul>
@@ -246,7 +246,7 @@ function TypeDrawer({ name }: { name: string }) {
       title={name}
       id={def ? `${def.id_prefix}:<${def.key}>` : undefined}
       chips={catalog ? <span className="chip">{`${nf(catalog.counts.entities[name] ?? 0)} instances`}</span> : null}
-      actions={<button className="btn" onClick={() => { closeDrawer(); go("schema", { catalog: { kind: "type", name } }); }}><Icon name="book" />Open in Schema</button>}
+      actions={<button className="btn" onClick={() => { closeDrawer(); go("model", { modelTab: "dictionary", catalog: { kind: "type", name } }); }}><Icon name="book" />Open in dictionary</button>}
     >
       {catalog ? <TypeSchema catalog={catalog} name={name} /> : <Loading />}
     </Shell>

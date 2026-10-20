@@ -1,6 +1,6 @@
-// Review: reconciliation rules, issue queue, side-by-side evidence, recorded decisions and the publish gate.
+// Issue queue for one rule: the list, side-by-side evidence with citations, and per-issue decisions.
 import { useEffect, useState } from "react";
-import { api, q, useFetch, type Interpret, type Issue, type RuleSummary } from "../api";
+import { api, q, useFetch, type Interpret, type Issue } from "../api";
 import { useApp } from "../store";
 import { Cite, ErrorBox, Icon, Loading, SevChip, TypeTag } from "../ui";
 import { DECISION_OPTIONS, clip, nf } from "../util";
@@ -110,7 +110,7 @@ function Evidence({ issue, onDecided }: { issue: Issue; onDecided: () => void })
           <div className="assertion" key={i}>
             <h5>{`Assertion ${i === 0 ? "A" : "B"}`}</h5>
             <div className="small muted">{a.label}</div>
-            <div className="val">{typeof a.value === "number" ? nf(a.value, Math.abs(a.value) < 10 ? 4 : 2) : String(a.value ?? "—")}</div>
+            <div className="val">{typeof a.value === "number" ? nf(a.value, Math.abs(a.value) < 10 ? 4 : 2) : Array.isArray(a.value) ? a.value.join(", ") : String(a.value ?? "—")}</div>
             {a.file ? <Cite citation={{ file: a.file, locator: a.locator, label: a.locator ?? "file" }} /> : <span className="muted small">no source value</span>}
           </div>
         ))}
@@ -119,7 +119,7 @@ function Evidence({ issue, onDecided }: { issue: Issue; onDecided: () => void })
       {issue.rule === "UNIT_ASSIGNMENT_CONFLICT" ? <MiniMap issue={issue} /> : null}
       {issue.decision ? (
         <div className="note" style={{ margin: "12px 0 0" }}>
-          {`Decided: ${issue.decision.choice} by ${issue.decision.reviewer}${issue.decision.decided_at ? ` on ${issue.decision.decided_at.slice(0, 10)}` : ""}. Reason: ${issue.decision.reason}`}
+          {`Decided: ${issue.decision.choice} by ${issue.decision.reviewer}${issue.decision.decided_at ? ` on ${issue.decision.decided_at.slice(0, 10)}` : ""}${issue.decision.scope === "rule" ? " (for the whole question)" : ""}. Reason: ${issue.decision.reason}`}
         </div>
       ) : (
         <>
@@ -135,7 +135,7 @@ function Evidence({ issue, onDecided }: { issue: Issue; onDecided: () => void })
             />
             <div className="seg" role="group" aria-label="Decision scope">
               <button aria-pressed={scope === "issue"} onClick={() => setScope("issue")}>This issue</button>
-              <button aria-pressed={scope === "rule"} onClick={() => setScope("rule")}>Whole rule</button>
+              <button aria-pressed={scope === "rule"} onClick={() => setScope("rule")}>Whole question</button>
             </div>
           </div>
           <div className="decide">
@@ -154,14 +154,12 @@ function Evidence({ issue, onDecided }: { issue: Issue; onDecided: () => void })
   );
 }
 
-export function Review() {
-  const { nav, patch, version, refresh, notify, room, openEntity } = useApp();
-  const rules = useFetch<RuleSummary[]>("/api/rules", version);
-  const rule = nav.rule && rules.data?.some((r) => r.code === nav.rule) ? nav.rule : rules.data?.[0]?.code ?? null;
+export function IssueQueue({ rule }: { rule: string }) {
+  const { nav, patch, version, refresh, openEntity } = useApp();
   const [page, setPage] = useState(0);
   const [status, setStatus] = useState<"open" | "decided" | "">("open");
   useEffect(() => setPage(0), [rule, status]);
-  const issues = useFetch<{ total: number; items: Issue[] }>(rule ? `/api/issues?${q({ rule, status: status || null, limit: PAGE, offset: page * PAGE })}` : null, version);
+  const issues = useFetch<{ total: number; items: Issue[] }>(`/api/issues?${q({ rule, status: status || null, limit: PAGE, offset: page * PAGE })}`, version);
   const items = issues.data?.items ?? [];
   const listed = items.find((i) => i.issue_id === nav.issueId);
   // An issue opened from another view can sit outside the current page or status filter, so load it directly.
@@ -181,77 +179,39 @@ export function Review() {
     if (status === "open") patch({ issueId: null });
     refresh();
   };
-  const [publishing, setPublishing] = useState(false);
-  const publish = async () => {
-    setPublishing(true);
-    try {
-      const result = await api.post<{ published: boolean; snapshot_id: string; open_blocking: number; rules?: string[] }>("/api/publish", {});
-      notify(result.published ? `Published snapshot ${result.snapshot_id}.` : `Not published: ${nf(result.open_blocking)} open blocking issues (${(result.rules ?? []).join(", ")}). Decide them, or force-publish from the CLI with a reviewer and reason.`);
-      refresh();
-    } finally {
-      setPublishing(false);
-    }
-  };
-  if (rules.error) return <ErrorBox error={rules.error} />;
-  if (!rules.data) return <Loading label="Loading rules" />;
-  const current = rules.data.find((r) => r.code === rule);
   return (
-    <div className="review-grid">
+    <div className="review-split">
       <div>
-        <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "14px 18px 0", flexWrap: "wrap" }}>
-          <b>{`Snapshot ${room?.snapshot_id ?? ""}`}</b>
-          <SevChip sev={room?.status === "published" ? "ok" : "warning"}>{room?.status ?? "…"}</SevChip>
-          <span className="small muted">{`${nf(room?.open_issues.blocking ?? 0)} open blocking · ${nf(room?.decided_issues ?? 0)} decided`}</span>
+        <div className="row" style={{ margin: "0 18px 8px", gap: 10 }}>
+          <span className="small muted">{issues.data ? `${nf(issues.data.total)} ${status || "total"} · showing ${nf(page * PAGE + 1)}–${nf(Math.min((page + 1) * PAGE, issues.data.total))} · double-click a row for the entity` : "Loading…"}</span>
           <span style={{ flex: 1 }} />
           <div className="seg" role="group" aria-label="Issue status">
             {(["open", "decided", ""] as const).map((s) => <button key={s || "all"} aria-pressed={status === s} onClick={() => filterStatus(s)}>{s || "all"}</button>)}
           </div>
-          <button className="btn primary" disabled={publishing} onClick={publish}><Icon name="shield" />{publishing ? "Checking gate…" : "Publish snapshot"}</button>
         </div>
-        <div className="rule-strip">
-          {rules.data.map((r) => (
-            <button key={r.code} className="card compact" aria-pressed={r.code === rule} title={`${r.check}. Blocks: ${r.blocks}`} onClick={() => patch({ rule: r.code, issueId: null })}>
-              <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "flex-start" }}>
-                <span className="small" style={{ fontWeight: 600 }}>{r.title}</span>
-                <SevChip sev={r.severity} />
-              </div>
-              <div className="big">{nf(r.open)}{r.decided ? <span className="small muted" style={{ fontWeight: 400 }}>{` · ${nf(r.decided)} decided`}</span> : null}</div>
-            </button>
-          ))}
-        </div>
-        {current ? (
-          <div className="rule-detail">
-            <b className="mono">{current.code}</b>{` · ${current.check}. `}<span className="muted">Blocks: </span>{current.blocks}
+        {issues.error ? <ErrorBox error={issues.error} /> : (
+          <table className="simple" style={{ margin: "0 18px 12px", width: "calc(100% - 36px)" }}>
+            <thead><tr><th>Entity</th><th>Detail</th><th>Status</th></tr></thead>
+            <tbody>
+              {items.map((i) => (
+                <tr key={i.issue_id} className={`clickable${i.issue_id === selected?.issue_id ? " warn" : ""}`} onClick={() => patch({ issueId: i.issue_id })} onDoubleClick={() => openEntity(i.subject)}>
+                  <td>{i.subject_type ? <TypeTag type={i.subject_type} /> : null}<div>{clip(i.subject_label ?? i.subject, 30)}</div></td>
+                  <td className="small">{i.detail}</td>
+                  <td>{i.decision ? <SevChip sev="ok">{clip(i.decision.choice, 18)}</SevChip> : <span className="muted small">open</span>}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+        {issues.data && issues.data.total > PAGE ? (
+          <div className="pager">
+            <button className="btn" disabled={page === 0} onClick={() => turnPage(page - 1)}>Previous</button>
+            <span>{`Page ${page + 1} of ${Math.ceil(issues.data.total / PAGE)}`}</span>
+            <button className="btn" disabled={(page + 1) * PAGE >= issues.data.total} onClick={() => turnPage(page + 1)}>Next</button>
           </div>
         ) : null}
       </div>
-      <div className="review-split">
-        <div>
-          <div className="small muted" style={{ margin: "0 18px 8px" }}>{issues.data ? `${nf(issues.data.total)} ${status || "total"} · showing ${nf(page * PAGE + 1)}–${nf(Math.min((page + 1) * PAGE, issues.data.total))} · double-click a row for the entity` : "Loading…"}</div>
-          {issues.error ? <ErrorBox error={issues.error} /> : (
-            <table className="simple" style={{ margin: "0 18px 12px", width: "calc(100% - 36px)" }}>
-              <thead><tr><th>Entity</th><th>Detail</th><th>Status</th></tr></thead>
-              <tbody>
-                {items.map((i) => (
-                  <tr key={i.issue_id} className={`clickable${i.issue_id === selected?.issue_id ? " warn" : ""}`} onClick={() => patch({ issueId: i.issue_id })} onDoubleClick={() => openEntity(i.subject)}>
-                    <td>{i.subject_type ? <TypeTag type={i.subject_type} /> : null}<div>{clip(i.subject_label ?? i.subject, 30)}</div></td>
-                    <td className="small">{i.detail}</td>
-                    <td>{i.decision ? <SevChip sev="ok">{clip(i.decision.choice, 18)}</SevChip> : <span className="muted small">open</span>}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-          {issues.data && issues.data.total > PAGE ? (
-            <div className="pager">
-              <button className="btn" disabled={page === 0} onClick={() => turnPage(page - 1)}>Previous</button>
-              <span>{`Page ${page + 1} of ${Math.ceil(issues.data.total / PAGE)}`}</span>
-              <button className="btn" disabled={(page + 1) * PAGE >= issues.data.total} onClick={() => turnPage(page + 1)}>Next</button>
-            </div>
-          ) : null}
-        </div>
-        <div>{selected ? <Evidence issue={selected} onDecided={decided} /> : direct.loading ? <Loading label="Loading issue" /> : <div className="muted">{issues.data ? "No issues with this status." : ""}</div>}</div>
-      </div>
+      <div>{selected ? <Evidence issue={selected} onDecided={decided} /> : direct.loading ? <Loading label="Loading issue" /> : <div className="muted">{issues.data ? "No issues with this status." : ""}</div>}</div>
     </div>
   );
 }

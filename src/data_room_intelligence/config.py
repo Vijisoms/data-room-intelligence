@@ -41,6 +41,20 @@ class RoomPaths:
     def mappings(self) -> Path:
         return self.root / "mappings"
 
+    @property
+    def catalog(self) -> Path:
+        """Project model extension: extension.yaml (current state), changes.jsonl (append-only), proposals/."""
+        return self.root / "catalog"
+
+    @property
+    def source(self) -> Path:
+        """Original files of a project created in the app (projects built from a repository folder leave it empty)."""
+        return self.root / "source"
+
+    @property
+    def record(self) -> Path:
+        return self.root / "project.json"
+
     def snapshot(self, snapshot_id: str) -> Path:
         return self.root / "snapshots" / snapshot_id
 

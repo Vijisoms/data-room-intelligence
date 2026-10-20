@@ -1,4 +1,4 @@
-"""Build a snapshot: Silver -> mappings -> Gold -> rules, and the publish gate."""
+"""Build a snapshot: Silver -> mappings -> model proposals -> Gold -> rules, and the publish gate."""
 
 from __future__ import annotations
 
@@ -8,17 +8,26 @@ from typing import Any
 from ..config import RoomPaths
 from ..ingest.run import PIPELINE_VERSION, IngestContext
 from .build import Silver, build
-from .catalog import load_aliases, load_catalog, load_rules
+from .catalog import load_aliases, load_rules, room_catalog, room_header_rules
 from .mapping import apply_approved, propose
+from .modeling import discover_concepts
 from .reviews import mapping_decisions
 from .store import Snapshot, set_latest, write_gold
 
 
-async def build_gold(ctx: IngestContext, client_factory: Any = None, model: str | None = None, room_name: str = "Lone Star Basin") -> dict[str, Any]:
-    catalog, rules, aliases = load_catalog(), load_rules(), load_aliases()
+def room_name(room_id: str) -> str:
+    from .projects import get_project
+
+    record = get_project(room_id)
+    return record["name"] if record and record.get("name") else room_id
+
+
+async def build_gold(ctx: IngestContext, client_factory: Any = None, model: str | None = None, room_name_: str | None = None) -> dict[str, Any]:
+    catalog, rules, aliases = room_catalog(ctx.room_id), load_rules(), load_aliases()
     silver = Silver(ctx.silver)
-    gold = build(ctx.silver, catalog, aliases, room_name)
-    proposals = await propose(silver, gold, catalog, mapping_decisions(ctx.room_id), client_factory, model)
+    gold = build(ctx.silver, catalog, aliases, room_name_ or room_name(ctx.room_id))
+    proposals = await propose(silver, gold, catalog, mapping_decisions(ctx.room_id), client_factory, model, header_rules=room_header_rules(ctx.room_id))
+    concepts = await discover_concepts(ctx.room_id, silver, gold, catalog, proposals, client_factory, model)
     (ctx.silver / "mappings.json").write_text(json.dumps(proposals, indent=1, default=str), encoding="utf-8")
     from .rules import evaluate
 
@@ -33,8 +42,9 @@ async def build_gold(ctx: IngestContext, client_factory: Any = None, model: str 
         "pipeline_version": PIPELINE_VERSION,
         "files": len(ctx.manifest.files),
         "mappings": {"approved": sum(p["status"] == "approved" for p in proposals), "proposed": sum(p["status"] == "proposed" for p in proposals)},
+        "model_proposals": {"proposed": sum(p["status"] == "proposed" for p in concepts), "approved": sum(p["status"] == "approved" for p in concepts)},
     }
-    snapshot = write_gold(RoomPaths(ctx.room_id).gold(ctx.snapshot_id), gold, issues, meta)
+    snapshot = write_gold(RoomPaths(ctx.room_id).gold(ctx.snapshot_id), gold, issues, meta, catalog)
     set_latest(ctx.room_id, ctx.snapshot_id)
     return snapshot
 

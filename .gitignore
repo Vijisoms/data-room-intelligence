@@ -14,3 +14,4 @@ dist/
 *.tmp
 *.log
 .dri-data/
+.DS_Store

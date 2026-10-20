@@ -6,13 +6,16 @@ import { EntityLink, ErrorBox, Icon, IssueBadge, Kv, Loading, Section, SevChip, 
 import { basename, clip, colIndex, colLetter, methodLabel, nf, splitCell } from "../util";
 
 const GROUPS: [string, (f: FileItem) => boolean][] = [
-  ["New datasets", (f) => f.incoming],
+  ["Added to this project", (f) => f.incoming],
   ["Workbooks", (f) => !f.incoming && (f.kind === "excel" || f.kind === "csv")],
   ["Documents", (f) => f.kind === "pdf"],
   ["Map layers", (f) => f.kind === "gis_layer"],
 ];
 const ROWS = 60;
 const COLS = 24;
+
+/** The chosen sheet, else the fullest one: the data table rather than a cover or notes tab. */
+const pickSheet = (file: FileItem, name: string | null) => file.sheets.find((s) => s.sheet === name) ?? [...file.sheets].sort((a, b) => b.filled_cells - a.filled_cells)[0];
 
 function fileIcon(kind: string): string {
   return kind === "pdf" ? "pdf" : kind === "gis_layer" ? "map" : "table";
@@ -22,8 +25,8 @@ function ruleSev(rule: string): "blocking" | "warning" | "info" {
   return ["UNIT_ASSIGNMENT_CONFLICT", "OWNERSHIP_VALUE_CONFLICT", "VALUE_FIELD_CONFLICT"].includes(rule) ? "blocking" : ["CROSSWALK_MISSING", "FORMULA_CACHE_MISSING"].includes(rule) ? "info" : "warning";
 }
 
-function Upload() {
-  const { refresh, patch, notify } = useApp();
+export function Upload({ empty }: { empty?: boolean }) {
+  const { refresh, patch, notify, go } = useApp();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -33,9 +36,20 @@ function Upload() {
     try {
       const result = await api.upload<RebuildResult>("/api/uploads", file);
       const proposals = result.proposals ?? [];
+      const modelProposals = result.model_proposals ?? [];
+      const pending = proposals.filter((p) => p.status === "proposed").length;
       refresh();
-      patch({ fileId: result.file_id as string, sheet: null, cell: null, side: "mappings" });
-      notify(`${file.name}: ${proposals.length} field mappings proposed (${proposals.filter((p) => p.status === "approved").length} approved by header rules, ${proposals.filter((p) => p.status === "proposed").length} awaiting review).`);
+      if (modelProposals.length) {
+        notify(`${file.name} brings something the model does not have yet: ${modelProposals[0].title}. Review the proposed change in the Model step.`);
+        go("model", { modelTab: "changes", proposalId: modelProposals[0].proposal_id, fileId: result.file_id ?? null });
+      } else if (pending) {
+        notify(`${file.name}: ${pending} field mapping${pending > 1 ? "s" : ""} need${pending > 1 ? "" : "s"} approval before its values enter the graph.`);
+        go("model", { modelTab: "mappings", fileId: result.file_id ?? null });
+      } else {
+        const files = result.files?.length ?? 1;
+        notify(`${file.name}: ${files > 1 ? `${files} files` : "read"} and mapped automatically${proposals.length ? ` (${proposals.length} columns matched by header rules)` : ""}. Snapshot ${result.snapshot_id} is built.`);
+        if (result.file_id) patch({ fileId: result.file_id, sheet: null, cell: null, page: 1, side: "fields" });
+      }
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -44,13 +58,13 @@ function Upload() {
     }
   };
   return (
-    <div className="upload">
-      <b>Add a dataset</b>
-      <div className="small muted">Upload a new .xlsx or .csv. The pipeline profiles it, proposes field mappings to the catalog (header rules, key-value overlap, then the model), and waits for your approval before facts enter the graph.</div>
-      <input ref={input} type="file" accept=".xlsx,.csv" hidden onChange={(e) => e.target.files?.[0] && send(e.target.files[0])} />
+    <div className={`upload${empty ? " big" : ""}`}>
+      <b>{empty ? "Add the seller's files" : "Add a file"}</b>
+      <div className="small muted">A workbook, CSV or PDF, or a zip of the whole data room (shapefile bundles included). Files the model already understands are read at once; anything new goes to the Model step for review.</div>
+      <input ref={input} type="file" accept=".xlsx,.xlsm,.csv,.pdf,.zip" hidden onChange={(e) => e.target.files?.[0] && send(e.target.files[0])} />
       <button className="btn primary" disabled={busy} onClick={() => input.current?.click()}>
         {busy ? <span className="spinner" /> : <Icon name="upload" />}
-        {busy ? "Profiling and proposing…" : "Upload dataset"}
+        {busy ? "Reading and building…" : empty ? "Upload files or a zip" : "Upload"}
       </button>
       {error ? <div className="small" style={{ color: "hsl(var(--blocking))", marginTop: 6 }}>{error}</div> : null}
     </div>
@@ -78,7 +92,7 @@ function FileList({ current }: { current: string }) {
                   <span className="meta">
                     {`${nf(f.size_bytes / 1024)} KB`}
                     {f.kind === "pdf" ? ` · ${f.pages} pages` : f.sheets.length ? ` · ${f.sheets.length} sheet${f.sheets.length > 1 ? "s" : ""}` : f.sidecars ? ` · ${f.sidecars + 1}-file bundle` : ""}
-                    {rules.length ? <SevChip sev={rules.map(ruleSev).sort()[0]}>{`${rules.length} rule${rules.length > 1 ? "s" : ""}`}</SevChip> : <SevChip sev="ok">parsed</SevChip>}
+                    {f.model_proposal ? <SevChip sev="warning">model change</SevChip> : f.pending_mappings ? <SevChip sev="warning">{`${f.pending_mappings} to map`}</SevChip> : rules.length ? <SevChip sev={rules.map(ruleSev).sort()[0]}>{`${rules.length} check${rules.length > 1 ? "s" : ""}`}</SevChip> : <SevChip sev="ok">read</SevChip>}
                     {uncached ? <SevChip sev="warning">{`${nf(uncached)} uncached`}</SevChip> : null}
                   </span>
                 </button>
@@ -92,7 +106,7 @@ function FileList({ current }: { current: string }) {
 }
 
 /** Mapping proposals for a file, with approve/reject and rebuild. Used for new datasets and any file with proposals. */
-export function MappingsPanel({ detail }: { detail: FileDetail }) {
+export function MappingsPanel({ detail, gapKinds }: { detail: FileDetail; gapKinds?: Set<string> }) {
   const { refresh, notify, room } = useApp();
   const [decided, setDecided] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
@@ -107,6 +121,7 @@ export function MappingsPanel({ detail }: { detail: FileDetail }) {
     const before = room?.counts;
     try {
       const result = await api.post<RebuildResult>("/api/rebuild");
+      setDecided({});
       refresh();
       const added = result.counts.facts - (before?.facts ?? result.counts.facts);
       notify(`Rebuilt snapshot ${result.snapshot_id}: ${added >= 0 ? "+" : ""}${nf(added)} facts, ${nf(result.counts.issues)} issues.`);
@@ -116,8 +131,8 @@ export function MappingsPanel({ detail }: { detail: FileDetail }) {
       setBusy(false);
     }
   };
-  const order = { proposed: 0, approved: 1, rejected: 2 } as Record<string, number>;
-  const list = [...detail.mappings].sort((a, b) => (order[status(a)] ?? 3) - (order[status(b)] ?? 3) || a.column.localeCompare(b.column));
+  // Column order, so rows stay put when one is approved or rejected.
+  const list = [...detail.mappings].sort((a, b) => a.column.length - b.column.length || a.column.localeCompare(b.column));
   const pending = list.filter((m) => status(m) === "proposed").length;
   const changed = Object.keys(decided).length;
   return (
@@ -139,7 +154,7 @@ export function MappingsPanel({ detail }: { detail: FileDetail }) {
                 <b>{m.header}</b>
                 <SevChip sev={s === "approved" ? "ok" : s === "rejected" ? "blocking" : "warning"}>{s}</SevChip>
               </div>
-              <div className="target">→ {m.target} <span className="muted">({m.kind})</span></div>
+              <div className="target">→ {m.target} <span className="muted">({m.kind})</span>{m.kind === "link" && gapKinds?.has(m.target.split(".")[1]) ? <SevChip sev="ok">fills a gap: no links of this kind exist yet</SevChip> : null}</div>
               <div className="why">
                 <SevChip sev={m.method === "model" ? "ai" : "info"}>{methodLabel(m)}</SevChip> {m.match_rate ? `${m.match_rate} values match · ` : ""}confidence {nf(m.confidence, 2)} · {m.rationale}
               </div>
@@ -169,7 +184,7 @@ function FileIssues({ file }: { file: FileItem }) {
               <SevChip sev={ruleSev(rule)} />
               <div style={{ flex: 1 }}><b>{rule}</b></div>
               <span className="mono">{nf(count)}</span>
-              <button className="btn" onClick={() => go("review", { rule, issueId: null })}>Review</button>
+              <button className="btn" onClick={() => go("decisions", { rule, issueId: null, queue: true })}>Review</button>
             </li>
           ))}
         </ul>
@@ -180,7 +195,7 @@ function FileIssues({ file }: { file: FileItem }) {
 
 function SheetView({ file, detail }: { file: FileItem; detail: FileDetail }) {
   const { nav, patch, version, openDrawer } = useApp();
-  const sheet = file.sheets.find((s) => s.sheet === nav.sheet) ?? file.sheets[0];
+  const sheet = pickSheet(file, nav.sheet);
   const [anchor, setAnchor] = useState<[number, number]>([1, 1]);
   const [goto, setGoto] = useState("");
   useEffect(() => {
@@ -323,7 +338,7 @@ export function CellDetails({ fileId, sheet, cell, value, compact }: { fileId: s
               <li key={i.issue_id}>
                 <SevChip sev={i.severity} />
                 <div style={{ flex: 1 }}><b>{i.rule}</b><div className="small muted">{i.detail}</div></div>
-                <button className="btn" onClick={() => go("review", { rule: i.rule, issueId: i.issue_id })}>Review</button>
+                <button className="btn" onClick={() => go("decisions", { rule: i.rule, issueId: i.issue_id, queue: true })}>Review</button>
               </li>
             ))}
           </ul>
@@ -335,7 +350,7 @@ export function CellDetails({ fileId, sheet, cell, value, compact }: { fileId: s
 
 function SheetSide({ file, detail }: { file: FileItem; detail: FileDetail }) {
   const { nav, patch } = useApp();
-  const sheet = file.sheets.find((s) => s.sheet === nav.sheet) ?? file.sheets[0];
+  const sheet = pickSheet(file, nav.sheet);
   const tables = Object.values(detail.tables).filter((t) => t.sheet === sheet?.sheet);
   const datasets = new Set(tables.map((t) => t.dataset_id));
   const mappings = detail.mappings.filter((m) => datasets.has(m.dataset_id));
@@ -707,12 +722,22 @@ function MapSide({ file, detail, picked }: { file: FileItem; detail: FileDetail;
 }
 
 export function Inputs() {
-  const { nav, patch, version, files } = useApp();
+  const { nav, patch, version, files, room } = useApp();
   const file = files.find((f) => f.file_id === nav.fileId) ?? files.find((f) => f.file_id === "combocurve") ?? files[0];
   const detail = useFetch<FileDetail>(file ? `/api/files/${file.file_id}` : null, version);
   const [picked, setPicked] = useState<Shape | null>(null);
   useEffect(() => setPicked(null), [file?.file_id]);
-  if (!file) return <Loading label="Loading files" />;
+  if (!file) {
+    if (room && !files.length) {
+      return (
+        <div className="empty-room">
+          <Upload empty />
+          <div className="small muted" style={{ maxWidth: 560 }}>Nothing has been read yet. The first snapshot is built as soon as a file arrives: workbooks, slide decks and map layers are read, every value keeps its source cell, page or feature, and the files are checked against each other.</div>
+        </div>
+      );
+    }
+    return <Loading label="Loading files" />;
+  }
   const d = detail.data && detail.data.entry.file_id === file.file_id ? detail.data : null;
   let tabs: ReactNode = null;
   let body: ReactNode = <Loading label="Loading file" />;
@@ -728,7 +753,8 @@ export function Inputs() {
       body = <MapView file={file} picked={picked?.feature.properties.entity ?? null} onPick={setPicked} />;
       side = <MapSide file={file} detail={d} picked={picked} />;
     } else {
-      const sheet = file.sheets.find((s) => s.sheet === nav.sheet) ?? file.sheets[0];
+      // Without a chosen sheet, open the largest one: the data table rather than a cover or notes tab.
+      const sheet = pickSheet(file, nav.sheet);
       tabs = <Tabs tabs={file.sheets.map((s) => [s.sheet, s.sheet, s.rows] as [string, ReactNode, number?])} active={sheet?.sheet ?? ""} onChange={(k) => patch({ sheet: k, cell: null })} />;
       body = <SheetView file={file} detail={d} />;
       side = <SheetSide file={file} detail={d} />;
@@ -741,12 +767,11 @@ export function Inputs() {
         <div className="viewer-head">
           <h2>{basename(file.path)}</h2>
           <div className="meta">
-            <span className="mono">{file.path}</span>
+            <span className="mono" title={`sha256 ${file.sha256}`}>{file.path}</span>
             <span>{`${nf(file.size_bytes / 1024, 1)} KB`}</span>
-            <span className="mono">{`sha256 ${file.sha256.slice(0, 12)}…`}</span>
-            {file.role ? <span>{`role: ${file.role}`}</span> : null}
             {file.as_of ? <span>{`as of ${file.as_of}`}</span> : null}
-            {file.incoming ? <SevChip sev="info">uploaded</SevChip> : null}
+            {file.incoming ? <SevChip sev="info">added to this project</SevChip> : null}
+            {file.role ? null : <span title="No built-in recipe knows this file; its columns are mapped through the Model step.">new kind of file</span>}
           </div>
         </div>
         {tabs ?? <div className="tabs" />}

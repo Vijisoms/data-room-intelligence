@@ -57,3 +57,9 @@ rules:
     check: A mapped key value in a new dataset matches no existing entity
     severity: warning
     blocks: Facts from the unmatched rows
+  - code: UNMATCHED_LINK
+    title: Link value does not match an entity
+    subject: Asset
+    check: A mapped link column in a new dataset names an entity that does not exist in the room
+    severity: warning
+    blocks: Links from the unmatched rows

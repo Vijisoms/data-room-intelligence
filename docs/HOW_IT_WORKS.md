@@ -13,7 +13,7 @@ Contents
 3. [The snapshot workflow](#3-the-snapshot-workflow)
 4. [The ontology](#4-the-ontology)
 5. [Normalization](#5-normalization)
-6. [Field mapping and new datasets](#6-field-mapping-and-new-datasets)
+6. [Field mapping, the generic recipe and model changes](#6-field-mapping-and-new-datasets)
 7. [Reconciliation rules and issues](#7-reconciliation-rules-and-issues)
 8. [Document claims and charts](#8-document-claims-and-charts)
 9. [Review and publishing](#9-review-and-publishing)
@@ -194,8 +194,14 @@ as `(M$)`), scale, null rate, distinct count, samples and whether the column cou
 evaluates the rules (`ontology/rules.py`) and writes:
 
 ```text
-.dri-data/rooms/lone-star-basin/
-├── incoming/                      uploaded datasets (part of the next snapshot)
+.dri-data/rooms/lone-star-basin/           one folder per project
+├── project.json                   name, description, source folder, template
+├── source/                        original files of a project created in the app (empty for the sample room)
+├── incoming/                      uploaded files (part of the next snapshot)
+├── catalog/
+│   ├── extension.yaml             the project's model additions (current state)
+│   ├── changes.jsonl              approved change sets (append-only; the count is the model version)
+│   └── proposals/*.json           model change proposals and their decisions
 ├── reviews/
 │   ├── decisions.jsonl            issue decisions (append-only)
 │   └── mapping-decisions.jsonl    field mapping decisions (append-only)
@@ -205,8 +211,12 @@ evaluates the rules (`ontology/rules.py`) and writes:
     ├── silver/                    schemas/, gis/, tabular/, documents/, mappings.json, summary.json
     └── gold/                      nodes, edges, facts, aliases, geometries, issues (.parquet)
                                    ontology.duckdb (the same tables in one file, for SQL)
+                                   catalog.json (the exact model this snapshot was built with)
                                    snapshot.json (status, versions, counts, build time)
 ```
+
+The snapshot ID hashes the manifest, the base catalog **and the project extension**, so
+approving a model change always produces a new snapshot.
 
 The sample room produces 1,596 entities, 4,928 links, 38,463 facts, 770 geometries and
 2,984 issues (2,307 blocking). Uploading and approving the mock production file from
@@ -335,30 +345,107 @@ spellings are kept as aliases, and nothing is fuzzy-matched.
 ## 6. Field mapping and new datasets
 
 A field mapping links a source column to a catalog target: `Type.property`,
-`Type.measure`, a key, a dimension (such as `Well.month`) or a link. The known families
-(Unit Details, ComboCurve, LOS, Basis) are turned into the ontology by built-in recipes in
-`ontology/build.py`; header rules still label their columns so the Inputs view can show
-what each column feeds. Any other table, such as a new upload, goes through three proposal
-tiers:
+`Type.measure`, a key, a dimension (such as `Well.month`) or a link (`Type.RELATIONSHIP`).
+The known families (Unit Details, ComboCurve, LOS, Basis) are turned into the ontology by
+built-in recipes in `ontology/build.py`; header rules still label their columns so the Data
+step can show what each column feeds. Any other table, such as a new upload, goes through
+three proposal tiers:
 
-1. **Header rules** (`ontology/header_rules.yaml`): approved regular expressions on the
-   header key. For example, `^api 14$` → `Well.api_14` (key), or
+1. **Header rules** (`ontology/header_rules.yaml`, plus the project's own rules, see
+   [section 6.2](#62-model-changes-when-a-file-brings-a-new-concept)): approved regular
+   expressions on the header key. For example, `^api 14$` → `Well.api_14` (key), or
    `^(prod|production|report) ?(month|date|period)$|^month$` → the month dimension.
-   Matches are approved automatically.
-2. **Value overlap**: for each unmapped column, normalized values are compared with
-   existing entity keys (`Well.api_14`, `Well.api_10`, `EconomicLocation.inpt_id`,
-   `Unit.name`). If at least half match, the column is proposed as that key, with the match
-   rate.
+   Matches are approved automatically. For an unknown table only key and dimension rules
+   apply before the subject type is known; the other rules apply once it is, so a "Unit"
+   column in a lease schedule is not labelled as the economics file's unit column.
+2. **Value overlap**: for each unmapped column, normalized values are compared with the
+   key of every entity type in the catalog (`Well.api_14`, `Unit.name`, `BatteryCode.code`,
+   `PricingFacility.name`, and so on; `Well.api_10` as an alternate). A column whose values
+   match at least half of the time **and** identify the rows (alone, or together with the
+   month dimension) is proposed as the dataset's key. Other matching columns are proposed
+   as **links** when the catalog declares a relationship from the subject type to the
+   matched type: the crosswalk's "Sales Facility" column becomes `BatteryCode.PRICED_AT`.
 3. **Model proposals**: once the key tells us what the rows describe (for example
    `Well`), the remaining columns, with sample values, are sent to gpt-6-astra. The prompt
-   lists only the targets the catalog allows for that type, and the model returns structured
-   output: target, confidence and a one-sentence rationale. Answers are cached. Offline, a
-   keyword heuristic proposes the same targets for oil, gas, water and days columns.
+   lists only the targets the catalog allows for that type (properties, measures,
+   dimensions and relationships), and the model returns structured output: target,
+   confidence and a one-sentence rationale. Answers are cached. Offline, a keyword
+   heuristic proposes the same targets for oil, gas, water and days columns.
 
 Proposals other than header rules wait for approval. Decisions are stored by header key and
-target, so the next file with the same headers is mapped without another review. On the
-next rebuild, approved key and measure mappings become facts on the matched entities, each
-citing its cell.
+target, so the next file with the same headers is mapped without another review.
+
+### 6.1 The generic recipe
+
+On the next rebuild, approved mappings of an unknown table are applied by one generic
+recipe (`mapping.apply_approved`), which does more than add facts:
+
+- rows whose key matches an existing entity attach **properties**, **links** and **facts**
+  to it (the production file adds monthly facts to wells);
+- when the subject type has no entities yet (a type added for the project, or a base type
+  the room's files never produced), each row **creates** one, with a deterministic ID from
+  its key and a citation to its row (the lease schedule creates 124 `Lease` entities);
+- approved **link** mappings create the relationships the catalog declares, resolved by the
+  target type's key with the same normalization as everywhere else; the edge keeps the
+  relationship's method (`crosswalk` for PRICED_AT) and the cell it came from;
+- keys and link values that match nothing raise `UNMATCHED_KEY` and `UNMATCHED_LINK`
+  instead of being dropped.
+
+### 6.2 Model changes: when a file brings a new concept
+
+The base catalog cannot describe everything a seller sends. When a file's columns cannot
+be placed, concept discovery (`ontology/modeling.py`) proposes a **model change** for the
+project. It is decided from the data, and a model drafts the names when one is available:
+
+| Case | Evidence | Proposal |
+|---|---|---|
+| **New entity type** | No column matches an existing key, but one column is nearly unique and non-empty (headers with id/no/code/number are preferred) | An entity type keyed by that column; text and date columns become properties, numeric columns become measures (unit read from the header), columns whose values match an existing type's key become relationships (for example `LEASE_IN_UNIT`, 122 of 124 values match a Unit); one header rule per column |
+| **Extend an existing type** | The rows are an existing type (key found) but some columns fit no property or measure it has, or match another type with no declared relationship | Properties, measures or a relationship added to that type, with header rules |
+| **Link two existing types** | No identifying column, but two columns match two different existing types and the catalog declares no relationship between them | A `crosswalk` relationship between the two types, with header rules for the key and the link |
+
+When the catalog already declares the relationship (the battery-to-facility crosswalk and
+PRICED_AT), no model change is needed: the ordinary mapping proposals fill the gap.
+
+A proposal is stored under `rooms/<project>/catalog/proposals/` with a stable ID (file,
+sheet and headers), so a rebuild neither re-proposes nor forgets a decision. The data
+steward reviews it in the Model step, renames anything that does not fit the house
+vocabulary (entity type, properties, relationships; header rules and mappings follow), and
+approves or rejects it with a reason. Approval:
+
+1. appends the change set to `catalog/changes.jsonl` and materializes the project
+   extension in `catalog/extension.yaml` (new entity types, properties added to base types,
+   measures, relationships and header rules);
+2. gives the project a new model version, `0.1.0+<project>.<n>` where `n` counts the
+   change sets, and the merged catalog is validated before anything is written;
+3. rebuilds the snapshot: the new header rules map the file, the generic recipe creates the
+   entities, links and facts, and the snapshot records the exact catalog it was built with
+   (`gold/catalog.json`).
+
+The governed base model (`ontology/catalog.yaml`) is never edited from the app. A new
+project starts from the base model alone or copies another project's extension as its
+first change set, so vocabulary agreed on one deal carries to the next.
+
+### Example: a mock lease schedule
+
+`data/scenarios/new-concept/Lease Schedule_2026.09.xlsx` (not a customer file) has ten
+columns: Lease No., Lessor, Unit, County, Effective Date, Expiration Date, Status, Gross
+Acres, Net Acres and Royalty (%). Nothing in the base model is keyed by a lease number, so
+the proposal is a new type:
+
+```text
+New entity type Lease from Lease Schedule_2026.09.xlsx          124 rows
+  key         lease_no    ← Lease No. (100% distinct)
+  properties  lessor, effective_date, expiration_date, status
+  measures    gross_acres (acres), net_acres (acres), royalty (fraction)
+  links       LEASE_IN_UNIT   → Unit    (122/124 "Unit" values match an existing Unit)
+              LEASE_IN_COUNTY → County  (124/124)
+  + 10 header rules, e.g. ^lease no$ → Lease.lease_no (key)
+```
+
+After approval the model is `0.1.0+lone-star-basin.1`, the graph holds 124 leases with
+372 facts and 246 links, each citing its cell, and the two rows that name a unit the room
+does not have raise one `UNMATCHED_LINK` issue. The schema graph shows `Lease` in a row
+below the base types, and the dictionary marks it "project".
 
 ### Example: a mock production file
 
@@ -538,6 +625,23 @@ Approving or rejecting a field mapping appends to `reviews/mapping-decisions.jso
 header key, target, reviewer and time. The next rebuild uses it, and future files with the
 same header reuse it.
 
+### 9.2a Decisions change the answers
+
+A decision is more than a mark in the queue. When a question is decided for the whole rule
+("Use GIS unit" for every unit assignment conflict, "KY is PV-10" for the value conflict),
+or every issue of the rule is decided the same way, the snapshot exposes it as the rule's
+**policy** (`Snapshot.policy`), and the named operations use it:
+
+- `zone_summary` and `locations` report a single PV-10 from the chosen column and say which
+  decision it rests on; both columns stay in the table for reference;
+- `well_profile` names the governing unit ("the map governs: Use GIS unit, decided by the
+  Land reviewer") instead of listing two assignments, and reports PV-10 from the chosen
+  column.
+
+Until then the answers show both values, as before. The Decisions step offers each
+question as a card with the policy choices up front; "Review one by one" opens the queue
+for exceptions.
+
 ### 9.3 The publish gate
 
 A snapshot is "in_review" while any blocking issue is open, otherwise "ready".
@@ -644,26 +748,35 @@ workbook at that cell with its lineage.
 
 ## 11. The web UI
 
-The UI (`frontend/`, React and Vite) is one workspace with a navigation rail, the working
-view in the center and the chat docked on the right. A single click selects; a double click
-opens the inspector drawer. The URL keeps the state, so any view can be shared as a link.
+The UI (`frontend/`, React and Vite) opens on the **Projects** page: one card per data
+room with its health (files, model version, items to review, blocking decisions, last
+build) and a form to start a new project from the base model or another project's model.
+Inside a project a **step bar** follows the work; each step shows what is waiting. A single
+click selects; a double click opens the inspector drawer. The URL keeps the project and the
+state, so any place can be shared as a link.
 
-| View | What you can do |
+| Step | What you can do |
 |---|---|
-| Explore | See the schema graph (types sized by count, link types with counts, data gaps dashed) or an entity's neighborhood (two hops, hubs limited to one hop, large groups capped). Search with `/`, filter by type, link method and severity. Conflicting links are red; badges count open issues. Double-click any node for its properties, relationships, facts, sources, issues and schema |
-| Inputs | Browse every file. Sheets show mapped columns (green underline approved, amber proposed) and flag uncached formulas; selecting a cell shows its mapping, the facts it produced, the entities it feeds and the issues that cite it. PDFs show pages with text, figure and claim overlays, extracted chart data and cross-checks. Map layers show units, tracts and laterals, with unit conflicts in red. Upload a dataset and approve its mappings here |
-| Schema | The catalog as a dictionary: entity types with properties and measures, relationship types with build rules, rules and alias tables |
-| Review | Rule cards with open and decided counts, a paged issue queue, side-by-side evidence with citations (and a mini map for unit conflicts), decisions with a reason and scope, and the publish gate |
-| Chat | Questions answered by named operations, with the operation trace, result tables, citations that open the cited cell, page or feature, and actions such as "Show on graph" |
+| 1 Data | Browse every file. Sheets show mapped columns (green underline approved, amber proposed) and flag uncached formulas; selecting a cell shows its mapping, the facts it produced, the entities it feeds and the issues that cite it. PDFs show pages with text, figure and claim overlays, extracted chart data and cross-checks. Map layers show units, tracts and laterals, with unit conflicts in red. Add files here: a workbook, CSV or PDF, or a zip of the whole room; a file that needs review sends you to the Model step |
+| 2 Model | **Changes**: proposed model changes with evidence, editable names, the column mappings they imply, approve/reject with a reason, and the change log. **Field mappings**: files whose columns need approval (links that fill a declared gap are marked). **Dictionary**: the model as a data dictionary, base and project items told apart. **Graph**: the schema graph (types sized by count, link types with counts, data gaps dashed) |
+| 3 Decisions | One card per question (business wording, the owning discipline, open and decided counts). Decide for all affected items with a reason, or open the queue: side-by-side evidence with citations, a mini map for unit conflicts, per-issue decisions |
+| 4 Publish | The snapshot, the gate (with a reviewer-and-reason override), what changed against any earlier snapshot, the snapshot history and CSV exports |
+| 5 Ask | The graph (schema or an entity's neighborhood; search with `/`, filter by type, link method and severity; conflicting links red, badges count open issues) with the chat docked beside it: operation trace, result tables, citations that open the cited cell, page or feature, and actions such as "Show on graph". The Ask button opens the chat on any step |
 
 ## 12. API reference
 
-The FastAPI service (`service/api.py`) serves the UI and these endpoints:
+The FastAPI service (`service/api.py`) serves the UI and these endpoints. Every data
+endpoint takes `?room=<project>`; without it the sample project (`DATA_ROOM_ASSET_ID`) is
+used.
 
 | Endpoint | Purpose |
 |---|---|
-| `GET /api/health`, `/api/room`, `/api/rooms` | Status, snapshot metadata and counts |
-| `GET /api/catalog` | Catalog with rules, alias tables and instance counts |
+| `GET /api/health`, `/api/room`, `/api/rooms` | Status, snapshot metadata, counts and the rule policies in force |
+| `GET/POST /api/projects`, `GET/DELETE /api/projects/{id}` | Projects with their health; create from the base model (`template: base`) or another project's model (`template: copy`, `copied_from`) |
+| `GET /api/model/proposals[/{id}]`, `POST /api/model/proposals/{id}/decision`, `GET /api/model/changes` | Model change proposals, approval (optionally with edited items) or rejection, and the project's change log |
+| `GET /api/snapshots`, `GET /api/snapshots/diff?from=&to=` | Snapshot history and what changed between two snapshots (files, entities, links, fact values, issues) |
+| `GET /api/export/decisions.csv`, `/entities.csv`, `/facts.csv` | Exports with sources |
+| `GET /api/catalog` | The snapshot's catalog (base and project items marked) with rules, alias tables, instance counts and the change log |
 | `GET /api/graph/viz/schema` | Type and link counts for the schema graph |
 | `GET /api/graph/viz/search?q=` | Entity search by label, ID, alias or API digits |
 | `GET /api/graph/viz/neighborhood?id=&depth=&types=&methods=&issues_only=` | Capped neighborhood with conflict flags |
@@ -677,18 +790,23 @@ The FastAPI service (`service/api.py`) serves the UI and these endpoints:
 | `GET /api/layers/{file_id}` | GeoJSON with each feature's entity and issue counts |
 | `GET /api/issues`, `/api/rules`; `POST /api/issues/decision` | Issue queue and decisions |
 | `GET /api/mappings`; `POST /api/mappings/decision` | Mapping proposals and decisions |
-| `POST /api/uploads`, `/api/rebuild`, `/api/publish` | Add a dataset (.xlsx or .csv, 20 MB), rebuild, publish |
+| `POST /api/uploads`, `/api/rebuild`, `/api/publish` | Add files (.xlsx, .xlsm, .csv, .pdf or a .zip of a room, 200 MB), rebuild, publish |
 
 ## 13. Current limits
 
-- A decision marks issues as decided, but answers still show both values (for example KY
-  and MF). Using the chosen value in answers is a next step.
-- New datasets add facts to existing entities matched by key. Creating new entities or links
-  from a new file needs a catalog or recipe change.
-- Price questions are unsupported until the customer supplies a battery-to-facility
-  crosswalk.
+- Answers use a decision only when it covers the whole rule (or every issue agrees).
+  Mixed per-issue decisions still show both values.
+- A new file is modelled from its columns. Shapes that need code remain code: a workbook
+  with several header rows or blocks per zone, or a new file format such as LAS logs, needs a
+  family extractor or a parser before the model can grow from it.
+- Model proposals are drafted from the data; the model (when available) only names and
+  describes them. Relationship direction is always from the new type to the existing one.
+- Price questions need the battery-to-facility crosswalk to be approved; the mock crosswalk
+  shows the flow, the customer's real one is still to come.
 - The alias tables (`landing_zones`, `gis_zone_fields`) are proposed and need approval from
   the customer's subsurface expert.
-- The catalog is version 0.1.0, a draft pending XOM review.
-- The server runs one room, locally, without sign-in. Hosting and authentication are the next
-  milestone (M6).
+- The base catalog is version 0.1.0, a draft pending XOM review; project extensions are
+  versioned per project and are not yet promoted back into the base.
+- The server runs locally, without sign-in or roles; the reviewer name on a decision is
+  typed, not authenticated. Hosting, authentication and assignment of decisions to
+  disciplines are the next milestone (M6).
