@@ -14,24 +14,38 @@ BASIS_TAB = re.compile(r"basis report\s*-\s*([a-z]{3})(\d{2})$", re.I)
 MONTHS = {name: index for index, name in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], start=1)}
 
 
+# Headers a sheet must carry before a built-in recipe is trusted with it. A file whose name resembles
+# the sample room's but whose layout differs is profiled generically instead (and mapped in the Model step).
+ONELINE_REQUIRED = {"INPT ID", "API 14", "Well Name", "UNIT", "Current Operator", "Project Name"}
+CASHFLOW_REQUIRED = {"Date", "Group"}
+
+
+def _looks_like_unit_details(grid: Grid) -> bool:
+    header = grid.get(7, 3)
+    return grid.max_row >= 8 and isinstance(header, str) and header.strip().upper() == "UNIT"
+
+
 def extract_workbook(grids: list[Grid], file: str, file_id: str, role: str | None) -> list[Table]:
     tables: list[Table] = []
     for grid in grids:
         dataset = f"{file_id}/{slug(grid.name)}"
-        if role == "unit_details" and grid.name == "Unit Details":
-            table = extract_table(grid, file, dataset, header_rows=[5, 6, 7], fill_right_rows=[5], data_rows=(8, 97), key_column="C")
+        if role == "unit_details" and grid.name == "Unit Details" and _looks_like_unit_details(grid):
+            table = extract_table(grid, file, dataset, header_rows=[5, 6, 7], fill_right_rows=[5], data_rows=(8, grid.max_row), key_column="C")
             table.context["family"] = "unit_details"
             tables.append(table)
-        elif role == "lease_operating_statement":
+        elif role == "lease_operating_statement" and month_columns(grid, 2):
             tables.append(_los(grid, file, dataset))
         elif role == "basis_report" and BASIS_TAB.search(grid.name):
             tables.extend(_basis(grid, file, dataset))
         elif grid.max_row and grid.max_col:
             table = extract_table(grid, file, dataset, header_rows=[detect_header_row(grid)])
-            table.context["family"] = {
-                ("economics_oneline", "ONELINE"): "economics_oneline",
-                ("economics_oneline", "CASHFLOW"): "economics_cashflow",
-            }.get((role, grid.name), "generic")
+            names = {path[-1] for path in table.headers.values()}
+            family = "generic"
+            if role == "economics_oneline" and grid.name == "ONELINE" and ONELINE_REQUIRED <= names:
+                family = "economics_oneline"
+            elif role == "economics_oneline" and grid.name == "CASHFLOW" and CASHFLOW_REQUIRED <= names:
+                family = "economics_cashflow"
+            table.context["family"] = family
             tables.append(table)
     return tables
 

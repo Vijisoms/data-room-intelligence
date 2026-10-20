@@ -59,8 +59,9 @@ export function TypeSchema({ catalog, name }: { catalog: Catalog; name: string }
 }
 
 export function Schema() {
-  const { nav, patch, version } = useApp();
+  const { nav, patch, go, version } = useApp();
   const result = useFetch<Catalog>("/api/catalog", version);
+  const origin = (o: string | undefined) => (o === "project" ? <span className="chip" style={{ height: 20, fontSize: 11 }}>project</span> : null);
   if (result.error) return <ErrorBox error={result.error} />;
   const catalog = result.data;
   if (!catalog) return <Loading label="Loading catalog" />;
@@ -115,7 +116,7 @@ export function Schema() {
           <div className="card"><div className="muted small">Subject</div><div className="big" style={{ fontSize: 16 }}>{r.subject}</div></div>
         </div>
         <Section title={r.title}><Kv pairs={[["Check", r.check], ["Blocks", r.blocks]]} /></Section>
-        <button className="btn" onClick={() => patch({ view: "review", rule: r.code, issueId: null })}><Icon name="shield" />Open in Review</button>
+        <button className="btn" onClick={() => go("decisions", { rule: r.code, issueId: null, queue: true })}><Icon name="shield" />Open in Decisions</button>
       </div>
     ) : null;
   } else {
@@ -139,22 +140,22 @@ export function Schema() {
     <div className="twopane">
       <nav className="pane-list" aria-label="Catalog">
         {head(`Entity types · ${catalog.entity_types.length}`)}
-        {catalog.entity_types.map((t) => item({ kind: "type", name: t.name }, <><Dot color={typeColor(t.name)} />{t.name}</>, catalog.counts.entities[t.name] ?? 0))}
+        {catalog.entity_types.map((t) => item({ kind: "type", name: t.name }, <><Dot color={typeColor(t.name)} />{t.name}{origin(t.origin)}</>, catalog.counts.entities[t.name] ?? 0))}
         {head(`Relationship types · ${catalog.relationship_types.length}`)}
-        {catalog.relationship_types.map((r) => item({ kind: "rel", name: r.name }, <span className="mono small">{r.name}</span>, catalog.counts.relationships[r.name] ?? 0))}
+        {catalog.relationship_types.map((r) => item({ kind: "rel", name: r.name }, <><span className="mono small">{r.name}</span>{origin(r.origin)}</>, catalog.counts.relationships[r.name] ?? 0))}
         {head(`Measures · ${catalog.measures.length}`)}
-        {catalog.measures.map((m) => item({ kind: "measure", name: `${m.subject}.${m.name}` }, <span className="mono small">{`${m.subject}.${m.name}`}</span>))}
+        {catalog.measures.map((m) => item({ kind: "measure", name: `${m.subject}.${m.name}` }, <><span className="mono small">{`${m.subject}.${m.name}`}</span>{origin(m.origin)}</>))}
         {head(`Reconciliation rules · ${catalog.rules.length}`)}
         {catalog.rules.map((r) => item({ kind: "rule", name: r.code }, <><SevChip sev={r.severity}>{r.severity[0].toUpperCase()}</SevChip><span className="mono small">{r.code}</span></>, r.count))}
         {head(`Alias tables · ${Object.keys(catalog.aliases).length}`)}
         {Object.keys(catalog.aliases).map((name) => item({ kind: "alias", name }, <span className="mono small">{name}</span>))}
       </nav>
       <div className="pane-body">
-        <div className="banner"><Icon name="alert" />{`Catalog ${catalog.catalog_version} · ${catalog.status}. Feedback becomes a new catalog version; every snapshot records the version it used.`}</div>
+        <div className="banner"><Icon name="alert" />{`Model ${catalog.catalog_version}. The base model is governed centrally (${catalog.status.split(";")[0]}); items marked "project" were added here through approved changes. Every snapshot records the model version it used.`}</div>
         {body}
         {sel.kind === "type" && (catalog.counts.entities[sel.name] ?? 0) > 0 ? (
           <div style={{ marginTop: 12 }}>
-            <button className="btn" onClick={() => patch({ view: "explore", mode: "schema", schemaType: sel.name })}><Icon name="graph" />Show on schema graph</button>
+            <button className="btn" onClick={() => patch({ modelTab: "graph", mode: "schema", schemaType: sel.name })}><Icon name="graph" />Show on schema graph</button>
           </div>
         ) : null}
       </div>

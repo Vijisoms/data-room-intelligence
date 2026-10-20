@@ -64,13 +64,151 @@ def load_aliases(directory: Path | None = None) -> dict[str, AliasTable]:
     return {table.name: table for table in tables}
 
 
-def catalog_fingerprint(directory: Path | None = None) -> str:
+def catalog_fingerprint(directory: Path | None = None, room_id: str | None = None) -> str:
+    """Hash of the governed base files plus, for a project, its model extension."""
     folder = directory or catalog_dir()
     digest = hashlib.sha256()
     for path in sorted(folder.rglob("*.yaml")):
         digest.update(path.relative_to(folder).as_posix().encode())
         digest.update(path.read_bytes())
+    if room_id:
+        extension = extension_path(room_id)
+        if extension.exists():
+            digest.update(b"extension")
+            digest.update(extension.read_bytes())
     return digest.hexdigest()
+
+
+# ---------------------------------------------------------------------------
+# Project model extensions: the governed base catalog plus per-project additions.
+# ---------------------------------------------------------------------------
+
+EMPTY_EXTENSION: dict[str, list] = {"entity_types": [], "properties": [], "measures": [], "relationship_types": [], "header_rules": []}
+CHANGE_OPS = {"add_entity_type", "add_property", "add_measure", "add_relationship", "add_header_rule"}
+
+
+def extension_path(room_id: str) -> Path:
+    from ..config import RoomPaths
+
+    return RoomPaths(room_id).catalog / "extension.yaml"
+
+
+def load_extension(room_id: str | None) -> dict[str, list]:
+    path = extension_path(room_id) if room_id else None
+    if not path or not path.exists():
+        return {key: [] for key in EMPTY_EXTENSION}
+    data = yaml.safe_load(path.read_text("utf-8")) or {}
+    return {key: list(data.get(key) or []) for key in EMPTY_EXTENSION}
+
+
+def catalog_changes(room_id: str) -> list[dict]:
+    from ..config import RoomPaths
+
+    path = RoomPaths(room_id).catalog / "changes.jsonl"
+    if not path.exists():
+        return []
+    return [json.loads(line) for line in path.read_text("utf-8").splitlines() if line.strip()]
+
+
+def merge_catalog(base: Catalog, extension: dict[str, list], version: str, status: str | None = None) -> Catalog:
+    data = base.model_dump(mode="json")
+    data["catalog_version"] = version
+    if status:
+        data["status"] = status
+    data["entity_types"] = [*data["entity_types"], *extension["entity_types"]]
+    for addition in extension["properties"]:
+        entity = next((e for e in data["entity_types"] if e["name"] == addition["entity_type"]), None)
+        if entity is None:
+            raise ValueError(f"property addition for unknown entity type {addition['entity_type']}")
+        if all(p["name"] != addition["property"]["name"] for p in entity["properties"]):
+            entity["properties"].append(addition["property"])
+    data["measures"] = [*data["measures"], *extension["measures"]]
+    data["relationship_types"] = [*data["relationship_types"], *extension["relationship_types"]]
+    return Catalog.model_validate(data)
+
+
+def room_catalog(room_id: str | None, directory: Path | None = None) -> Catalog:
+    """The model a project builds with: base catalog plus its approved extension (versioned by change count)."""
+    base = load_catalog(directory)
+    if not room_id:
+        return base
+    extension = load_extension(room_id)
+    changes = catalog_changes(room_id)
+    if not changes and not any(extension.values()):
+        return base
+    version = f"{base.catalog_version}+{room_id}.{len(changes)}"
+    return merge_catalog(base, extension, version, f"{base.status}; {len(changes)} project change set{'s' if len(changes) != 1 else ''}")
+
+
+def room_header_rules(room_id: str | None) -> list[dict]:
+    rules = yaml.safe_load((catalog_dir() / "header_rules.yaml").read_text("utf-8"))["rules"]
+    return [*rules, *load_extension(room_id)["header_rules"]]
+
+
+def apply_changes(room_id: str, items: list[dict], applied_by: str, reason: str, proposal_id: str | None = None) -> dict:
+    """Apply an approved change set to the project extension; the merged catalog must validate or nothing is written."""
+    from ..config import RoomPaths
+    from datetime import datetime, timezone
+
+    extension = load_extension(room_id)
+    for item in items:
+        op = item.get("op")
+        if op not in CHANGE_OPS:
+            raise ValueError(f"unknown change operation {op}")
+        if op == "add_entity_type":
+            if any(e["name"] == item["entity_type"]["name"] for e in extension["entity_types"]):
+                continue
+            extension["entity_types"].append(item["entity_type"])
+        elif op == "add_property":
+            key = (item["entity_type"], item["property"]["name"])
+            if any((p["entity_type"], p["property"]["name"]) == key for p in extension["properties"]):
+                continue
+            extension["properties"].append({"entity_type": item["entity_type"], "property": item["property"]})
+        elif op == "add_measure":
+            key = (item["measure"]["subject"], item["measure"]["name"])
+            if any((m["subject"], m["name"]) == key for m in extension["measures"]):
+                continue
+            extension["measures"].append(item["measure"])
+        elif op == "add_relationship":
+            if any(r["name"] == item["relationship"]["name"] for r in extension["relationship_types"]):
+                continue
+            extension["relationship_types"].append(item["relationship"])
+        elif op == "add_header_rule":
+            if any(r["pattern"] == item["rule"]["pattern"] and r["target"] == item["rule"]["target"] for r in extension["header_rules"]):
+                continue
+            extension["header_rules"].append(item["rule"])
+    changes = catalog_changes(room_id)
+    base = load_catalog()
+    merged = merge_catalog(base, extension, f"{base.catalog_version}+{room_id}.{len(changes) + 1}")  # raises on dangling references
+    paths = RoomPaths(room_id)
+    paths.catalog.mkdir(parents=True, exist_ok=True)
+    extension_path(room_id).write_text(yaml.safe_dump(extension, sort_keys=False, allow_unicode=True), encoding="utf-8")
+    record = {
+        "change_id": f"change:{len(changes) + 1}",
+        "catalog_version": merged.catalog_version,
+        "proposal_id": proposal_id,
+        "items": items,
+        "applied_by": applied_by,
+        "reason": reason,
+        "applied_at": datetime.now(timezone.utc).isoformat(),
+    }
+    with (paths.catalog / "changes.jsonl").open("a", encoding="utf-8") as stream:
+        stream.write(json.dumps(record) + "\n")
+    return record
+
+
+def copy_extension(source_room: str, target_room: str) -> None:
+    """Start a project from another project's model: the extension is copied as one change set."""
+    extension = load_extension(source_room)
+    items = [
+        *({"op": "add_entity_type", "entity_type": e} for e in extension["entity_types"]),
+        *({"op": "add_property", **p} for p in extension["properties"]),
+        *({"op": "add_measure", "measure": m} for m in extension["measures"]),
+        *({"op": "add_relationship", "relationship": r} for r in extension["relationship_types"]),
+        *({"op": "add_header_rule", "rule": r} for r in extension["header_rules"]),
+    ]
+    if items:
+        apply_changes(target_room, items, "system", f"copied from project {source_room}")
 
 
 def export_catalog(out_dir: Path, directory: Path | None = None) -> list[Path]:

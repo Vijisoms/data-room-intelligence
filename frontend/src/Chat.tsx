@@ -5,7 +5,9 @@ import { useApp } from "./store";
 import { Cite, Icon, SevChip } from "./ui";
 import { nf } from "./util";
 
-const PROMPTS = ["Tell me about JARDINE 4-27 A 4LS", "What are the Wolfcamp A net acres, net locations and PV-10?", "Does the asset overview deck agree with the data?", "What are the data gaps?"];
+// Suggested questions: the sample room has well-known names; any other project gets questions that work on any data.
+const SAMPLE_PROMPTS = ["Tell me about JARDINE 4-27 A 4LS", "What are the Wolfcamp A net acres, net locations and PV-10?", "Does the asset overview deck agree with the data?", "What are the data gaps?"];
+const GENERIC_PROMPTS = ["What is in this data room?", "What conflicts are open?", "Do the slide decks agree with the data?", "What are the data gaps?"];
 
 function ResultWidget({ answer }: { answer: Answer }) {
   const result = answer.results[0];
@@ -15,10 +17,11 @@ function ResultWidget({ answer }: { answer: Answer }) {
     const rows = (data.by_status as { status: string; count: number; ky_musd: number; mf_musd: number }[]) ?? [];
     return (
       <div className="result">
-        <div className="metrics">
+        <div className="metrics" style={data.pv10_musd != null ? { gridTemplateColumns: "repeat(4, 1fr)" } : undefined}>
           <div className="metric"><b>{nf(data.net_acres, 0)}</b><span>net acres</span></div>
           <div className="metric"><b>{nf(data.net_locations_10k, 2)}</b><span>net locations</span></div>
           <div className="metric"><b>{nf(data.economic_locations)}</b><span>economic locations</span></div>
+          {data.pv10_musd != null ? <div className="metric"><b>{`$${nf(data.pv10_musd, 1)} MM`}</b><span>PV-10</span></div> : null}
         </div>
         {rows.length ? (
           <table className="simple">
@@ -26,7 +29,7 @@ function ResultWidget({ answer }: { answer: Answer }) {
             <tbody>{rows.map((r) => <tr key={r.status}><td>{r.status}</td><td className="num">{r.count}</td><td className="num">{nf(r.ky_musd, 1)}</td><td className="num">{nf(r.mf_musd, 1)}</td></tr>)}</tbody>
           </table>
         ) : null}
-        {Number(data.pv10_open_conflicts) ? <div className="small" style={{ marginTop: 6 }}><SevChip sev="blocking">VALUE_FIELD_CONFLICT</SevChip> blocks a single PV-10 figure.</div> : null}
+        {data.pv10_musd != null ? <div className="small" style={{ marginTop: 6 }}><SevChip sev="ok">decided</SevChip> {`PV-10 uses the ${(data.pv10_basis as { column: string }).column} column, per the recorded decision.`}</div> : Number(data.pv10_open_conflicts) ? <div className="small" style={{ marginTop: 6 }}><SevChip sev="blocking">VALUE_FIELD_CONFLICT</SevChip> blocks a single PV-10 figure until the question is decided.</div> : null}
       </div>
     );
   }
@@ -73,8 +76,9 @@ function BotMessage({ answer }: { answer: Answer }) {
 }
 
 export function Chat() {
-  const { messages, ask, setChatOpen, health, drawer } = useApp();
+  const { messages, ask, setChatOpen, health, drawer, nav, room } = useApp();
   const [text, setText] = useState("");
+  const prompts = health && nav.room === health.room_id ? SAMPLE_PROMPTS : GENERIC_PROMPTS;
   const log = useRef<HTMLDivElement>(null);
   useEffect(() => {
     log.current?.scrollTo({ top: log.current.scrollHeight });
@@ -105,14 +109,14 @@ export function Chat() {
     <aside className="chat" aria-label="Ask the data room">
       <div className="chat-head">
         <Icon name="spark" />
-        <h3>Ask the data room</h3>
+        <h3>{room ? `Ask ${room.name}` : "Ask the data room"}</h3>
         <span style={{ flex: 1 }} />
         <SevChip sev="ai">{health ? (health.offline || !health.model ? "offline router" : `${health.model} · Foundry`) : "…"}</SevChip>
         <button className="icon-btn" aria-label="Hide chat" onClick={() => setChatOpen(false)}><Icon name="x" /></button>
       </div>
       <div className="chat-log" role="log" aria-live="polite" ref={log}>{content}</div>
       <div className="chat-foot">
-        <div className="prompts">{PROMPTS.map((p) => <button key={p} className="chip" onClick={() => ask(p)}>{p}</button>)}</div>
+        <div className="prompts">{prompts.map((p) => <button key={p} className="chip" onClick={() => ask(p)}>{p}</button>)}</div>
         <div className="ask">
           <input type="text" value={text} placeholder="Ask about units, wells, zones, conflicts…" aria-label="Ask a question" onChange={(e) => setText(e.target.value)} onKeyDown={(e) => e.key === "Enter" && send()} />
           <button className="btn primary" aria-label="Send" onClick={send}><Icon name="send" /></button>

@@ -52,7 +52,10 @@ async def _run(args: argparse.Namespace) -> None:
         return
     if args.command == "snapshot":
         from .azure_services import azure_options, mapping_model
+        from .ontology.projects import ensure_project
         from .ontology.runner import BuildRequest, run_ontology_workflow
+
+        ensure_project(args.room_id, args.data_room.resolve())
 
         def show(event: object) -> None:
             data = getattr(event, "data", None)

@@ -19,8 +19,7 @@ def client(tmp_path_factory: pytest.TempPathFactory):
     asyncio.run(run_ontology_workflow(BuildRequest("lone-star-basin", str(ROOM)), {}, ReviewResponse("hold")))
     from data_room_intelligence.service import api
 
-    patch.setattr(api, "ROOM_DIR", ROOM)
-    api.state.reload()
+    api.state.reload("lone-star-basin")
     yield TestClient(api.app)
     patch.undo()
 
@@ -85,7 +84,7 @@ def test_snapshot_queries_are_thread_safe(client: TestClient) -> None:
 
     from data_room_intelligence.service import api
 
-    snap = api.state.snapshot
+    snap = api.state.snapshot("lone-star-basin")
     ids = ["unit:golden-crossing-west", "unit:badger-draw", "well:42901144110000"] * 20
 
     def geometry_and_facts(entity: str) -> tuple[str, int]:
@@ -103,8 +102,8 @@ def test_room_path_resolves_from_any_working_directory(tmp_path: Path) -> None:
     import subprocess
     import sys
 
-    env = {**os.environ, "DATA_ROOM_PATH": "data/sample-room"}
-    probe = "from data_room_intelligence.service import api; print(api.ROOM_DIR.is_dir())"
+    env = {**os.environ, "DATA_ROOM_PATH": "data/sample-room", "DRI_DATA_ROOT": str(tmp_path / "dri")}
+    probe = "from data_room_intelligence.ontology.projects import DEFAULT_ROOM_ID, get_project, room_dir; print(room_dir(get_project(DEFAULT_ROOM_ID)).is_dir())"
     result = subprocess.run([sys.executable, "-c", probe], cwd=tmp_path, env=env, capture_output=True, text=True, check=True)
     assert result.stdout.strip() == "True"
 

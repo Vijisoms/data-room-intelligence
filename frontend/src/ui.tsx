@@ -28,6 +28,7 @@ const ICONS: Record<string, string> = {
   refresh: '<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>',
   check: '<path d="m5 12 4.5 4.5L19 7"/>',
   back: '<path d="M19 12H5M11 18l-6-6 6-6"/>',
+  trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/>',
 };
 
 export function Icon({ name }: { name: string }) {

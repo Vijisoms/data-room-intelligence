@@ -151,8 +151,9 @@ def build(silver_path: Path, catalog: Catalog, aliases: dict[str, AliasTable], r
     p = lambda name: prefixes[name]  # noqa: E731
     asset = gold.node("Asset", p("Asset"), slug(room_name), room_name, None, "room inventory", name=room_name)
     gold.context.update({"asset": asset, "prefixes": prefixes})
-    zone_ids = {zone: gold.node("Zone", p("Zone"), slug(zone), zone, None, "Unit Details zone headers", code=zone) for zone in ZONES}
-    units = _unit_details(silver, gold, p, zone_ids, asset)
+    has_unit_details = any(t["family"] == "unit_details" for t in silver.tables.values())
+    zone_ids = {zone: gold.node("Zone", p("Zone"), slug(zone), zone, None, "Unit Details zone headers", code=zone) for zone in ZONES} if has_unit_details else {}
+    units = _unit_details(silver, gold, p, zone_ids, asset) if has_unit_details else {}
     _gis(silver, gold, p, units, zone_ids, aliases["gis_zone_fields"])
     _economics(silver, gold, p, units, zone_ids, aliases["landing_zones"])
     _cashflow(silver, gold, p, asset)
@@ -195,16 +196,18 @@ def _gis(silver: Silver, gold: Gold, p, units: dict[str, str], zone_ids: dict[st
     unit_by_index: dict[int, str] = {}
     for item in by_dataset.get("gis-units-pf", []):
         attrs = json.loads(item["attributes"])
-        unit = units.get(norm_name(attrs["UNIT_NAME"]))
+        name = attrs.get("UNIT_NAME") or attrs.get("UNIT") or attrs.get("NAME")
+        unit = units.get(norm_name(name)) if name else None
         if unit is None:
             continue
         unit_by_index[item["feature_index"]] = unit
-        gold.alias(unit, attrs["UNIT_NAME"], f"{file['gis-units-pf']} UNIT_NAME")
+        gold.alias(unit, name, f"{file['gis-units-pf']} UNIT_NAME")
         gold.nodes[unit]["props"]["mapped_acres"] = item["geodesic_acres"]
         gold.geometries.append({"entity": unit, "kind": "polygon", "wkb": item["wkb"], "geodesic_acres": item["geodesic_acres"], "length_ft": None, "file": file["gis-units-pf"], "locator": f"feature {item['feature_index']}"})
     for item in by_dataset.get("gis-units", []):
         attrs = json.loads(item["attributes"])
-        unit = units.get(norm_name(attrs["UNIT"]))
+        name = attrs.get("UNIT") or attrs.get("UNIT_NAME") or attrs.get("NAME")
+        unit = units.get(norm_name(name)) if name else None
         if unit is None:
             continue
         for name, value in attrs.items():
@@ -222,7 +225,9 @@ def _gis(silver: Silver, gold: Gold, p, units: dict[str, str], zone_ids: dict[st
     well_by_index: dict[int, str] = {}
     for item in by_dataset.get("gis-pdp", []):
         attrs = json.loads(item["attributes"])
-        api = _api_number(attrs["API_14"], 14)
+        api = _api_number(attrs.get("API_14") or attrs.get("API14") or attrs.get("API"), 14)
+        if not api:
+            continue  # a lateral without an API number cannot be keyed; it stays in Silver
         well = gold.node("Well", p("Well"), api, attrs.get("Well_Name") or api, file["gis-pdp"], f"feature {item['feature_index']}", api_14=api, api_10=_api_number(attrs.get("API_10"), 10), well_name=attrs.get("Well_Name"), landing_zone=attrs.get("Landing_Zo"), lateral_length_ft=item["geodesic_length_ft"])
         well_by_index[item["feature_index"]] = well
         gold.alias(well, gold.nodes[well]["props"].get("api_10"), "API_10")
@@ -239,8 +244,8 @@ def _gis(silver: Silver, gold: Gold, p, units: dict[str, str], zone_ids: dict[st
 
 
 def _economics(silver: Silver, gold: Gold, p, units: dict[str, str], zone_ids: dict[str, str], landing: AliasTable) -> None:
-    dataset = "combocurve/oneline"
-    if dataset not in silver.tables:
+    dataset = next((d for d, t in silver.tables.items() if t["family"] == "economics_oneline"), None)
+    if dataset is None:
         return
     file = silver.tables[dataset]["file"]
     cols = silver.column_by_header(dataset)
@@ -265,7 +270,7 @@ def _economics(silver: Silver, gold: Gold, p, units: dict[str, str], zone_ids: d
         operator = gold.node("Operator", p("Operator"), slug(operator_name), operator_name, file, f"ONELINE!{cols['Current Operator']}{row}", name=operator_name)
         gold.edge(location, "OPERATED_BY", operator, "source", file, f"ONELINE!{cols['Current Operator']}{row}", alias=get("Current Operator Alias"))
         bench = landing.entries.get(str(get("Landing Zone")).strip()) if get("Landing Zone") else None
-        if bench:
+        if bench and bench in zone_ids:
             gold.edge(location, "TARGETS_ZONE", zone_ids[bench], "alias", file, f"ONELINE!{cols['Landing Zone']}{row}", alias_table="landing_zones", alias_status=landing.status)
         if get("BATTERY"):
             battery = gold.node("BatteryCode", p("BatteryCode"), slug(get("BATTERY")), get("BATTERY"), file, f"ONELINE!{cols['BATTERY']}{row}", code=get("BATTERY"))
@@ -275,13 +280,13 @@ def _economics(silver: Silver, gold: Gold, p, units: dict[str, str], zone_ids: d
             gold.edge(location, "IS_WELL", wells[api], "key", file, f"ONELINE!{cols['API 14']}{row}", api_14=api)
         for header, (measure, unit_name, factor) in ONELINE_MEASURES.items():
             value = get(header)
-            if isinstance(value, (int, float)):
+            if header in cols and isinstance(value, (int, float)):
                 gold.fact(location, measure, float(value) * factor, unit_name, file, f"ONELINE!{cols[header]}{row}", case_id=case, dataset_id=dataset)
 
 
 def _cashflow(silver: Silver, gold: Gold, p, asset: str) -> None:
-    dataset = "combocurve/cashflow"
-    if dataset not in silver.tables:
+    dataset = next((d for d, t in silver.tables.items() if t["family"] == "economics_cashflow"), None)
+    if dataset is None:
         return
     file = silver.tables[dataset]["file"]
     headers = silver.tables[dataset]["headers"]

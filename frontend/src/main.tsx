@@ -10,10 +10,10 @@ window.addEventListener("error", (event) => {
 
 /** Marks the page ready once room data has loaded (used by headless smoke tests). */
 function Ready() {
-  const { room, files } = useApp();
+  const { room, files, projects } = useApp();
   useEffect(() => {
-    if (room && files.length) document.body.dataset.ready = "true";
-  }, [room, files]);
+    if ((room && files.length) || projects) document.body.dataset.ready = "true";
+  }, [room, files, projects]);
   return null;
 }
 

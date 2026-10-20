@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode }
 import { api, q, useFetch, type Catalog, type Neighborhood, type NodeCard, type SchemaView, type Sev } from "../api";
 import { useApp } from "../store";
 import { Dot, ErrorBox, Icon, Loading, SevChip, TypeTag } from "../ui";
-import { METHODS, SEVERITIES, TYPE_META, TYPE_ORDER, clip, issueTotal, nf, typeColor, typeFill, worst } from "../util";
+import { METHODS, SEVERITIES, TYPE_ORDER, clip, issueTotal, nf, typeColor, typeFill, typeShort, worst } from "../util";
 
 type Bounds = [number, number, number, number];
 
@@ -91,7 +91,7 @@ export function SearchBox({ onPick, placeholder = "Search units, wells, APIs, lo
           {groups.map(([type, list]) => (
             <div key={type}>
               <div className="group">
-                {TYPE_META[type]?.short ?? type} · {hits.filter((h) => h.type === type).length}
+                {typeShort(type)} · {hits.filter((h) => h.type === type).length}
               </div>
               {list.map((node) => {
                 index += 1;
@@ -238,6 +238,22 @@ const SCHEMA_POS: Record<string, [number, number]> = {
   Well: [40, -190], Unit: [330, 30], LeaseholdTract: [330, -300], County: [620, -80], DevelopmentArea: [620, 140], Asset: [40, 330], ReportingScope: [330, 470], DocumentClaim: [-250, 520],
 };
 
+/** The box around the visible type nodes, so a project with few types fills the canvas instead of hugging a corner. */
+function schemaBounds(points: [number, number][], extraRow: boolean): Bounds {
+  if (!points.length) return [-1010, -380, 780, extraRow ? 810 : 610];
+  const xs = points.map((p) => p[0]);
+  const ys = points.map((p) => p[1]);
+  return [Math.min(...xs) - 150, Math.min(...ys) - 100, Math.max(...xs) + 150, Math.max(...ys) + 90];
+}
+
+/** Positions for the schema graph: the base types have fixed places; types added to a project line up in a row below them. */
+function schemaPositions(types: string[]): Record<string, [number, number]> {
+  const extra = types.filter((t) => !SCHEMA_POS[t]);
+  const positions = { ...SCHEMA_POS };
+  extra.forEach((t, i) => { positions[t] = [-860 + i * 320, 720]; });
+  return positions;
+}
+
 function NodeGlyph({ id, type, label, r, focus, selected, dim, nolabel, counts, severities, onSelect, onOpen, sub }: {
   id: string; type: string; label: string; r: number; focus?: boolean; selected?: boolean; dim?: boolean; nolabel?: boolean; counts: NodeCard["issues"]; severities: Sev[]; onSelect: () => void; onOpen: () => void; sub?: string;
 }) {
@@ -249,7 +265,7 @@ function NodeGlyph({ id, type, label, r, focus, selected, dim, nolabel, counts, 
       tabIndex={0}
       role="button"
       data-id={id}
-      aria-label={`${TYPE_META[type]?.short ?? type} ${label}${total ? `, ${total} issues` : ""}. Double-click or press Enter for details.`}
+      aria-label={`${typeShort(type)} ${label}${total ? `, ${total} issues` : ""}. Double-click or press Enter for details.`}
       onClick={(event) => { event.stopPropagation(); onSelect(); }}
       onDoubleClick={(event) => { event.stopPropagation(); onOpen(); }}
       onKeyDown={(event) => {
@@ -371,11 +387,19 @@ function NeighborhoodGraph({ hood: data, legend: legendNode, onAsk }: { hood: Ne
 
 export function Explore() {
   const { nav, patch, version, openDrawer, ask, room } = useApp();
-  const types = TYPE_ORDER.filter((t) => !nav.hiddenTypes.includes(t));
-  const hoodUrl = nav.mode === "neighborhood" ? `/api/graph/viz/neighborhood?${q({ id: nav.focus, depth: nav.depth, types: types.join(","), methods: nav.methods.join(","), issues_only: nav.issuesOnly || null })}` : null;
-  const hood = useFetch<Neighborhood>(hoodUrl, version);
   const schema = useFetch<SchemaView>("/api/graph/viz/schema", version);
   const catalog = useFetch<Catalog>("/api/catalog", version).data;
+  // Base types with no entities yet (a project whose files do not cover them) are hidden from the schema graph unless asked for.
+  const [showEmpty, setShowEmpty] = useState(false);
+  const emptyTypes = schema.data?.types.filter((t) => t.count === 0).map((t) => t.type) ?? [];
+  const typeList = (schema.data?.types.map((t) => t.type) ?? TYPE_ORDER).filter((t) => nav.mode === "neighborhood" || showEmpty || !emptyTypes.includes(t));
+  const types = typeList.filter((t) => !nav.hiddenTypes.includes(t));
+  const hoodUrl = nav.mode === "neighborhood" ? `/api/graph/viz/neighborhood?${q({ id: nav.focus, depth: nav.depth, types: types.join(","), methods: nav.methods.join(","), issues_only: nav.issuesOnly || null })}` : null;
+  const hood = useFetch<Neighborhood>(hoodUrl, version);
+  // The default focus is a well of the sample room; in another project it does not exist, so show the schema instead.
+  useEffect(() => {
+    if (nav.mode === "neighborhood" && hood.error?.startsWith("404")) patch({ mode: "schema" });
+  }, [nav.mode, hood.error, patch]);
   const focusNode = hood.data?.nodes.find((n) => n.id === hood.data?.focus);
   const toggle = <T,>(list: T[], value: T): T[] => (list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
   const typeCounts: Record<string, number> = {};
@@ -405,15 +429,16 @@ export function Explore() {
         </div>
       ) : null}
       <button className="chip" aria-pressed={nav.issuesOnly} onClick={() => patch({ issuesOnly: !nav.issuesOnly })}><Icon name="alert" />Issues only</button>
+      {nav.mode === "schema" && emptyTypes.length ? <button className="chip" aria-pressed={showEmpty} onClick={() => setShowEmpty(!showEmpty)} title="Entity types of the base model that have no entities in this project">{`${showEmpty ? "Hide" : "Show"} ${emptyTypes.length} empty type${emptyTypes.length > 1 ? "s" : ""}`}</button> : null}
     </div>
   );
   const filters = (
     <div className="filters" role="toolbar" aria-label="Filters">
       <span className="lbl">Types</span>
-      {TYPE_ORDER.map((t) => (
+      {typeList.map((t) => (
         <button key={t} className="chip" aria-pressed={!nav.hiddenTypes.includes(t)} onClick={() => patch({ hiddenTypes: toggle(nav.hiddenTypes, t) })}>
           <Dot color={typeColor(t)} />
-          {TYPE_META[t].short}
+          {typeShort(t)}
           <span className="n">{nf(typeCounts[t] ?? 0)}</span>
         </button>
       ))}
@@ -459,6 +484,8 @@ export function Explore() {
       agg.set(key, current ? { ...current, count: current.count + link.count } : { ...link });
     }
     const counts = Object.fromEntries(data.types.map((t) => [t.type, t]));
+    const positions = schemaPositions(data.types.map((t) => t.type));
+    const extraRow = data.types.some((t) => !SCHEMA_POS[t.type]);
     const sel = nav.schemaType;
     const def = catalog?.entity_types.find((t) => t.name === sel);
     const exploreInstances = (type: string) => {
@@ -470,8 +497,8 @@ export function Explore() {
     };
     body = (
       <GraphCanvas
-        bounds={[-1010, -380, 780, 610]}
-        fitKey={`schema-${version}`}
+        bounds={schemaBounds(data.types.filter((t) => visible.has(t.type)).map((t) => positions[t.type]), extraRow)}
+        fitKey={`schema-${version}-${extraRow}-${types.length}`}
         label="Ontology schema graph"
         onBackground={() => patch({ schemaType: null })}
         overlays={
@@ -490,6 +517,7 @@ export function Explore() {
                 <div className="kv" style={{ marginTop: 6 }}>
                   <span className="muted">ID</span><span className="mono">{`${def.id_prefix}:<${def.key}>`}</span>
                   <span className="muted">Standard</span><span>{def.standard ?? "custom"}</span>
+                  <span className="muted">Origin</span><span>{def.origin === "project" ? "added in this project" : "governed base model"}</span>
                 </div>
                 <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
                   <button className="btn primary" onClick={() => openDrawer({ kind: "type", name: sel })}>Schema details</button>
@@ -506,9 +534,9 @@ export function Explore() {
         }
       >
         <g>
-          {[...agg.values()].filter((l) => visible.has(l.source) && visible.has(l.target) && SCHEMA_POS[l.source] && SCHEMA_POS[l.target]).map((l) => {
-            const [x1, y1] = SCHEMA_POS[l.source];
-            const [x2, y2] = SCHEMA_POS[l.target];
+          {[...agg.values()].filter((l) => visible.has(l.source) && visible.has(l.target) && positions[l.source] && positions[l.target]).map((l) => {
+            const [x1, y1] = positions[l.source];
+            const [x2, y2] = positions[l.target];
             const gap = l.count === 0;
             const conflict = l.kind === "ASSIGNED_TO_UNIT" || l.kind === "LATERAL_IN_UNIT";
             return (
@@ -522,8 +550,8 @@ export function Explore() {
           })}
         </g>
         <g>
-          {data.types.filter((t) => visible.has(t.type) && SCHEMA_POS[t.type]).map((t) => {
-            const [x, y] = SCHEMA_POS[t.type];
+          {data.types.filter((t) => visible.has(t.type) && positions[t.type]).map((t) => {
+            const [x, y] = positions[t.type];
             const r = 14 + Math.sqrt(t.count) * 1.3;
             return (
               <g key={t.type} transform={`translate(${x},${y})`}>
